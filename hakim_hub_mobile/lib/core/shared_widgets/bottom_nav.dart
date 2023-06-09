@@ -40,9 +40,9 @@ class _BottomNavState extends State<BottomNav> {
           });
         },
         items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(icon: home, label: "Sfsfs"),
-          BottomNavigationBarItem(icon: chatbot, label: "Sfsfs"),
-          BottomNavigationBarItem(icon: hospitals, label: "Sfsfs"),
+          BottomNavigationBarItem(icon: home, label: "Home"),
+          BottomNavigationBarItem(icon: chatbot, label: "Chat"),
+          BottomNavigationBarItem(icon: hospitals, label: "Hospital"),
         ],
       ),
     );
