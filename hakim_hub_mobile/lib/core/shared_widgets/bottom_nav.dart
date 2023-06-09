@@ -7,7 +7,9 @@ import 'package:hakim_hub_mobile/core/utils/icons.dart';
 
 class BottomNav extends StatefulWidget {
   List<Widget> pages = [
-    
+    const HomePage(),
+    const HomePage(),
+    const HomePage(),
   ];
   int index = 0;
   void onTap(int index) {
@@ -38,15 +40,27 @@ class _BottomNavState extends State<BottomNav> {
           });
         },
         items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(icon: home),
-          BottomNavigationBarItem(
-            icon: chatbot,
-          ),
-          BottomNavigationBarItem(
-            icon: hospitals,
-          ),
+          BottomNavigationBarItem(icon: home, label: "Sfsfs"),
+          BottomNavigationBarItem(icon: chatbot, label: "Sfsfs"),
+          BottomNavigationBarItem(icon: hospitals, label: "Sfsfs"),
         ],
       ),
+    );
+  }
+}
+
+class HomePage extends StatefulWidget {
+  const HomePage({super.key});
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  @override
+  Widget build(BuildContext context) {
+    return const Center(
+      child: Text(" dghndsjkgves dgjedg egoihe "),
     );
   }
 }
