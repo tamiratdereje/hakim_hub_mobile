@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 class UIConverter {
   //constants
-  static double designWidth = 428;
-  static double designHeight = 926;
+  static double designWidth = 430;
+  static double designHeight = 932;
 
   static double getDeviceWidth(BuildContext context) {
     return MediaQuery.of(context).size.width;
