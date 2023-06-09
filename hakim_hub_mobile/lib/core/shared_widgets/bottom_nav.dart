@@ -2,12 +2,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hakim_hub_mobile/core/utils/colors.dart';
+import 'package:hakim_hub_mobile/core/utils/icons.dart';
 
 class BottomNav extends StatefulWidget {
-
   List<Widget> pages = [
-   
-
+    
   ];
   int index = 0;
   void onTap(int index) {
@@ -19,7 +19,6 @@ class BottomNav extends StatefulWidget {
 }
 
 class _BottomNavState extends State<BottomNav> {
-
   //bottom navigation bar
   @override
   Widget build(BuildContext context) {
@@ -27,28 +26,25 @@ class _BottomNavState extends State<BottomNav> {
       body: widget.pages[widget.index],
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: widget.index,
-        selectedItemColor: Colors.black,
+        selectedItemColor: primaryColor,
         showSelectedLabels: true,
         unselectedIconTheme: const IconThemeData(color: Colors.grey),
-        selectedIconTheme: const IconThemeData(color: Colors.blueAccent),
+        selectedIconTheme: const IconThemeData(color: primaryColor),
         unselectedItemColor: Colors.grey,
         type: BottomNavigationBarType.fixed,
         onTap: (int i) {
-                   
-
           setState(() {
             widget.index = i;
           });
         },
         items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(icon: home),
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
+            icon: chatbot,
           ),
           BottomNavigationBarItem(
-              icon: Icon(Icons.recent_actors), label: 'Hospitals'),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.menu_book_sharp), label: 'Profile'),
+            icon: hospitals,
+          ),
         ],
       ),
     );
