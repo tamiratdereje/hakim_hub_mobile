@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hakim_hub_mobile/core/utils/ui_converter.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 class HospitalCard extends StatelessWidget {
   final double width = 347;
@@ -13,7 +13,6 @@ class HospitalCard extends StatelessWidget {
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
     double proportionalFontSize = 14 * screenWidth / 375;
-    String globe_location = 'asssets/images/globe.svg';
 
     return Scaffold(
       body: Center(
@@ -46,7 +45,7 @@ class HospitalCard extends StatelessWidget {
                       child: SizedBox(
                         height: UIConverter.getComponentHeight(context, 16.67),
                         width: UIConverter.getComponentWidth(context, 16.67),
-                        child: SvgPicture.asset(globe_location),
+                        child: Icon(MdiIcons.web),
                       ),
                     ),
                     Expanded(
