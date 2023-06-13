@@ -8,25 +8,10 @@ const Icon send = Icon(Icons.send);
 const Icon location = Icon(Icons.location_on);
 const Icon search = Icon(Icons.search_outlined);
 const Icon star = Icon(Icons.star_border);
-const Icon clock = Icon(
-  Icons.watch_later,
-  color: Color(0XFF68A4F4),
-  size: 30,
-);
+const Icon clock = Icon(Icons.watch_later);
 const Icon running = Icon(Icons.directions_walk_outlined);
 const Icon backIcon = Icon(Icons.arrow_circle_left);
 const Icon email = Icon(Icons.email);
 const Icon direction = Icon(Icons.directions);
 const Icon phone = Icon(Icons.phone);
 const Icon biography = Icon(Icons.notes_outlined);
-
-const Icon hospitalsIcon = Icon(
-  Icons.local_hospital,
-  color: Color(0XFF68A4F4),
-  size: 20,
-);
-
-const Icon educationIcon = Icon(
-  Icons.cast_for_education,
-  size: 30,
-);
