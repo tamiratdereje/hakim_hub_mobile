@@ -9,3 +9,4 @@ const Color chiptextColor2 = Color(0xFF6C63FF);
 const Color tertiaryTextColor = Color(0xFFFF8000);
 const Color chiptextColor1 = Color(0xFFE23636);
 const Color chiptextColor3 = Color(0xFF19B916);
+const Color normalTextColor = Color(0XFFEFF3F3);
