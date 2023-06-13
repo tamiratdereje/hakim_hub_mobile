@@ -15,3 +15,10 @@ const Icon email = Icon(Icons.email);
 const Icon direction = Icon(Icons.directions);
 const Icon phone = Icon(Icons.phone);
 const Icon biography = Icon(Icons.notes_outlined);
+const Icon educationIcon =  Icon(
+                          Icons.cast_for_education,
+                          size: 30,
+                        );
+
+
+const Icon backButtonPro =  Icon(Icons.arrow_back);

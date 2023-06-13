@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hakim_hub_mobile/features/core/splash_screen.dart';
 
 import 'core/shared_widgets/bottom_nav.dart';
 import 'features/doctor/presentation/screen/doctor_detail_page.dart';
@@ -18,7 +19,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const DoctorDetailPage(),
+      home: const SplashPage(),
     );
   }
 }

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:hakim_hub_mobile/core/utils/colors.dart';
+import 'package:hakim_hub_mobile/core/utils/icons.dart';
 
 import '../../../../core/utils/ui_converter.dart';
 
@@ -22,68 +24,65 @@ class _DoctorDetailPageState extends State<DoctorDetailPage> {
             width: double.infinity,
           )),
           Container(
-            height: 300,
+            height: UIConverter.getComponentHeight(context, 300),
             decoration: const BoxDecoration(
               image: DecorationImage(
                 image: AssetImage("assets/images/doctor_image.png"),
                 fit: BoxFit.cover,
               ),
-              borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(25),
-                topRight: Radius.circular(25),
-              ),
+              
             ),
-            child: const Padding(
-              padding: EdgeInsets.only(left: 38, top: 20),
-              child: Column(
+            child:  Padding(
+              padding: EdgeInsets.only(left: UIConverter.getComponentWidth(context, 38), top: UIConverter.getComponentHeight(context, 20),),
+              child:  Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  CircleAvatar(
-                    child: Icon(Icons.arrow_back),
-                    backgroundColor: Color(0XFFEFF3F3),
+                  const CircleAvatar(
+                    child: backButtonPro,
+                    backgroundColor: backgroundColor,
                   ),
                   SizedBox(
-                    height: 20,
+                    height: UIConverter.getComponentHeight(context, 20) ,
                   ),
-                  Text(
+                  const Text(
                     "Dr. Andus Huda",
                     style: TextStyle(
                         fontWeight: FontWeight.w700,
-                        color: Color(0XFF3F3F3F),
+                        color: titleTextColor,
                         fontSize: 25),
                     maxLines: 1,
                   ),
-                  Text("Tooth Specialist .",
+                 const Text("Tooth Specialist .",
                       style: TextStyle(
                           fontWeight: FontWeight.w500,
-                          color: Color(0XFF3F3F3F),
+                          color: titleTextColor,
                           fontSize: 19),
                       maxLines: 1),
                   SizedBox(
-                    height: 10,
+                    height:UIConverter.getComponentHeight(context, 10),
                   ),
                   Row(
                     children: [
-                      Icon(
+                      const Icon(
                         Icons.access_alarm,
-                        color: Color(0XFF68A4F4),
+                        color: primaryColor,
                         size: 30,
                       ),
                       SizedBox(
-                        width: 12,
+                        width:  UIConverter.getComponentWidth(context, 12),
                       ),
-                      Column(
+                      const Column(
                         children: [
                           Text("+3 years",
                               style: TextStyle(
                                   fontWeight: FontWeight.w700,
-                                  color: Color(0XFF68A4F4),
+                                  color: primaryColor,
                                   fontSize: 19),
                               maxLines: 1),
                           Text("Experience",
                               style: TextStyle(
                                   fontWeight: FontWeight.w500,
-                                  color: Color(0XFF3F3F3F),
+                                  color: titleTextColor,
                                   fontSize: 15),
                               maxLines: 1),
                         ],
@@ -91,19 +90,19 @@ class _DoctorDetailPageState extends State<DoctorDetailPage> {
                     ],
                   ),
                   SizedBox(
-                    height: 20,
+                    height: UIConverter.getComponentHeight(context, 20)
                   ),
-                  Row(
+                  const Row(
                     children: [
                       Icon(
                         Icons.local_hospital,
-                        color: Color(0XFF68A4F4),
+                        color: primaryColor,
                         size: 20,
                       ),
                       Text("Tikur Anbessa",
                           style: TextStyle(
                             fontWeight: FontWeight.w500,
-                            color: Color(0XFF68A4F4),
+                            color: primaryColor,
                             fontSize: 15,
                           ),
                           maxLines: 1)
@@ -114,106 +113,109 @@ class _DoctorDetailPageState extends State<DoctorDetailPage> {
             ),
           ),
           Positioned(
-            top: 275,
+            top: UIConverter.getComponentHeight(context, 275),
             bottom: 0,
             left: 0,
             right: 0,
             child: Container(
-              padding: const EdgeInsets.only(
-                  left: 38, right: 38, bottom: 15, top: 20),
-              decoration: const BoxDecoration(
-                  color: Colors.white,
+              padding:  EdgeInsets.only(
+                  left: UIConverter.getComponentWidth(context, 38),
+                   right: UIConverter.getComponentWidth(context, 38),
+                    bottom:  UIConverter.getComponentHeight(context, 15),
+                     top:  UIConverter.getComponentHeight(context, 20)),
+              decoration:  BoxDecoration(
+                  color: secondryTextColor,
                   borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(15),
-                      topRight: Radius.circular(15))),
-              child: const SingleChildScrollView(
+                      topLeft: Radius.circular(UIConverter.getComponentWidth(context, 15)),
+                      topRight: Radius.circular(UIConverter.getComponentWidth(context, 15)))),
+              child:  SingleChildScrollView(
                 physics: AlwaysScrollableScrollPhysics(),
                 child: Column(
                   children: [
                     Row(
                       children: [
-                        Icon(Icons.menu),
+                        biography,
                         SizedBox(
-                          width: 9,
+                          width: UIConverter.getComponentWidth(context, 9) ,
                         ),
-                        Text("Biography",
+                        const Text("Biography",
                             style: TextStyle(
                                 fontWeight: FontWeight.w600,
-                                color: Color(0XFF606060),
+                                color: bioTextColor,
                                 fontSize: 20),
                             maxLines: 1),
                       ],
                     ),
                     SizedBox(
-                      height: 10,
+                      height: UIConverter.getComponentHeight(context, 10),
                     ),
-                    Text(
+                    const Text(
                       "Madison Blackstone is a director of brand marketing, with experience managing global teams and multi-million-dollar campaigns. Her background in brand strategy, visual design, and account management inform her mindful but competitive approach. Madison is fueled by her passion for understanding the nuances of cross-cultural advertising. Madison Blackstone is a director of brand marketing, a director of brand marketing, with experience managing global teams and multi-million-dollar campaigns. Her background in brand strategy, visual design, and account management inform her mindful but competitive approach. Madison is fueled by her passion for understanding the nuances of cross-cultural advertising. Madison Blackstone is a director of brand market a director of brand marketing, with experience managing global teams and multi-million-dollar campaigns. Her background in brand strategy, visual design, and account management inform her mindful but competitive approach. Madison is fueled by her passion for understanding the nuances of cross-cultural advertising. Madison Blackstone is a director of brand market with experience managing global teams and multi-million-dollar campaigns. Her background in brand strategy, visual design, and account management inform her mindful but competitive approach. Madison is fueled by her passion for understanding the nuances of cross-cultural advertising. ",
                       style: TextStyle(
                           fontWeight: FontWeight.w300,
-                          color: Colors.black,
+                          color: primaryTextColor,
                           fontSize: 13),
                     ),
                     SizedBox(
-                      height: 30,
+                      height: UIConverter.getComponentHeight(context, 30),
                     ),
                     Row(
                       children: [
-                        Icon(Icons.cast_for_education),
+                       educationIcon,
                         SizedBox(
-                          width: 10,
+                          width: UIConverter.getComponentWidth(context, 10),
                         ),
-                        Text(
+                        const Text(
                           "Education",
                           style: TextStyle(
                               fontWeight: FontWeight.w600,
-                              color: Color(0XFF606060),
+                              color: bioTextColor,
                               fontSize: 20),
                         ),
                       ],
                     ),
                     SizedBox(
-                      height: 10,
+                      height: UIConverter.getComponentHeight(context, 10),
                     ),
-                    Row(
+                     Row(
                       children: [
-                        Icon(
+                      const  Icon(
                           Icons.cast_for_education,
                           size: 30,
                         ),
                         SizedBox(
-                          width: 6,
+                          width: UIConverter.getComponentWidth(context, 6),
                         ),
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Row(
                               children: [
-                                Text(
+                                const Text(
                                   "Bachelor of Medicine",
                                   style: TextStyle(
                                       fontWeight: FontWeight.w600,
-                                      color: Color(0XFF8B8B8B),
+                                      color: degreeTextColor,
                                       fontSize: 14),
                                 ),
                                 SizedBox(
-                                  width: 7,
+                                  width: UIConverter.getComponentWidth(context, 7),
                                 ),
-                                Text(
+                                const Text(
                                   "Oct 2016 - Oct 2019",
                                   style: TextStyle(
                                       fontStyle: FontStyle.italic,
                                       fontWeight: FontWeight.w400,
-                                      color: Color(0XFF8B8B8B),
+                                      color: degreeTextColor,
                                       fontSize: 11),
                                 )
                               ],
                             ),
-                            Text(
+                            const Text(
                               "University of Indonesia",
                               style: TextStyle(
                                   fontWeight: FontWeight.w500,
-                                  color: Color(0XFF8B8B8B),
+                                  color: degreeTextColor,
                                   fontSize: 11),
                             ),
                           ],
@@ -221,47 +223,47 @@ class _DoctorDetailPageState extends State<DoctorDetailPage> {
                       ],
                     ),
                     SizedBox(
-                      height: 10,
+                      height: UIConverter.getComponentHeight(context, 10),
                     ),
-                    Row(
+                     Row(
                       children: [
-                        Icon(
+                      const  Icon(
                           Icons.cast_for_education,
                           size: 30,
                         ),
                         SizedBox(
-                          width: 6,
+                          width: UIConverter.getComponentWidth(context, 6),
                         ),
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Row(
                               children: [
-                                Text(
+                                const Text(
                                   "Bachelor of Medicine",
                                   style: TextStyle(
                                       fontWeight: FontWeight.w600,
-                                      color: Color(0XFF8B8B8B),
+                                      color: degreeTextColor,
                                       fontSize: 14),
                                 ),
                                 SizedBox(
-                                  width: 7,
+                                  width: UIConverter.getComponentWidth(context, 7),
                                 ),
-                                Text(
+                                const Text(
                                   "Oct 2016 - Oct 2019",
                                   style: TextStyle(
                                       fontStyle: FontStyle.italic,
                                       fontWeight: FontWeight.w400,
-                                      color: Color(0XFF8B8B8B),
+                                      color: degreeTextColor,
                                       fontSize: 11),
                                 )
                               ],
                             ),
-                            Text(
+                            const Text(
                               "University of Indonesia",
                               style: TextStyle(
                                   fontWeight: FontWeight.w500,
-                                  color: Color(0XFF8B8B8B),
+                                  color: degreeTextColor,
                                   fontSize: 11),
                             ),
                           ],
