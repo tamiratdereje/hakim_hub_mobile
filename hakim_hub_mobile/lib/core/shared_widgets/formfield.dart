@@ -1,4 +1,9 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
+
+import '../utils/icons.dart';
+import '../utils/ui_converter.dart';
 
 class CSFFormField extends StatefulWidget {
   final String hintText;
@@ -7,7 +12,7 @@ class CSFFormField extends StatefulWidget {
   final TextEditingController controller;
   final Key? formkey;
   String? fieldName;
-  
+  bool? suffixIcon;
 
   CSFFormField({
     Key? key,
@@ -35,13 +40,23 @@ class _CSFFormFieldState extends State<CSFFormField> {
           key: widget.formkey,
           controller: widget.controller,
           decoration: InputDecoration(
-            hintStyle: const TextStyle(color: Colors.black26),
-            hintText: widget.hintText,
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10),
-            ),
-            errorText: errorText,
-          ),
+            
+              constraints: BoxConstraints(
+                
+                  minHeight: UIConverter.getComponentHeight(context, 48),
+                  minWidth: UIConverter.getComponentWidth(context, 370),
+                  maxHeight: UIConverter.getComponentHeight(context, 48),
+                  maxWidth: UIConverter.getComponentWidth(context, 370),
+                   ),
+              hintStyle: const TextStyle(color: Colors.black26),
+              hintText: widget.hintText,
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(10),
+              ),
+              errorText: errorText,
+              prefixIcon: search,
+              suffixIcon: const Icon(Icons.filter_list_outlined)
+              ),
           onChanged: (value) {
             setState(() {
               errorText = null;
@@ -51,7 +66,7 @@ class _CSFFormFieldState extends State<CSFFormField> {
         );
       },
       validator: (value) {
-        if (value == null ) {
+        if (value == null) {
           setState(() {
             errorText = ' This ${widget.fieldName} field is required';
           });

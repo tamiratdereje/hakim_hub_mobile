@@ -22,3 +22,5 @@ const Icon educationIcon =  Icon(
 
 
 const Icon backButtonPro =  Icon(Icons.arrow_back);
+
+const Icon alarm = Icon(Icons.alarm);
