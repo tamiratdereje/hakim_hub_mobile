@@ -1,7 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:hakim_hub_mobile/features/chatbot/presentation/widgets/write_chat.dart';
 
 import '../../../../core/shared_widgets/appBar.dart';
+import '../../../../core/shared_widgets/bottom_nav.dart';
 import '../../../../core/utils/icons.dart';
+import '../../../../core/utils/colors.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
+
+import '../widgets/chat_welcome.dart';
+import '../widgets/landing_page_question_card.dart';
 
 class ChatLandingPage extends StatefulWidget {
   const ChatLandingPage({super.key});
@@ -14,106 +21,43 @@ class _ChatLandingPageState extends State<ChatLandingPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CHSAppBar.build(
-        context,
-        "",
-        () {},
-        false,
-      ),
+      appBar: CHSAppBar.build(context, "", () {}, true),
       body: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Image.asset('assets/images/HakimHubVectorImg.png'),
-                  Image.asset('assets/images/HakimHub.png')
-                ],
+          const ChatWelcome(),
+          Padding(
+            padding: EdgeInsets.symmetric(
+              horizontal: Adaptive.w(6.5),
+            ),
+            child: Text(
+              'use the power of AI to find a hospital suggestion based on your symptoms and preference',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: Adaptive.sp(16)
               ),
-              const Text('welcome to HakimHub'),
-            ],
+            ),
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 48,
+            padding: EdgeInsets.symmetric(
+              horizontal: Adaptive.w(5.2),
             ),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Text(
-                  'Use the power of AI to find a hospital suggestion based on your symptoms and preference',
-                  style: TextStyle(),
-                  textAlign: TextAlign.center,
+                const ChatQuestionCard(),
+                SizedBox(
+                  height: Adaptive.h(4.4),
                 ),
-                Container(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 16,
-                    vertical: 20,
-                  ),
-                  decoration: const BoxDecoration(
-                    borderRadius: BorderRadius.all(Radius.circular(10)),
-                    color: Color.fromRGBO(237, 237, 237, 1),
-                  ),
-                  child: const Text(
-                      'Can you recommend a hospital that specializes in [medical specialty] and has a good reputation for patient care?"'),
+                const ChatQuestionCard(),
+                SizedBox(
+                  height: Adaptive.h(4.4),
                 ),
-                const SizedBox(
-                  height: 19,
-                ),
-                Container(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 16,
-                    vertical: 20,
-                  ),
-                  decoration: const BoxDecoration(
-                    borderRadius: BorderRadius.all(Radius.circular(10)),
-                    color: Color.fromRGBO(237, 237, 237, 1),
-                  ),
-                  child: const Text(
-                      'Can you recommend a hospital that specializes in [medical specialty] and has a good reputation for patient care?"'),
-                ),
-                const SizedBox(
-                  height: 19,
-                ),
-                Container(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 16,
-                    vertical: 20,
-                  ),
-                  decoration: const BoxDecoration(
-                    borderRadius: BorderRadius.all(Radius.circular(10)),
-                    color: Color.fromRGBO(237, 237, 237, 1),
-                  ),
-                  child: const Text(
-                      'Can you recommend a hospital that specializes in [medical specialty] and has a good reputation for patient care?"'),
-                )
+                const ChatQuestionCard(),
               ],
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 23.0),
-            child: Container(
-              padding: const EdgeInsets.symmetric(vertical: 17, horizontal: 31),
-              decoration: const BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(26)),
-                color: Color.fromRGBO(237, 237, 237, 1),
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const Text('Write a message ...'),
-                  IconButton(
-                    onPressed: () {},
-                    icon: send,
-                  )
-                ],
-              ),
-            ),
-          )
+          const WriteChat()
         ],
       ),
     );
