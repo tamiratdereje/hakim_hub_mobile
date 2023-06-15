@@ -9,7 +9,7 @@ import '../../features/hospital/presentation/screen/hospitals_home_screen.dart';
 
 class BottomNav extends StatefulWidget {
   List<Widget> pages = [
-    const HospitalsHomeScreen(),
+    const HomePage(),
     const HomePage(),
     const HospitalsHomeScreen(),
   ];
