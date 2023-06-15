@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 
 import '../utils/icons.dart';
@@ -12,7 +10,6 @@ class CSFFormField extends StatefulWidget {
   final TextEditingController controller;
   final Key? formkey;
   String? fieldName;
-  bool? suffixIcon;
 
   CSFFormField({
     Key? key,

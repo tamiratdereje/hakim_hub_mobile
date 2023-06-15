@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hakim_hub_mobile/core/utils/colors.dart';
 
 const Icon home = Icon(Icons.home);
 const Icon hospitals = Icon(Icons.location_city_outlined);
@@ -24,3 +25,6 @@ const Icon educationIcon =  Icon(
 const Icon backButtonPro =  Icon(Icons.arrow_back);
 
 const Icon alarm = Icon(Icons.alarm);
+
+const Icon cancel = Icon(Icons.cancel_rounded, color: Colors.red, size:40);
+const Icon check = Icon(Icons.check_circle_rounded, color: Colors.green, size:40);
