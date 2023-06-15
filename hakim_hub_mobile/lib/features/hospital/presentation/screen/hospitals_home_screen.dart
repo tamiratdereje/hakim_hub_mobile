@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hakim_hub_mobile/core/utils/colors.dart';
 import 'package:hakim_hub_mobile/core/utils/icons.dart';
 import 'package:hakim_hub_mobile/core/utils/ui_converter.dart';
+import 'package:hakim_hub_mobile/features/hospital/presentation/widgets/main_hospitals_card.dart';
 
 import '../../../../core/shared_widgets/formfield.dart';
 import '../widgets/build_chips_widget.dart';
@@ -56,7 +57,7 @@ class _HospitalsHomeScreenState extends State<HospitalsHomeScreen> {
                 physics: const NeverScrollableScrollPhysics(),
                 itemCount: 15,
                 itemBuilder: ((context, index) {
-                  return HospitalsCard();
+                  return MainHospitalsCard();
                 })),
           ],
         ),

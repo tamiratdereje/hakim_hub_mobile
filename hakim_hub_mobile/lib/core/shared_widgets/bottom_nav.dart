@@ -5,12 +5,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hakim_hub_mobile/core/utils/colors.dart';
 import 'package:hakim_hub_mobile/core/utils/icons.dart';
 
+import '../../features/chatbot/presentation/screen/chat_landing.dart';
 import '../../features/hospital/presentation/screen/hospitals_home_screen.dart';
 
 class BottomNav extends StatefulWidget {
   List<Widget> pages = [
     const HomePage(),
-    const HomePage(),
+    const ChatLandingPage(),
     const HospitalsHomeScreen(),
   ];
   int index = 0;
