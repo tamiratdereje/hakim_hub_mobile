@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:hakim_hub_mobile/core/utils/ui_converter.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'package:hakim_hub_mobile/core/utils/ui_converter.dart';
 
 class HospitalCard extends StatelessWidget {
   final double width = 347;
@@ -14,145 +14,144 @@ class HospitalCard extends StatelessWidget {
     double screenWidth = MediaQuery.of(context).size.width;
     double proportionalFontSize = 14 * screenWidth / 375;
 
-    return Scaffold(
-      body: Center(
-        child: Container(
-          decoration: BoxDecoration(boxShadow: [
-            BoxShadow(
-              color: Colors.grey.withOpacity(0.5),
-              spreadRadius: 5,
-              blurRadius: 7,
-              offset: const Offset(0, 3),
-            ),
-          ], color: Colors.white, borderRadius: BorderRadius.circular(20)),
-          height: UIConverter.getComponentHeight(context, height),
-          width: UIConverter.getComponentWidth(context, width),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              SizedBox(
-                height: UIConverter.getComponentHeight(context, initialSize),
-                width: UIConverter.getComponentWidth(context, initialSize),
-                child: Column(
-                  children: [
-                    Container(
-                      height: UIConverter.getComponentHeight(context, 45),
-                      width: UIConverter.getComponentWidth(context, 45),
-                      decoration: const BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: Color.fromRGBO(239, 243, 243, 1),
-                      ),
-                      child: SizedBox(
-                        height: UIConverter.getComponentHeight(context, 16.67),
-                        width: UIConverter.getComponentWidth(context, 16.67),
-                        child: Icon(MdiIcons.web),
-                      ),
-                    ),
-                    Expanded(
-                      child: FittedBox(
-                        fit: BoxFit.fitWidth,
-                        child: Text(
-                          'Website',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(fontSize: proportionalFontSize),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              SizedBox(
-                height: UIConverter.getComponentHeight(context, initialSize),
-                width: UIConverter.getComponentWidth(context, initialSize),
-                child: Column(
-                  children: [
-                    Container(
-                      height: UIConverter.getComponentHeight(context, 45),
-                      width: UIConverter.getComponentWidth(context, 45),
-                      decoration: const BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: Color.fromRGBO(239, 243, 243, 1)),
-                      child: SizedBox(
-                        height: UIConverter.getComponentHeight(context, 16.67),
-                        width: UIConverter.getComponentWidth(context, 16.67),
-                        child: const Icon(Icons.email),
-                      ),
-                    ),
-                    Expanded(
-                      child: FittedBox(
-                        fit: BoxFit.fitWidth,
-                        child: Text(
-                          'Email',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(fontSize: proportionalFontSize),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              SizedBox(
-                height: UIConverter.getComponentHeight(context, initialSize),
-                width: UIConverter.getComponentWidth(context, initialSize),
-                child: Column(
-                  children: [
-                    Container(
-                      height: UIConverter.getComponentHeight(context, 45),
-                      width: UIConverter.getComponentWidth(context, 45),
-                      decoration: const BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: Color.fromRGBO(239, 243, 243, 1)),
-                      child: SizedBox(
-                        height: UIConverter.getComponentHeight(context, 16.67),
-                        width: UIConverter.getComponentWidth(context, 16.67),
-                        child: const Icon(Icons.directions),
-                      ),
-                    ),
-                    Expanded(
-                      child: FittedBox(
-                        fit: BoxFit.fitWidth,
-                        child: Text(
-                          'Directions',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(fontSize: proportionalFontSize),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              SizedBox(
-                height: UIConverter.getComponentHeight(context, initialSize),
-                width: UIConverter.getComponentWidth(context, initialSize),
-                child: Column(
-                  children: [
-                    Container(
-                      height: UIConverter.getComponentHeight(context, 45),
-                      width: UIConverter.getComponentWidth(context, 45),
-                      decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: Color.fromRGBO(239, 243, 243, 1)),
-                      child: SizedBox(
-                        height: UIConverter.getComponentHeight(context, 16.67),
-                        width: UIConverter.getComponentWidth(context, 16.67),
-                        child: const Icon(Icons.phone),
-                      ),
-                    ),
-                    Expanded(
-                      child: FittedBox(
-                        fit: BoxFit.fitWidth,
-                        child: Text(
-                          'Phone',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(fontSize: proportionalFontSize),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ],
+    return Container(
+      // body: Center(
+      child: Container(
+        decoration: BoxDecoration(boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.5),
+            spreadRadius: 5,
+            blurRadius: 7,
+            offset: const Offset(0, 3),
           ),
+        ], color: Colors.white, borderRadius: BorderRadius.circular(20)),
+        height: UIConverter.getComponentHeight(context, height),
+        width: UIConverter.getComponentWidth(context, width),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            SizedBox(
+              height: UIConverter.getComponentHeight(context, initialSize),
+              width: UIConverter.getComponentWidth(context, initialSize),
+              child: Column(
+                children: [
+                  Container(
+                    height: UIConverter.getComponentHeight(context, 45),
+                    width: UIConverter.getComponentWidth(context, 45),
+                    decoration: const BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: Color.fromRGBO(239, 243, 243, 1),
+                    ),
+                    child: SizedBox(
+                      height: UIConverter.getComponentHeight(context, 16.67),
+                      width: UIConverter.getComponentWidth(context, 16.67),
+                      child: Icon(MdiIcons.web),
+                    ),
+                  ),
+                  Expanded(
+                    child: FittedBox(
+                      fit: BoxFit.fitWidth,
+                      child: Text(
+                        'Website',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(fontSize: proportionalFontSize),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(
+              height: UIConverter.getComponentHeight(context, initialSize),
+              width: UIConverter.getComponentWidth(context, initialSize),
+              child: Column(
+                children: [
+                  Container(
+                    height: UIConverter.getComponentHeight(context, 45),
+                    width: UIConverter.getComponentWidth(context, 45),
+                    decoration: const BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: Color.fromRGBO(239, 243, 243, 1)),
+                    child: SizedBox(
+                      height: UIConverter.getComponentHeight(context, 16.67),
+                      width: UIConverter.getComponentWidth(context, 16.67),
+                      child: const Icon(Icons.email),
+                    ),
+                  ),
+                  Expanded(
+                    child: FittedBox(
+                      fit: BoxFit.fitWidth,
+                      child: Text(
+                        'Email',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(fontSize: proportionalFontSize),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(
+              height: UIConverter.getComponentHeight(context, initialSize),
+              width: UIConverter.getComponentWidth(context, initialSize),
+              child: Column(
+                children: [
+                  Container(
+                    height: UIConverter.getComponentHeight(context, 45),
+                    width: UIConverter.getComponentWidth(context, 45),
+                    decoration: const BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: Color.fromRGBO(239, 243, 243, 1)),
+                    child: SizedBox(
+                      height: UIConverter.getComponentHeight(context, 16.67),
+                      width: UIConverter.getComponentWidth(context, 16.67),
+                      child: const Icon(Icons.directions),
+                    ),
+                  ),
+                  Expanded(
+                    child: FittedBox(
+                      fit: BoxFit.fitWidth,
+                      child: Text(
+                        'Directions',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(fontSize: proportionalFontSize),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(
+              height: UIConverter.getComponentHeight(context, initialSize),
+              width: UIConverter.getComponentWidth(context, initialSize),
+              child: Column(
+                children: [
+                  Container(
+                    height: UIConverter.getComponentHeight(context, 45),
+                    width: UIConverter.getComponentWidth(context, 45),
+                    decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: Color.fromRGBO(239, 243, 243, 1)),
+                    child: SizedBox(
+                      height: UIConverter.getComponentHeight(context, 16.67),
+                      width: UIConverter.getComponentWidth(context, 16.67),
+                      child: const Icon(Icons.phone),
+                    ),
+                  ),
+                  Expanded(
+                    child: FittedBox(
+                      fit: BoxFit.fitWidth,
+                      child: Text(
+                        'Phone',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(fontSize: proportionalFontSize),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
         ),
       ),
     );
