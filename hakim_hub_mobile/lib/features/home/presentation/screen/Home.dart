@@ -1,137 +1,105 @@
 import 'package:flutter/material.dart';
+import '../../../../core/utils/colors.dart';
+import '../../../../core/utils/icons.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
+
+import '../../../../core/utils/pixle_to_percent.dart';
+import '../../../../core/utils/ui_converter.dart';
+import '../../../hospital/presentation/widgets/main_hospitals_card.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Column(
+    return Scaffold(
+        body: SingleChildScrollView(
+      child: Column(
         children: [
-          Row(
-            children: [
-              Image(
-                image: AssetImage('assets/images/HakimHubVectorImg.png'),
+          Padding(
+            padding: EdgeInsets.symmetric(
+                horizontal: Adaptive.w(pixleToPercent(40, "width")),
+                vertical: Adaptive.h(pixleToPercent(40, "height"))),
+            child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  const Image(
+                    image: AssetImage('assets/images/homepage_image.png'),
+                  ),
+                  Text(
+                    "HakimHub",
+                    style: TextStyle(
+                        fontSize: 24.sp,
+                        color: primaryTextColor,
+                        fontWeight: FontWeight.w700),
+                  ),
+                  SizedBox(
+                    height: Adaptive.h(pixleToPercent(5, "height")),
+                  ),
+                  Text(
+                    textAlign: TextAlign.center,
+                    'Provide easily accessible information about healthcare facilities and healthcare professionals',
+                    style: TextStyle(
+                        fontSize: 16.sp,
+                        color: primaryTextColor,
+                        fontWeight: FontWeight.w400),
+                  ),
+                  SizedBox(
+                    height: Adaptive.h(pixleToPercent(33, "height")),
+                  ),
+                  Container(
+                      padding: EdgeInsets.symmetric(
+                          horizontal: Adaptive.h(pixleToPercent(8, "width"))),
+                      width: double.infinity,
+                      height: Adaptive.h(pixleToPercent(56, "height")),
+                      decoration: BoxDecoration(
+                        color: const Color(0XFFEDEDED),
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(
+                            Adaptive.h(
+                              pixleToPercent(26, "height"),
+                            ),
+                          ),
+                        ),
+                      ),
+                      child: const Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Icon(Icons.person_2_outlined),
+                          Text("How are you feeling?"),
+                          Icon(
+                            Icons.send,
+                            color: Colors.blue,
+                          )
+                        ],
+                      )),
+                  SizedBox(
+                    height: Adaptive.h(pixleToPercent(10, "height")),
+                  ),
+                ]),
+          ),
+          Padding(
+            padding:
+                EdgeInsets.only(left: Adaptive.w(pixleToPercent(10, "width"))),
+            child: SizedBox(
+              height: Adaptive.h(pixleToPercent(400, "height")),
+              width: double.infinity,
+              child: ListView.separated(
+                scrollDirection: Axis.horizontal,
+                itemCount: 5,
+                itemBuilder: (context, index) {
+                  return MainHospitalsCard();
+                },
+                separatorBuilder: (BuildContext context, int index) {
+                  return SizedBox(
+                    width: Adaptive.w(pixleToPercent(25, "width")),
+                  );
+                },
               ),
-              Image(
-                image: AssetImage('assets/images/HakimHub.png'),
-              ),
-            ],
-          ),
-          Image(
-            image: AssetImage('assets/images/HakimHub.png'),
-          ),
-          Text('HakimHub'),
-          Text(
-            'Provide easily accessible information about healthcare facilities and healthcare professionals',
-          ),
-          TextField(
-            decoration: InputDecoration(
-              
             ),
           )
         ],
       ),
-    );
+    ));
   }
 }
-
-
-
-
-
-// import 'package:flutter/material.dart';
-// import 'package:hakim_hub_mobile/core/utils/icons.dart';
-// import 'package:hakim_hub_mobile/core/utils/ui_converter.dart';
-// import 'package:hakim_hub_mobile/features/core/splash_screen.dart';
-// import 'package:hakim_hub_mobile/features/home/presentation/widgets/custom_card.dart';
-
-// class HomePage extends StatelessWidget {
-//   final List<String> services = ["cardio", "General", "Pediatrics"];
-
-//   HomePage({super.key});
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       body: SafeArea(
-//         child: Padding(
-//           padding: const EdgeInsets.all(20.0),
-//           child: Column(
-//             children: [
-//               Padding(
-//                 padding: const EdgeInsets.fromLTRB(20, 20, 20, 10),
-//                 child: SizedBox(
-//                   height: UIConverter.getComponentHeight(context, 250),
-//                   width: UIConverter.getComponentWidth(context, 350),
-//                   child: const Image(
-//                     image: AssetImage("assets/images/homeImg.png"),
-//                   ),
-//                 ),
-//               ),
-//               const Text(
-//                 "HakimHub",
-//                 style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-//               ),
-//               SizedBox(
-//                 height: UIConverter.getComponentHeight(context, 10),
-//               ),
-//               const Text(
-//                   "Provide eassily accessible information about healthcare facilities and healthcare professionals",
-//                   textAlign: TextAlign.center),
-//               SizedBox(
-//                 height: UIConverter.getComponentHeight(context, 20),
-//               ),
-//               GestureDetector(
-//                 onTap: () {},
-//                 child: Container(
-//                   height: UIConverter.getComponentHeight(context, 58),
-//                   width: UIConverter.getComponentWidth(context, 381),
-//                   child: Card(
-//                     color: const Color.fromARGB(255, 237, 237, 237),
-//                     shape: RoundedRectangleBorder(
-//                         borderRadius: BorderRadius.circular(50)),
-//                     child: const ListTile(
-//                       leading: person,
-//                       title: Text(
-//                         "How are You feeling?",
-//                         style: TextStyle(fontSize: 14),
-//                       ),
-//                       trailing: send,
-//                     ),
-//                   ),
-//                 ),
-//               ),
-//               SizedBox(
-//                 height: UIConverter.getComponentHeight(context, 30),
-//               ),
-//               // Expanded(
-//               //   // child: CustomCard(chipTexts: services),
-//               //   child: ListView.builder(
-//               //       scrollDirection: Axis.horizontal,
-//               //       itemBuilder: (context, index) {
-//               //         return CustomCard(chipTexts: services);
-//               //       }),
-//               // )
-//               Container(
-//                 height: UIConverter.getComponentHeight(context, 240),
-//                 width: UIConverter.getComponentWidth(context, 300),
-//                 child: ListView.separated(
-//                     separatorBuilder: (context, index) {
-//                       return const SizedBox(
-//                         width: 10,
-//                       );
-//                     },
-//                     itemCount: 3,
-//                     scrollDirection: Axis.horizontal,
-//                     itemBuilder: (context, index) {
-//                       return CustomCard(chipTexts: services);
-//                     }),
-//               )
-//             ],
-//           ),
-//         ),
-//       ),
-//     );
-//   }
-// }
