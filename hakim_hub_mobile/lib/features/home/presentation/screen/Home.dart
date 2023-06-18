@@ -45,7 +45,9 @@ class HomePage extends StatelessWidget {
                         fontWeight: FontWeight.w400),
                   ),
                   SizedBox(
-                    height: Adaptive.h(pixleToPercent(33, "height")),
+                    height: Adaptive.h(
+                      pixleToPercent(33, "height"),
+                    ),
                   ),
                   Container(
                       padding: EdgeInsets.symmetric(
@@ -62,12 +64,17 @@ class HomePage extends StatelessWidget {
                           ),
                         ),
                       ),
-                      child: const Row(
+                      child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Icon(Icons.person_2_outlined),
-                          Text("How are you feeling?"),
-                          Icon(
+                          const Icon(Icons.person_2_outlined),
+                          Text(
+                            "How are you feeling?",
+                            style: TextStyle(
+                              fontSize: 14.sp,
+                            ),
+                          ),
+                          const Icon(
                             Icons.send,
                             color: Colors.blue,
                           )
