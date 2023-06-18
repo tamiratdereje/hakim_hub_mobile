@@ -71,7 +71,7 @@ class HomePage extends StatelessWidget {
                           Text(
                             "How are you feeling?",
                             style: TextStyle(
-                              fontSize: 14.sp,
+                              fontSize: 16.sp,
                             ),
                           ),
                           const Icon(
