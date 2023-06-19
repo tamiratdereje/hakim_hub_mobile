@@ -33,9 +33,10 @@ class DoctorGridView extends StatelessWidget {
           child: DoctorCard(
             imageUrl: 'assets/images/doctor_image.png',
             title: mockDoctors[index],
-            subtitle: 'Neuroscientist',
+            subtitle: 'ntist',
           ),
           onTap: () {
+            print(":DoctorGridView: onTap");
             context
               .pushNamed(AppRoutes.DoctorDetailPage, queryParameters: {"id": "id"});
           },

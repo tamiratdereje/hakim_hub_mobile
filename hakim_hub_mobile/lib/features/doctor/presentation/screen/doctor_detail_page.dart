@@ -45,7 +45,7 @@ class _DoctorDetailPageState extends State<DoctorDetailPage> {
                       backgroundColor: backgroundColor,
                     ),
                     onTap: () {
-                      context.push(AppRoutes.HospitalDetailPage);
+                      context.pop();
                     },
                   ),
                   SizedBox(

@@ -53,8 +53,9 @@ class _HospitalSearchFieldState extends State<HospitalSearchField> {
               prefixIcon: search,
               suffixIcon: Container(
                   child: GestureDetector(
-                child: const Icon(Icons.filter_list_outlined),
+                child:  filter,
                 onTap: () {
+                  
                   showModalBottomSheet(
                     isScrollControlled: true,
                     backgroundColor: titleTextColor,

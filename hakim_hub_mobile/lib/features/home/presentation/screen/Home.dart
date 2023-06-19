@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:hakim_hub_mobile/router/routes.dart';
 import '../../../../core/utils/colors.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
@@ -64,7 +65,7 @@ class HomePage extends StatelessWidget {
                   return GestureDetector(
                     child: HospitalsCard(),
                     onTap: () {
-                      Navigator.pushNamed(context, AppRoutes.HospitalDetailPage);
+                      context.pushNamed(AppRoutes.HospitalDetailPage, queryParameters: {"id": "id"});
                     },
                   );
                 },

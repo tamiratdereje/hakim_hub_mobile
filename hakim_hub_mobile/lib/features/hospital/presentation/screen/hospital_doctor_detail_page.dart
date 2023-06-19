@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:hakim_hub_mobile/core/utils/colors.dart';
 import 'package:hakim_hub_mobile/core/utils/ui_converter.dart';
 import 'package:hakim_hub_mobile/features/hospital/presentation/screen/hospital_gallery_page.dart';
@@ -7,6 +8,10 @@ import 'package:hakim_hub_mobile/features/hospital/presentation/widgets/doctor_g
 import 'package:hakim_hub_mobile/features/hospital/presentation/widgets/hospital_card.dart';
 
 import 'package:flutter/material.dart';
+
+import '../../../../core/utils/icons.dart';
+import '../widgets/filter_page.dart';
+import '../widgets/overview_tab.dart';
 
 class HospitalDoctorDetailPage extends StatefulWidget {
   const HospitalDoctorDetailPage({Key? key}) : super(key: key);
@@ -69,9 +74,22 @@ class _HospitalDoctorDetailPageState extends State<HospitalDoctorDetailPage>
                   ),
                 ),
                 Positioned(
+                  top: UIConverter.getComponentHeight(context, 52),
+                  left: UIConverter.getComponentWidth(context, 20),
+                  child: GestureDetector(
+                    child: const CircleAvatar(
+                      child: backButtonPro,
+                      backgroundColor: backgroundColor,
+                    ),
+                    onTap: () {
+                      context.pop();
+                    },
+                  ),
+                ),
+                Positioned(
                   top: UIConverter.getComponentHeight(context, 212),
                   left: UIConverter.getComponentWidth(context, 52),
-                  child: Text(
+                  child: const Text(
                     "Tikur Anbesa",
                     style: TextStyle(
                       fontFamily: 'Poppins',
@@ -196,15 +214,24 @@ class _HospitalDoctorDetailPageState extends State<HospitalDoctorDetailPage>
                       ),
                       child: Row(
                         children: [
-                          Text(
+                          const Text(
                             'Filter',
                             style: TextStyle(
                               color: chiptextColor2,
                             ),
                           ),
                           IconButton(
-                            onPressed: () {},
-                            icon: Icon(Icons.settings_outlined),
+                            onPressed: () {
+                              showModalBottomSheet(
+                                isScrollControlled: true,
+                                backgroundColor: titleTextColor,
+                                context: context,
+                                builder: (BuildContext context) {
+                                  return const FilterPage();
+                                },
+                              );
+                            },
+                            icon: filter,
                           ),
                         ],
                       ),
@@ -228,48 +255,3 @@ class _HospitalDoctorDetailPageState extends State<HospitalDoctorDetailPage>
     );
   }
 }
-
-class OverviewTab extends StatelessWidget {
-  const OverviewTab({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: Text(
-        "Overview Tab",
-        style: TextStyle(
-          fontFamily: 'Poppins',
-          fontWeight: FontWeight.bold,
-          fontSize: 20.0,
-        ),
-      ),
-    );
-  }
-}
-
-class DoctorsTab extends StatelessWidget {
-  const DoctorsTab({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return DoctorGridView();
-  }
-}
-
-// class GalleryTab extends StatelessWidget {
-//   const GalleryTab({Key? key}) : super(key: key);
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Center(
-//       child: Text(
-//         "Gallery Tab",
-//         style: TextStyle(
-//           fontFamily: 'Poppins',
-//           fontWeight: FontWeight.bold,
-//           fontSize: 20.0,
-//         ),
-//       ),
-//     );
-//   }
-// }
