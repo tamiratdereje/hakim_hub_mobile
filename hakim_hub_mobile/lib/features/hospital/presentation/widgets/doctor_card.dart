@@ -16,7 +16,7 @@ class DoctorCard extends StatelessWidget {
       onTap: () {},
       child: Padding(
         padding: EdgeInsets.only(
-          top: UIConverter.getComponentHeight(context, 28.31),
+          top: UIConverter.getComponentHeight(context, 27.8),
         ),
         child: Stack(
           clipBehavior: Clip.none,
