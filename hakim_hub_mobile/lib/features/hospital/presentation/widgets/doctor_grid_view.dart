@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:hakim_hub_mobile/core/utils/ui_converter.dart';
 import 'package:hakim_hub_mobile/features/hospital/presentation/widgets/doctor_card.dart';
+
+import '../../../../router/routes.dart';
 
 class DoctorGridView extends StatelessWidget {
   final List<String> mockDoctors = [
@@ -26,10 +29,16 @@ class DoctorGridView extends StatelessWidget {
             UIConverter.getComponentHeight(context, 139.69),
       ),
       itemBuilder: (BuildContext context, int index) {
-        return DoctorCard(
-          imageUrl: 'assets/images/doctor_image.png',
-          title: mockDoctors[index],
-          subtitle: 'Neuroscientist',
+        return GestureDetector(
+          child: DoctorCard(
+            imageUrl: 'assets/images/doctor_image.png',
+            title: mockDoctors[index],
+            subtitle: 'Neuroscientist',
+          ),
+          onTap: () {
+            context
+              .pushNamed(AppRoutes.DoctorDetailPage, queryParameters: {"id": "id"});
+          },
         );
       },
     );

@@ -20,3 +20,5 @@ const Color searchHintColor = Colors.black26;
 const Color chipColor = Color(0XFFEFF3F3);
 const Color redColor = Colors.red;
 const Color greenColor = Colors.green;
+
+const Color hospitalBorderShadowColor = Color.fromARGB(248, 238, 238, 221);

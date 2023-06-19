@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hakim_hub_mobile/router/routes.dart';
 import '../../../../core/utils/colors.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../../../core/utils/pixle_to_percent.dart';
@@ -60,7 +61,12 @@ class HomePage extends StatelessWidget {
                 scrollDirection: Axis.horizontal,
                 itemCount: 5,
                 itemBuilder: (context, index) {
-                  return HospitalsCard();
+                  return GestureDetector(
+                    child: HospitalsCard(),
+                    onTap: () {
+                      Navigator.pushNamed(context, AppRoutes.HospitalDetailPage);
+                    },
+                  );
                 },
                 separatorBuilder: (BuildContext context, int index) {
                   return SizedBox(

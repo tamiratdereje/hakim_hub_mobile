@@ -16,15 +16,15 @@ class MainHospitalsCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(children: [
       Container(
-        margin: const EdgeInsets.only(bottom: 10, top: 10),
+        margin: const EdgeInsets.only(bottom: 10, top: 10, left: 0, right: 0),
         width: UIConverter.getComponentWidth(context, 370),
-        height: UIConverter.getComponentHeight(context, 295),
+        height: UIConverter.getComponentHeight(context, 305),
         decoration: const BoxDecoration(
             color: secondryTextColor,
             borderRadius: BorderRadius.all(Radius.circular(20)),
             boxShadow: [
               BoxShadow(
-                  color: Colors.white70,
+                  color: hospitalBorderShadowColor,
                   blurRadius: 3,
                   offset: Offset(0, 3),
                   spreadRadius: 0.5)
@@ -75,7 +75,7 @@ class MainHospitalsCard extends StatelessWidget {
                 ),
                 SizedBox(
                   width: UIConverter.getComponentWidth(context, 300),
-                  height: UIConverter.getComponentHeight(context, 25),
+                  height: UIConverter.getComponentHeight(context, 32),
                   child: ListView.builder(
                     physics: const AlwaysScrollableScrollPhysics(),
                     scrollDirection: Axis.horizontal,

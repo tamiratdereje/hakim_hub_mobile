@@ -38,6 +38,7 @@ class _FilterPageState extends State<FilterPage> {
     setState(() {
       selectedList.add(serviceName);
     });
+    print(selectedList);
   }
 
   @override
@@ -91,7 +92,7 @@ class _FilterPageState extends State<FilterPage> {
                   "Open Now",
                   style: TextStyle(
                     color: primaryColor,
-                    fontSize: 24,
+                    fontSize: 20,
                     fontWeight: FontWeight.w600,
                   ),
                 ),
@@ -121,7 +122,7 @@ class _FilterPageState extends State<FilterPage> {
             const Text(
               "Active for",
               style: TextStyle(
-                  fontSize: 25,
+                  fontSize: 20,
                   fontWeight: FontWeight.w600,
                   color: primaryColor),
             ),

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:hakim_hub_mobile/core/utils/icons.dart';
 import 'package:hakim_hub_mobile/features/core/splash_screen.dart';
 import '../../../../core/shared_widgets/bottom_nav.dart';
+import '../../../../router/routes.dart';
 import '../widgets/hospital_card.dart';
 
 class MyPage extends StatefulWidget {
@@ -28,10 +30,13 @@ class _MyPageState extends State<MyPage> {
             right: 0,
             child: GestureDetector(
               onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => SplashPage()),
-                );
+                 context.go(AppRoutes.Home);
+                // Navigator.push(
+                //   context,
+                //   MaterialPageRoute(
+                //     builder: (context) => SplashPage(),
+                //   ),
+                // );
               },
               child: Image.asset(
                 'assets/images/black_lion.png',
@@ -40,7 +45,7 @@ class _MyPageState extends State<MyPage> {
               ),
             ),
           ),
-          Positioned(
+          const Positioned(
             top: 110, // Adjust the position of the text as needed
             left: 16,
             child: Text(
@@ -62,8 +67,8 @@ class _MyPageState extends State<MyPage> {
             left: 0,
             right: 0,
             child: Container(
-              padding: EdgeInsets.symmetric(horizontal: 16),
-              child: Row(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: const Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   SizedBox(
@@ -73,7 +78,7 @@ class _MyPageState extends State<MyPage> {
               ),
             ),
           ),
-          Positioned(top: 160, left: 30, right: 30, child: HospitalCard()),
+          const Positioned(top: 160, left: 30, right: 30, child: HospitalCard()),
           Positioned(
             top: 250,
             left: 0,
@@ -81,7 +86,7 @@ class _MyPageState extends State<MyPage> {
             bottom: 0,
             child: SingleChildScrollView(
               child: Container(
-                padding: EdgeInsets.all(16),
+                padding: const EdgeInsets.all(16),
                 decoration: BoxDecoration(
                   color: Colors.white.withOpacity(0.5),
                   borderRadius: BorderRadius.circular(16),
@@ -89,10 +94,10 @@ class _MyPageState extends State<MyPage> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Padding(
+                    const Padding(
                       padding: EdgeInsets.all(1),
                     ),
-                    SizedBox(height: 1),
+                    const SizedBox(height: 1),
                     Container(
                       height: 50,
                       decoration: BoxDecoration(

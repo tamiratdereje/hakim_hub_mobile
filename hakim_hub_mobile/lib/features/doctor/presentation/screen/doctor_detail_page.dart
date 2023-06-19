@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:hakim_hub_mobile/core/utils/colors.dart';
 import 'package:hakim_hub_mobile/core/utils/icons.dart';
+import 'package:hakim_hub_mobile/router/routes.dart';
 
 import '../../../../core/utils/ui_converter.dart';
 
@@ -37,9 +39,14 @@ class _DoctorDetailPageState extends State<DoctorDetailPage> {
               child:  Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const CircleAvatar(
-                    child: backButtonPro,
-                    backgroundColor: backgroundColor,
+                  GestureDetector(
+                    child: const CircleAvatar(
+                      child: backButtonPro,
+                      backgroundColor: backgroundColor,
+                    ),
+                    onTap: () {
+                      context.push(AppRoutes.HospitalDetailPage);
+                    },
                   ),
                   SizedBox(
                     height: UIConverter.getComponentHeight(context, 20) ,
