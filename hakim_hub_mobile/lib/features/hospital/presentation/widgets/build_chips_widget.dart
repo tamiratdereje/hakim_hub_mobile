@@ -25,7 +25,8 @@ class _BuildChipState extends State<BuildChip> {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(30.0),
       ),
-      disabledColor: greyColor,
+      disabledColor: Colors.green,
+      
       selected: _isSelected,
       onSelected: (bool value) {
         setState(() {
@@ -44,7 +45,7 @@ class _BuildChipState extends State<BuildChip> {
           color: primaryTextColor,
         ),
       ),
-      backgroundColor: secondryTextColor,
+      backgroundColor: Colors.grey[200],
       padding: EdgeInsets.all(UIConverter.getComponentWidth(context, 8)),
     );
   }

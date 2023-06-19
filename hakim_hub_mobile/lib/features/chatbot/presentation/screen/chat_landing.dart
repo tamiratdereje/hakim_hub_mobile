@@ -20,40 +20,61 @@ class _ChatLandingPageState extends State<ChatLandingPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CHSAppBar.build(context, "", () {}, true),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      body: Stack(
         children: [
-          const ChatWelcome(),
-          Padding(
-            padding: EdgeInsets.symmetric(
-              horizontal: Adaptive.w(6.5),
-            ),
-            child: Text(
-              'use the power of AI to find a hospital suggestion based on your symptoms and preference',
-              textAlign: TextAlign.center,
-              style: TextStyle(fontSize: Adaptive.sp(16)),
-            ),
-          ),
-          Padding(
-            padding: EdgeInsets.symmetric(
-              horizontal: Adaptive.w(5.2),
-            ),
+          SingleChildScrollView(
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                const ChatQuestionCard(),
                 SizedBox(
-                  height: Adaptive.h(4.4),
+                        height: Adaptive.h(4.4),
+                      ),
+                const ChatWelcome(),
+                 SizedBox(
+                        height: Adaptive.h(4.4),
+                      ),
+                Padding(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: Adaptive.w(6.5),
+                  ),
+                  
+                  child: Text(
+                    'use the power of AI to find a hospital suggestion based on your symptoms and preference',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(fontSize: Adaptive.sp(16)),
+                  ),
                 ),
-                const ChatQuestionCard(),
-                SizedBox(
-                  height: Adaptive.h(4.4),
+                 SizedBox(
+                        height: Adaptive.h(4.4),
+                      ),
+                Padding(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: Adaptive.w(5.2),
+                  ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+
+                      const ChatQuestionCard(),
+                      SizedBox(
+                        height: Adaptive.h(4.4),
+                      ),
+                      const ChatQuestionCard(),
+                      SizedBox(
+                        height: Adaptive.h(4.4),
+                      ),
+                      const ChatQuestionCard(),
+                      
+                    ],
+                  ),
                 ),
-                const ChatQuestionCard(),
               ],
             ),
           ),
-          const WriteChat()
+          const Align(
+            alignment: Alignment.bottomCenter,
+            child: WriteChat(),
+          ),
         ],
       ),
     );

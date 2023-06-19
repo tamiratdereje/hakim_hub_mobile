@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../features/hospital/presentation/widgets/filter_page.dart';
+import '../utils/colors.dart';
 import '../utils/icons.dart';
 import '../utils/ui_converter.dart';
 
@@ -32,35 +34,74 @@ class _CSFFormFieldState extends State<CSFFormField> {
   Widget build(BuildContext context) {
     return FormField(
       builder: (FormFieldState state) {
-        return TextField(
-          obscureText: widget.obscureText,
-          key: widget.formkey,
-          controller: widget.controller,
-          decoration: InputDecoration(
+        return 
+        TextFormField(
+        obscureText: false,
+        controller: widget.controller,
+        decoration: InputDecoration(
+            constraints: BoxConstraints(
+              minHeight: UIConverter.getComponentHeight(context, 48),
+              minWidth: UIConverter.getComponentWidth(context, 370),
+              maxHeight: UIConverter.getComponentHeight(context, 48),
+              maxWidth: UIConverter.getComponentWidth(context, 370),
+            ),
+            hintStyle: const TextStyle(color: searchHintColor),
+            // hintText: "Search hospitals",
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(10),
+            ),
+            errorText: errorText,
+            prefixIcon: search,
+            suffixIcon: Container(
+                child: GestureDetector(
+              child: Icon(Icons.filter_list_outlined),
+              onTap: () {
+                showModalBottomSheet(
+                  isScrollControlled: true,
+                  backgroundColor: titleTextColor,
+                  context: context,
+                  builder: (BuildContext context) {
+                    return const FilterPage();
+                  },
+                );
+              },
+            ))),
+        onTap: () {
+          setState(() {
+            errorText = null;
+          });
+        },
+      )
+        // TextField(
+        //   obscureText: widget.obscureText,
+        //   key: widget.formkey,
+        //   controller: widget.controller,
+        //   decoration: InputDecoration(
             
-              constraints: BoxConstraints(
+        //       constraints: BoxConstraints(
                 
-                  minHeight: UIConverter.getComponentHeight(context, 48),
-                  minWidth: UIConverter.getComponentWidth(context, 370),
-                  maxHeight: UIConverter.getComponentHeight(context, 48),
-                  maxWidth: UIConverter.getComponentWidth(context, 370),
-                   ),
-              hintStyle: const TextStyle(color: Colors.black26),
-              hintText: widget.hintText,
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(10),
-              ),
-              errorText: errorText,
-              prefixIcon: search,
-              suffixIcon: const Icon(Icons.filter_list_outlined)
-              ),
-          onChanged: (value) {
-            setState(() {
-              errorText = null;
-            });
-            widget.onChanged(value);
-          },
-        );
+        //           minHeight: UIConverter.getComponentHeight(context, 48),
+        //           minWidth: UIConverter.getComponentWidth(context, 370),
+        //           maxHeight: UIConverter.getComponentHeight(context, 48),
+        //           maxWidth: UIConverter.getComponentWidth(context, 370),
+        //            ),
+        //       hintStyle: const TextStyle(color: Colors.black26),
+        //       hintText: widget.hintText,
+        //       border: OutlineInputBorder(
+        //         borderRadius: BorderRadius.circular(10),
+        //       ),
+        //       errorText: errorText,
+        //       prefixIcon: search,
+        //       suffixIcon: const Icon(Icons.filter_list_outlined)
+        //       ),
+        //   onChanged: (value) {
+        //     setState(() {
+        //       errorText = null;
+        //     });
+        //     widget.onChanged(value);
+        //   },
+        // )
+        ;
       },
       validator: (value) {
         if (value == null) {

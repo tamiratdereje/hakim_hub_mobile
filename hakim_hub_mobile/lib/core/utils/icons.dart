@@ -24,8 +24,10 @@ const Icon educationIcon =  Icon(
 
 const Icon backButtonPro =  Icon(Icons.arrow_back);
 
-const Icon alarm = Icon(Icons.alarm);
+const Icon alarm = Icon(Icons.watch_later_outlined);
 
 const Icon cancel = Icon(Icons.close, color: Colors.red, size:40);
 const Icon check = Icon(
   Icons.check, color: Colors.green, size:40);
+
+  const Icon filter = Icon(Icons.filter_list_outlined);

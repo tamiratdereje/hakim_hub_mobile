@@ -153,6 +153,7 @@ class HospitalCard extends StatelessWidget {
                       textAlign: TextAlign.center,
                       style: TextStyle(fontSize: proportionalFontSize),
                     ),
+                    
                   ),
                 ),
               ],

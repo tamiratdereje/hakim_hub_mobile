@@ -12,26 +12,23 @@ class DoctorCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {},
-      child: Padding(
-        padding: EdgeInsets.only(
-          top: UIConverter.getComponentHeight(context, 27.8),
-        ),
-        child: Stack(
-          clipBehavior: Clip.none,
-          alignment: Alignment.center,
-          children: [
-            buildCard(context),
-            Positioned(
-              top: -UIConverter.getComponentHeight(context, 28),
-              child: CircleAvatar(
-                radius: UIConverter.getComponentHeight(context, 83) / 2,
-                backgroundImage: AssetImage(imageUrl),
-              ),
+    return Padding(
+      padding: EdgeInsets.only(
+        top: UIConverter.getComponentHeight(context, 27.8),
+      ),
+      child: Stack(
+        clipBehavior: Clip.none,
+        alignment: Alignment.center,
+        children: [
+          buildCard(context),
+          Positioned(
+            top: -UIConverter.getComponentHeight(context, 28),
+            child: CircleAvatar(
+              radius: UIConverter.getComponentHeight(context, 83) / 2,
+              backgroundImage: AssetImage(imageUrl),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
