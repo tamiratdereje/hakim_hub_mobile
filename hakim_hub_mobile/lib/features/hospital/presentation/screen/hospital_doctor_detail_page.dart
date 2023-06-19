@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hakim_hub_mobile/core/utils/colors.dart';
 import 'package:hakim_hub_mobile/core/utils/ui_converter.dart';
+import 'package:hakim_hub_mobile/features/hospital/presentation/screen/hospital_gallery_page.dart';
 import 'package:hakim_hub_mobile/features/hospital/presentation/widgets/doctor_card.dart';
 import 'package:hakim_hub_mobile/features/hospital/presentation/widgets/doctor_grid_view.dart';
 import 'package:hakim_hub_mobile/features/hospital/presentation/widgets/hospital_card.dart';
@@ -255,20 +256,20 @@ class DoctorsTab extends StatelessWidget {
   }
 }
 
-class GalleryTab extends StatelessWidget {
-  const GalleryTab({Key? key}) : super(key: key);
+// class GalleryTab extends StatelessWidget {
+//   const GalleryTab({Key? key}) : super(key: key);
 
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: Text(
-        "Gallery Tab",
-        style: TextStyle(
-          fontFamily: 'Poppins',
-          fontWeight: FontWeight.bold,
-          fontSize: 20.0,
-        ),
-      ),
-    );
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return Center(
+//       child: Text(
+//         "Gallery Tab",
+//         style: TextStyle(
+//           fontFamily: 'Poppins',
+//           fontWeight: FontWeight.bold,
+//           fontSize: 20.0,
+//         ),
+//       ),
+//     );
+//   }
+// }
