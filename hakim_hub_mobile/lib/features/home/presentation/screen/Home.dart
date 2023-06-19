@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import '../../../../core/utils/colors.dart';
-import '../../../../core/utils/icons.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-
 import '../../../../core/utils/pixle_to_percent.dart';
-import '../../../../core/utils/ui_converter.dart';
-import '../../../hospital/presentation/widgets/main_hospitals_card.dart';
+import '../widgets/hospital_card.dart';
+import '../widgets/how_are_you_feeling.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -18,8 +16,8 @@ class HomePage extends StatelessWidget {
         children: [
           Padding(
             padding: EdgeInsets.symmetric(
-                horizontal: Adaptive.w(pixleToPercent(40, "width")),
-                vertical: Adaptive.h(pixleToPercent(40, "height"))),
+                horizontal: pixleToPercent(40, "width").w,
+                vertical: pixleToPercent(40, "height").h),
             child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
@@ -29,7 +27,7 @@ class HomePage extends StatelessWidget {
                   Text(
                     "HakimHub",
                     style: TextStyle(
-                        fontSize: 24.sp,
+                        fontSize: 23.sp,
                         color: primaryTextColor,
                         fontWeight: FontWeight.w700),
                   ),
@@ -45,61 +43,28 @@ class HomePage extends StatelessWidget {
                         fontWeight: FontWeight.w400),
                   ),
                   SizedBox(
-                    height: Adaptive.h(
-                      pixleToPercent(33, "height"),
-                    ),
+                    height: pixleToPercent(30, "height").h,
                   ),
-                  Container(
-                      padding: EdgeInsets.symmetric(
-                          horizontal: Adaptive.h(pixleToPercent(8, "width"))),
-                      width: double.infinity,
-                      height: Adaptive.h(pixleToPercent(56, "height")),
-                      decoration: BoxDecoration(
-                        color: const Color(0XFFEDEDED),
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(
-                            Adaptive.h(
-                              pixleToPercent(26, "height"),
-                            ),
-                          ),
-                        ),
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          const Icon(Icons.person_2_outlined),
-                          Text(
-                            "How are you feeling?",
-                            style: TextStyle(
-                              fontSize: 16.sp,
-                            ),
-                          ),
-                          const Icon(
-                            Icons.send,
-                            color: Colors.blue,
-                          )
-                        ],
-                      )),
+                  const HowAreYouFeeling(),
                   SizedBox(
                     height: Adaptive.h(pixleToPercent(10, "height")),
                   ),
                 ]),
           ),
           Padding(
-            padding:
-                EdgeInsets.only(left: Adaptive.w(pixleToPercent(10, "width"))),
+            padding: EdgeInsets.only(left: pixleToPercent(10, "width").w),
             child: SizedBox(
-              height: Adaptive.h(pixleToPercent(400, "height")),
+              height: pixleToPercent(400, "height").h,
               width: double.infinity,
               child: ListView.separated(
                 scrollDirection: Axis.horizontal,
                 itemCount: 5,
                 itemBuilder: (context, index) {
-                  return MainHospitalsCard();
+                  return HospitalsCard();
                 },
                 separatorBuilder: (BuildContext context, int index) {
                   return SizedBox(
-                    width: Adaptive.w(pixleToPercent(25, "width")),
+                    width: pixleToPercent(25, "width").w,
                   );
                 },
               ),

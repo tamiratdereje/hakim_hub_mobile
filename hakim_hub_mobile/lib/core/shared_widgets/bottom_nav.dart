@@ -6,6 +6,7 @@ import 'package:hakim_hub_mobile/core/utils/colors.dart';
 import 'package:hakim_hub_mobile/core/utils/icons.dart';
 
 import '../../features/chatbot/presentation/screen/chat_landing.dart';
+import '../../features/home/presentation/screen/Home.dart';
 import '../../features/hospital/presentation/screen/hospitals_home_screen.dart';
 
 class BottomNav extends StatefulWidget {
@@ -52,18 +53,18 @@ class _BottomNavState extends State<BottomNav> {
   }
 }
 
-class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+// class HomePage extends StatefulWidget {
+//   const HomePage({super.key});
 
-  @override
-  State<HomePage> createState() => _HomePageState();
-}
+//   @override
+//   State<HomePage> createState() => _HomePageState();
+// }
 
-class _HomePageState extends State<HomePage> {
-  @override
-  Widget build(BuildContext context) {
-    return const Center(
-      child: Text(" dghndsjkgves dgjedg egoihe "),
-    );
-  }
-}
+// class _HomePageState extends State<HomePage> {
+//   @override
+//   Widget build(BuildContext context) {
+//     return const Center(
+//       child: Text(" dghndsjkgves dgjedg egoihe "),
+//     );
+//   }
+// }
