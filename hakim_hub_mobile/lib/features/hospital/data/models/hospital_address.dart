@@ -1,5 +1,5 @@
 
-class Address {
+class AddressModel {
   String country;
   String region;
   String zone;
@@ -12,7 +12,7 @@ class Address {
   String institutionId;
   String id;
 
-  Address({
+  AddressModel({
     required this.country,
     required this.region,
     required this.zone,
@@ -26,8 +26,8 @@ class Address {
     required this.id,
   });
 
-  factory Address.fromJson(Map<String, dynamic> json) {
-    return Address(
+  factory AddressModel.fromJson(Map<String, dynamic> json) {
+    return AddressModel(
       country: json['country'],
       region: json['region'],
       zone: json['zone'],

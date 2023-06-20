@@ -1,5 +1,5 @@
 
-class InstitutionAvailability {
+class InstitutionAvailabilityModel {
   int startDay;
   int endDay;
   String opening;
@@ -8,7 +8,7 @@ class InstitutionAvailability {
   String institutionId;
   String id;
 
-  InstitutionAvailability({
+  InstitutionAvailabilityModel({
     required this.startDay,
     required this.endDay,
     required this.opening,
@@ -18,8 +18,8 @@ class InstitutionAvailability {
     required this.id,
   });
 
-  factory InstitutionAvailability.fromJson(Map<String, dynamic> json) {
-    return InstitutionAvailability(
+  factory InstitutionAvailabilityModel.fromJson(Map<String, dynamic> json) {
+    return InstitutionAvailabilityModel(
       startDay: json['startDay'],
       endDay: json['endDay'],
       opening: json['opening'],
