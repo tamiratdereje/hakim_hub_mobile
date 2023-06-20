@@ -1,7 +1,7 @@
 import 'hospital_address_domain.dart';
 import 'hospital_availability_domain.dart';
 
-class InstitutionDomain {
+class InstitutionSearchDomain {
   String institutionName;
   String branchName;
   String website;
@@ -17,7 +17,7 @@ class InstitutionDomain {
   List<String> services;
   String id;
 
-  InstitutionDomain({
+  InstitutionSearchDomain({
     required this.institutionName,
     required this.branchName,
     required this.website,

@@ -1,11 +1,11 @@
 
 
-class FilterHospitalModel {
-  bool openNow;
-  int activeFor;
-  List<String> services;
+import 'package:hakim_hub_mobile/features/hospital/domain/entities/filter_hospital_domain.dart';
 
-  FilterHospitalModel({required this.activeFor, required this.openNow, required this.services});
+class FilterHospitalModel extends FilterHospitalDomain{
+  
+
+  FilterHospitalModel({required int activeFor, required bool openNow, required List<String> services}):super(activeFor: activeFor, openNow: openNow, services: services);
   
   toJson() {
     return {

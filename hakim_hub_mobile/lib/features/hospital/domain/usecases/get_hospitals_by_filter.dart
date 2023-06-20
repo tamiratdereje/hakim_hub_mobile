@@ -6,16 +6,16 @@ import 'package:hakim_hub_mobile/features/hospital/domain/entities/filter_hospit
 
 import '../../../../core/error/failures.dart';
 import '../../../../core/usecases/usecase.dart';
-import '../entities/hospital_detail_domain.dart';
+import '../entities/hospital_search_domain.dart';
 import '../repositories/search_hospitals_repository.dart';
 
-class GetHospitalsByFilter implements UseCase<List<InstitutionDomain>, FilterHospitalDomain> {
-  final SearchHospitalsRepository repository;
+class GetHospitalsByFilter implements UseCase<List<InstitutionSearchDomain>, FilterHospitalDomain> {
+  final HospitalsRepository repository;
 
   GetHospitalsByFilter(this.repository);
 
   @override
-  Future<Either<Failure, List<InstitutionDomain>>> call(FilterHospitalDomain params) async {
+  Future<Either<Failure, List<InstitutionSearchDomain>>> call(FilterHospitalDomain params) async {
     return await repository.searchByFilterHospitals(params);
   }
 }

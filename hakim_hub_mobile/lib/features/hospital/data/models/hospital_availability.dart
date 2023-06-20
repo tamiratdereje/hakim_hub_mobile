@@ -1,22 +1,25 @@
 
-class InstitutionAvailabilityModel {
-  int startDay;
-  int endDay;
-  String opening;
-  String closing;
-  bool twentyFourHours;
-  String institutionId;
-  String id;
+import '../../domain/entities/hospital_availability_domain.dart';
+
+class InstitutionAvailabilityModel extends InstitutionAvailabilityDomain {
 
   InstitutionAvailabilityModel({
-    required this.startDay,
-    required this.endDay,
-    required this.opening,
-    required this.closing,
-    required this.twentyFourHours,
-    required this.institutionId,
-    required this.id,
-  });
+    required int startDay,
+    required int endDay,
+    required String opening,
+    required String closing,
+    required bool twentyFourHours,
+    required String institutionId,
+    required String id,
+  }):super(
+    startDay: startDay,
+    endDay: endDay,
+    opening: opening,
+    closing: closing,
+    twentyFourHours: twentyFourHours,
+    institutionId: institutionId,
+    id: id,
+  );
 
   factory InstitutionAvailabilityModel.fromJson(Map<String, dynamic> json) {
     return InstitutionAvailabilityModel(

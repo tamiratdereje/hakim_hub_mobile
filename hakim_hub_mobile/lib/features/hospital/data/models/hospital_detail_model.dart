@@ -2,7 +2,7 @@ import 'hospital_address.dart';
 import 'hospital_availability.dart';
 import 'hospital_doctor_model.dart';
 
-class InstitutionModel {
+class InstitutionDetailModel {
   String institutionName;
   String branchName;
   String website;
@@ -20,7 +20,7 @@ class InstitutionModel {
   List<DoctorModel> doctors;
   String id;
 
-  InstitutionModel({
+  InstitutionDetailModel({
     required this.institutionName,
     required this.branchName,
     required this.website,
@@ -39,8 +39,8 @@ class InstitutionModel {
     required this.id,
   });
 
-  factory InstitutionModel.fromJson(Map<String, dynamic> json) {
-    return InstitutionModel(
+  factory InstitutionDetailModel.fromJson(Map<String, dynamic> json) {
+    return InstitutionDetailModel(
       institutionName: json['institutionName'],
       branchName: json['branchName'],
       website: json['website'],
