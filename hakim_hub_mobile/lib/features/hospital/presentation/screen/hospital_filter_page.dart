@@ -83,10 +83,10 @@ class _HospitalDoctorFilterPageState extends State<HospitalDoctorFilterPage> {
                   },
                 ),
                 const Text(
-                  "Filter docters",
+                  "Filter doctors",
                   style: TextStyle(
                     fontSize: 20,
-                    fontWeight: FontWeight.w700,
+                    fontWeight: FontWeight.w500,
                     color: titleTextColor,
                   ),
                 ),
@@ -97,6 +97,9 @@ class _HospitalDoctorFilterPageState extends State<HospitalDoctorFilterPage> {
                   },
                 ),
               ],
+            ),
+            SizedBox(
+              height: 13,
             ),
             Row(
               children: [
@@ -130,6 +133,9 @@ class _HospitalDoctorFilterPageState extends State<HospitalDoctorFilterPage> {
                 )
               ],
             ),
+            SizedBox(
+              height: 5,
+            ),
             Text(
               "Education",
               style: TextStyle(
@@ -147,7 +153,7 @@ class _HospitalDoctorFilterPageState extends State<HospitalDoctorFilterPage> {
                       overlayColor: MaterialStateProperty.resolveWith<Color>(
                         (Set<MaterialState> states) {
                           if (states.contains(MaterialState.pressed)) {
-                            return Colors.grey.withOpacity(0.5);
+                            return Colors.grey.withOpacity(0.2);
                           }
                           return Colors.transparent;
                         },
@@ -171,8 +177,8 @@ class _HospitalDoctorFilterPageState extends State<HospitalDoctorFilterPage> {
                           // Get the corresponding logo asset from the map
                           Image.asset(
                             universityLogos[value]!,
-                            height: 20,
-                            width: 20,
+                            height: 25,
+                            width: 25,
                           ),
                           SizedBox(width: 10),
                           Text(value),
