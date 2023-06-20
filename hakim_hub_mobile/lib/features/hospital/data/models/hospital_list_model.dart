@@ -12,8 +12,8 @@ class InstitutionList {
   bool status;
   String logoUrl;
   String bannerUrl;
-  InstitutionAvailability institutionAvailability;
-  Address address;
+  InstitutionAvailabilityModel institutionAvailability;
+  AddressModel address;
   List<String> services;
   String id;
 
@@ -46,8 +46,8 @@ class InstitutionList {
       status: json['status'],
       logoUrl: json['logoUrl'],
       bannerUrl: json['bannerUrl'],
-      institutionAvailability: InstitutionAvailability.fromJson(json['institutionAvailability']),
-      address: Address.fromJson(json['address']),
+      institutionAvailability: InstitutionAvailabilityModel.fromJson(json['institutionAvailability']),
+      address: AddressModel.fromJson(json['address']),
       services: List<String>.from(json['services']),
       id: json['id'],
     );
