@@ -37,8 +37,8 @@ class DoctorGridView extends StatelessWidget {
           ),
           onTap: () {
             print(":DoctorGridView: onTap");
-            context
-              .pushNamed(AppRoutes.DoctorDetailPage, queryParameters: {"id": "id"});
+            context.pushNamed(AppRoutes.DoctorDetailPage,
+                queryParameters: {"id": "id"});
           },
         );
       },

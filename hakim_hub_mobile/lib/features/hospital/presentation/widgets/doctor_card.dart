@@ -22,7 +22,7 @@ class DoctorCard extends StatelessWidget {
         children: [
           buildCard(context),
           Positioned(
-            top: -UIConverter.getComponentHeight(context, 28),
+            top: -UIConverter.getComponentHeight(context, 19),
             child: CircleAvatar(
               radius: UIConverter.getComponentHeight(context, 83) / 2,
               backgroundImage: AssetImage(imageUrl),
@@ -41,7 +41,7 @@ Widget buildCard(BuildContext context) {
     shadowColor: Colors.black,
     child: SizedBox(
       height: UIConverter.getComponentHeight(context, 135.69),
-      width: UIConverter.getComponentWidth(context, 179.22),
+      width: UIConverter.getComponentWidth(context, 150.22),
       child: Column(
         children: [
           SizedBox(

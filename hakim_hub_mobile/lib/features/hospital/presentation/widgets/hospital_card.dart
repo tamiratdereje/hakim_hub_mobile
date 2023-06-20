@@ -11,9 +11,10 @@ class HospitalCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double screenWidth = MediaQuery.of(context).size.width;
-    double proportionalFontSize = 14 * screenWidth / 375;
-    double proportionalFontSizeDirections = 12 * screenWidth / 375;
+    double responsiveFontSize(double baseFontSize) {
+      double screenWidth = MediaQuery.of(context).size.width;
+      return baseFontSize * screenWidth / 411; // 411 is a reference width
+    }
 
     return Container(
       decoration: BoxDecoration(
@@ -54,10 +55,13 @@ class HospitalCard extends StatelessWidget {
                 Expanded(
                   child: FittedBox(
                     fit: BoxFit.fitWidth,
-                    child: Text(
-                      'Website',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(fontSize: proportionalFontSize),
+                    child: SizedBox(
+                      width: UIConverter.getComponentWidth(context, 50),
+                      child: Text(
+                        'Website',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(fontSize: responsiveFontSize(12)),
+                      ),
                     ),
                   ),
                 ),
@@ -85,10 +89,13 @@ class HospitalCard extends StatelessWidget {
                 Expanded(
                   child: FittedBox(
                     fit: BoxFit.fitWidth,
-                    child: Text(
-                      'Email',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(fontSize: proportionalFontSize),
+                    child: SizedBox(
+                      width: UIConverter.getComponentWidth(context, 50),
+                      child: Text(
+                        'Email',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(fontSize: responsiveFontSize(12)),
+                      ),
                     ),
                   ),
                 ),
@@ -119,8 +126,7 @@ class HospitalCard extends StatelessWidget {
                     child: Text(
                       'Directions',
                       textAlign: TextAlign.center,
-                      style:
-                          TextStyle(fontSize: proportionalFontSizeDirections),
+                      style: TextStyle(fontSize: responsiveFontSize(15)),
                     ),
                   ),
                 ),
@@ -148,12 +154,14 @@ class HospitalCard extends StatelessWidget {
                 Expanded(
                   child: FittedBox(
                     fit: BoxFit.fitWidth,
-                    child: Text(
-                      'Phone',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(fontSize: proportionalFontSize),
+                    child: SizedBox(
+                      width: UIConverter.getComponentWidth(context, 50),
+                      child: Text(
+                        'Phone',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(fontSize: responsiveFontSize(12)),
+                      ),
                     ),
-                    
                   ),
                 ),
               ],
