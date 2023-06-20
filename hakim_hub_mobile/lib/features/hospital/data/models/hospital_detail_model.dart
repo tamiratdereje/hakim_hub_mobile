@@ -1,4 +1,3 @@
-import '../../../doctor/data/models/doctor_detail_model.dart';
 import 'hospital_address.dart';
 import 'hospital_availability.dart';
 import 'hospital_doctor_model.dart';
