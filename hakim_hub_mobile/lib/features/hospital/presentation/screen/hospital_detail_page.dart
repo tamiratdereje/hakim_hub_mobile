@@ -67,7 +67,7 @@ class _MyPageState extends State<MyPage> {
             left: 0,
             right: 0,
             child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
+              padding: EdgeInsets.symmetric(horizontal: 16),
               child: const Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -80,7 +80,7 @@ class _MyPageState extends State<MyPage> {
           ),
           const Positioned(top: 160, left: 30, right: 30, child: HospitalCard()),
           Positioned(
-            top: 250,
+            top: 300,
             left: 0,
             right: 0,
             bottom: 0,
@@ -125,7 +125,7 @@ class _MyPageState extends State<MyPage> {
                             onPressed: () {
                               _onButtonPressed(1);
                             },
-                            child: Text("search"),
+                            child: Text("doctors"),
                             style: ElevatedButton.styleFrom(
                               primary: _selectedIndex == 1
                                   ? const Color.fromARGB(255, 191, 196, 199)
@@ -139,7 +139,7 @@ class _MyPageState extends State<MyPage> {
                             onPressed: () {
                               _onButtonPressed(2);
                             },
-                            child: Text("settings"),
+                            child: Text("Gallery"),
                             style: ElevatedButton.styleFrom(
                               primary: _selectedIndex == 2
                                   ? const Color.fromARGB(255, 161, 169, 173)
@@ -153,7 +153,7 @@ class _MyPageState extends State<MyPage> {
                       ),
                     ),
                     SizedBox(height: 16),
-                    Padding(
+                    const Padding(
                       padding: EdgeInsets.all(16),
                       child: Text(
                         'Hospital Desciption',
@@ -162,7 +162,7 @@ class _MyPageState extends State<MyPage> {
                         ),
                       ),
                     ),
-                    Padding(
+                    const Padding(
                       padding: EdgeInsets.all(16),
                       child: Text(
                         'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
@@ -177,139 +177,157 @@ class _MyPageState extends State<MyPage> {
                       height: 200,
                       fit: BoxFit.cover,
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 60,
                     ),
-                    Text(
-                      'Services We Provide',
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
+                    Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: const Text(
+                        'Services We Provide',
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
                     SizedBox(height: 16),
-                    ListView(
-                      shrinkWrap: true,
-                      children: [
-                        Container(
-                          decoration: BoxDecoration(
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.grey.withOpacity(0.5),
-                                spreadRadius: 1,
-                                blurRadius: 5,
-                                offset: Offset(0, 3),
-                              ),
-                            ],
-                          ),
-                          child: Card(
-                            child: ListTile(
-                              leading: Image.asset(
-                                'assets/images/right_icon.png',
-                              ),
-                              title: Text(
-                                'General and specialty services.',
-                                style: TextStyle(fontSize: 13),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: ListView(
+                        shrinkWrap: true,
+                        children: [
+                          Container(
+                            decoration: BoxDecoration(
+                              boxShadow: [
+                                BoxShadow(
+                                  color:
+                                      const Color.fromARGB(255, 201, 201, 201)
+                                          .withOpacity(0.2),
+                                  spreadRadius: 1,
+                                  blurRadius: 5,
+                                  offset: Offset(0, 3),
+                                ),
+                              ],
+                            ),
+                            child: Card(
+                              child: ListTile(
+                                leading: Image.asset(
+                                  'assets/images/right_icon.png',
+                                ),
+                                title: const Text(
+                                  'General and specialty services.',
+                                  style: TextStyle(fontSize: 13),
+                                ),
                               ),
                             ),
                           ),
-                        ),
-                        Container(
-                          decoration: BoxDecoration(
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.grey.withOpacity(0.5),
-                                spreadRadius: 1,
-                                blurRadius: 5,
-                                offset: Offset(0, 3),
-                              ),
-                            ],
-                          ),
-                          child: Card(
-                            child: ListTile(
-                              leading: Image.asset(
-                                'assets/images/right_icon.png',
-                              ),
-                              title: Text(
-                                'Medical consultations and checkups.',
-                                style: TextStyle(fontSize: 13),
+                          Container(
+                            decoration: BoxDecoration(
+                              boxShadow: [
+                                BoxShadow(
+                                  color:
+                                      const Color.fromARGB(255, 201, 201, 201)
+                                          .withOpacity(0.2),
+                                  spreadRadius: 1,
+                                  blurRadius: 5,
+                                  offset: Offset(0, 3),
+                                ),
+                              ],
+                            ),
+                            child: Card(
+                              child: ListTile(
+                                leading: Image.asset(
+                                  'assets/images/right_icon.png',
+                                ),
+                                title: const Text(
+                                  'Medical consultations and checkups.',
+                                  style: TextStyle(fontSize: 13),
+                                ),
                               ),
                             ),
                           ),
-                        ),
-                        Container(
-                          decoration: BoxDecoration(
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.grey.withOpacity(0.5),
-                                spreadRadius: 1,
-                                blurRadius: 5,
-                                offset: Offset(0, 3),
-                              ),
-                            ],
-                          ),
-                          child: Card(
-                            child: ListTile(
-                              leading: Image.asset(
-                                'assets/images/right_icon.png',
-                              ),
-                              title: Text(
-                                'Diagnostic and laboratory services.',
-                                style: TextStyle(fontSize: 13),
+                          Container(
+                            decoration: BoxDecoration(
+                              boxShadow: [
+                                BoxShadow(
+                                  color:
+                                      const Color.fromARGB(255, 201, 201, 201)
+                                          .withOpacity(0.2),
+                                  spreadRadius: 1,
+                                  blurRadius: 5,
+                                  offset: Offset(0, 3),
+                                ),
+                              ],
+                            ),
+                            child: Card(
+                              child: ListTile(
+                                leading: Image.asset(
+                                  'assets/images/right_icon.png',
+                                ),
+                                title: const Text(
+                                  'Diagnostic and laboratory services.',
+                                  style: TextStyle(fontSize: 13),
+                                ),
                               ),
                             ),
                           ),
-                        ),
-                        Container(
-                          decoration: BoxDecoration(
-                            boxShadow: [
-                              BoxShadow(
-                                color: Color.fromARGB(255, 201, 201, 201)
-                                    .withOpacity(0.5),
-                                spreadRadius: 1,
-                                blurRadius: 5,
-                                offset: Offset(0, 3),
-                              ),
-                            ],
-                          ),
-                          child: Card(
-                            child: ListTile(
-                              leading: Image.asset(
-                                'assets/images/right_icon.png',
-                              ),
-                              title: Text(
-                                'Pharmacy and medication services.',
-                                style: TextStyle(fontSize: 13),
+                          Container(
+                            decoration: BoxDecoration(
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Color.fromARGB(255, 201, 201, 201)
+                                      .withOpacity(0.2),
+                                  spreadRadius: 1,
+                                  blurRadius: 5,
+                                  offset: Offset(0, 3),
+                                ),
+                              ],
+                            ),
+                            child: Card(
+                              child: ListTile(
+                                leading: Image.asset(
+                                  'assets/images/right_icon.png',
+                                ),
+                                title: const Text(
+                                  'Pharmacy and medication services.',
+                                  style: TextStyle(fontSize: 13),
+                                ),
                               ),
                             ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 15,
                     ),
                     Column(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
-                          Row(
+                          const Row(
                             children: [
                               clock,
                               Padding(
-                                padding: const EdgeInsets.all(8.0),
+                                padding: EdgeInsets.all(10.0),
                                 child: Text("Available 24 hrs  5 days a week"),
                               )
                             ],
                           ),
-                          Row(
+                          const Row(
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
-                              location,
-                              SizedBox(
-                                width: 30,
-                                child: Text(
-                                  "Bole, In front of Rwanda Embassy, Addis Ababa, Ethiopia",
-                                  maxLines: 2,
+                              Padding(
+                                padding: EdgeInsets.all(8.0),
+                                child: location,
+                              ),
+                              Padding(
+                                padding: EdgeInsets.all(10.0),
+                                child: SizedBox(
+                                  width: 100,
+                                  child: Text(
+                                    "Bole, In front of Rwanda Embassy, Addis Ababa, Ethiopia",
+                                    maxLines: 2,
+                                  ),
                                 ),
                               ),
                             ],
@@ -360,15 +378,15 @@ class ServiceCard extends StatelessWidget {
             SizedBox(height: 16),
             Text(
               title,
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
               ),
             ),
-            SizedBox(height: 8),
+            const SizedBox(height: 8),
             Text(
               subtitle,
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 16,
               ),
             ),
