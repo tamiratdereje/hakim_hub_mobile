@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:hakim_hub_mobile/core/utils/colors.dart';
 import 'package:hakim_hub_mobile/core/utils/ui_converter.dart';
-import 'package:hakim_hub_mobile/features/hospital/presentation/screen/hospitals_home_screen.dart';
-
 import '../widgets/build_dots.dart';
+import '../widgets/custom_button.dart';
 import '../widgets/top_bar_bottons.dart';
+import '../widgets/pages.dart';
 
 class OnBordingPage extends StatefulWidget {
   const OnBordingPage({super.key});
@@ -14,23 +14,6 @@ class OnBordingPage extends StatefulWidget {
 }
 
 class _OnBordingPageState extends State<OnBordingPage> {
-  List pages = [
-    [
-      'onboarding_docImg1.png',
-      'HakimHub',
-      'Provide easily accessible information about healthcare facilities and healthcare professionals.',
-    ],
-    [
-      'onboarding_docImg2.png',
-      'Nearby Doctors',
-      'adequate information about doctors and where to find them',
-    ],
-    [
-      'onboarding_Img3.png',
-      'Customize your search',
-      'Search for doctors or hospitals according to your needs and preferences',
-    ],
-  ];
   int currentIndex = 0;
   final PageController _controller = PageController(initialPage: 0);
 
@@ -86,52 +69,17 @@ class _OnBordingPageState extends State<OnBordingPage> {
                         style: const TextStyle(
                             fontSize: 16, fontWeight: FontWeight.w400),
                       ),
-                      // SizedBox(
-                      //   height: UIConverter.getComponentHeight(context, 10),
-                      // ),
                     ],
                   );
                 },
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.only(bottom: 35),
-              child: Container(
-                height: UIConverter.getComponentHeight(context, 40),
-                width: UIConverter.getComponentWidth(context, 153),
-                child: TextButton(
-                  onPressed: () {
-                    if (currentIndex == pages.length - 1) {
-                      Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(
-                          builder: (_) => const HospitalsHomeScreen(),
-                        ),
-                      );
-                    }
-
-                    _controller.nextPage(
-                      duration: const Duration(milliseconds: 80),
-                      curve: Curves.bounceIn,
-                    );
-                    updateIndex(currentIndex += 1);
-                  },
-                  style: ButtonStyle(
-                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                      RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10.0),
-                      ),
-                    ),
-                    backgroundColor: MaterialStateProperty.all(primaryColor),
-                    foregroundColor:
-                        MaterialStateProperty.all(secondryTextColor),
-                  ),
-                  child: Text(currentIndex == pages.length - 1
-                      ? "Get Started"
-                      : "Next"),
-                ),
-              ),
-            ),
+            CustomButton(
+                currentIndex: currentIndex,
+                updateIndex: updateIndex,
+                pages: pages,
+                context: context,
+                controller: _controller),
             Padding(
               padding: const EdgeInsets.only(bottom: 100),
               child: Row(
