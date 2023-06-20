@@ -1,33 +1,25 @@
 
-class Address {
-  String country;
-  String region;
-  String zone;
-  String woreda;
-  String city;
-  String subCity;
-  double longitude;
-  double latitude;
-  String summary;
-  String institutionId;
-  String id;
+import '../../domain/entities/hospital_address_domain.dart';
 
-  Address({
-    required this.country,
-    required this.region,
-    required this.zone,
-    required this.woreda,
-    required this.city,
-    required this.subCity,
-    required this.longitude,
-    required this.latitude,
-    required this.summary,
-    required this.institutionId,
-    required this.id,
-  });
+class AddressModel extends AddressDomain {
+  
 
-  factory Address.fromJson(Map<String, dynamic> json) {
-    return Address(
+  AddressModel({
+    required String country,
+    required String region,
+    required String zone,
+    required String woreda,
+    required String city,
+    required String subCity,
+    required double longitude,
+    required double latitude,
+    required String summary,
+    required String institutionId,
+    required String id,
+  }) :super(city:city, country:country, id:id, institutionId:institutionId, latitude:latitude, longitude:longitude, region:region, subCity:subCity, summary:summary, woreda:woreda, zone:zone);
+
+  factory AddressModel.fromJson(Map<String, dynamic> json) {
+    return AddressModel(
       country: json['country'],
       region: json['region'],
       zone: json['zone'],

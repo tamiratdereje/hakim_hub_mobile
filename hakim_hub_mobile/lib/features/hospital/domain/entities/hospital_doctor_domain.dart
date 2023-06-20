@@ -1,5 +1,5 @@
 
-class DoctorModel {
+class DoctorDomain {
   String fullName;
   String about;
   String gender;
@@ -10,7 +10,7 @@ class DoctorModel {
   List<String> specialities;
   String id;
 
-  DoctorModel({
+  DoctorDomain({
     required this.fullName,
     required this.about,
     required this.gender,
@@ -22,8 +22,8 @@ class DoctorModel {
     required this.id,
   });
 
-  factory DoctorModel.fromJson(Map<String, dynamic> json) {
-    return DoctorModel(
+  factory DoctorDomain.fromJson(Map<String, dynamic> json) {
+    return DoctorDomain(
       fullName: json['fullName'],
       about: json['about'],
       gender: json['gender'],

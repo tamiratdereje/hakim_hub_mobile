@@ -2,7 +2,7 @@ import 'hospital_address.dart';
 import 'hospital_availability.dart';
 import 'hospital_doctor_model.dart';
 
-class Institution {
+class InstitutionDetailModel {
   String institutionName;
   String branchName;
   String website;
@@ -13,14 +13,14 @@ class Institution {
   bool status;
   String logoUrl;
   String bannerUrl;
-  InstitutionAvailability institutionAvailability;
-  Address address;
+  InstitutionAvailabilityModel institutionAvailability;
+  AddressModel address;
   List<String> services;
   List<String> photos;
-  List<Doctor> doctors;
+  List<DoctorModel> doctors;
   String id;
 
-  Institution({
+  InstitutionDetailModel({
     required this.institutionName,
     required this.branchName,
     required this.website,
@@ -39,8 +39,8 @@ class Institution {
     required this.id,
   });
 
-  factory Institution.fromJson(Map<String, dynamic> json) {
-    return Institution(
+  factory InstitutionDetailModel.fromJson(Map<String, dynamic> json) {
+    return InstitutionDetailModel(
       institutionName: json['institutionName'],
       branchName: json['branchName'],
       website: json['website'],
@@ -51,11 +51,11 @@ class Institution {
       status: json['status'],
       logoUrl: json['logoUrl'],
       bannerUrl: json['bannerUrl'],
-      institutionAvailability: InstitutionAvailability.fromJson(json['institutionAvailability']),
-      address: Address.fromJson(json['address']),
+      institutionAvailability: InstitutionAvailabilityModel.fromJson(json['institutionAvailability']),
+      address: AddressModel.fromJson(json['address']),
       services: List<String>.from(json['services']),
       photos: List<String>.from(json['photos']),
-      doctors: List<Doctor>.from(json['doctors'].map((x) => Doctor.fromJson(x))),
+      doctors: List<DoctorModel>.from(json['doctors'].map((x) => DoctorModel.fromJson(x))),
       id: json['id'],
     );
   }
