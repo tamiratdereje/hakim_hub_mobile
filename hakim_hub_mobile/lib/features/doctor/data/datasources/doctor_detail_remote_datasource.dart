@@ -12,7 +12,8 @@ abstract class DoctorDetailRemoteDataSource {
 
 class DoctorDetailRemoteDataSourceImpl implements DoctorDetailRemoteDataSource {
   final http.Client client;
-  final uriString = 'https://jsonplaceholder.typicode.com/todos/1';
+  final uriString =
+      'https://hakim-hub.onrender.com/api/DoctorProfiles/02fb54e9-ebbf-48a5-acdf-12c0d51ec264';
   String baseUrl = getBaseUrl();
 
   DoctorDetailRemoteDataSourceImpl({required this.client});
@@ -20,7 +21,7 @@ class DoctorDetailRemoteDataSourceImpl implements DoctorDetailRemoteDataSource {
   @override
   Future<DoctorDetailModel> getDoctorDetail(String id) async {
     final response = await client.get(
-      Uri.parse(uriString),
+      Uri.parse("${baseUrl}/api/DoctorProfiles/${id}"),
       headers: {
         'Content-Type': 'application/json',
       },

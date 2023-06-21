@@ -233,7 +233,7 @@ class _DoctorDetailPageState extends State<DoctorDetailPage> {
                                       Row(
                                         children: [
                                           Text(
-                                            doctorDetail.educations[0].degree,
+                                            doctorDetail.educations[index].degree,
                                             style: const TextStyle(
                                                 fontWeight: FontWeight.w600,
                                                 color: degreeTextColor,
@@ -245,7 +245,7 @@ class _DoctorDetailPageState extends State<DoctorDetailPage> {
                                                     context, 7),
                                           ),
                                           Text(
-                                            "${doctorDetail.educations[0].startDate} - ${doctorDetail.educations[index].endDate}",
+                                            "${doctorDetail.educations[index].startDate} - ${doctorDetail.educations[index].endDate}",
                                             style: const TextStyle(
                                                 fontStyle: FontStyle.italic,
                                                 fontWeight: FontWeight.w400,
@@ -255,7 +255,7 @@ class _DoctorDetailPageState extends State<DoctorDetailPage> {
                                         ],
                                       ),
                                       Text(
-                                        doctorDetail.educations[0].institution,
+                                        doctorDetail.educations[index].institution,
                                         style: const TextStyle(
                                             fontWeight: FontWeight.w500,
                                             color: degreeTextColor,
