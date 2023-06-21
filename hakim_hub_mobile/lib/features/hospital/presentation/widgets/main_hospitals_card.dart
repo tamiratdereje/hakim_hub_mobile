@@ -2,14 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:hakim_hub_mobile/core/utils/colors.dart';
 import 'package:hakim_hub_mobile/core/utils/icons.dart';
 import 'package:hakim_hub_mobile/core/utils/ui_converter.dart';
+import 'package:hakim_hub_mobile/features/hospital/domain/entities/hospital_search_domain.dart';
 
 import '../../../../core/shared_widgets/formfield.dart';
 import 'chips_container.dart';
 
 class MainHospitalsCard extends StatelessWidget {
-  MainHospitalsCard({super.key});
+  final InstitutionSearchDomain institutionSearchDomain;
+  MainHospitalsCard({required this.institutionSearchDomain ,super.key});
 
-  List chipList = ["Cardio", "Generel", "Pediatrics"];
   bool isOpened = true;
 
   @override
@@ -33,12 +34,17 @@ class MainHospitalsCard extends StatelessWidget {
           Container(
             width: UIConverter.getComponentWidth(context, 370),
             height: UIConverter.getComponentHeight(context, 146),
-            decoration: const BoxDecoration(
-              borderRadius: BorderRadius.only(
+            decoration:  BoxDecoration(
+              borderRadius: const BorderRadius.only(
                   topLeft: Radius.circular(20), topRight: Radius.circular(20)),
               image: DecorationImage(
-                  image: AssetImage("assets/images/hospital_img.png"),
-                  fit: BoxFit.fill),
+                  image: NetworkImage(institutionSearchDomain.bannerUrl, ),
+                  onError: (_, __) {
+                    // Handle error by providing a fallback image
+                    const AssetImage('assets/images/hospital_img.png');
+                  },
+                  
+                  ),
             ),
           ),
           const SizedBox(
@@ -51,8 +57,8 @@ class MainHospitalsCard extends StatelessWidget {
               children: [
                 SizedBox(
                   width: UIConverter.getComponentWidth(context, 176),
-                  child: const Text("Tikur Ambesa",
-                      style: TextStyle(
+                  child:  Text(institutionSearchDomain.institutionName ,
+                      style: const TextStyle(
                           color: titleTextColor,
                           fontSize: 18,
                           fontWeight: FontWeight.w600),
@@ -62,8 +68,8 @@ class MainHospitalsCard extends StatelessWidget {
                   children: [
                     alarm,
                     SizedBox(width: UIConverter.getComponentWidth(context, 5)),
-                    const Text("9am-5pm",
-                        style: TextStyle(
+                    Text("${institutionSearchDomain.institutionAvailability.opening.substring(0,2)}am-${institutionSearchDomain.institutionAvailability.closing.substring(0,2)}pm",
+                        style: const TextStyle(
                             color: titleTextColor,
                             fontSize: 11,
                             fontWeight: FontWeight.w400),
@@ -79,9 +85,9 @@ class MainHospitalsCard extends StatelessWidget {
                   child: ListView.builder(
                     physics: const AlwaysScrollableScrollPhysics(),
                     scrollDirection: Axis.horizontal,
-                    itemCount: 3,
+                    itemCount: institutionSearchDomain.services.length,
                     itemBuilder: ((context, index) {
-                      return chipsContainer(chipList[index]);
+                      return chipsContainer(institutionSearchDomain.services[index]);
                     }),
                   ),
                 ),
@@ -100,13 +106,20 @@ class MainHospitalsCard extends StatelessWidget {
                 SizedBox(
                   width: UIConverter.getComponentWidth(context, 5),
                 ),
-                const Text(
-                  "King George Street",
-                  style: TextStyle(
-                    fontWeight: FontWeight.w400,
-                    fontSize: 12,
-                  ),
-                )
+                 SizedBox(
+                  width: UIConverter.getComponentWidth(context, 300),
+                   child: Text(
+                    
+                    institutionSearchDomain.address.summary,
+                    style: const TextStyle(
+                      
+                      fontWeight: FontWeight.w400,
+                      fontSize: 12,
+                    ),
+                    textAlign: TextAlign.end,
+                    maxLines: 1,
+                                 ),
+                 )
               ],
             ),
           )
@@ -127,9 +140,9 @@ class MainHospitalsCard extends StatelessWidget {
           ),
           child: Center(
             child: Text(
-              isOpened ? "Open" : "Closed",
+              institutionSearchDomain.status,
               style: TextStyle(
-                  color: isOpened ? greenColor : redColor,
+                  color: institutionSearchDomain.status.toLowerCase() == "open" ? greenColor : redColor,
                   fontWeight: FontWeight.w600,
                   fontSize: 12),
             ),

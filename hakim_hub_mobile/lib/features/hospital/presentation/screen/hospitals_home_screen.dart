@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hakim_hub_mobile/core/utils/colors.dart';
 import 'package:hakim_hub_mobile/core/utils/icons.dart';
@@ -7,6 +8,7 @@ import 'package:hakim_hub_mobile/features/hospital/presentation/widgets/main_hos
 
 import '../../../../core/shared_widgets/formfield.dart';
 import '../../../../router/routes.dart';
+import '../bloc/bloc/search_hospital_bloc.dart';
 import '../widgets/build_chips_widget.dart';
 import '../widgets/chips_container.dart';
 import '../widgets/filter_page.dart';
@@ -21,6 +23,8 @@ class HospitalsHomeScreen extends StatefulWidget {
 }
 
 class _HospitalsHomeScreenState extends State<HospitalsHomeScreen> {
+  List<String> serviceList = [];
+  bool isService = true;
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -45,7 +49,18 @@ class _HospitalsHomeScreenState extends State<HospitalsHomeScreen> {
               SizedBox(
                 height: UIConverter.getComponentHeight(context, 30),
               ),
-              const SearchHospitalsWidget(),
+              SearchHospitalsWidget(
+                serviceList : serviceList,
+                onChanged: (searchName) {
+                 
+                  BlocProvider.of<SearchHospitalBloc>(context)
+                      .add(HospitalSearchByNameEvent(name: searchName));
+                },
+                onFilterChanged: (value) {
+                  BlocProvider.of<SearchHospitalBloc>(context)
+                      .add(HospitalSearchByFilterEvent(filter: value));
+                },
+              ),
               SizedBox(
                 height: UIConverter.getComponentHeight(context, 30),
               ),
@@ -56,31 +71,69 @@ class _HospitalsHomeScreenState extends State<HospitalsHomeScreen> {
                     fontWeight: FontWeight.w500,
                     color: titleTextColor),
               ),
-
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Expanded(
-                  child: ListView.builder(
-                      // shrinkWrap: true,
-                      // physics: const AlwaysScrollableScrollPhysics(),
-                      itemCount: 15,
-                      itemBuilder: ((context, index) {
-                        return GestureDetector(
-                          child: MainHospitalsCard(),
-                          onTap: () {
-                            context.pushNamed(AppRoutes.HospitalDetailPage,
-                                queryParameters: {"id": "id"});
-                          },
-                        );
-                      })),
-                ),
+                    BlocConsumer<SearchHospitalBloc, SearchHospitalState>(
+                      listener: (context, state) {
+                        if (state is SearchHospitalSuccess) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                              content: Text("successfully loaded"),
+                            ),
+                          );
+                        }
+                      },
+                      builder: (context, state) {
+                        if (state is SearchHospitalSuccess) {
+                          return Expanded(
+                            child: ListView.builder(
+                                itemCount: state.institutionSearchDomain.length,
+                                itemBuilder: ((context, index) {
+                                  if (isService) {
+                                    state
+                                        .institutionSearchDomain[index].services
+                                        .forEach((element) {
+                                      if (!serviceList.contains(element)) {
+                                        serviceList.add(element);
+                                      }
+                                    });
+                                  } 
+                                  
+                                  if (index == state.institutionSearchDomain.length - 1) {
+                                      isService = false;
+                                  }
+
+                                  return GestureDetector(
+                                    child: MainHospitalsCard(
+                                      institutionSearchDomain:
+                                          state.institutionSearchDomain[index],
+                                    ),
+                                    onTap: () {
+                                      context.pushNamed(
+                                          AppRoutes.HospitalDetailPage,
+                                          queryParameters: {"id": "id"});
+                                    },
+                                  );
+                                })),
+                          );
+                        } else if (state is SearchHospitalLoading) {
+                          return const Center(
+                            child: CircularProgressIndicator(
+                              color: redColor,
+                            ),
+                          );
+                        } else {
+                          return const Center(
+                            child: Text("No data"),
+                          );
+                        }
+                      },
+                    ),
                   ],
-              
                 ),
               ),
-              
             ],
           ),
         ),

@@ -21,12 +21,12 @@ class InstitutionAvailabilityModel extends InstitutionAvailabilityDomain {
 
   factory InstitutionAvailabilityModel.fromJson(Map<String, dynamic> json) {
     return InstitutionAvailabilityModel(
-      startDay: json['startDay'],
-      endDay: json['endDay'],
-      opening: json['opening'],
-      closing: json['closing'],
-      twentyFourHours: json['twentyFourHours'],
-      id: json['id'],
+      startDay: json['startDay'] ?? "0",
+      endDay: json['endDay'] ?? "5",
+      opening: json['opening'] ?? "06:30",
+      closing: json['closing'] ?? "12:30",
+      twentyFourHours: json['twentyFourHours'] ?? false,
+      id: json['id'] ?? "id",
     );
   }
 }

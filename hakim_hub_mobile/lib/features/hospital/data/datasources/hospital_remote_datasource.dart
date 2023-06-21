@@ -29,15 +29,21 @@ class HospitalSearchRemoteDataSourceImpl implements HospitalSearchRemoteDataSour
   Future<List<InstitutionSearchModel>> searchByFilterHospitals(FilterHospitalModel filterHospitalModel) async {
     
     try {
-      final response = await client.get(
-        Uri.parse(baseUrl + '/api/InsitutionProfile'),
+
+      final response = await client.post(
+        
+        Uri.parse(baseUrl + '/InsitutionProfile/search-institutions?operationYears=${filterHospitalModel.operationYears}&openStatus=${filterHospitalModel.openStatus}'),
         headers: {
           HttpHeaders.contentTypeHeader: 'application/json',
         },
+        body: json.encode(filterHospitalModel.services),
       );
 
       if (response.statusCode == 200) {
-        final List<InstitutionSearchModel> hospitals =  json.decode(response.body)["value"].map((data) => InstitutionSearchModel.fromJson(data)).toList();
+        
+        List<dynamic> returned = json.decode(response.body)["value"];
+
+        List<InstitutionSearchModel> hospitals = returned.map((data) => InstitutionSearchModel.fromJson(data)).toList();
         return hospitals;
       } else {
         throw ServerException();
@@ -52,14 +58,17 @@ class HospitalSearchRemoteDataSourceImpl implements HospitalSearchRemoteDataSour
   Future<List<InstitutionSearchModel>> searchByNameHospitals(String name) async {
     try {
       final response = await client.get(
-        Uri.parse(baseUrl + '/api/InsitutionProfile'),
+        Uri.parse(baseUrl + '/InsitutionProfile/search-by-name?Name=$name'),
         headers: {
           HttpHeaders.contentTypeHeader: 'application/json',
         },
       );
 
       if (response.statusCode == 200) {
-        final List<InstitutionSearchModel> hospitals =  json.decode(response.body)["value"].map((data) => InstitutionSearchModel.fromJson(data)).toList();
+      
+        List<dynamic> returned = json.decode(response.body)["value"];
+
+        List<InstitutionSearchModel> hospitals = returned.map((data) => InstitutionSearchModel.fromJson(data)).toList();
         return hospitals;
       } else {
         throw ServerException();
@@ -74,20 +83,22 @@ class HospitalSearchRemoteDataSourceImpl implements HospitalSearchRemoteDataSour
   Future<List<InstitutionSearchModel>> getAllHospitals() async {
     
     try {
-      print("datadatat");
       final response = await client.get(
-        Uri.parse(baseUrl + '/api/InsitutionProfile'),
+        Uri.parse(baseUrl + '/InsitutionProfile'),
         headers: {
           HttpHeaders.contentTypeHeader: 'application/json',
         },
       );
-      print(" everything ${response.body} ");
-      print("return response");
+    
 
       if (response.statusCode == 200) {
-        final List<InstitutionSearchModel> hospitals =  json.decode(response.body)["value"].map((data) => InstitutionSearchModel.fromJson(data)).toList();
+  
+        List<dynamic> returned = json.decode(response.body)["value"];
+
+        List<InstitutionSearchModel> hospitals = returned.map((data) => InstitutionSearchModel.fromJson(data)).toList();
         return hospitals;
       } else {
+
         throw ServerException();
       }
       

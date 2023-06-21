@@ -37,21 +37,21 @@ class InstitutionSearchModel extends InstitutionSearchDomain {
 
   factory InstitutionSearchModel.fromJson(Map<String, dynamic> json) {
     return InstitutionSearchModel(
-      institutionName: json['institutionName'],
-      branchName: json['branchName'],
-      website: json['website'],
-      phoneNumber: json['phoneNumber'],
-      summary: json['summary'],
-      establishedOn: DateTime.parse(json['establishedOn']),
-      rate: json['rate'].toDouble(),
-      status: json['status'],
-      logoUrl: json['logoUrl'],
-      bannerUrl: json['bannerUrl'],
+      institutionName: json['institutionName'] ?? "institutionName",
+      branchName: json['branchName'] ?? "branchName",
+      website: json['website'] ?? "website",
+      phoneNumber: json['phoneNumber'] ?? "phoneNumber",
+      summary: json['summary'] ?? "summary",
+      establishedOn: DateTime.parse(json['establishedOn'] ?? DateTime.now().toString()) ,
+      rate: (json['rate'] ?? "0.0").toDouble(),
+      status: json['status'] ?? "Close",
+      logoUrl: json['logoUrl'] ?? "assets/images/hospital_img.png",
+      bannerUrl: json['bannerUrl'] ?? "assets/images/hospital_img.png",
       institutionAvailability: InstitutionAvailabilityModel.fromJson(
-          json['institutionAvailability']),
-      address: AddressModel.fromJson(json['address']),
-      services: List<String>.from(json['services']),
-      id: json['id'],
+          json['institutionAvailability'] ?? {}),
+      address: AddressModel.fromJson(json['address'] ?? {}),
+      services: List<String>.from(json['services'] ?? ["General","Cardio"]),
+      id: json['id']?? "ss",
     );
   }
 }

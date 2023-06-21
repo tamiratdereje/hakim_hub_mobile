@@ -13,11 +13,14 @@ part 'search_hospital_state.dart';
 
 class SearchHospitalBloc
     extends Bloc<SearchHospitalEvent, SearchHospitalState> {
-
-      final GetHospitalsByFilter getHospitalsByFilter;
-      final GetHospitalsByName getHospitalsByName;
-      final GetAllHospitals getAllHospitals;
-  SearchHospitalBloc({required this.getHospitalsByFilter, required this.getHospitalsByName, required this.getAllHospitals}) : super(SearchHospitalInitial()) {
+  final GetHospitalsByFilter getHospitalsByFilter;
+  final GetHospitalsByName getHospitalsByName;
+  final GetAllHospitals getAllHospitals;
+  SearchHospitalBloc(
+      {required this.getHospitalsByFilter,
+      required this.getHospitalsByName,
+      required this.getAllHospitals})
+      : super(SearchHospitalInitial()) {
     on<SearchHospitalEvent>((event, emit) {
       // TODO: implement event handler
     });
@@ -25,31 +28,28 @@ class SearchHospitalBloc
     on<HospitalSearchByFilterEvent>((event, emit) async {
       emit(SearchHospitalLoading());
       await getHospitalsByFilter(event.filter).then((value) {
-        value.fold((l) => emit(SearchHospitalError(message: l.toString())), (r) => emit(SearchHospitalSuccess(institutionSearchDomain: r)));
+        value.fold((l) => emit(SearchHospitalError(message: l.toString())),
+            (r) => emit(SearchHospitalSuccess(institutionSearchDomain: r)));
       });
     });
 
     on<HospitalSearchByNameEvent>((event, emit) async {
       emit(SearchHospitalLoading());
       await getHospitalsByName(event.name).then((value) {
-        value.fold((l) => emit(SearchHospitalError(message: l.toString())), (r) => emit(SearchHospitalSuccess(institutionSearchDomain: r)));
+        value.fold((l) => emit(SearchHospitalError(message: l.toString())),
+            (r) => emit(SearchHospitalSuccess(institutionSearchDomain: r)));
       });
     });
 
     on<GetAllHospitalsEvent>((event, emit) async {
       emit(SearchHospitalLoading());
-      print("dddddddddddddddddddd");
       await getAllHospitals(NoParams()).then((value) {
         value.fold((l) {
-          print("erorororororo");
           return emit(SearchHospitalError(message: l.toString()));
         }, (r) {
-           print("hhhhhhhhhhhhhhhhhhhhhhhhhhhh");
-           return emit(SearchHospitalSuccess(institutionSearchDomain: r));}
-        );
+          return emit(SearchHospitalSuccess(institutionSearchDomain: r));
+        });
       });
-
-      print("done");
     });
   }
 }

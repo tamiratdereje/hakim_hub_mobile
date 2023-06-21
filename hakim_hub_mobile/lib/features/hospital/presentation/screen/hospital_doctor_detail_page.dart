@@ -12,6 +12,7 @@ import 'package:flutter/material.dart';
 import '../../../../core/utils/icons.dart';
 import '../widgets/filter_page.dart';
 import '../widgets/overview_tab.dart';
+import 'hospital_filter_page.dart';
 
 class HospitalDoctorDetailPage extends StatefulWidget {
   const HospitalDoctorDetailPage({Key? key}) : super(key: key);
@@ -227,7 +228,7 @@ class _HospitalDoctorDetailPageState extends State<HospitalDoctorDetailPage>
                                 backgroundColor: titleTextColor,
                                 context: context,
                                 builder: (BuildContext context) {
-                                  return const FilterPage();
+                                  return  HospitalDoctorFilterPage();
                                 },
                               );
                             },

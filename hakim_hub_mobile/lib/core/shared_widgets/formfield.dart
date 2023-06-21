@@ -61,7 +61,7 @@ class _CSFFormFieldState extends State<CSFFormField> {
                   backgroundColor: titleTextColor,
                   context: context,
                   builder: (BuildContext context) {
-                    return const FilterPage();
+                    return  FilterPage(filterList: [],);
                   },
                 );
               },
