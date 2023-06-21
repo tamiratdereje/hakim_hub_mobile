@@ -10,10 +10,11 @@ abstract class DoctorDetailRemoteDataSource {
 
 class DoctorDetailRemoteDataSourceImpl implements DoctorDetailRemoteDataSource {
   final http.Client client;
-  final uriString = '';
+  final uriString = 'https://hakim-hub.onrender.com/api/DoctorProfiles/?Id=';
 
   DoctorDetailRemoteDataSourceImpl({required this.client});
 
+  @override
   Future<DoctorDetailModel> getDoctorDetail(String id) async {
     final response = await client.get(
       Uri.parse('$uriString$id'),
