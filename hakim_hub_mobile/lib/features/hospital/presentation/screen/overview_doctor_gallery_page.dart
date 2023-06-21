@@ -113,24 +113,6 @@ class _OverviewDoctorGalleryPageState extends State<OverviewDoctorGalleryPage>
                 ),
                 pinned: true,
               ),
-              SliverToBoxAdapter(
-                child: Column(
-                  children: [
-                    SizedBox(height: 200),
-                    
-                    Text(
-                      'Tikur Anbessa',
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 24,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    SizedBox(height: 10),
-                    HospitalCard(),
-                  ],
-                ),
-              ),
               SliverFillRemaining(
                 child: TabBarView(
                   controller: _tabController,
