@@ -1,11 +1,13 @@
 //bottom navigation bar
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hakim_hub_mobile/core/utils/colors.dart';
 import 'package:hakim_hub_mobile/core/utils/icons.dart';
 
 import '../../features/chatbot/presentation/screen/chat_landing.dart';
 import '../../features/home/presentation/screen/Home.dart';
+import '../../features/hospital/presentation/bloc/bloc/search_hospital_bloc.dart';
 import '../../features/hospital/presentation/screen/hospitals_home_screen.dart';
 
 class BottomNav extends StatefulWidget {
@@ -41,6 +43,12 @@ class _BottomNavState extends State<BottomNav> {
           setState(() {
             widget.index = i;
           });
+
+          if (i == 2){
+            print(i,);
+            print("objectobjectobjectobjectobjectobjectobjectobject");
+            BlocProvider.of<SearchHospitalBloc>(context).add(const GetAllHospitalsEvent());
+          }
         },
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(icon: home, label: "Home"),

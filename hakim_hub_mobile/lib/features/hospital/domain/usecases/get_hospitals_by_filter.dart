@@ -10,7 +10,7 @@ import '../entities/hospital_search_domain.dart';
 import '../repositories/search_hospitals_repository.dart';
 
 class GetHospitalsByFilter implements UseCase<List<InstitutionSearchDomain>, FilterHospitalDomain> {
-  final HospitalsRepository repository;
+  final HospitalsSearchRepository repository;
 
   GetHospitalsByFilter(this.repository);
 

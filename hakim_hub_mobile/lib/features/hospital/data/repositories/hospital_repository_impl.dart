@@ -11,11 +11,11 @@ import '../../../../core/network/network_info.dart';
 import '../../domain/repositories/search_hospitals_repository.dart';
 import '../datasources/hospital_remote_datasource.dart';
 
-class HospitalRepositoryImpl implements HospitalsRepository {
-  final HospitalRemoteDataSource remoteDataSource;
+class HospitalSearchRepositoryImpl implements HospitalsSearchRepository {
+  final HospitalSearchRemoteDataSource remoteDataSource;
   final NetworkInfo networkInfo;
 
-  HospitalRepositoryImpl({
+  HospitalSearchRepositoryImpl({
     required this.remoteDataSource,
     required this.networkInfo,
   });
@@ -44,6 +44,22 @@ class HospitalRepositoryImpl implements HospitalsRepository {
     if (await networkInfo.isConnected) {
       try {
         final remoteHospitals = await remoteDataSource.searchByNameHospitals(name);
+        return Right(remoteHospitals);
+      } on ServerException {
+        return Left(ServerFailure());
+      }
+    } else {
+      return Left(ServerFailure());
+    }
+  }
+
+  @override
+  Future<Either<Failure, List<InstitutionSearchDomain>>> getAllHospitals() async {
+    print("reporeporeporeporepo");
+    if (await networkInfo.isConnected) {
+      print("networl");
+      try {
+        final remoteHospitals = await remoteDataSource.getAllHospitals();
         return Right(remoteHospitals);
       } on ServerException {
         return Left(ServerFailure());
