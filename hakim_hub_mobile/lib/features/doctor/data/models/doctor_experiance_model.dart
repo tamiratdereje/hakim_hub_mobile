@@ -1,13 +1,13 @@
 import 'dart:html';
 
-class Experience {
+class ExperienceModel {
   String title;
   String description;
   String institution;
   DateTime startDate;
   DateTime endDate;
 
-  Experience({
+  ExperienceModel({
     required this.title,
     required this.institution,
     required this.startDate,
@@ -15,8 +15,8 @@ class Experience {
     required this.description
   });
 
-  factory Experience.fromJson(Map<String, dynamic> json) {
-    return Experience(
+  factory ExperienceModel.fromJson(Map<String, dynamic> json) {
+    return ExperienceModel(
       title: json['position'],
       institution: json['institutionName'],
       startDate: DateTime.parse(json['startDate']),

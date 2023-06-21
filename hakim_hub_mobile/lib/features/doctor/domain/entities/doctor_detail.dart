@@ -1,5 +1,6 @@
-import '../../data/models/doctor_education_model.dart';
-import '../../data/models/doctor_experiance_model.dart';
+import 'package:hakim_hub_mobile/features/doctor/domain/entities/doctor_education.dart';
+import 'package:hakim_hub_mobile/features/doctor/domain/entities/doctor_experience.dart';
+
 
 class DoctorDetail {
   String fullName;
