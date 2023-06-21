@@ -1,4 +1,5 @@
 
+
 import 'package:dartz/dartz.dart';
 
 import '../../../../core/error/failures.dart';
@@ -6,13 +7,13 @@ import '../../../../core/usecases/usecase.dart';
 import '../entities/hospital_search_domain.dart';
 import '../repositories/search_hospitals_repository.dart';
 
-class GetHospitalsByName implements UseCase<List<InstitutionSearchDomain>, String> {
+class GetAllHospitals implements UseCase<List<InstitutionSearchDomain>, NoParams> {
   final HospitalsSearchRepository repository;
 
-  GetHospitalsByName(this.repository);
+  GetAllHospitals(this.repository);
 
   @override
-  Future<Either<Failure, List<InstitutionSearchDomain>>> call(String params) async {
-    return await repository.searchByNameHospitals(params);
+  Future<Either<Failure, List<InstitutionSearchDomain>>> call(NoParams noParams) async {
+    return await repository.getAllHospitals();
   }
 }

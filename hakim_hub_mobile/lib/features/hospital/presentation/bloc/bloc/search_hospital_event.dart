@@ -24,4 +24,10 @@ class HospitalSearchByNameEvent extends SearchHospitalEvent {
   @override
   List<Object> get props => [name];
 }
-  
+
+class GetAllHospitalsEvent extends SearchHospitalEvent {
+  const GetAllHospitalsEvent();
+
+  @override
+  List<Object> get props => [];
+}
