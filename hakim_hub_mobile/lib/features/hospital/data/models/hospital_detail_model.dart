@@ -4,7 +4,7 @@ import 'hospital_address.dart';
 import 'hospital_availability.dart';
 import 'hospital_doctor_model.dart';
 
-class InstitutionDetailModel {
+class InstitutionDetailModel  {
   String institutionName;
   String branchName;
   String website;

@@ -11,7 +11,7 @@ class InstitutionSearchModel extends InstitutionSearchDomain {
     required String summary,
     required DateTime establishedOn,
     required double rate,
-    required bool status,
+    required String status,
     required String logoUrl,
     required String bannerUrl,
     required InstitutionAvailabilityModel institutionAvailability,

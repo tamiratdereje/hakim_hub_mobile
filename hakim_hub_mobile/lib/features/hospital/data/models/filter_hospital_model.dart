@@ -5,12 +5,12 @@ import 'package:hakim_hub_mobile/features/hospital/domain/entities/filter_hospit
 class FilterHospitalModel extends FilterHospitalDomain{
   
 
-  FilterHospitalModel({required int activeFor, required bool openNow, required List<String> services}):super(activeFor: activeFor, openNow: openNow, services: services);
+  FilterHospitalModel({required int activeFor, required bool openNow, required List<String> services}):super(operationYears : activeFor, openStatus: openNow, services: services);
   
   toJson() {
     return {
-      'openNow': openNow,
-      'activeFor': activeFor,
+      'openNow': openStatus,
+      'activeFor': operationYears,
       'services': services
     };
   }

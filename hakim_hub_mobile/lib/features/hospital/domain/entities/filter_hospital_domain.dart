@@ -1,10 +1,11 @@
 
 
 class FilterHospitalDomain {
-  bool openNow;
-  int activeFor;
+  bool openStatus;
+  int operationYears;
   List<String> services;
 
-  FilterHospitalDomain({required this.activeFor, required this.openNow, required this.services});
+  FilterHospitalDomain({required this.operationYears, required this.openStatus, required this.services});
 
 }
+
