@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class Education {
+class EducationModel {
   String degree;
   String institution;
   DateTime startDate;
@@ -8,7 +8,7 @@ class Education {
   String fieldOfStudy;
   String logoUrl;
 
-  Education({
+  EducationModel({
     required this.degree,
     required this.institution,
     required this.startDate,
@@ -17,8 +17,8 @@ class Education {
     required this.logoUrl
   });
 
-  factory Education.fromJson(Map<String, dynamic> json) {
-    return Education(
+  factory EducationModel.fromJson(Map<String, dynamic> json) {
+    return EducationModel(
       degree: json['degree'],
       institution: json['educationInstitution'],
       startDate: DateTime.parse(json['startYear']),

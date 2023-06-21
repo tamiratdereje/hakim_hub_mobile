@@ -6,14 +6,11 @@ class Education {
   String fieldOfStudy;
   String logoUrl;
 
-  Education({
-    required this.degree,
-    required this.institution,
-    required this.startDate,
-    required this.endDate,
-    required this.fieldOfStudy,
-    required this.logoUrl
-  });}
-
-
-
+  Education(
+      {required this.degree,
+      required this.institution,
+      required this.startDate,
+      required this.endDate,
+      required this.fieldOfStudy,
+      required this.logoUrl});
+}

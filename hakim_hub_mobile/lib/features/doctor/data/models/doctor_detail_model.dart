@@ -1,7 +1,10 @@
+import 'package:hakim_hub_mobile/features/doctor/data/models/doctor_education_model.dart';
+import 'package:hakim_hub_mobile/features/doctor/data/models/doctor_experiance_model.dart';
 import 'package:hakim_hub_mobile/features/doctor/domain/entities/doctor_detail.dart';
+import 'package:hakim_hub_mobile/features/doctor/domain/entities/doctor_education.dart';
 
-import 'doctor_education_model.dart';
-import 'doctor_experiance_model.dart';
+import '../../domain/entities/doctor_experience.dart';
+
 
 class DoctorDetailModel extends DoctorDetail {
   DoctorDetailModel({
@@ -43,11 +46,12 @@ class DoctorDetailModel extends DoctorDetail {
       mainInstitutionId: json['mainInstitutionId'],
       mainInstitutionName: json['mainInstitutionName'],
       specialities: List<String>.from(json['specialities']),
-      educations: (json['educations'] as List<dynamic>)
-          .map((e) => Education.fromJson(e))
+      educations: (json['educations'])
+          .map((e) => EducationModel.fromJson(e))
           .toList(),
-      experiences: (json['experiences'] as List<dynamic>)
-          .map((e) => Experience.fromJson(e))
+
+      experiences: (json['experiences'])
+          .map((e) => ExperienceModel.fromJson(e))
           .toList(),
       id: json['id'],
     );
