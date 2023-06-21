@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:hakim_hub_mobile/core/utils/colors.dart';
 import 'package:hakim_hub_mobile/features/core/splash_screen.dart';
-import 'package:hakim_hub_mobile/features/hospital/presentation/screen/hospital_gallery_page.dart';
 import 'package:hakim_hub_mobile/features/hospital/presentation/widgets/doctor_grid_view.dart';
 import 'package:hakim_hub_mobile/features/hospital/presentation/widgets/hospital_card.dart';
 import 'package:hakim_hub_mobile/features/hospital/presentation/widgets/overview_tab.dart';
+
+import '../widgets/hospital_gallery_page.dart';
 
 class My_App extends StatelessWidget {
   @override
