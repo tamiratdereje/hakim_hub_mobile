@@ -19,16 +19,16 @@ class AddressModel extends AddressDomain {
 
   factory AddressModel.fromJson(Map<String, dynamic> json) {
     return AddressModel(
-      country: json['country'],
-      region: json['region'],
-      zone: json['zone'],
-      woreda: json['woreda'],
-      city: json['city'],
-      subCity: json['subCity'],
-      longitude: json['longitude'].toDouble(),
-      latitude: json['latitude'].toDouble(),
-      summary: json['summary'],
-      id: json['id'],
+      country: json['country'] ?? "country",
+      region: json['region'] ?? "region",
+      zone: json['zone'] ?? "zone",
+      woreda: json['woreda'] ?? "woreda",
+      city: json['city'] ?? "city",
+      subCity: json['subCity'] ?? "subCity",
+      longitude: (json['longitude'] ?? "0.0").toDouble(),
+      latitude: (json['latitude'] ?? "0.0").toDouble(),
+      summary: json['summary'] ?? "address summary",
+      id: json['id'] ?? "id",
     );
   }
 }

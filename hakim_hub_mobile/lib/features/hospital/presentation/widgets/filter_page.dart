@@ -4,12 +4,14 @@ import 'package:hakim_hub_mobile/core/utils/icons.dart';
 import 'package:hakim_hub_mobile/core/utils/ui_converter.dart';
 
 import '../../../../core/shared_widgets/formfield.dart';
+import '../../domain/entities/filter_hospital_domain.dart';
 import 'build_chips_widget.dart';
 
 
 
 class FilterPage extends StatefulWidget {
-  const FilterPage({super.key});
+  List<String> filterList;
+  FilterPage({super.key, required this.filterList});
 
   @override
   State<FilterPage> createState() => _FilterPageState();
@@ -18,15 +20,8 @@ class FilterPage extends StatefulWidget {
 class _FilterPageState extends State<FilterPage> {
   bool isSwitched = false;
   int sliderValue = 10;
-  List chipList = [
-    "Endocrinologists",
-    "Emergency",
-    "Allergist",
-    "Nursing Home",
-    "Oncologists",
-    
-  ];
-  List selectedList = [];
+  
+  List<String> selectedList = [];
 
   void delete(String serviceName) {
     setState(() {
@@ -38,7 +33,6 @@ class _FilterPageState extends State<FilterPage> {
     setState(() {
       selectedList.add(serviceName);
     });
-    print(selectedList);
   }
 
   @override
@@ -81,7 +75,8 @@ class _FilterPageState extends State<FilterPage> {
                 GestureDetector(
                   child: check,
                   onTap: () {
-                    Navigator.pop(context);
+                    FilterHospitalDomain filterHospitalModel = FilterHospitalDomain(operationYears: sliderValue, openStatus: isSwitched, services: selectedList);
+                    Navigator.pop(context, filterHospitalModel);
                   },
                 )
               ],
@@ -180,7 +175,7 @@ class _FilterPageState extends State<FilterPage> {
             Wrap(
               spacing: 6.0,
               runSpacing: 6.0,
-              children: chipList
+              children: widget.filterList
                   .map((e) => BuildChip(
                         label: e,
                         onDeleted: (serviceName) => delete(serviceName),

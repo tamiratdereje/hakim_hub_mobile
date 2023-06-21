@@ -55,9 +55,7 @@ class HospitalSearchRepositoryImpl implements HospitalsSearchRepository {
 
   @override
   Future<Either<Failure, List<InstitutionSearchDomain>>> getAllHospitals() async {
-    print("reporeporeporeporepo");
     if (await networkInfo.isConnected) {
-      print("networl");
       try {
         final remoteHospitals = await remoteDataSource.getAllHospitals();
         return Right(remoteHospitals);

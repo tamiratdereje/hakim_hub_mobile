@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:hakim_hub_mobile/features/hospital/domain/entities/filter_hospital_domain.dart';
 
 import '../../../../core/utils/colors.dart';
 import '../../../../core/utils/icons.dart';
 import '../../../../core/utils/ui_converter.dart';
+import '../../data/models/filter_hospital_model.dart';
 import 'filter_page.dart';
 
 class HospitalSearchField extends StatefulWidget {
@@ -10,17 +12,20 @@ class HospitalSearchField extends StatefulWidget {
   final Function onChanged;
   final bool obscureText;
   final TextEditingController controller;
-  final Key? formkey;
+  final Function onFilterChanged;
   String? fieldName;
+  String? errorValue;
+  List<String> filterList;
 
   HospitalSearchField({
+    required this.filterList ,
     Key? key,
     required this.hintText,
     required this.onChanged,
     required this.obscureText,
     required this.controller,
-    this.formkey,
     this.fieldName,
+    required this.onFilterChanged,
   }) : super(key: key);
 
   @override
@@ -29,10 +34,11 @@ class HospitalSearchField extends StatefulWidget {
 
 class _HospitalSearchFieldState extends State<HospitalSearchField> {
   String? errorText;
-
+  GlobalKey<FormFieldState> formkey = GlobalKey<FormFieldState>();
   @override
   Widget build(BuildContext context) {
     return FormField(
+      key: formkey,
       builder: (FormFieldState state) {
         return TextFormField(
           obscureText: false,
@@ -49,38 +55,33 @@ class _HospitalSearchFieldState extends State<HospitalSearchField> {
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(10),
               ),
-              errorText: errorText,
               prefixIcon: search,
               suffixIcon: Container(
                   child: GestureDetector(
-                child:  filter,
-                onTap: () {
-                  
-                  showModalBottomSheet(
+                child: filter,
+                onTap: () async {
+                  FilterHospitalDomain filterHospitalDomain = (await showModalBottomSheet<FilterHospitalDomain>(
                     isScrollControlled: true,
                     backgroundColor: titleTextColor,
                     context: context,
                     builder: (BuildContext context) {
-                      return const FilterPage();
+                      return  FilterPage(filterList : widget.filterList);
                     },
-                  );
+                  ))!;
+                 
+                  widget.onFilterChanged(filterHospitalDomain);
                 },
               ))),
-          onTap: () {
-            setState(() {
-              errorText = null;
-            });
+          onFieldSubmitted: (sth) {
+           
+            if (formkey.currentState!.validate()) {
+              
+              widget.onChanged(widget.controller.text);
+            } else {
+            }
           },
+          
         );
-      },
-      validator: (value) {
-        if (value == null) {
-          setState(() {
-            errorText = ' This ${widget.fieldName} field is required';
-          });
-          return '';
-        }
-        return null;
       },
     );
   }
