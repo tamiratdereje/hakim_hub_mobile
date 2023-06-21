@@ -42,7 +42,7 @@ class popup_email extends StatelessWidget {
                 style: TextStyle(
                   color: Colors.black,
                   fontWeight: FontWeight.bold,
-                  fontSize: 20,
+                  fontSize: 18,
                 ),
               ),
             ),
@@ -50,11 +50,11 @@ class popup_email extends StatelessWidget {
             buildinnercard(
                 imagePath:
                     "/home/fenet/Desktop/hakim_hub_mobile/hakim_hub_mobile/hakim_hub_mobile/assets/images/email_icon.png",
-                text: "+251920362814"),
+                text: "blacklion@gmail.com"),
             buildinnercard(
                 imagePath:
                     "/home/fenet/Desktop/hakim_hub_mobile/hakim_hub_mobile/hakim_hub_mobile/assets/images/email_icon.png",
-                text: "+251920362814"),
+                text: "blacklion@gmail.com"),
           ],
         ),
       ),

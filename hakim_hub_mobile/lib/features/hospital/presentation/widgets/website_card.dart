@@ -40,7 +40,7 @@ class websiteCard extends StatelessWidget {
                 "website",
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
-                  fontSize: 20,
+                  fontSize: 18,
                 ),
               ),
             ),
