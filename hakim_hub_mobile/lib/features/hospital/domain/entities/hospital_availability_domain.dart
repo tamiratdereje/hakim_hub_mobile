@@ -1,11 +1,9 @@
-
 class InstitutionAvailabilityDomain {
-  int startDay;
-  int endDay;
+  String startDay;
+  String endDay;
   String opening;
   String closing;
   bool twentyFourHours;
-  String institutionId;
   String id;
 
   InstitutionAvailabilityDomain({
@@ -14,8 +12,6 @@ class InstitutionAvailabilityDomain {
     required this.opening,
     required this.closing,
     required this.twentyFourHours,
-    required this.institutionId,
     required this.id,
   });
-
 }

@@ -1,5 +1,6 @@
+import 'package:hakim_hub_mobile/features/hospital/domain/entities/hospital_doctor_domain.dart';
 
-class DoctorModel {
+class DoctorModel extends DoctorDomain {
   String fullName;
   String about;
   String gender;
@@ -7,6 +8,7 @@ class DoctorModel {
   String photoUrl;
   int yearsOfExperience;
   String mainInstitutionId;
+  String mainInstitutionName;
   List<String> specialities;
   String id;
 
@@ -18,9 +20,21 @@ class DoctorModel {
     required this.photoUrl,
     required this.yearsOfExperience,
     required this.mainInstitutionId,
+    required this.mainInstitutionName,
     required this.specialities,
     required this.id,
-  });
+  }) : super(
+          fullName: fullName,
+          about: about,
+          gender: gender,
+          email: email,
+          photoUrl: photoUrl,
+          yearsOfExperience: yearsOfExperience,
+          mainInstitutionId: mainInstitutionId,
+          mainInstitutionName: mainInstitutionName,
+          specialities: specialities,
+          id: id,
+        );
 
   factory DoctorModel.fromJson(Map<String, dynamic> json) {
     return DoctorModel(
@@ -31,6 +45,7 @@ class DoctorModel {
       photoUrl: json['photoUrl'],
       yearsOfExperience: json['yearsOfExperience'],
       mainInstitutionId: json['mainInstitutionId'],
+      mainInstitutionName: json['mainInstitutionName'],
       specialities: List<String>.from(json['specialities']),
       id: json['id'],
     );

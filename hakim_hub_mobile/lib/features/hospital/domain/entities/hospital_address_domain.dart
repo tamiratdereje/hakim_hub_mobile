@@ -1,4 +1,3 @@
-
 class AddressDomain {
   String country;
   String region;
@@ -9,7 +8,6 @@ class AddressDomain {
   double longitude;
   double latitude;
   String summary;
-  String institutionId;
   String id;
 
   AddressDomain({
@@ -22,8 +20,6 @@ class AddressDomain {
     required this.longitude,
     required this.latitude,
     required this.summary,
-    required this.institutionId,
     required this.id,
   });
-
 }

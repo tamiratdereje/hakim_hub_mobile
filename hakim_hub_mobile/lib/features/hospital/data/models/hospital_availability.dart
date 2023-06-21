@@ -4,12 +4,11 @@ import '../../domain/entities/hospital_availability_domain.dart';
 class InstitutionAvailabilityModel extends InstitutionAvailabilityDomain {
 
   InstitutionAvailabilityModel({
-    required int startDay,
-    required int endDay,
+    required String startDay,
+    required String endDay,
     required String opening,
     required String closing,
     required bool twentyFourHours,
-    required String institutionId,
     required String id,
   }):super(
     startDay: startDay,
@@ -17,7 +16,6 @@ class InstitutionAvailabilityModel extends InstitutionAvailabilityDomain {
     opening: opening,
     closing: closing,
     twentyFourHours: twentyFourHours,
-    institutionId: institutionId,
     id: id,
   );
 
@@ -28,7 +26,6 @@ class InstitutionAvailabilityModel extends InstitutionAvailabilityDomain {
       opening: json['opening'],
       closing: json['closing'],
       twentyFourHours: json['twentyFourHours'],
-      institutionId: json['institutionId'],
       id: json['id'],
     );
   }

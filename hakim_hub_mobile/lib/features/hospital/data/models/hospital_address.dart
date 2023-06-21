@@ -14,9 +14,8 @@ class AddressModel extends AddressDomain {
     required double longitude,
     required double latitude,
     required String summary,
-    required String institutionId,
     required String id,
-  }) :super(city:city, country:country, id:id, institutionId:institutionId, latitude:latitude, longitude:longitude, region:region, subCity:subCity, summary:summary, woreda:woreda, zone:zone);
+  }) :super(city:city, country:country, id:id, latitude:latitude, longitude:longitude, region:region, subCity:subCity, summary:summary, woreda:woreda, zone:zone);
 
   factory AddressModel.fromJson(Map<String, dynamic> json) {
     return AddressModel(
@@ -29,7 +28,6 @@ class AddressModel extends AddressDomain {
       longitude: json['longitude'].toDouble(),
       latitude: json['latitude'].toDouble(),
       summary: json['summary'],
-      institutionId: json['institutionId'],
       id: json['id'],
     );
   }
