@@ -26,7 +26,7 @@ class HospitalRepositoryImpl implements HospitalsRepository {
 
     if (await networkInfo.isConnected) {
       try {
-        FilterHospitalModel filterHospitalModel = FilterHospitalModel(activeFor: filterHospital.activeFor, openNow: filterHospital.openNow, services: filterHospital.services);
+        FilterHospitalModel filterHospitalModel = FilterHospitalModel(activeFor: filterHospital.operationYears, openNow: filterHospital.openStatus, services: filterHospital.services);
         final remoteHospitals = await remoteDataSource
             .searchByFilterHospitals(filterHospitalModel);
         return Right(remoteHospitals);

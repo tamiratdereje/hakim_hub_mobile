@@ -9,7 +9,7 @@ class InstitutionSearchDomain {
   String summary;
   DateTime establishedOn;
   double rate;
-  bool status;
+  String status;
   String logoUrl;
   String bannerUrl;
   InstitutionAvailabilityDomain institutionAvailability;
