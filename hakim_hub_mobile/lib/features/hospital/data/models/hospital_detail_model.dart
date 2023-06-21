@@ -1,3 +1,5 @@
+import 'package:hakim_hub_mobile/features/hospital/data/models/eductational_institution.dart';
+
 import 'hospital_address.dart';
 import 'hospital_availability.dart';
 import 'hospital_doctor_model.dart';
@@ -18,9 +20,13 @@ class InstitutionDetailModel {
   List<String> services;
   List<String> photos;
   List<DoctorModel> doctors;
+  List<EducationalInstitute> educationalInstitutions;
   String id;
+  List<String> allSpecialities;
 
   InstitutionDetailModel({
+    required this.allSpecialities,
+    required this.educationalInstitutions,
     required this.institutionName,
     required this.branchName,
     required this.website,
@@ -41,6 +47,10 @@ class InstitutionDetailModel {
 
   factory InstitutionDetailModel.fromJson(Map<String, dynamic> json) {
     return InstitutionDetailModel(
+      educationalInstitutions: List<EducationalInstitute>.from(
+          json['allEducationalInstitutions']
+              .map((x) => EducationalInstitute.fromJson(x))),
+      id: json['id'],
       institutionName: json['institutionName'],
       branchName: json['branchName'],
       website: json['website'],
@@ -51,12 +61,14 @@ class InstitutionDetailModel {
       status: json['status'],
       logoUrl: json['logoUrl'],
       bannerUrl: json['bannerUrl'],
-      institutionAvailability: InstitutionAvailabilityModel.fromJson(json['institutionAvailability']),
+      institutionAvailability: InstitutionAvailabilityModel.fromJson(
+          json['institutionAvailability']),
       address: AddressModel.fromJson(json['address']),
       services: List<String>.from(json['services']),
       photos: List<String>.from(json['photos']),
-      doctors: List<DoctorModel>.from(json['doctors'].map((x) => DoctorModel.fromJson(x))),
-      id: json['id'],
+      allSpecialities: List<String>.from(json['allSpecialities']),
+      doctors: List<DoctorModel>.from(
+          json['doctors'].map((x) => DoctorModel.fromJson(x))),
     );
   }
 }
