@@ -40,7 +40,7 @@ class phonePopup extends StatelessWidget {
                 "Contact",
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
-                  fontSize: 30,
+                  fontSize: 20,
                 ),
               ),
             ),
@@ -50,7 +50,7 @@ class phonePopup extends StatelessWidget {
                 "Reception",
                 style: TextStyle(
                   fontWeight: FontWeight.w100,
-                  fontSize: 25,
+                  fontSize: 18,
                 ),
               ),
             ),

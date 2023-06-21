@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hakim_hub_mobile/core/utils/icons.dart';
 
+import '../../../../core/utils/colors.dart';
+
 class OverviewTab extends StatefulWidget {
   const OverviewTab({super.key});
 
@@ -31,9 +33,8 @@ class _OverviewTabState extends State<OverviewTab> {
             const Padding(
               padding: EdgeInsets.all(1),
             ),
-           
             const SizedBox(height: 16),
-           const Padding(
+            const Padding(
               padding: EdgeInsets.all(16),
               child: Text(
                 'Hospital Desciption',
@@ -42,7 +43,7 @@ class _OverviewTabState extends State<OverviewTab> {
                 ),
               ),
             ),
-           const Padding(
+            const Padding(
               padding: EdgeInsets.all(16),
               child: Text(
                 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
@@ -57,17 +58,17 @@ class _OverviewTabState extends State<OverviewTab> {
               height: 200,
               fit: BoxFit.cover,
             ),
-           const SizedBox(
+            const SizedBox(
               height: 60,
             ),
-           const  Text(
+            const Text(
               'Services We Provide',
               style: TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
               ),
             ),
-           const  SizedBox(height: 16),
+            const SizedBox(height: 16),
             ListView(
               shrinkWrap: true,
               children: [
@@ -75,7 +76,7 @@ class _OverviewTabState extends State<OverviewTab> {
                   decoration: BoxDecoration(
                     boxShadow: [
                       BoxShadow(
-                        color: Colors.grey.withOpacity(0.5),
+                        color: Colors.grey.withOpacity(0.07),
                         spreadRadius: 1,
                         blurRadius: 5,
                         offset: Offset(0, 3),
@@ -98,7 +99,7 @@ class _OverviewTabState extends State<OverviewTab> {
                   decoration: BoxDecoration(
                     boxShadow: [
                       BoxShadow(
-                        color: Colors.grey.withOpacity(0.5),
+                        color: Colors.grey.withOpacity(0.07),
                         spreadRadius: 1,
                         blurRadius: 5,
                         offset: Offset(0, 3),
@@ -121,7 +122,7 @@ class _OverviewTabState extends State<OverviewTab> {
                   decoration: BoxDecoration(
                     boxShadow: [
                       BoxShadow(
-                        color: Colors.grey.withOpacity(0.5),
+                        color: Colors.grey.withOpacity(0.07),
                         spreadRadius: 1,
                         blurRadius: 5,
                         offset: Offset(0, 3),
@@ -144,8 +145,7 @@ class _OverviewTabState extends State<OverviewTab> {
                   decoration: BoxDecoration(
                     boxShadow: [
                       BoxShadow(
-                        color:
-                            const Color.fromARGB(255, 201, 201, 201).withOpacity(0.5),
+                        color: Colors.grey.withOpacity(0.07),
                         spreadRadius: 1,
                         blurRadius: 5,
                         offset: const Offset(0, 3),
@@ -166,20 +166,20 @@ class _OverviewTabState extends State<OverviewTab> {
                 ),
               ],
             ),
-           const SizedBox(
+            const SizedBox(
               height: 15,
             ),
- Column(mainAxisAlignment: MainAxisAlignment.start, children: [
-             const Row(
+            Column(mainAxisAlignment: MainAxisAlignment.start, children: [
+              const Row(
                 children: [
                   clock,
                   Padding(
-                    padding:  EdgeInsets.all(8.0),
+                    padding: EdgeInsets.all(8.0),
                     child: Text("Available 24 hrs  5 days a week"),
                   )
                 ],
               ),
-             const Row(
+              const Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   location,
@@ -192,7 +192,7 @@ class _OverviewTabState extends State<OverviewTab> {
                   ),
                 ],
               ),
-              TextButton(onPressed:  () {}, child: const Text("SEE IT ON MAP"))
+              TextButton(onPressed: () {}, child: const Text("SEE IT ON MAP"))
             ])
           ],
         ),
