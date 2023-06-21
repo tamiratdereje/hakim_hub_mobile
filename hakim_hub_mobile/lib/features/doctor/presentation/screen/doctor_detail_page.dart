@@ -9,7 +9,7 @@ import 'package:hakim_hub_mobile/router/routes.dart';
 import '../../../../core/utils/ui_converter.dart';
 
 class DoctorDetailPage extends StatefulWidget {
-  final doctorDetailId;
+  final String doctorDetailId;
   const DoctorDetailPage({super.key, required this.doctorDetailId});
 
   @override
@@ -19,6 +19,7 @@ class DoctorDetailPage extends StatefulWidget {
 class _DoctorDetailPageState extends State<DoctorDetailPage> {
   late DoctorDetailBloc _doctorDetailBloc;
 
+  @override
   void initState() {
     super.initState();
     _doctorDetailBloc = BlocProvider.of<DoctorDetailBloc>(context);
@@ -64,8 +65,8 @@ class _DoctorDetailPageState extends State<DoctorDetailPage> {
                       children: [
                         GestureDetector(
                           child: const CircleAvatar(
-                            child: backButtonPro,
                             backgroundColor: backgroundColor,
+                            child: backButtonPro,
                           ),
                           onTap: () {
                             context.pop();
