@@ -1,4 +1,4 @@
-import 'package:hakim_hub_mobile/features/hospital/domain/entities/doctor_filter_domain.dart';
+import 'package:hakim_hub_mobile/features/hospital/domain/entities/filter_doctor_domain.dart';
 
 class DoctorFilterModel extends DoctorFilterDomain {
   String institutionId;

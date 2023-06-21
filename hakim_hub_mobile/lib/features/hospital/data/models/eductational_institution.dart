@@ -1,16 +1,18 @@
-class EducationalInstitute {
+import 'package:hakim_hub_mobile/features/hospital/domain/entities/educational_institute.dart';
+
+class EducationInstituteModel extends EductationalInstitutionDomain {
   String institutionName;
   String logoUrl;
   String id;
 
-  EducationalInstitute({
+  EducationInstituteModel({
     required this.institutionName,
     required this.logoUrl,
     required this.id,
-  });
+  }) : super(id: id, institutionName: institutionName, logoUrl: logoUrl);
 
-  factory EducationalInstitute.fromJson(Map<String, dynamic> json) {
-    return EducationalInstitute(
+  factory EducationInstituteModel.fromJson(Map<String, dynamic> json) {
+    return EducationInstituteModel(
       institutionName: json['institutionName'],
       logoUrl: json['logoUrl'],
       id: json['id'],

@@ -1,5 +1,5 @@
 import 'package:hakim_hub_mobile/core/error/failures.dart';
-import 'package:hakim_hub_mobile/features/hospital/domain/entities/doctor_filter_domain.dart';
+import 'package:hakim_hub_mobile/features/hospital/domain/entities/filter_doctor_domain.dart';
 import 'package:hakim_hub_mobile/features/hospital/domain/entities/hospital_detail_domain.dart';
 
 import 'package:dartz/dartz.dart';
