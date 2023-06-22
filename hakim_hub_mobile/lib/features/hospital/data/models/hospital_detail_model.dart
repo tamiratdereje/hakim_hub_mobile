@@ -46,29 +46,36 @@ class InstitutionDetailModel extends InstitutionDetailDomain {
         );
 
   factory InstitutionDetailModel.fromJson(Map<String, dynamic> json) {
+    List<dynamic> returnedEducationInstitutuions =
+        json['allEducationalInstitutions'] ?? [];
+    List<dynamic> returnedDoctors = json['doctors'] ?? [];
+
+    List<EducationInstituteModel> educationInstituteModel =
+        List<EducationInstituteModel>.from(returnedEducationInstitutuions
+            .map((x) => EducationInstituteModel.fromJson(x)));
+    List<DoctorModel> returnedDoctorsModel = List<DoctorModel>.from(
+        returnedDoctors.map((x) => DoctorModel.fromJson(x)));
+
     return InstitutionDetailModel(
-      educationalInstitutions: List<EducationInstituteModel>.from(
-          json['allEducationalInstitutions']
-              .map((x) => EducationInstituteModel.fromJson(x))),
-      allSpecialities: List<String>.from(json['allSpecialities']),
-      id: json['id'],
-      institutionName: json['institutionName'],
-      branchName: json['branchName'],
-      website: json['website'],
-      phoneNumber: json['phoneNumber'],
-      summary: json['summary'],
-      establishedOn: DateTime.parse(json['establishedOn']),
-      rate: json['rate'].toDouble(),
-      status: json['status'],
-      logoUrl: json['logoUrl'],
-      bannerUrl: json['bannerUrl'],
+      educationalInstitutions: educationInstituteModel,
+      allSpecialities: List<String>.from(json['allSpecialities'] ?? []),
+      id: json['id'] ?? '',
+      institutionName: json['institutionName'] ?? '',
+      branchName: json['branchName'] ?? '',
+      website: json['website'] ?? '',
+      phoneNumber: json['phoneNumber'] ?? '',
+      summary: json['summary'] ?? '',
+      establishedOn: DateTime.parse(json['establishedOn'] ?? DateTime.now()),
+      rate: (json['rate'] ?? 0.0).toDouble(),
+      status: json['status'] ?? '',
+      logoUrl: json['logoUrl'] ?? 'assets/images/doctor_image.png',
+      bannerUrl: json['bannerUrl'] ?? 'assets/images/tikur_anbesa.png',
       institutionAvailability: InstitutionAvailabilityModel.fromJson(
           json['institutionAvailability']),
-      address: AddressModel.fromJson(json['address']),
-      services: List<String>.from(json['services']),
-      photos: List<String>.from(json['photos']),
-      doctors: List<DoctorModel>.from(
-          json['doctors'].map((x) => DoctorModel.fromJson(x))),
+      address: AddressModel.fromJson(json['address'] ?? {}),
+      services: List<String>.from(json['services'] ?? []),
+      photos: List<String>.from(json['photos'] ?? []),
+      doctors: returnedDoctorsModel,
     );
   }
 }

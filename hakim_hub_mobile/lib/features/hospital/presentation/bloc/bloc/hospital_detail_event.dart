@@ -9,7 +9,7 @@ abstract class HospitalDetailEvent extends Equatable {
 
 
 class DoctorFilterEvent extends HospitalDetailEvent {
-  final FilterHospitalDomain filter;
+  final DoctorFilterDomain filter;
   InstitutionDetailDomain institutionDetailDomain;
   DoctorFilterEvent({required this.filter, required this.institutionDetailDomain } );
 

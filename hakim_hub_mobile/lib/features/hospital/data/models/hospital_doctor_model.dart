@@ -38,16 +38,18 @@ class DoctorModel extends DoctorDomain {
 
   factory DoctorModel.fromJson(Map<String, dynamic> json) {
     return DoctorModel(
-      fullName: json['fullName'],
-      about: json['about'],
-      gender: json['gender'],
-      email: json['email'],
-      photoUrl: json['photoUrl'],
-      yearsOfExperience: json['yearsOfExperience'],
-      mainInstitutionId: json['mainInstitutionId'],
-      mainInstitutionName: json['mainInstitutionName'],
-      specialities: List<String>.from(json['specialities']),
-      id: json['id'],
+      fullName: json['fullName'] ?? 'No Doctor Name',
+      about: json['about'] ?? '',
+      gender: json['gender'] ?? '',
+      email: json['email'] ?? '',
+      photoUrl: json['photoUrl'] ?? 'assets/images/doctor_image.png',
+      yearsOfExperience: json['yearsOfExperience'] ?? 0,
+      mainInstitutionId: json['mainInstitutionId'] ?? '',
+      mainInstitutionName: json['mainInstitutionName'] ?? '',
+      specialities: List<String>.from(
+        json['specialities'] ?? ['No speciality'],
+      ),
+      id: json['id'] ?? '',
     );
   }
 }
