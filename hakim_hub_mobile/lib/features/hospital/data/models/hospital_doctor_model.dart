@@ -1,28 +1,19 @@
 import 'package:hakim_hub_mobile/features/hospital/domain/entities/hospital_doctor_domain.dart';
 
 class DoctorModel extends DoctorDomain {
-  String fullName;
-  String about;
-  String gender;
-  String? email;
-  String photoUrl;
-  int yearsOfExperience;
-  String mainInstitutionId;
-  String mainInstitutionName;
-  List<String> specialities;
-  String id;
+ 
 
   DoctorModel({
-    required this.fullName,
-    required this.about,
-    required this.gender,
-    required this.email,
-    required this.photoUrl,
-    required this.yearsOfExperience,
-    required this.mainInstitutionId,
-    required this.mainInstitutionName,
-    required this.specialities,
-    required this.id,
+    required fullName,
+    required about,
+    required gender,
+    required email,
+    required photoUrl,
+    required yearsOfExperience,
+    required mainInstitutionId,
+    required mainInstitutionName,
+    required specialities,
+    required id,
   }) : super(
           fullName: fullName,
           about: about,

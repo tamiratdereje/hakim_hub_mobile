@@ -13,7 +13,7 @@ class InstitutionDetailModel extends InstitutionDetailDomain {
     required String summary,
     required DateTime establishedOn,
     required double rate,
-    required bool status,
+    required String status,
     required String logoUrl,
     required String bannerUrl,
     required InstitutionAvailabilityModel institutionAvailability,
@@ -50,11 +50,17 @@ class InstitutionDetailModel extends InstitutionDetailDomain {
         json['allEducationalInstitutions'] ?? [];
     List<dynamic> returnedDoctors = json['doctors'] ?? [];
 
-    List<EducationInstituteModel> educationInstituteModel =
-        List<EducationInstituteModel>.from(returnedEducationInstitutuions
-            .map((x) => EducationInstituteModel.fromJson(x)));
-    List<DoctorModel> returnedDoctorsModel = List<DoctorModel>.from(
-        returnedDoctors.map((x) => DoctorModel.fromJson(x)));
+
+    // List<EducationInstituteModel> educationInstituteModel =
+    //     List<EducationInstituteModel>.from(returnedEducationInstitutuions
+    //         .map((x) => EducationInstituteModel.fromJson(x)));
+
+    List<EducationInstituteModel> educationInstituteModel = 
+        returnedEducationInstitutuions.map((x) => EducationInstituteModel.fromJson(x)).toList();
+    print(returnedDoctors);
+    print("before doctors");
+    List<DoctorModel> returnedDoctorsModel = 
+        returnedDoctors.map((x) => DoctorModel.fromJson(x)).toList();
 
     return InstitutionDetailModel(
       educationalInstitutions: educationInstituteModel,
@@ -71,7 +77,7 @@ class InstitutionDetailModel extends InstitutionDetailDomain {
       logoUrl: json['logoUrl'] ?? 'assets/images/doctor_image.png',
       bannerUrl: json['bannerUrl'] ?? 'assets/images/tikur_anbesa.png',
       institutionAvailability: InstitutionAvailabilityModel.fromJson(
-          json['institutionAvailability']),
+          json['institutionAvailability'] ?? {}),
       address: AddressModel.fromJson(json['address'] ?? {}),
       services: List<String>.from(json['services'] ?? []),
       photos: List<String>.from(json['photos'] ?? []),

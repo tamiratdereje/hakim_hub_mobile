@@ -24,20 +24,29 @@ class HospitalDetailRemoteDataSoureImpl
   @override
   Future<InstitutionDetailModel> getHospitalDetail(String hospitalId) async {
     try {
+      print("object start");
+      print(hospitalId);
+      print("object end");
       final response = await client.get(
-        Uri.parse(baseUrl + '/api/InsitutionProfile/$hospitalId'),
+        Uri.parse(baseUrl + '/InsitutionProfile/$hospitalId'),
         headers: {
           HttpHeaders.contentTypeHeader: 'application/json',
         },
       );
-
+      // print(response.body);
       if (response.statusCode == 200) {
+        print("in and out");
         final Map<String, dynamic> json = jsonDecode(response.body)["value"];
-        return InstitutionDetailModel.fromJson(json);
+        print(json);
+        InstitutionDetailModel institutionDetailModel = InstitutionDetailModel.fromJson(json);
+        print("after done");
+        return institutionDetailModel;
       } else {
+        print("server exception");
         throw ServerException();
       }
     } catch (e) {
+      print("server exception second");
       throw ServerException();
     }
   }

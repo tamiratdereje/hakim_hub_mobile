@@ -8,6 +8,7 @@ import 'core/shared_widgets/bottom_nav.dart';
 import 'features/chatbot/presentation/screen/chat_landing.dart';
 import 'features/doctor/presentation/bloc/doctor_detail_bloc.dart';
 import 'features/doctor/presentation/screen/doctor_detail_page.dart';
+import 'features/hospital/presentation/bloc/bloc/hospital_detail_bloc.dart';
 import 'features/hospital/presentation/bloc/bloc/search_hospital_bloc.dart';
 
 import 'injection/injection.dart' as injection;
@@ -31,6 +32,9 @@ class MyApp extends StatelessWidget {
           ),
           BlocProvider<DoctorDetailBloc>(
             create: (context) => injection.sl<DoctorDetailBloc>(),
+          ),
+          BlocProvider<HospitalDetailBloc>(
+            create: (context) => injection.sl<HospitalDetailBloc>(),
           ),
         ], child: RouterMain());
       },
