@@ -5,10 +5,8 @@ import 'package:go_router/go_router.dart';
 import 'package:hakim_hub_mobile/core/shared_widgets/bottom_nav.dart';
 import 'package:hakim_hub_mobile/features/core/splash_screen.dart';
 import 'package:hakim_hub_mobile/features/doctor/presentation/screen/doctor_detail_page.dart';
+import 'package:hakim_hub_mobile/features/hospital/presentation/screen/overview_doctor_gallery_page.dart';
 import 'package:hakim_hub_mobile/router/routes.dart';
-
-import '../features/hospital/presentation/screen/hospital_detail_page.dart';
-import '../features/hospital/presentation/screen/hospital_doctor_detail_page.dart';
 
 class RouterMain extends StatelessWidget {
   late final GoRouter _router;
@@ -30,14 +28,15 @@ class RouterMain extends StatelessWidget {
         GoRoute(
           path: AppRoutes.HospitalDetailPage,
           name: AppRoutes.HospitalDetailPage,
-          pageBuilder: (context, state) => const MaterialPage(child: HospitalDoctorDetailPage()),
+          pageBuilder: (context, state) =>
+              MaterialPage(child: HospitalDoctorDetailPage()),
         ),
         GoRoute(
           path: AppRoutes.DoctorDetailPage,
           name: AppRoutes.DoctorDetailPage,
           pageBuilder: (context, state) {
-            return const MaterialPage(child: DoctorDetailPage());}
-              ,
+            return const MaterialPage(child: DoctorDetailPage());
+          },
         ),
         GoRoute(
           path: AppRoutes.SplashPage,
