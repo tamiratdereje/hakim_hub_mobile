@@ -1,32 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:hakim_hub_mobile/core/utils/colors.dart';
-import 'package:hakim_hub_mobile/features/core/splash_screen.dart';
+import 'package:hakim_hub_mobile/features/hospital/presentation/bloc/bloc/hospital_detail_bloc.dart';
 import 'package:hakim_hub_mobile/features/hospital/presentation/widgets/doctor_grid_view.dart';
-import 'package:hakim_hub_mobile/features/hospital/presentation/widgets/hospital_card.dart';
 import 'package:hakim_hub_mobile/features/hospital/presentation/widgets/hospital_gallery_page.dart';
 import 'package:hakim_hub_mobile/features/hospital/presentation/widgets/overview_tab.dart';
 
-class HospitalDoctorDetailPage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'My App',
-      localizationsDelegates: [
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-      ],
-      supportedLocales: [
-        const Locale('en', 'US'), // English
-        const Locale('fr', 'FR'), // French
-      ],
-      home: OverviewDoctorGalleryPage(),
-    );
-  }
-}
-
 class OverviewDoctorGalleryPage extends StatefulWidget {
-  const OverviewDoctorGalleryPage({Key? key}) : super(key: key);
+  String institutionId;
+  OverviewDoctorGalleryPage({required this.institutionId, Key? key})
+      : super(key: key);
 
   @override
   State<OverviewDoctorGalleryPage> createState() =>
@@ -41,6 +25,8 @@ class _OverviewDoctorGalleryPageState extends State<OverviewDoctorGalleryPage>
   @override
   void initState() {
     super.initState();
+    BlocProvider.of<HospitalDetailBloc>(context)
+        .add(HospitalDetailGetEvent(id: widget.institutionId));
     _tabController = TabController(length: 3, vsync: this);
     _tabController.addListener(_handleTabSelection);
   }
@@ -73,7 +59,7 @@ class _OverviewDoctorGalleryPageState extends State<OverviewDoctorGalleryPage>
         appBar: AppBar(
           elevation: 0,
           backgroundColor: Colors.white, // Set the background color here
-          title: Text(
+          title: const Text(
             "hospitalName",
             style: TextStyle(
               color: Colors.black, // Set the text color here
@@ -81,7 +67,7 @@ class _OverviewDoctorGalleryPageState extends State<OverviewDoctorGalleryPage>
           ),
           leading: IconButton(
             color: Colors.black,
-            icon: Icon(Icons.arrow_back_outlined),
+            icon: const Icon(Icons.arrow_back_outlined),
             onPressed: () {
               // Navigate back to the previous screen
               Navigator.pop(context);
@@ -94,37 +80,48 @@ class _OverviewDoctorGalleryPageState extends State<OverviewDoctorGalleryPage>
             GlobalWidgetsLocalizations.delegate,
           ],
           locale: Locale("en", 'US'),
-          child: CustomScrollView(
-            slivers: <Widget>[
-              SliverPersistentHeader(
-                delegate: _SliverAppBarDelegate(
-                  TabBar(
-                    labelColor: primaryColor,
-                    controller: _tabController,
-                    onTap: _onButtonPressed,
-                    tabs: [
-                      Tab(
-                        text: 'Overview',
+          child: BlocBuilder<HospitalDetailBloc, HospitalDetailState>(
+              builder: ((context, state) {
+            if (state is DetailHospitalLoading) {
+              return const CircularProgressIndicator(
+                color: Colors.red,
+              );
+            } else if (state is DetailHospitalSuccess) {
+              return CustomScrollView(
+                slivers: <Widget>[
+                  SliverPersistentHeader(
+                    delegate: _SliverAppBarDelegate(
+                      TabBar(
+                        labelColor: primaryColor,
+                        controller: _tabController,
+                        onTap: _onButtonPressed,
+                        tabs: [
+                          Tab(
+                            text: 'Overview',
+                          ),
+                          Tab(text: 'Doctors'),
+                          Tab(text: 'Gallery'),
+                        ],
                       ),
-                      Tab(text: 'Doctors'),
-                      Tab(text: 'Gallery'),
-                    ],
+                    ),
+                    pinned: true,
                   ),
-                ),
-                pinned: true,
-              ),
-              SliverFillRemaining(
-                child: TabBarView(
-                  controller: _tabController,
-                  children: [
-                    OverviewTab(),
-                    DoctorGridView(),
-                    GalleryTab(),
-                  ],
-                ),
-              ),
-            ],
-          ),
+                  SliverFillRemaining(
+                    child: TabBarView(
+                      controller: _tabController,
+                      children: [
+                        OverviewTab(),
+                        DoctorGridView(),
+                        GalleryTab(),
+                      ],
+                    ),
+                  ),
+                ],
+              );
+            } else {
+              return Text('Error');
+            }
+          })),
         ),
       ),
     );

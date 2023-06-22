@@ -3,6 +3,7 @@ import 'package:hakim_hub_mobile/core/error/exception.dart';
 import 'package:hakim_hub_mobile/core/error/failures.dart';
 import 'package:hakim_hub_mobile/core/network/network_info.dart';
 import 'package:hakim_hub_mobile/features/hospital/data/datasources/hospital_detail_remote_datasource.dart';
+import 'package:hakim_hub_mobile/features/hospital/data/models/filter_doctors_model.dart';
 import 'package:hakim_hub_mobile/features/hospital/domain/entities/filter_doctor_domain.dart';
 import 'package:hakim_hub_mobile/features/hospital/domain/entities/hospital_detail_domain.dart';
 import 'package:hakim_hub_mobile/features/hospital/domain/entities/hospital_doctor_domain.dart';
@@ -35,7 +36,22 @@ class HospitalDetailRepositoryImpl implements HospitalDetailRepository {
 
   @override
   Future<Either<Failure, List<DoctorDomain>>> getFilteredDoctors(
-      DoctorFilterDomain doctorFilterDomain) {
-    throw UnimplementedError();
+      DoctorFilterDomain doctorFilterDomain) async {
+    if (await networkInfo.isConnected) {
+      try {
+        DoctorFilterModel doctorfilterModel = DoctorFilterModel(
+            institutionId: doctorFilterDomain.institutionId,
+            experienceYears: doctorFilterDomain.experienceYears,
+            educationalName: doctorFilterDomain.educationalName,
+            specialities: doctorFilterDomain.specialities);
+        final hospitalDetail =
+            await remoteDataSource.getDoctorByFilter(doctorfilterModel);
+        return Right(hospitalDetail);
+      } on ServerException {
+        return Left(ServerFailure());
+      }
+    } else {
+      return Left(ServerFailure());
+    }
   }
 }

@@ -111,9 +111,10 @@ class _HospitalsHomeScreenState extends State<HospitalsHomeScreen> {
                                           state.institutionSearchDomain[index],
                                     ),
                                     onTap: () {
+                                      
                                       context.pushNamed(
                                           AppRoutes.HospitalDetailPage,
-                                          queryParameters: {"id": "id"});
+                                          queryParameters: {"id": state.institutionSearchDomain[index].id});
                                     },
                                   );
                                 })),

@@ -70,7 +70,9 @@ class HospitalCard extends StatelessWidget {
                         child: Text(
                           'Website',
                           textAlign: TextAlign.center,
-                          style: TextStyle(fontSize: responsiveFontSize(12)),
+                          style: TextStyle(
+                              fontSize:
+                                  UIConverter.getComponentHeight(context, 10)),
                         ),
                       ),
                     ),
@@ -104,7 +106,10 @@ class HospitalCard extends StatelessWidget {
                         child: Text(
                           'Email',
                           textAlign: TextAlign.center,
-                          style: TextStyle(fontSize: responsiveFontSize(12)),
+                          style: TextStyle(
+                            fontSize:
+                                UIConverter.getComponentHeight(context, 10),
+                          ),
                         ),
                       ),
                     ),
@@ -136,7 +141,9 @@ class HospitalCard extends StatelessWidget {
                       child: Text(
                         'Directions',
                         textAlign: TextAlign.center,
-                        style: TextStyle(fontSize: responsiveFontSize(15)),
+                        style: TextStyle(
+                            fontSize:
+                                UIConverter.getComponentHeight(context, 10)),
                       ),
                     ),
                   ),
@@ -176,7 +183,9 @@ class HospitalCard extends StatelessWidget {
                         child: Text(
                           'Phone',
                           textAlign: TextAlign.center,
-                          style: TextStyle(fontSize: responsiveFontSize(12)),
+                          style: TextStyle(
+                              fontSize:
+                                  UIConverter.getComponentHeight(context, 10)),
                         ),
                       ),
                     ),

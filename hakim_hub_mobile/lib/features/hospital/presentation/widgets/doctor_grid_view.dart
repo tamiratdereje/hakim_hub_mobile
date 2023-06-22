@@ -22,6 +22,7 @@ class DoctorGridView extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.only(
         bottom: UIConverter.getComponentHeight(context, 20),
+        top: UIConverter.getComponentHeight(context, 20),
         left: UIConverter.getComponentWidth(context, 10),
         right: UIConverter.getComponentWidth(context, 10),
       ),

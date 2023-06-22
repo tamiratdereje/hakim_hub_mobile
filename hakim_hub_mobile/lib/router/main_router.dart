@@ -28,8 +28,9 @@ class RouterMain extends StatelessWidget {
         GoRoute(
           path: AppRoutes.HospitalDetailPage,
           name: AppRoutes.HospitalDetailPage,
-          pageBuilder: (context, state) =>
-              const MaterialPage(child: OverviewDoctorGalleryPage()),
+          pageBuilder: (context, state) => MaterialPage(
+              child: OverviewDoctorGalleryPage(
+                  institutionId: state.queryParameters["id"]!)),
         ),
         GoRoute(
           path: AppRoutes.DoctorDetailPage,
