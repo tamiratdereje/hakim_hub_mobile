@@ -24,7 +24,12 @@ class HospitalDetailBloc
       emit(DetailHospitalLoading());
       await getHospitalDetail(event.id).then((value) {
         value.fold((l) => emit(DetailHospitalError(message: l.toString())),
-            (r) => emit(DetailHospitalSuccess(institutionDetailDomain: r)));
+            (r){
+              print("return from bloc");
+              print(r);
+              print("after return from bloc");
+              return emit(DetailHospitalSuccess(institutionDetailDomain: r));
+            } );
       });
     });
 
