@@ -36,7 +36,7 @@ class RouterMain extends StatelessWidget {
           path: AppRoutes.DoctorDetailPage,
           name: AppRoutes.DoctorDetailPage,
           pageBuilder: (context, state) {
-            return const MaterialPage(child: DoctorDetailPage());
+            return  MaterialPage(child: DoctorDetailPage(doctorDetailId: state.queryParameters["id"]!));
           },
         ),
         GoRoute(
@@ -51,6 +51,7 @@ class RouterMain extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
+      debugShowCheckedModeBanner: false,
       // routerDelegate: _router.routerDelegate,
       // routeInformationParser: _router.routeInformationParser,
       title: 'Charge Station Finder',

@@ -1,30 +1,33 @@
 import 'package:flutter/material.dart';
+import 'package:hakim_hub_mobile/features/doctor/domain/entities/doctor_education.dart';
 
-class EducationModel {
-  String degree;
-  String institution;
-  DateTime startDate;
-  DateTime endDate;
-  String fieldOfStudy;
-  String logoUrl;
+class EducationModel extends Education {
+  
 
   EducationModel({
-    required this.degree,
-    required this.institution,
-    required this.startDate,
-    required this.endDate,
-    required this.fieldOfStudy,
-    required this.logoUrl
-  });
+    required degree,
+    required institution,
+    required startDate,
+    required endDate,
+    required fieldOfStudy,
+    required logoUrl
+  }) : super(
+          degree: degree,
+          institution: institution,
+          startDate: startDate,
+          endDate: endDate,
+          fieldOfStudy: fieldOfStudy,
+          logoUrl: logoUrl
+        );
 
   factory EducationModel.fromJson(Map<String, dynamic> json) {
     return EducationModel(
-      degree: json['degree'],
-      institution: json['educationInstitution'],
-      startDate: DateTime.parse(json['startYear']),
-      endDate: DateTime.parse(json['graduationYear']),
-      fieldOfStudy: json['fieldOfStudy'],
-    logoUrl: json['educationInstitutionLogoUrl']
+      degree: json['degree'] ?? "No Degree",
+      institution: json['educationInstitution'] ?? "No Institution",
+      startDate: DateTime.parse(json['startYear'] ?? DateTime.now()),
+      endDate: DateTime.parse(json['graduationYear'] ?? DateTime.now()),
+      fieldOfStudy: json['fieldOfStudy'] ?? "No Field",
+    logoUrl: json['educationInstitutionLogoUrl'] ?? "assets/images/doctor_image.png"
       
     );
   }

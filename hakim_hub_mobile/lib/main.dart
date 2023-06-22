@@ -6,6 +6,7 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 
 import 'core/shared_widgets/bottom_nav.dart';
 import 'features/chatbot/presentation/screen/chat_landing.dart';
+import 'features/doctor/presentation/bloc/doctor_detail_bloc.dart';
 import 'features/doctor/presentation/screen/doctor_detail_page.dart';
 import 'features/hospital/presentation/bloc/bloc/search_hospital_bloc.dart';
 
@@ -18,20 +19,20 @@ void main() async {
 }
 
 class MyApp extends StatelessWidget {
-
   const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return ResponsiveSizer(
       builder: (context, orientation, screenType) {
-        return MultiBlocProvider(
-          providers: [
-            BlocProvider<SearchHospitalBloc>(create: (context) => injection.sl<SearchHospitalBloc>(),)
-          ],
-          
-          child: RouterMain()
-          );
+        return MultiBlocProvider(providers: [
+          BlocProvider<SearchHospitalBloc>(
+            create: (context) => injection.sl<SearchHospitalBloc>(),
+          ),
+          BlocProvider<DoctorDetailBloc>(
+            create: (context) => injection.sl<DoctorDetailBloc>(),
+          ),
+        ], child: RouterMain());
       },
     );
   }
