@@ -62,82 +62,82 @@ class HospitalCard extends StatelessWidget {
                             },
                             icon: Icon(MdiIcons.web))),
                   ),
-                ),
-                Expanded(
-                  child: FittedBox(
-                    fit: BoxFit.fitWidth,
-                    child: SizedBox(
-                      width: UIConverter.getComponentWidth(context, 50),
-                      child: Text(
-                        'Website',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(fontSize: responsiveFontSize(12)),
+                  Expanded(
+                    child: FittedBox(
+                      fit: BoxFit.fitWidth,
+                      child: SizedBox(
+                        width: UIConverter.getComponentWidth(context, 50),
+                        child: Text(
+                          'Website',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(fontSize: responsiveFontSize(12)),
+                        ),
                       ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-          SizedBox(
-            height: UIConverter.getComponentHeight(context, initialSize),
-            width: UIConverter.getComponentWidth(context, initialSize),
-            child: Column(
-              children: [
-                Container(
-                  height: UIConverter.getComponentHeight(context, 45),
-                  width: UIConverter.getComponentWidth(context, 45),
-                  decoration: const BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: Color.fromRGBO(239, 243, 243, 1),
-                  ),
-                  child: SizedBox(
-                    height: UIConverter.getComponentHeight(context, 16.67),
-                    width: UIConverter.getComponentWidth(context, 16.67),
-                    child: const Icon(Icons.email),
-                  ),
-                ),
-                Expanded(
-                  child: FittedBox(
-                    fit: BoxFit.fitWidth,
+            SizedBox(
+              height: UIConverter.getComponentHeight(context, initialSize),
+              width: UIConverter.getComponentWidth(context, initialSize),
+              child: Column(
+                children: [
+                  Container(
+                    height: UIConverter.getComponentHeight(context, 45),
+                    width: UIConverter.getComponentWidth(context, 45),
+                    decoration: const BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: Color.fromRGBO(239, 243, 243, 1),
+                    ),
                     child: SizedBox(
-                      width: UIConverter.getComponentWidth(context, 50),
-                      child: Text(
-                        'Email',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(fontSize: responsiveFontSize(12)),
+                      height: UIConverter.getComponentHeight(context, 16.67),
+                      width: UIConverter.getComponentWidth(context, 16.67),
+                      child: const Icon(Icons.email),
+                    ),
+                  ),
+                  Expanded(
+                    child: FittedBox(
+                      fit: BoxFit.fitWidth,
+                      child: SizedBox(
+                        width: UIConverter.getComponentWidth(context, 50),
+                        child: Text(
+                          'Email',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(fontSize: responsiveFontSize(12)),
+                        ),
                       ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-          SizedBox(
-            height: UIConverter.getComponentHeight(context, initialSize),
-            width: UIConverter.getComponentWidth(context, initialSize),
-            child: Column(
-              children: [
-                Container(
-                  height: UIConverter.getComponentHeight(context, 45),
-                  width: UIConverter.getComponentWidth(context, 45),
-                  decoration: const BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: Color.fromRGBO(239, 243, 243, 1),
+            SizedBox(
+              height: UIConverter.getComponentHeight(context, initialSize),
+              width: UIConverter.getComponentWidth(context, initialSize),
+              child: Column(
+                children: [
+                  Container(
+                    height: UIConverter.getComponentHeight(context, 45),
+                    width: UIConverter.getComponentWidth(context, 45),
+                    decoration: const BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: Color.fromRGBO(239, 243, 243, 1),
+                    ),
+                    child: SizedBox(
+                      height: UIConverter.getComponentHeight(context, 16.67),
+                      width: UIConverter.getComponentWidth(context, 16.67),
+                      child: const Icon(Icons.directions),
+                    ),
                   ),
-                  child: SizedBox(
-                    height: UIConverter.getComponentHeight(context, 16.67),
-                    width: UIConverter.getComponentWidth(context, 16.67),
-                    child: const Icon(Icons.directions),
-                  ),
-                ),
-                Expanded(
-                  child: FittedBox(
-                    fit: BoxFit.fitWidth,
-                    child: Text(
-                      'Directions',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(fontSize: responsiveFontSize(15)),
+                  Expanded(
+                    child: FittedBox(
+                      fit: BoxFit.fitWidth,
+                      child: Text(
+                        'Directions',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(fontSize: responsiveFontSize(15)),
+                      ),
                     ),
                   ),
                 ],
@@ -168,19 +168,19 @@ class HospitalCard extends StatelessWidget {
                                 },
                                 icon: phone))),
                   ),
-                ),
-                Expanded(
-                  child: FittedBox(
-                    fit: BoxFit.fitWidth,
-                    child: SizedBox(
-                      width: UIConverter.getComponentWidth(context, 50),
-                      child: Text(
-                        'Phone',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(fontSize: responsiveFontSize(12)),
+                  Expanded(
+                    child: FittedBox(
+                      fit: BoxFit.fitWidth,
+                      child: SizedBox(
+                        width: UIConverter.getComponentWidth(context, 50),
+                        child: Text(
+                          'Phone',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(fontSize: responsiveFontSize(12)),
+                        ),
                       ),
                     ),
-                  ),
+                  )
                 ],
               ),
             ),
