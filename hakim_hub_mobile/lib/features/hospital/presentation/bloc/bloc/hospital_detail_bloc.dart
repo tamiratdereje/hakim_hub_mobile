@@ -35,10 +35,12 @@ class HospitalDetailBloc
 
     on<DoctorFilterEvent>((event, emit) async {
       emit(DetailHospitalLoading());
+      print("first");
       await getDoctorByFilter(event.filter).then((value) {
         value.fold((l) => emit(DetailHospitalError(message: l.toString())),
             (r) {
               event.institutionDetailDomain.doctors = r;
+              print("filter");
               return emit(DetailHospitalSuccess(institutionDetailDomain: event.institutionDetailDomain)); }
             );
       });

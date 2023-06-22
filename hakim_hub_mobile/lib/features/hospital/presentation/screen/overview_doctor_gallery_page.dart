@@ -111,7 +111,18 @@ class _OverviewDoctorGalleryPageState extends State<OverviewDoctorGalleryPage>
                       controller: _tabController,
                       children: [
                         OverviewTab(),
-                        DoctorGridView(),
+                        DoctorGridView(
+                          institutionId: state.institutionDetailDomain.id,
+                          filterList:
+                              state.institutionDetailDomain.allSpecialities,
+                          onFilterChanged: (doctorFilterDomain) {
+                            BlocProvider.of<HospitalDetailBloc>(context).add(
+                                DoctorFilterEvent(
+                                    filter: doctorFilterDomain,
+                                    institutionDetailDomain:
+                                        state.institutionDetailDomain));
+                          },
+                        ),
                         GalleryTab(),
                       ],
                     ),

@@ -24,29 +24,20 @@ class HospitalDetailRemoteDataSoureImpl
   @override
   Future<InstitutionDetailModel> getHospitalDetail(String hospitalId) async {
     try {
-      print("object start");
-      print(hospitalId);
-      print("object end");
       final response = await client.get(
         Uri.parse(baseUrl + '/InsitutionProfile/$hospitalId'),
         headers: {
           HttpHeaders.contentTypeHeader: 'application/json',
         },
       );
-      // print(response.body);
       if (response.statusCode == 200) {
-        print("in and out");
         final Map<String, dynamic> json = jsonDecode(response.body)["value"];
-        print(json);
         InstitutionDetailModel institutionDetailModel = InstitutionDetailModel.fromJson(json);
-        print("after done");
         return institutionDetailModel;
       } else {
-        print("server exception");
         throw ServerException();
       }
     } catch (e) {
-      print("server exception second");
       throw ServerException();
     }
   }
@@ -55,24 +46,32 @@ class HospitalDetailRemoteDataSoureImpl
   Future<List<DoctorModel>> getDoctorByFilter(
       DoctorFilterModel doctorFilterModel) async {
     try {
-      final response = await client.get(
+         final response = await client.post(
         Uri.parse(baseUrl +
-            '/DoctorProfiles/filter?institutionId=${doctorFilterModel.institutionId}&experienceYears=${doctorFilterModel.experienceYears}&educationName=${doctorFilterModel.educationalName}'),
+            '/DoctorProfiles/filter?institutionId=${doctorFilterModel.institutionId}&experienceYears=${-1}&educationName='),
         headers: {
           HttpHeaders.contentTypeHeader: 'application/json',
         },
+        body: jsonEncode(doctorFilterModel.specialities),
       );
+      
 
       if (response.statusCode == 200) {
         final List<dynamic> returnedDoctors =
             jsonDecode(response.body)["value"];
+
         List<DoctorModel> doctors =
             returnedDoctors.map((data) => DoctorModel.fromJson(data)).toList();
+          
         return doctors;
-      } else {
+      } 
+      else {
+        
         throw ServerException();
       }
     } catch (e) {
+      print(e.toString());
+
       throw ServerException();
     }
   }
