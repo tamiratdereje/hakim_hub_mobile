@@ -1,3 +1,4 @@
+import 'package:hakim_hub_mobile/core/utils/dummy_data.dart';
 import 'package:hakim_hub_mobile/features/doctor/data/models/doctor_education_model.dart';
 import 'package:hakim_hub_mobile/features/doctor/data/models/doctor_experiance_model.dart';
 import 'package:hakim_hub_mobile/features/doctor/domain/entities/doctor_detail.dart';
@@ -42,7 +43,7 @@ class DoctorDetailModel extends DoctorDetail {
 
     return DoctorDetailModel(
       fullName: json['fullName'] ?? "No Name",
-      about: json['about'] ?? "No About",
+      about: json['about'] == "" ? convertDoctorJson(json, newEducations, newExperiences) : json['about'],
       gender: json['gender'] ?? "she/her",
       email: json['email'] ?? "No Email",
       photoUrl: json['photoUrl'] ?? "assets/images/doctor_image.png",
