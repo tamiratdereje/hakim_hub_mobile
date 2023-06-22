@@ -10,15 +10,18 @@ class GalleryTab extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.all(UIConverter.getComponentWidth(context, 16)),
       child: MasonryGridView.builder(
-        itemCount: 8,
-        gridDelegate:
-            SliverSimpleGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
+        itemCount: 9,
+        gridDelegate: const SliverSimpleGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 2),
         itemBuilder: (context, index) => Padding(
           padding: EdgeInsets.symmetric(
             horizontal: UIConverter.getComponentWidth(context, 10),
             vertical: UIConverter.getComponentHeight(context, 10),
           ),
-          child: Image.asset('assets/images/grid_images/image${index + 1}.jpg'),
+          child: ClipRRect(
+              borderRadius: BorderRadius.circular(12),
+              child: Image.asset(
+                  'assets/images/grid_images/image${index + 1}.jpg')),
         ),
       ),
     );
