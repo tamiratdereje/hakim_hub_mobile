@@ -14,7 +14,7 @@ class DoctorCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.only(
-        top: UIConverter.getComponentHeight(context, 27.8),
+        top: UIConverter.getComponentHeight(context, 5),
       ),
       child: Stack(
         clipBehavior: Clip.none,
@@ -35,13 +35,13 @@ class DoctorCard extends StatelessWidget {
 }
 
 Widget buildCard(BuildContext context) {
-  var chiptextColor2;
   return Card(
     color: Colors.white,
     shadowColor: Colors.black,
+    elevation: UIConverter.getComponentHeight(context, 8),
     child: SizedBox(
       height: UIConverter.getComponentHeight(context, 135.69),
-      width: UIConverter.getComponentWidth(context, 150.22),
+      width: UIConverter.getComponentWidth(context, 190.22),
       child: Column(
         children: [
           SizedBox(
@@ -49,13 +49,19 @@ Widget buildCard(BuildContext context) {
           ),
           Text(
             'Dr.Daniel Doe',
-            style: TextStyle(color: primaryTextColor),
+            style: TextStyle(
+              color: primaryTextColor,
+              fontFamily: 'Poppins',
+              fontSize: UIConverter.getComponentHeight(context, 17),
+            ),
           ),
           Text(
             'Neurologist',
             style: TextStyle(
-              color: chiptextColor2,
-            ),
+                color: primaryColor,
+                fontWeight: FontWeight.bold,
+                fontFamily: 'Poppins',
+                fontSize: UIConverter.getComponentHeight(context, 14)),
           ),
         ],
       ),
