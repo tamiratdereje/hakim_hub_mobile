@@ -7,7 +7,7 @@ import 'package:hakim_hub_mobile/features/hospital/presentation/widgets/hospital
 import 'package:hakim_hub_mobile/features/hospital/presentation/widgets/hospital_gallery_page.dart';
 import 'package:hakim_hub_mobile/features/hospital/presentation/widgets/overview_tab.dart';
 
-class My_App extends StatelessWidget {
+class HospitalDoctorDetailPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(

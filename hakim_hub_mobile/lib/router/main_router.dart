@@ -8,9 +8,6 @@ import 'package:hakim_hub_mobile/features/doctor/presentation/screen/doctor_deta
 import 'package:hakim_hub_mobile/features/hospital/presentation/screen/overview_doctor_gallery_page.dart';
 import 'package:hakim_hub_mobile/router/routes.dart';
 
-import '../features/hospital/presentation/screen/hospital_detail_page.dart';
-import '../features/hospital/presentation/screen/hospital_doctor_detail_page.dart';
-
 class RouterMain extends StatelessWidget {
   late final GoRouter _router;
 
