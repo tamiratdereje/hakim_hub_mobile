@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_map/flutter_map.dart';
 import 'package:hakim_hub_mobile/core/utils/icons.dart';
 import 'package:hakim_hub_mobile/features/core/splash_screen.dart';
 import 'package:hakim_hub_mobile/features/hospital/domain/entities/hospital_detail_domain.dart';
 import 'package:hakim_hub_mobile/features/hospital/presentation/widgets/hospital_card.dart';
-
 import '../../../../core/utils/colors.dart';
 import '../../../../core/utils/ui_converter.dart';
+import 'app_constans.dart';
 
 class OverviewTab extends StatefulWidget {
   final InstitutionDetailDomain institutionDetailDomain;
@@ -122,13 +123,35 @@ class _OverviewTabState extends State<OverviewTab> {
                         ),
                       ],
                     ),
-                    child: ListTile(
-                      leading: Image.asset('assets/images/right_icon.png'),
-                      title: Text(
-                        widget.institutionDetailDomain.services[index],
-                        style: const TextStyle(fontSize: 13),
-                      ),
-                    ),
+                    child:
+                    Container(
+                     child :  FlutterMap(
+            options: MapOptions(
+              minZoom: 5,
+              maxZoom: 18,
+              zoom: 13,
+              center: AppConstants.myLocation,
+            ),
+            layers: [
+              TileLayerOptions(
+                urlTemplate:
+                    "https://api.mapbox.com/styles/v1/dhruv25/{mapStyleId}/tiles/256/{z}/{x}/{y}@2x?access_token={accessToken}",
+                additionalOptions: {
+                  'mapStyleId': AppConstants.mapBoxStyleId,
+                  'accessToken': AppConstants.mapBoxAccessToken,
+                },
+                
+              ),
+            ],
+          ),),
+                    
+                    //  ListTile(
+                    //   leading: Image.asset('assets/images/right_icon.png'),
+                    //   title: Text(
+                    //     widget.institutionDetailDomain.services[index],
+                    //     style: const TextStyle(fontSize: 13),
+                    //   ),
+                    // ),
                   );
                 },
               ),
