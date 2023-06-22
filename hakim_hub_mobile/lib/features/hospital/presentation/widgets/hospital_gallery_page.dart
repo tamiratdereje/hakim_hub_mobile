@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hakim_hub_mobile/core/utils/ui_converter.dart';
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
 class GalleryTab extends StatelessWidget {
   const GalleryTab({Key? key}) : super(key: key);
@@ -8,20 +9,17 @@ class GalleryTab extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.all(UIConverter.getComponentWidth(context, 16)),
-      child: GridView.builder(
-        itemCount: 8, // Replace with the number of images you want to display
-        gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-          maxCrossAxisExtent: UIConverter.getComponentWidth(context, 200),
-          childAspectRatio: 1,
-          crossAxisSpacing: UIConverter.getComponentWidth(context, 10),
-          mainAxisSpacing: UIConverter.getComponentWidth(context, 10),
+      child: MasonryGridView.builder(
+        itemCount: 8,
+        gridDelegate:
+            SliverSimpleGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
+        itemBuilder: (context, index) => Padding(
+          padding: EdgeInsets.symmetric(
+            horizontal: UIConverter.getComponentWidth(context, 10),
+            vertical: UIConverter.getComponentHeight(context, 10),
+          ),
+          child: Image.asset('assets/images/grid_images/image${index + 1}.jpg'),
         ),
-        itemBuilder: (BuildContext context, int index) {
-          return Image.asset(
-            'assets/images/black_lion.png',
-            fit: BoxFit.cover,
-          );
-        },
       ),
     );
   }
