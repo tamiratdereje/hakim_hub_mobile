@@ -4,6 +4,7 @@ import 'package:hakim_hub_mobile/core/utils/colors.dart';
 import 'package:hakim_hub_mobile/features/core/splash_screen.dart';
 import 'package:hakim_hub_mobile/features/hospital/presentation/widgets/doctor_grid_view.dart';
 import 'package:hakim_hub_mobile/features/hospital/presentation/widgets/hospital_card.dart';
+import 'package:hakim_hub_mobile/features/hospital/presentation/widgets/hospital_gallery_page.dart';
 import 'package:hakim_hub_mobile/features/hospital/presentation/widgets/overview_tab.dart';
 
 class My_App extends StatelessWidget {
