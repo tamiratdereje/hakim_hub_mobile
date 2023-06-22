@@ -145,7 +145,10 @@ class _DoctorDetailPageState extends State<DoctorDetailPage> {
                                               color: primaryColor,
                                               fontSize: 19),
                                           maxLines: 1),
-                                      SizedBox( width: UIConverter.getComponentWidth(context, 10),),
+                                      SizedBox(
+                                        width: UIConverter.getComponentWidth(
+                                            context, 10),
+                                      ),
                                       const Text("Experience",
                                           style: TextStyle(
                                               fontWeight: FontWeight.w500,
@@ -208,56 +211,63 @@ class _DoctorDetailPageState extends State<DoctorDetailPage> {
                           SizedBox(
                             height: UIConverter.getComponentHeight(context, 10),
                           ),
-                          doctorDetail.educations.isNotEmpty ? ListView.builder(
-                            physics: NeverScrollableScrollPhysics(),
-                            shrinkWrap: true,
-                            itemCount: doctorDetail.educations.length,
-                            itemBuilder: (context, index) {
-                              return Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Row(
-                                    children: [
-                                      Text(
-                                        doctorDetail
-                                            .educations[index].degree,
-                                        style: const TextStyle(
-                                            fontWeight: FontWeight.w600,
-                                            color: degreeTextColor,
-                                            fontSize: 14),
-                                      ),
-                                      SizedBox(
-                                        width: UIConverter.getComponentWidth(
-                                            context, 7),
-                                      ),
-                                      Text(
-                                        "${doctorDetail.educations[index].startDate} - ${doctorDetail.educations[index].endDate}",
-                                        style: const TextStyle(
-                                            fontWeight: FontWeight.w300,
-                                            color: primaryTextColor,
-                                            fontSize: 13),
-                                      ),
-                                    ],
-                                  ),
-                                  SizedBox(
-                                    height: UIConverter.getComponentHeight(
-                                        context, 5),
-                                  ),
-                                  Text(
-                                    doctorDetail.educations[index].institution,
-                                    style: const TextStyle(
-                                        fontWeight: FontWeight.w300,
-                                        color: primaryTextColor,
-                                        fontSize: 13),
-                                  ),
-                                  SizedBox(
-                                    height: UIConverter.getComponentHeight(
-                                        context, 10),
-                                  ),
-                                ],
-                              );
-                            },
-                          ) : Container(),
+                          doctorDetail.educations.isNotEmpty
+                              ? ListView.builder(
+                                  physics: NeverScrollableScrollPhysics(),
+                                  shrinkWrap: true,
+                                  itemCount: doctorDetail.educations.length,
+                                  itemBuilder: (context, index) {
+                                    return Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Row(
+                                          children: [
+                                            Text(
+                                              doctorDetail
+                                                  .educations[index].degree,
+                                              style: const TextStyle(
+                                                  fontWeight: FontWeight.w600,
+                                                  color: degreeTextColor,
+                                                  fontSize: 14),
+                                            ),
+                                            SizedBox(
+                                              width:
+                                                  UIConverter.getComponentWidth(
+                                                      context, 7),
+                                            ),
+                                            Text(
+                                              "${doctorDetail.educations[index].startDate} - ${doctorDetail.educations[index].endDate}",
+                                              style: const TextStyle(
+                                                  fontWeight: FontWeight.w300,
+                                                  color: primaryTextColor,
+                                                  fontSize: 13),
+                                            ),
+                                          ],
+                                        ),
+                                        SizedBox(
+                                          height:
+                                              UIConverter.getComponentHeight(
+                                                  context, 5),
+                                        ),
+                                        Text(
+                                          doctorDetail
+                                              .educations[index].institution,
+                                          style: const TextStyle(
+                                              fontWeight: FontWeight.w300,
+                                              color: primaryTextColor,
+                                              fontSize: 13),
+                                        ),
+                                        SizedBox(
+                                          height:
+                                              UIConverter.getComponentHeight(
+                                                  context, 10),
+                                        ),
+                                      ],
+                                    );
+                                  },
+                                )
+                              : Container(),
                         ],
                       ),
                     ),
