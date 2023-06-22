@@ -36,7 +36,7 @@ class RouterMain extends StatelessWidget {
           path: AppRoutes.DoctorDetailPage,
           name: AppRoutes.DoctorDetailPage,
           pageBuilder: (context, state) {
-            return const MaterialPage(child: DoctorDetailPage());
+            return  MaterialPage(child: DoctorDetailPage(doctorDetailId: state.queryParameters["id"]!));
           },
         ),
         GoRoute(

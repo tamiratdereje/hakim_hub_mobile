@@ -1,10 +1,6 @@
 import 'package:hakim_hub_mobile/features/doctor/data/models/doctor_education_model.dart';
 import 'package:hakim_hub_mobile/features/doctor/data/models/doctor_experiance_model.dart';
 import 'package:hakim_hub_mobile/features/doctor/domain/entities/doctor_detail.dart';
-import 'package:hakim_hub_mobile/features/doctor/domain/entities/doctor_education.dart';
-
-import '../../domain/entities/doctor_experience.dart';
-
 
 class DoctorDetailModel extends DoctorDetail {
   DoctorDetailModel({
@@ -17,8 +13,8 @@ class DoctorDetailModel extends DoctorDetail {
     required String mainInstitutionId,
     required String mainInstitutionName,
     required List<String> specialities,
-    required List<Education> educations,
-    required List<Experience> experiences,
+    required List<EducationModel> educations,
+    required List<ExperienceModel> experiences,
     required String id,
   }) : super(
           fullName: fullName,
@@ -36,24 +32,27 @@ class DoctorDetailModel extends DoctorDetail {
         );
 
   factory DoctorDetailModel.fromJson(Map<String, dynamic> json) {
-    return DoctorDetailModel(
-      fullName: json['fullName'],
-      about: json['about'],
-      gender: json['gender'],
-      email: json['email'],
-      photoUrl: json['photoUrl'],
-      yearsOfExperience: json['yearsOfExperience'],
-      mainInstitutionId: json['mainInstitutionId'],
-      mainInstitutionName: json['mainInstitutionName'],
-      specialities: List<String>.from(json['specialities']),
-      educations: (json['educations'])
-          .map((e) => EducationModel.fromJson(e))
-          .toList(),
+    List<dynamic> relatedEducation = json['educations'] ?? [];
+    List<EducationModel> newEducations =
+        relatedEducation.map((e) => EducationModel.fromJson(e)).toList();
 
-      experiences: (json['experiences'])
-          .map((e) => ExperienceModel.fromJson(e))
-          .toList(),
-      id: json['id'],
+    List<dynamic> relatedExperiences = json['experiences'] ?? [];
+    List<ExperienceModel> newExperiences =
+        relatedExperiences.map((e) => ExperienceModel.fromJson(e)).toList();
+
+    return DoctorDetailModel(
+      fullName: json['fullName'] ?? "No Name",
+      about: json['about'] ?? "No About",
+      gender: json['gender'] ?? "she/her",
+      email: json['email'] ?? "No Email",
+      photoUrl: json['photoUrl'] ?? "assets/images/doctor_image.png",
+      yearsOfExperience: (json['yearsOfExperience'] ?? 0),
+      mainInstitutionId: json['mainInstitutionId'] ?? "No Institution",
+      mainInstitutionName: json['mainInstitutionName'] ?? "No Institution",
+      specialities: List<String>.from(json['specialities'] ?? []),
+      educations: newEducations,
+      experiences: newExperiences,
+      id: json['id'] ?? "No Id",
     );
   }
 }

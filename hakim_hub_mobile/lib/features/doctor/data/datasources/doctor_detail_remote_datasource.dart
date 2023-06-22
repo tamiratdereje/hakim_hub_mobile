@@ -20,6 +20,8 @@ class DoctorDetailRemoteDataSourceImpl implements DoctorDetailRemoteDataSource {
 
   @override
   Future<DoctorDetailModel> getDoctorDetail(String id) async {
+
+    print("data provider");
     final response = await client.get(
       // Uri.parse("${baseUrl}/api/DoctorProfiles/${id}"),
       Uri.parse(
@@ -29,9 +31,12 @@ class DoctorDetailRemoteDataSourceImpl implements DoctorDetailRemoteDataSource {
       },
     );
 
+    print("provided");
+    print(response.body);
+
     if (response.statusCode == 200) {
       final jsonResponse = json.decode(response.body);
-      return DoctorDetailModel.fromJson(jsonResponse);
+      return DoctorDetailModel.fromJson(jsonResponse["value"]);
     } else {
       throw ServerException();
     }

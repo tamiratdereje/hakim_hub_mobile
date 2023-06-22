@@ -23,7 +23,7 @@ class DoctorDetailBloc extends Bloc<DoctorDetailEvent, DoctorDetailState> {
   void _getDoctorDetail(
       GetDoctorDetailEvent event, Emitter<DoctorDetailState> emit) async {
     emit(DoctorDetailLoadingState());
-
+    print("loaadinf");
     final result = await getDoctorDetail(event.doctorDetailId);
     emit(doctorDetailSuccessOrFailure(result));
   }

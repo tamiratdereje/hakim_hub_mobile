@@ -22,8 +22,7 @@ class _DoctorDetailPageState extends State<DoctorDetailPage> {
   @override
   void initState() {
     super.initState();
-    _doctorDetailBloc = BlocProvider.of<DoctorDetailBloc>(context);
-    _doctorDetailBloc
+    BlocProvider.of<DoctorDetailBloc>(context)
         .add(GetDoctorDetailEvent(doctorDetailId: widget.doctorDetailId));
   }
 
@@ -51,7 +50,12 @@ class _DoctorDetailPageState extends State<DoctorDetailPage> {
                   height: UIConverter.getComponentHeight(context, 300),
                   decoration: BoxDecoration(
                     image: DecorationImage(
-                      image: AssetImage(doctorDetail.photoUrl),
+                      image: NetworkImage(doctorDetail.photoUrl,
+                      ),
+                      onError: (_, __) {
+                        // Handle error by providing a fallback image
+                        const AssetImage('assets/images/hospital_img.png');
+                      },
                       fit: BoxFit.cover,
                     ),
                   ),
@@ -83,7 +87,7 @@ class _DoctorDetailPageState extends State<DoctorDetailPage> {
                               fontSize: 25),
                           maxLines: 1,
                         ),
-                        Text("$doctorDetail.specialities[0]",
+                        Text("dfefefe",
                             style: const TextStyle(
                                 fontWeight: FontWeight.w500,
                                 color: titleTextColor,
@@ -105,7 +109,7 @@ class _DoctorDetailPageState extends State<DoctorDetailPage> {
                             Column(
                               children: [
                                 Text(
-                                    "+ {${doctorDetail.yearsOfExperience} years",
+                                    "+ ${doctorDetail.yearsOfExperience} years",
                                     style: const TextStyle(
                                         fontWeight: FontWeight.w700,
                                         color: primaryColor,
@@ -223,9 +227,12 @@ class _DoctorDetailPageState extends State<DoctorDetailPage> {
                                 width:
                                     UIConverter.getComponentWidth(context, 6),
                               ),
-                              ListView.builder(
+                              Expanded(child: ListView.builder(
+                                physics: NeverScrollableScrollPhysics(),
+                                shrinkWrap: true,
                                 itemCount: doctorDetail.educations.length,
                                 itemBuilder: (context, index) {
+                                  
                                   return Column(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
@@ -233,7 +240,8 @@ class _DoctorDetailPageState extends State<DoctorDetailPage> {
                                       Row(
                                         children: [
                                           Text(
-                                            doctorDetail.educations[index].degree,
+                                            doctorDetail
+                                                .educations[index].degree,
                                             style: const TextStyle(
                                                 fontWeight: FontWeight.w600,
                                                 color: degreeTextColor,
@@ -255,7 +263,8 @@ class _DoctorDetailPageState extends State<DoctorDetailPage> {
                                         ],
                                       ),
                                       Text(
-                                        doctorDetail.educations[index].institution,
+                                        doctorDetail
+                                            .educations[index].institution,
                                         style: const TextStyle(
                                             fontWeight: FontWeight.w500,
                                             color: degreeTextColor,
@@ -264,7 +273,7 @@ class _DoctorDetailPageState extends State<DoctorDetailPage> {
                                     ],
                                   );
                                 },
-                              ),
+                              )),
                             ],
                           ),
                         ],

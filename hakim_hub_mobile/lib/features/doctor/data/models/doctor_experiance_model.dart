@@ -1,27 +1,25 @@
-import 'dart:html';
+import '../../domain/entities/doctor_experience.dart';
 
-class ExperienceModel {
-  String title;
-  String description;
-  String institution;
-  DateTime startDate;
-  DateTime endDate;
-
-  ExperienceModel({
-    required this.title,
-    required this.institution,
-    required this.startDate,
-    required this.endDate,
-    required this.description
-  });
+class ExperienceModel extends Experience {
+  ExperienceModel(
+      {required title,
+      required institution,
+      required startDate,
+      required endDate,
+      required description})
+      : super(
+            description: description,
+            endDate: endDate,
+            institution: institution,
+            startDate: startDate,
+            title: title);
 
   factory ExperienceModel.fromJson(Map<String, dynamic> json) {
     return ExperienceModel(
-      title: json['position'],
-      institution: json['institutionName'],
-      startDate: DateTime.parse(json['startDate']),
-      endDate: DateTime.parse(json['endDate']),
-      description: json['description']
-    );
+        title: json['position'] ?? "No Title",
+        institution: json['institutionName'] ?? "No Institution",
+        startDate: DateTime.parse(json['startDate'] ?? DateTime.now()),
+        endDate: DateTime.parse(json['endDate'] ?? DateTime.now()),
+        description: json['description'] ?? "No Description");
   }
 }

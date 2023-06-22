@@ -6,9 +6,8 @@ import 'package:hakim_hub_mobile/features/doctor/domain/repositories/doctor_deta
 import 'package:hakim_hub_mobile/features/doctor/domain/usecases/doctor_detail_usecase.dart';
 import 'package:hakim_hub_mobile/features/doctor/presentation/bloc/doctor_detail_bloc.dart';
 
-final sl = GetIt.instance;
 
-Future<void> init() async {
+Future<void> doctorDetailInit(GetIt sl) async {
   // Bloc
   sl.registerFactory(
     () => DoctorDetailBloc(
@@ -37,5 +36,4 @@ Future<void> init() async {
     ),
   );
 
-  sl.registerLazySingleton(() => http.Client());
 }
