@@ -1,9 +1,29 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:hakim_hub_mobile/core/utils/colors.dart';
 import 'package:hakim_hub_mobile/features/core/splash_screen.dart';
-import 'package:hakim_hub_mobile/features/hospital/presentation/screen/hospital_gallery_page.dart';
 import 'package:hakim_hub_mobile/features/hospital/presentation/widgets/doctor_grid_view.dart';
 import 'package:hakim_hub_mobile/features/hospital/presentation/widgets/hospital_card.dart';
+import 'package:hakim_hub_mobile/features/hospital/presentation/widgets/hospital_gallery_page.dart';
 import 'package:hakim_hub_mobile/features/hospital/presentation/widgets/overview_tab.dart';
+
+class HospitalDoctorDetailPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'My App',
+      localizationsDelegates: [
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+      ],
+      supportedLocales: [
+        const Locale('en', 'US'), // English
+        const Locale('fr', 'FR'), // French
+      ],
+      home: OverviewDoctorGalleryPage(),
+    );
+  }
+}
 
 class OverviewDoctorGalleryPage extends StatefulWidget {
   const OverviewDoctorGalleryPage({Key? key}) : super(key: key);
@@ -47,119 +67,92 @@ class _OverviewDoctorGalleryPageState extends State<OverviewDoctorGalleryPage>
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Stack(
-        children: [
-          Positioned(
-            top: 0,
-            left: 0,
-            right: 0,
-            child: GestureDetector(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => SplashPage()),
-                );
-              },
-              child: Image.asset(
-                'assets/images/black_lion.png',
-                height: 200,
-                fit: BoxFit.cover,
-              ),
+    return Directionality(
+      textDirection: TextDirection.ltr,
+      child: Scaffold(
+        appBar: AppBar(
+          elevation: 0,
+          backgroundColor: Colors.white, // Set the background color here
+          title: Text(
+            "hospitalName",
+            style: TextStyle(
+              color: Colors.black, // Set the text color here
             ),
           ),
-          Positioned(
-            top: 110, // Adjust the position of the text as needed
-            left: 16,
-            child: Text(
-              'Tikur Anbessa',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
+          leading: IconButton(
+            color: Colors.black,
+            icon: Icon(Icons.arrow_back_outlined),
+            onPressed: () {
+              // Navigate back to the previous screen
+              Navigator.pop(context);
+            },
           ),
-          Positioned(top: 160, left: 30, right: 30, child: HospitalCard()),
-          Positioned(
-            top: 270,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            child: Column(
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: List.generate(
-                    3,
-                    (index) => SizedBox(
-                      width: MediaQuery.of(context).size.width * 0.25,
-                      height: 40,
-                      child: TextButton(
-                        style: TextButton.styleFrom(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10.0),
-                          ),
-                          padding: EdgeInsets.zero,
-                          backgroundColor: _selectedIndex == index
-                              ? Colors.grey[300]
-                              : Colors.transparent,
-                        ),
-                        onPressed: () {
-                          _onButtonPressed(index);
-                        },
-                        child: Text(
-                          index == 0
-                              ? 'Overview'
-                              : index == 1
-                                  ? 'Doctors'
-                                  : 'Gallery',
-                          style: TextStyle(
-                            color: _selectedIndex == index
-                                ? Colors.blue
-                                : Colors.black,
-                            fontFamily: 'Poppins',
-                            fontWeight: FontWeight.w600,
-                            fontSize: 16.0,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-                Expanded(
-                  child: TabBarView(
+        ),
+        body: Localizations(
+          delegates: [
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+          ],
+          locale: Locale("en", 'US'),
+          child: CustomScrollView(
+            slivers: <Widget>[
+              SliverPersistentHeader(
+                delegate: _SliverAppBarDelegate(
+                  TabBar(
+                    labelColor: primaryColor,
                     controller: _tabController,
-                    children: [
-                      OverviewTab(),
-                      DoctorGridView(),
-                      GalleryTab(),
+                    onTap: _onButtonPressed,
+                    tabs: [
+                      Tab(
+                        text: 'Overview',
+                      ),
+                      Tab(text: 'Doctors'),
+                      Tab(text: 'Gallery'),
                     ],
                   ),
                 ),
-              ],
-            ),
+                pinned: true,
+              ),
+              SliverFillRemaining(
+                child: TabBarView(
+                  controller: _tabController,
+                  children: [
+                    OverviewTab(),
+                    DoctorGridView(),
+                    GalleryTab(),
+                  ],
+                ),
+              ),
+            ],
           ),
-        ],
+        ),
       ),
     );
   }
 }
 
-// class OverviewTab extends StatelessWidget {
-//   const OverviewTab({Key? key}) : super(key: key);
+class _SliverAppBarDelegate extends SliverPersistentHeaderDelegate {
+  final TabBar _tabBar;
 
-//   @override
-//   Widget build(BuildContext context) {
-//     return Center(
-//       child: Text(
-//         "Overview Tab",
-//         style: TextStyle(
-//           fontFamily: 'Poppins',
-//           fontWeight: FontWeight.bold,
-//           fontSize: 20.0,
-//         ),
-//       ),
-//     );
-//   }
-// }
+  _SliverAppBarDelegate(this._tabBar);
+
+  @override
+  double get minExtent => _tabBar.preferredSize.height;
+
+  @override
+  double get maxExtent => _tabBar.preferredSize.height;
+
+  @override
+  Widget build(
+      BuildContext context, double shrinkOffset, bool overlapsContent) {
+    return Container(
+      color: Colors.white,
+      child: _tabBar,
+    );
+  }
+
+  @override
+  bool shouldRebuild(_SliverAppBarDelegate oldDelegate) {
+    return false;
+  }
+}

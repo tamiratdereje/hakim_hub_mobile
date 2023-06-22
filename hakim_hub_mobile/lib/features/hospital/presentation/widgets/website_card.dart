@@ -1,19 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:hakim_hub_mobile/core/utils/colors.dart';
 
 import 'Inner_card.dart';
 
-class EmailCard extends StatelessWidget {
+class WebsiteCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: popup_email(),
+      body: websiteCard(),
     );
   }
 }
 
-class popup_email extends StatelessWidget {
-  const popup_email({
+class websiteCard extends StatelessWidget {
+  const websiteCard({
     super.key,
   });
 
@@ -22,7 +21,7 @@ class popup_email extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Container(
-        height: 200,
+        height: 140,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.all(Radius.circular(10)),
           color: Color.fromARGB(255, 240, 239, 239),
@@ -32,15 +31,14 @@ class popup_email extends StatelessWidget {
             ),
           ],
         ),
-        child: Column(
+        child: const Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Padding(
+            Padding(
               padding: EdgeInsets.only(left: 15.0, bottom: 4, top: 15),
               child: Text(
-                "Email",
+                "website",
                 style: TextStyle(
-                  color: Colors.black,
                   fontWeight: FontWeight.bold,
                   fontSize: 18,
                 ),
@@ -49,12 +47,8 @@ class popup_email extends StatelessWidget {
             SizedBox(height: 10),
             buildinnercard(
                 imagePath:
-                    "/home/fenet/Desktop/hakim_hub_mobile/hakim_hub_mobile/hakim_hub_mobile/assets/images/email_icon.png",
-                text: "blacklion@gmail.com"),
-            buildinnercard(
-                imagePath:
-                    "/home/fenet/Desktop/hakim_hub_mobile/hakim_hub_mobile/hakim_hub_mobile/assets/images/email_icon.png",
-                text: "blacklion@gmail.com"),
+                    "/home/fenet/Desktop/hakim_hub_mobile/hakim_hub_mobile/hakim_hub_mobile/assets/images/website_icon.png",
+                text: "www.blacklion.com"),
           ],
         ),
       ),
