@@ -9,16 +9,19 @@ import '../../../../router/routes.dart';
 import '../../domain/entities/filter_doctor_domain.dart';
 import 'doctor_filter_page.dart';
 
-class DoctorGridView extends StatefulWidget {
+class DoctorGridView extends StatelessWidget {
+  List<String> filterList;
+  final String institutionId;
+  Function onFilterChanged;
   List<DoctorDomain> doctors;
+  DoctorGridView(
+      {Key? key,
+      required this.doctors,
+      required this.filterList,
+      required this.onFilterChanged,
+      required this.institutionId})
+      : super(key: key);
 
-  DoctorGridView({Key? key, required this.doctors}) : super(key: key);
-
-  @override
-  State<DoctorGridView> createState() => _DoctorGridViewState();
-}
-
-class _DoctorGridViewState extends State<DoctorGridView> {
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -64,7 +67,7 @@ class _DoctorGridViewState extends State<DoctorGridView> {
           const SizedBox(height: 10),
           Expanded(
             child: GridView.builder(
-              itemCount: 20,
+              itemCount: doctors.length,
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2, // Change this to 4 for a 4x4 grid
                 crossAxisSpacing: UIConverter.getComponentWidth(context, 17.78),
@@ -74,15 +77,18 @@ class _DoctorGridViewState extends State<DoctorGridView> {
                         UIConverter.getComponentHeight(context, 139.69),
               ),
               itemBuilder: (BuildContext context, int index) {
+                final doctor = doctors[index];
                 return GestureDetector(
                   child: DoctorCard(
-                    imageUrl: 'assets/images/doctor_image.png',
-                    title: "Dr. Doe h",
-                    subtitle: 'ntist',
+                    imageUrl: doctor.photoUrl,
+                    title: doctor.fullName,
+                    subtitle: doctor.specialities.join(", "),
                   ),
                   onTap: () {
-                    context.pushNamed(AppRoutes.DoctorDetailPage,
-                        queryParameters: {"id": "id"});
+                    context.pushNamed(
+                      AppRoutes.DoctorDetailPage,
+                      queryParameters: {"id": doctor.id},
+                    );
                   },
                 );
               },

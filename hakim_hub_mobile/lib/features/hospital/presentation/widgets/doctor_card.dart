@@ -20,12 +20,15 @@ class DoctorCard extends StatelessWidget {
         clipBehavior: Clip.none,
         alignment: Alignment.center,
         children: [
-          buildCard(context),
+          buildCard(context, title, subtitle),
           Positioned(
-            top: -UIConverter.getComponentHeight(context, 19),
+            top: -UIConverter.getComponentHeight(context, 5),
             child: CircleAvatar(
               radius: UIConverter.getComponentHeight(context, 83) / 2,
-              backgroundImage: AssetImage(imageUrl),
+              backgroundImage: NetworkImage(imageUrl),
+              onBackgroundImageError: (exception, stackTrace) {
+                AssetImage(imageUrl);
+              },
             ),
           ),
         ],
@@ -34,7 +37,8 @@ class DoctorCard extends StatelessWidget {
   }
 }
 
-Widget buildCard(BuildContext context) {
+Widget buildCard(
+    BuildContext context, String doctorName, String doctorSpecialization) {
   return Card(
     color: Colors.white,
     shadowColor: Colors.black,
@@ -48,7 +52,7 @@ Widget buildCard(BuildContext context) {
             height: UIConverter.getComponentHeight(context, 72),
           ),
           Text(
-            'Dr.Daniel Doe',
+            doctorName,
             style: TextStyle(
               color: primaryTextColor,
               fontFamily: 'Poppins',
@@ -56,7 +60,7 @@ Widget buildCard(BuildContext context) {
             ),
           ),
           Text(
-            'Neurologist',
+            doctorSpecialization,
             style: TextStyle(
                 color: primaryColor,
                 fontWeight: FontWeight.bold,
