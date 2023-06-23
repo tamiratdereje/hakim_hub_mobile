@@ -3,14 +3,15 @@ import 'package:hakim_hub_mobile/core/utils/ui_converter.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
 class GalleryTab extends StatelessWidget {
-  const GalleryTab({Key? key}) : super(key: key);
+  List<String> images;
+  GalleryTab({Key? key, required this.images}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.all(UIConverter.getComponentWidth(context, 16)),
       child: MasonryGridView.builder(
-        itemCount: 9,
+        itemCount: images.length,
         gridDelegate: const SliverSimpleGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2),
         itemBuilder: (context, index) => Padding(
@@ -19,9 +20,12 @@ class GalleryTab extends StatelessWidget {
             vertical: UIConverter.getComponentHeight(context, 10),
           ),
           child: ClipRRect(
-              borderRadius: BorderRadius.circular(12),
-              child: Image.asset(
-                  'assets/images/grid_images/image${index + 1}.jpg')),
+            borderRadius: BorderRadius.circular(12),
+            child: Image.network(
+              images[index],
+              fit: BoxFit.cover,
+            ),
+          ),
         ),
       ),
     );
