@@ -81,58 +81,66 @@ class _OverviewDoctorGalleryPageState extends State<OverviewDoctorGalleryPage>
           ],
           locale: Locale("en", 'US'),
           child: BlocBuilder<HospitalDetailBloc, HospitalDetailState>(
-              builder: ((context, state) {
-            if (state is DetailHospitalLoading) {
-              return const CircularProgressIndicator(
-                color: Colors.red,
-              );
-            } else if (state is DetailHospitalSuccess) {
-              return CustomScrollView(
-                slivers: <Widget>[
-                  SliverPersistentHeader(
-                    delegate: _SliverAppBarDelegate(
-                      TabBar(
-                        labelColor: primaryColor,
+            builder: ((context, state) {
+              if (state is DetailHospitalLoading) {
+                return const Center(
+                  child: CircularProgressIndicator(
+                    color: Colors.red,
+                  ),
+                );
+              } else if (state is DetailHospitalSuccess) {
+                return CustomScrollView(
+                  slivers: <Widget>[
+                    SliverPersistentHeader(
+                      delegate: _SliverAppBarDelegate(
+                        TabBar(
+                          labelColor: primaryColor,
+                          controller: _tabController,
+                          onTap: _onButtonPressed,
+                          tabs: [
+                            Tab(
+                              text: 'Overview',
+                            ),
+                            Tab(text: 'Doctors'),
+                            Tab(text: 'Gallery'),
+                          ],
+                        ),
+                      ),
+                      pinned: true,
+                    ),
+                    SliverFillRemaining(
+                      child: TabBarView(
                         controller: _tabController,
-                        onTap: _onButtonPressed,
-                        tabs: [
-                          Tab(
-                            text: 'Overview',
+                        children: [
+                          OverviewTab(
+                            institutionDetailDomain:
+                                state.institutionDetailDomain,
                           ),
-                          Tab(text: 'Doctors'),
-                          Tab(text: 'Gallery'),
+                          DoctorGridView(
+                            institutionId: state.institutionDetailDomain.id,
+                            filterList:
+                                state.institutionDetailDomain.allSpecialities,
+                            onFilterChanged: (doctorFilterDomain) {
+                              BlocProvider.of<HospitalDetailBloc>(context).add(
+                                  DoctorFilterEvent(
+                                      filter: doctorFilterDomain,
+                                      institutionDetailDomain:
+                                          state.institutionDetailDomain));
+                            },
+                          ),
+                          GalleryTab(
+                            images: state.institutionDetailDomain.photos,
+                          ),
                         ],
                       ),
                     ),
-                    pinned: true,
-                  ),
-                  SliverFillRemaining(
-                    child: TabBarView(
-                      controller: _tabController,
-                      children: [
-                        OverviewTab(),
-                        DoctorGridView(
-                          institutionId: state.institutionDetailDomain.id,
-                          filterList:
-                              state.institutionDetailDomain.allSpecialities,
-                          onFilterChanged: (doctorFilterDomain) {
-                            BlocProvider.of<HospitalDetailBloc>(context).add(
-                                DoctorFilterEvent(
-                                    filter: doctorFilterDomain,
-                                    institutionDetailDomain:
-                                        state.institutionDetailDomain));
-                          },
-                        ),
-                        GalleryTab(),
-                      ],
-                    ),
-                  ),
-                ],
-              );
-            } else {
-              return Text('Error');
-            }
-          })),
+                  ],
+                );
+              } else {
+                return Text('Error');
+              }
+            }),
+          ),
         ),
       ),
     );

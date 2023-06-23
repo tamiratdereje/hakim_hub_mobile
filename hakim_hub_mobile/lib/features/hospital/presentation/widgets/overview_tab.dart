@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:hakim_hub_mobile/core/utils/icons.dart';
 import 'package:hakim_hub_mobile/features/core/splash_screen.dart';
+import 'package:hakim_hub_mobile/features/hospital/domain/entities/hospital_detail_domain.dart';
 import 'package:hakim_hub_mobile/features/hospital/presentation/widgets/hospital_card.dart';
 
 import '../../../../core/utils/colors.dart';
 
 class OverviewTab extends StatefulWidget {
-  const OverviewTab({super.key});
+  const OverviewTab({super.key, required InstitutionDetailDomain institutionDetailDomain});
 
   @override
   State<OverviewTab> createState() => _OverviewTabState();
