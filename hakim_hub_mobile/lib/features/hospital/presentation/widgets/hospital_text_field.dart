@@ -60,6 +60,7 @@ class _HospitalSearchFieldState extends State<HospitalSearchField> {
                   child: GestureDetector(
                 child: filter,
                 onTap: () async {
+                  
                   FilterHospitalDomain filterHospitalDomain = (await showModalBottomSheet<FilterHospitalDomain>(
                     isScrollControlled: true,
                     backgroundColor: titleTextColor,
