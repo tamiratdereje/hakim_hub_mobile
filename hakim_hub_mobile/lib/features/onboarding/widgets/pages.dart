@@ -10,7 +10,7 @@ List pages = [
     'adequate information about doctors and where to find them',
   ],
   [
-    'onboarding_Img3.png',
+    'Onboarding_img3.png',
     'Customize your search',
     'Search for doctors or hospitals according to your needs and preferences',
   ],

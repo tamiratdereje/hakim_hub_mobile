@@ -8,6 +8,8 @@ import 'package:hakim_hub_mobile/features/doctor/presentation/screen/doctor_deta
 import 'package:hakim_hub_mobile/features/hospital/presentation/screen/overview_doctor_gallery_page.dart';
 import 'package:hakim_hub_mobile/router/routes.dart';
 
+import '../features/onboarding/screens/splash_screen1.dart';
+
 class RouterMain extends StatelessWidget {
   late final GoRouter _router;
 
@@ -18,7 +20,7 @@ class RouterMain extends StatelessWidget {
   RouterMain({Key? key}) : super(key: key) {
     _router = GoRouter(
       // redirect: (context, state) => redirector(state),
-      initialLocation: AppRoutes.Home,
+      initialLocation: AppRoutes.SplashPage,
       routes: <GoRoute>[
         GoRoute(
             path: AppRoutes.Home,
@@ -42,7 +44,7 @@ class RouterMain extends StatelessWidget {
         GoRoute(
           path: AppRoutes.SplashPage,
           pageBuilder: (context, state) =>
-              const MaterialPage(child: SplashPage()),
+              const MaterialPage(child: OnBordingPage()),
         ),
       ],
     );

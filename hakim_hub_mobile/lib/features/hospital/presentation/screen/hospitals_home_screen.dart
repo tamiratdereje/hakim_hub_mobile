@@ -73,6 +73,7 @@ class _HospitalsHomeScreenState extends State<HospitalsHomeScreen> {
               ),
               Expanded(
                 child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     BlocConsumer<SearchHospitalBloc, SearchHospitalState>(

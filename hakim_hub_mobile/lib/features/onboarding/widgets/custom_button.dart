@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
+import '../../../core/shared_widgets/bottom_nav.dart';
 import '../../../core/utils/colors.dart';
 import '../../../core/utils/ui_converter.dart';
+import '../../../router/routes.dart';
 import '../../hospital/presentation/screen/hospitals_home_screen.dart';
 
 class CustomButton extends StatelessWidget {
@@ -32,12 +35,7 @@ class CustomButton extends StatelessWidget {
         child: TextButton(
           onPressed: () {
             if (currentIndex == pages.length - 1) {
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(
-                  builder: (_) => const HospitalsHomeScreen(),
-                ),
-              );
+              context.push(AppRoutes.Home);
             }
 
             controller.nextPage(

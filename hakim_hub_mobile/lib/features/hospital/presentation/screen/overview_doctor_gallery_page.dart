@@ -86,8 +86,10 @@ class _OverviewDoctorGalleryPageState extends State<OverviewDoctorGalleryPage>
         body: BlocBuilder<HospitalDetailBloc, HospitalDetailState>(
             builder: ((context, state) {
           if (state is DetailHospitalLoading) {
-            return const CircularProgressIndicator(
-              color: Colors.red,
+            return const Center(
+              child:  CircularProgressIndicator(
+                color: Colors.red,
+              ),
             );
           } else if (state is DetailHospitalSuccess) {
             return Column(
@@ -96,7 +98,7 @@ class _OverviewDoctorGalleryPageState extends State<OverviewDoctorGalleryPage>
                   labelColor: primaryColor,
                   controller: _tabController,
                   onTap: _onButtonPressed,
-                  tabs: [
+                  tabs: const [
                     Tab(
                       text: 'Overview',
                     ),
@@ -132,36 +134,10 @@ class _OverviewDoctorGalleryPageState extends State<OverviewDoctorGalleryPage>
               ],
             );
           } else {
-            return Text('Error');
+            return const Center(child: Text('Error while fetching'));
           }
         })),
       ),
     );
-  }
-}
-
-class _SliverAppBarDelegate extends SliverPersistentHeaderDelegate {
-  final TabBar _tabBar;
-
-  _SliverAppBarDelegate(this._tabBar);
-
-  @override
-  double get minExtent => _tabBar.preferredSize.height;
-
-  @override
-  double get maxExtent => _tabBar.preferredSize.height;
-
-  @override
-  Widget build(
-      BuildContext context, double shrinkOffset, bool overlapsContent) {
-    return Container(
-      color: Colors.white,
-      child: _tabBar,
-    );
-  }
-
-  @override
-  bool shouldRebuild(_SliverAppBarDelegate oldDelegate) {
-    return false;
   }
 }
