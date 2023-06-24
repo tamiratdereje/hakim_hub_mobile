@@ -5,6 +5,7 @@ import 'package:hakim_hub_mobile/features/hospital/domain/entities/hospital_deta
 import 'package:hakim_hub_mobile/features/hospital/presentation/widgets/hospital_card.dart';
 
 import '../../../../core/utils/colors.dart';
+import '../../../../core/utils/ui_converter.dart';
 
 class OverviewTab extends StatefulWidget {
   final InstitutionDetailDomain institutionDetailDomain;
@@ -27,143 +28,144 @@ class _OverviewTabState extends State<OverviewTab> {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Column(
-        children: [
-          Stack(children: [
-            Positioned(
-              top: 0,
-              left: 0,
-              right: 0,
-              child: GestureDetector(
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => SplashPage()),
-                  );
-                },
-                child: Image.asset(
-                  'assets/images/black_lion.png',
-                  height: 200,
-                  fit: BoxFit.cover,
+    return Padding(
+      padding: EdgeInsets.only(
+          left: UIConverter.getComponentWidth(context, 30),
+          right: UIConverter.getComponentWidth(context, 30),
+          top: UIConverter.getComponentHeight(context, 25),
+          bottom: UIConverter.getComponentHeight(context, 25)),
+      child: SingleChildScrollView(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            SizedBox(
+              height: UIConverter.getComponentHeight(context, 340),
+              width: UIConverter.getComponentWidth(context, 382),
+              child: Stack(children: [
+                Positioned(
+                  top: 0,
+                  left: 0,
+                  right: 0,
+                  child: Container(
+                    height: UIConverter.getComponentHeight(context, 254),
+                    width: UIConverter.getComponentWidth(context, 382),
+                    child: Image.asset(
+                      'assets/images/black_lion.png',
+                      fit: BoxFit.cover,
+                    ),
+                  ),
                 ),
-              ),
+                Positioned(
+                  top: UIConverter.getComponentHeight(context, 214),
+                  left: UIConverter.getComponentWidth(context, 30),
+                  right: UIConverter.getComponentWidth(context, 30),
+                  child: HospitalCard(),
+                ),
+              ]),
             ),
-            Positioned(
-              top: 160,
-              left: 30,
-              right: 30,
-              child: HospitalCard(),
+            const Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Text(
+                  'Hospital Description',
+                  style: TextStyle(
+                    fontSize: 18,
+                  ),
+                ),
+              ],
             ),
-          ]),
-          Padding(
-            padding: const EdgeInsets.only(top: 280, right: 16, left: 16),
-            child: Text(
-              'Hospital Description',
-              style: const TextStyle(
-                fontSize: 18,
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 320, right: 16, left: 16),
-            child: Text(
+            SizedBox(height: UIConverter.getComponentHeight(context, 16)),
+            Text(
               widget.institutionDetailDomain.summary,
               style: const TextStyle(
                 fontSize: 15,
               ),
             ),
-          ),
-          const SizedBox(height: 16),
-          Padding(
-            padding: const EdgeInsets.only(top: 430, right: 26, left: 16),
-            child: Image.asset(
+            SizedBox(height: UIConverter.getComponentHeight(context, 30)),
+            Image.asset(
               'assets/images/google_map.jfif',
-              height: 200,
-              width: 300,
+              height: UIConverter.getComponentHeight(context, 180),
+              width: UIConverter.getComponentWidth(context, 382),
               fit: BoxFit.cover,
             ),
-          ),
-          const SizedBox(
-            height: 60,
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 658.0, right: 16, left: 16),
-            child: const Text(
-              'Services We Provide',
-              style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ),
-          const SizedBox(height: 16),
-          Padding(
-            padding: const EdgeInsets.only(top: 698.0),
-            child: ListView.builder(
-              shrinkWrap: true,
-              itemCount: widget.institutionDetailDomain.services.length,
-              itemBuilder: (BuildContext context, int index) {
-                return Container(
-                  decoration: BoxDecoration(
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.grey.withOpacity(0.07),
-                        spreadRadius: 1,
-                        blurRadius: 5,
-                        offset: const Offset(0, 3),
-                      ),
-                    ],
-                  ),
-                  child: ListTile(
-                    leading: Image.asset('assets/images/right_icon.png'),
-                    title: Text(
-                      widget.institutionDetailDomain.services[index],
-                      style: const TextStyle(fontSize: 13),
-                    ),
-                  ),
-                );
-              },
-            ),
-          ),
-          const SizedBox(
-            height: 15,
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 938.0, right: 16, left: 16),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
+            SizedBox(height: UIConverter.getComponentHeight(context, 50)),
+            const Row(
               children: [
-                Row(
-                  children: [
-                    clock,
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: const Text("Available 24 hrs  5 days a week"),
-                    )
-                  ],
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    location,
-                    SizedBox(
-                      width: 300,
-                      child: Text(
-                        widget.institutionDetailDomain.address.summary,
-                        maxLines: 2,
-                      ),
-                    ),
-                  ],
-                ),
-                TextButton(
-                  onPressed: () {},
-                  child: const Text("SEE IT ON MAP"),
+                Text(
+                  'Services We Provide',
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ],
             ),
-          ),
-        ],
+            SizedBox(height: UIConverter.getComponentHeight(context, 15)),
+            SizedBox(
+              height: 200,
+              width: UIConverter.getComponentWidth(context, 382),
+              child: ListView.separated(
+                separatorBuilder: (BuildContext context, int index) =>
+                    const Divider(),
+                itemCount: widget.institutionDetailDomain.services.length,
+                itemBuilder: (BuildContext context, int index) {
+                  return Container(
+                    height: UIConverter.getComponentHeight(context, 30),
+                    decoration: BoxDecoration(
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey.withOpacity(0.07),
+                          spreadRadius: 1,
+                          blurRadius: 5,
+                          offset: const Offset(0, 3),
+                        ),
+                      ],
+                    ),
+                    child: ListTile(
+                      leading: Image.asset('assets/images/right_icon.png'),
+                      title: Text(
+                        widget.institutionDetailDomain.services[index],
+                        style: const TextStyle(fontSize: 13),
+                      ),
+                    ),
+                  );
+                },
+              ),
+            ),
+            SizedBox(height: UIConverter.getComponentHeight(context, 50)),
+            Row(
+              children: [
+                clock,
+                SizedBox(width: UIConverter.getComponentWidth(context, 10)),
+                const Text(
+                  "Available 24 hrs  5 days a week",
+                  style: TextStyle(fontSize: 15, color: titleTextColor),
+                ),
+              ],
+            ),
+            SizedBox(height: UIConverter.getComponentHeight(context, 20)),
+            Row(
+              children: [
+                location,
+                SizedBox(width: UIConverter.getComponentWidth(context, 10)),
+                SizedBox(
+                  width: UIConverter.getComponentWidth(context, 300),
+                  child: Text(widget.institutionDetailDomain.address.summary,
+                      maxLines: 2,
+                      style:
+                          const TextStyle(fontSize: 15, color: titleTextColor)),
+                ),
+              ],
+            ),
+           Row(children: [
+             TextButton(
+              onPressed: () {},
+              child: const Text("SEE IT ON MAP"),
+            ),
+           ],)
+          ],
+        ),
       ),
     );
   }

@@ -22,7 +22,7 @@ class _DoctorFilterPageState extends State<DoctorFilterPage> {
   bool isSwitched = false;
   int sliderValue = 10;
 
-  List<String> options = ['Option 1', 'Option 2', 'Option 3'];
+  List<String> options = ["", 'Option 1', 'Option 2', 'Option 3'];
 
   List<String> selectedList = [];
 
@@ -37,10 +37,10 @@ class _DoctorFilterPageState extends State<DoctorFilterPage> {
       selectedList.add(serviceName);
     });
   }
-  String selectedOption = "Option 1";
+
+  String selectedOption = "";
   @override
   Widget build(BuildContext context) {
-    
     return Container(
       padding: EdgeInsets.only(
         top: UIConverter.getComponentHeight(context, 35),
@@ -89,66 +89,28 @@ class _DoctorFilterPageState extends State<DoctorFilterPage> {
                 )
               ],
             ),
-            Row(
-              children: [
-                const Text(
-                  "Open Now",
-                  style: TextStyle(
-                    color: primaryColor,
-                    fontSize: 20,
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-                SizedBox(
-                  width: UIConverter.getComponentWidth(context, 32),
-                ),
-                Switch(
-                  value: isSwitched,
-                  onChanged: (value) {
-                    setState(() {
-                      isSwitched = value;
-                    });
-                  },
-                  activeTrackColor: secondaryColor,
-                  activeColor: primaryColor,
-                  inactiveThumbColor: primaryColor,
-                  inactiveTrackColor: secondryTextColor,
-                  trackOutlineColor: MaterialStateColor.resolveWith(
-                    (states) => primaryColor,
-                  ),
-                )
-              ],
-            ),
             SizedBox(
               height: UIConverter.getComponentHeight(context, 10),
             ),
-             const Text(
-              "Years of Experience",
+            const Text(
+              "Education",
               style: TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.w600,
                   color: primaryColor),
             ),
-            SizedBox(
-              height: UIConverter.getComponentHeight(context, 10),
-            ),
             DropdownButton<String>(
               isExpanded: true,
               iconEnabledColor: Colors.red,
               enableFeedback: Colors.red == Colors.red,
-              
               value: selectedOption,
               items: options.map((String option) {
                 return DropdownMenuItem<String>(
                   value: option,
-                  
                   child: Row(
-                    
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                    Icon(Icons.rotate_90_degrees_ccw),
-                    Text(option)
-                  ],),
+                    children: [Icon(Icons.rotate_90_degrees_ccw), Text(option)],
+                  ),
                 );
               }).toList(),
               onChanged: (value) {
@@ -158,7 +120,7 @@ class _DoctorFilterPageState extends State<DoctorFilterPage> {
               },
             ),
             SizedBox(
-              height: UIConverter.getComponentHeight(context, 20),
+              height: UIConverter.getComponentHeight(context, 15),
             ),
             const Text(
               "Years of Experience",
@@ -168,7 +130,7 @@ class _DoctorFilterPageState extends State<DoctorFilterPage> {
                   color: primaryColor),
             ),
             SizedBox(
-              height: UIConverter.getComponentHeight(context, 20),
+              height: UIConverter.getComponentHeight(context, 15),
             ),
             SliderTheme(
               data: const SliderThemeData(
@@ -206,7 +168,7 @@ class _DoctorFilterPageState extends State<DoctorFilterPage> {
               ),
             ),
             SizedBox(
-              height: UIConverter.getComponentHeight(context, 20),
+              height: UIConverter.getComponentHeight(context, 15),
             ),
             const Text(
               "Specialities",
