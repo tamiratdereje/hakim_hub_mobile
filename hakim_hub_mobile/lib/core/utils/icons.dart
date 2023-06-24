@@ -9,7 +9,7 @@ const Icon send = Icon(Icons.send);
 const Icon location = Icon(Icons.location_on);
 const Icon search = Icon(Icons.search_outlined);
 const Icon star = Icon(Icons.star_border);
-const Icon clock = Icon(Icons.watch_later);
+const Icon clock= Icon(Icons.watch_later_outlined);
 const Icon running = Icon(Icons.directions_walk_outlined);
 const Icon backIcon = Icon(Icons.arrow_circle_left);
 const Icon email = Icon(Icons.email);
@@ -26,8 +26,8 @@ const Icon backButtonPro =  Icon(Icons.arrow_back);
 
 const Icon alarm = Icon(Icons.watch_later_outlined);
 
-const Icon cancel = Icon(Icons.close, color: Colors.red, size:40);
+const Icon cancel = Icon(Icons.close, color: Colors.red, size:30);
 const Icon check = Icon(
-  Icons.check, color: Colors.green, size:40);
+  Icons.check, color: Colors.green, size:30);
 
   const Icon filter = Icon(Icons.filter_list_outlined);

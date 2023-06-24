@@ -83,98 +83,61 @@ class _OverviewDoctorGalleryPageState extends State<OverviewDoctorGalleryPage>
             },
           ),
         ),
-        body: Localizations(
-          delegates: [
-            GlobalMaterialLocalizations.delegate,
-            GlobalWidgetsLocalizations.delegate,
-          ],
-          locale: Locale("en", 'US'),
-          child: BlocBuilder<HospitalDetailBloc, HospitalDetailState>(
-              builder: ((context, state) {
-            if (state is DetailHospitalLoading) {
-              return const CircularProgressIndicator(
+        body: BlocBuilder<HospitalDetailBloc, HospitalDetailState>(
+            builder: ((context, state) {
+          if (state is DetailHospitalLoading) {
+            return const Center(
+              child:  CircularProgressIndicator(
                 color: Colors.red,
-              );
-            } else if (state is DetailHospitalSuccess) {
-              return CustomScrollView(
-                slivers: <Widget>[
-                  SliverPersistentHeader(
-                    delegate: _SliverAppBarDelegate(
-                      TabBar(
-                        labelColor: primaryColor,
-                        controller: _tabController,
-                        onTap: _onButtonPressed,
-                        tabs: [
-                          Tab(
-                            text: 'Overview',
-                          ),
-                          Tab(text: 'Doctors'),
-                          Tab(text: 'Gallery'),
-                        ],
+              ),
+            );
+          } else if (state is DetailHospitalSuccess) {
+            return Column(
+              children: [
+                TabBar(
+                  labelColor: primaryColor,
+                  controller: _tabController,
+                  onTap: _onButtonPressed,
+                  tabs: const [
+                    Tab(
+                      text: 'Overview',
+                    ),
+                    Tab(text: 'Doctors'),
+                    Tab(text: 'Gallery'),
+                  ],
+                ),
+                Expanded(
+                  child: TabBarView(
+                    controller: _tabController,
+                    children: [
+                      OverviewTab(
+                        institutionDetailDomain: state.institutionDetailDomain,
                       ),
-                    ),
-                    pinned: true,
+                      DoctorGridView(
+                        doctors: state.institutionDetailDomain.doctors,
+                        institutionId: state.institutionDetailDomain.id,
+                        filterList:
+                            state.institutionDetailDomain.allSpecialities,
+                        onFilterChanged: (doctorFilterDomain) {
+                          BlocProvider.of<HospitalDetailBloc>(context).add(
+                              DoctorFilterEvent(
+                                  filter: doctorFilterDomain,
+                                  institutionDetailDomain:
+                                      state.institutionDetailDomain));
+                        },
+                      ),
+                      GalleryTab(images: state.institutionDetailDomain.photos),
+                    ],
                   ),
-                  SliverFillRemaining(
-                    child: TabBarView(
-                      controller: _tabController,
-                      children: [
-                        OverviewTab(
-                          institutionDetailDomain:
-                              state.institutionDetailDomain,
-                        ),
-                        DoctorGridView(
-                          doctors: state.institutionDetailDomain.doctors,
-                          institutionId: state.institutionDetailDomain.id,
-                          filterList:
-                              state.institutionDetailDomain.allSpecialities,
-                          onFilterChanged: (doctorFilterDomain) {
-                            BlocProvider.of<HospitalDetailBloc>(context).add(
-                                DoctorFilterEvent(
-                                    filter: doctorFilterDomain,
-                                    institutionDetailDomain:
-                                        state.institutionDetailDomain));
-                          },
-                        ),
-                        GalleryTab(
-                            images: state.institutionDetailDomain.photos),
-                      ],
-                    ),
-                  ),
-                ],
-              );
-            } else {
-              return Text('Error');
-            }
-          })),
-        ),
+                ),
+
+              ],
+            );
+          } else {
+            return const Center(child: Text('Error while fetching'));
+          }
+        })),
       ),
     );
-  }
-}
-
-class _SliverAppBarDelegate extends SliverPersistentHeaderDelegate {
-  final TabBar _tabBar;
-
-  _SliverAppBarDelegate(this._tabBar);
-
-  @override
-  double get minExtent => _tabBar.preferredSize.height;
-
-  @override
-  double get maxExtent => _tabBar.preferredSize.height;
-
-  @override
-  Widget build(
-      BuildContext context, double shrinkOffset, bool overlapsContent) {
-    return Container(
-      color: Colors.white,
-      child: _tabBar,
-    );
-  }
-
-  @override
-  bool shouldRebuild(_SliverAppBarDelegate oldDelegate) {
-    return false;
   }
 }
