@@ -1,12 +1,12 @@
 import 'package:equatable/equatable.dart';
 
-class DoctorEntity extends Equatable {
-  String name;
+class ChatDoctorEntity extends Equatable {
+  String fullName;
   String photoUrl;
-  String id; 
-  
-  DoctorEntity({
-    required this.name,
+  String id;
+
+  ChatDoctorEntity({
+    required this.fullName,
     required this.photoUrl,
     required this.id,
   });

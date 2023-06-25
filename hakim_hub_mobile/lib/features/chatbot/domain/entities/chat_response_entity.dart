@@ -1,9 +1,9 @@
 import 'package:equatable/equatable.dart';
-import 'package:hakim_hub_mobile/features/chatbot/domain/entities/institute.dart';
+import 'package:hakim_hub_mobile/features/chatbot/domain/entities/chat_institute_entity.dart';
 
 class ChatResponse extends Equatable {
   String reply;
-  List<InstituteEntity> institutes;
+  List<ChatInstituteEntity> institutes;
   String speciality;
 
   ChatResponse({

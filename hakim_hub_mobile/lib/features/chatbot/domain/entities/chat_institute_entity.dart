@@ -1,13 +1,13 @@
 import 'package:equatable/equatable.dart';
-import 'package:hakim_hub_mobile/features/chatbot/domain/entities/doctor_entity.dart';
+import 'package:hakim_hub_mobile/features/chatbot/domain/entities/chat_doctor_entity.dart';
 
-class InstituteEntity extends Equatable {
+class ChatInstituteEntity extends Equatable {
   String instituteName;
-  List<DoctorEntity> doctors;
+  List<ChatDoctorEntity> doctors;
   String instituteId;
   String logoUrl;
 
-  InstituteEntity({
+  ChatInstituteEntity({
     required this.doctors,
     required this.instituteName,
     required this.instituteId,
