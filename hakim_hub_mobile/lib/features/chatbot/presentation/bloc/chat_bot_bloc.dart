@@ -12,23 +12,18 @@ part 'chat_bot_event.dart';
 class ChatBotBloc extends Bloc<ChatBotEvent, ChatBotState> {
   final GetChatResponse getChatResponse;
   ChatBotBloc({required this.getChatResponse}) : super(ChatBotInitialState()) {
-    on<GetChatResponseEvent>(
-      (event, emit) {},
-    );
-  }
-
-  ChatBotState chatResponseSuccessOrFailure(
-      Either<Failure, ChatResponse> data) {
-    return data.fold(
-      (error) => ChatBotFailureState(error: error),
-      (success) => ChatBotSuccessState(chatResponse: success),
-    );
-  }
-
-  void _getChatResponse(
-      GetChatResponseEvent event, Emitter<ChatBotState> emit) async {
-    emit(ChatBotLoadingState());
-    final result = await getChatResponse(event.request);
-    emit(chatResponseSuccessOrFailure(result));
+    on<GetChatResponseEvent>((event, emit) async {
+      emit(ChatBotLoadingState());
+      final result = await getChatResponse(event.request).then(
+        (value) {
+          value.fold((l) => emit(ChatBotFailureState(error: l)), (r) {
+            print("return from bloc");
+            print(r);
+            print("after return from bloc");
+            return emit(ChatBotSuccessState(chatResponse: r));
+          });
+        },
+      );
+    });
   }
 }

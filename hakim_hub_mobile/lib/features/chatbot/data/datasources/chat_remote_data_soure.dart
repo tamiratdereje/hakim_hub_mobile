@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:hakim_hub_mobile/core/error/exception.dart';
 import 'package:hakim_hub_mobile/features/chatbot/data/models/chat_request_model.dart';
@@ -30,8 +31,10 @@ class ChatRemoteDataSourceImpl implements ChatRemoteDataSource {
     final response = await client.post(
       Uri.parse(baseUrl + "/chat"),
       body: jsonBody,
-      headers: {'Content-Type': 'application/json'},
+      headers: {HttpHeaders.contentTypeHeader: 'application/json'},
     );
+    print("Error in ChatRemoteDataSourceImpl");
+    print(response.body);
 
     if (response.statusCode == 200) {
       final jsonResponse = json.decode(response.body);

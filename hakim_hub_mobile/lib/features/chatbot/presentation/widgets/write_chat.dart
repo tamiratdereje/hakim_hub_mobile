@@ -6,8 +6,8 @@ import '../../../../core/utils/icons.dart';
 import '../../../../router/routes.dart';
 
 class WriteChat extends StatelessWidget {
-  const WriteChat({super.key});
-
+   WriteChat({super.key});
+  TextEditingController _controller = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -26,10 +26,11 @@ class WriteChat extends StatelessWidget {
           ),
         ),
         child:  TextField(
+          controller: _controller,
           decoration: InputDecoration(
             suffixIcon: GestureDetector(child: send,
             onTap: () {
-              context.pushNamed(AppRoutes.ChatPage);
+              context.pushNamed(AppRoutes.ChatPage, queryParameters: {"chatBotIntialMessage": _controller.text});
             },
             ),
             hintText: 'Write a message ...',

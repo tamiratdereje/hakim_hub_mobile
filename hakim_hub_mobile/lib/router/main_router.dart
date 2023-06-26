@@ -51,7 +51,7 @@ class RouterMain extends StatelessWidget {
           path: AppRoutes.ChatPage,
           name: AppRoutes.ChatPage,
           pageBuilder: (context, state) =>
-              MaterialPage(child: ChatPage()),
+              MaterialPage(child: ChatPage(chatBotIntialMessage: state.queryParameters["chatBotIntialMessage"]!,)),
         ),
       ],
     );
