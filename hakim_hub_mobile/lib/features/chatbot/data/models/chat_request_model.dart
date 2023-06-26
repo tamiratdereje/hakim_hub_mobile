@@ -7,8 +7,16 @@ class ChatRequestModel extends ChatRequest {
     required bool isNew,
     required String message,
   }) : super(
-    address : address,
-    isNew : isNew,
-    message : message,
-  );
+          address: address,
+          isNew: isNew,
+          message: message,
+        );
+
+  Map<String, dynamic> toJson() {
+    return {
+      "address": address,
+      "isNew": isNew,
+      "message": message,
+    };
+  }
 }

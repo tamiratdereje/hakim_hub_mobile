@@ -1,6 +1,4 @@
 import 'dart:convert';
-import 'dart:io';
-
 import 'package:hakim_hub_mobile/core/error/exception.dart';
 import 'package:hakim_hub_mobile/features/doctor/data/models/doctor_detail_model.dart';
 import 'package:http/http.dart' as http;
@@ -20,16 +18,12 @@ class DoctorDetailRemoteDataSourceImpl implements DoctorDetailRemoteDataSource {
 
   @override
   Future<DoctorDetailModel> getDoctorDetail(String id) async {
-    print("data provider");
     final response = await client.get(
       Uri.parse("${baseUrl}/DoctorProfiles/${id}"),
       headers: {
         'Content-Type': 'application/json',
       },
     );
-
-    print("provided");
-    print(response.body);
 
     if (response.statusCode == 200) {
       final jsonResponse = json.decode(response.body);
