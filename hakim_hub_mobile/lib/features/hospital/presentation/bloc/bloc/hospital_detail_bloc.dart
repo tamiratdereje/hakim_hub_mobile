@@ -18,6 +18,7 @@ class HospitalDetailBloc
 
   HospitalDetailBloc({required this.getDoctorByFilter,required this.getHospitalDetail})
       : super(HospitalDetailInitial()) {
+        
     on<HospitalDetailEvent>((event, emit) {});
 
     on<HospitalDetailGetEvent>((event, emit) async {

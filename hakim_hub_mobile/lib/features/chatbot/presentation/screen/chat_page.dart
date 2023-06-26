@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../../../core/utils/colors.dart';
-import '../../../../core/utils/icons.dart';
+
 import '../../../../core/utils/pixle_to_percent.dart';
-import '../../../../core/utils/ui_converter.dart';
 
 class ChatPage extends StatefulWidget {
   @override
