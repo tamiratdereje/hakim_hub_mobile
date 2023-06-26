@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../../../core/utils/colors.dart';
 import '../../../../core/utils/icons.dart';
+import '../../../../router/routes.dart';
 
 class WriteChat extends StatelessWidget {
   const WriteChat({super.key});
@@ -23,9 +25,13 @@ class WriteChat extends StatelessWidget {
             Adaptive.w(4.6),
           ),
         ),
-        child: const TextField(
+        child:  TextField(
           decoration: InputDecoration(
-            suffixIcon: send,
+            suffixIcon: GestureDetector(child: send,
+            onTap: () {
+              context.pushNamed(AppRoutes.ChatPage);
+            },
+            ),
             hintText: 'Write a message ...',
             border: InputBorder.none,
           ),

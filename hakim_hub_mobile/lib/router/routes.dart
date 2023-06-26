@@ -5,5 +5,6 @@ class AppRoutes {
   static const DoctorDetailPage = '/doctor-detail-page';
   static const Home = '/';
   static const SplashPage = '/splash-page';
+  static const ChatPage = '/chat-page';
   
 }

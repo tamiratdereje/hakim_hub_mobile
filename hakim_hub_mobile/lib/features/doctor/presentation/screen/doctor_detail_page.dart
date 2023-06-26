@@ -40,6 +40,7 @@ class _DoctorDetailPageState extends State<DoctorDetailPage> {
         return Scaffold(
           body: SafeArea(
             child: Container(
+              padding: EdgeInsets.only(top: UIConverter.getComponentHeight(context, 30)),
               height: double.infinity,
               color: Colors.white,
               child: SingleChildScrollView(
@@ -173,7 +174,7 @@ class _DoctorDetailPageState extends State<DoctorDetailPage> {
                             style: const TextStyle(
                                 fontWeight: FontWeight.w400,
                                 color: primaryTextColor,
-                                fontSize: 14),
+                                fontSize: 16),
                           ),
                           SizedBox(
                             height: UIConverter.getComponentHeight(context, 30),

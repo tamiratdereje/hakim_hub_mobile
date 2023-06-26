@@ -8,6 +8,7 @@ import 'package:hakim_hub_mobile/features/doctor/presentation/screen/doctor_deta
 import 'package:hakim_hub_mobile/features/hospital/presentation/screen/overview_doctor_gallery_page.dart';
 import 'package:hakim_hub_mobile/router/routes.dart';
 
+import '../features/chatbot/presentation/screen/chat_page.dart';
 import '../features/onboarding/screens/splash_screen1.dart';
 
 class RouterMain extends StatelessWidget {
@@ -45,6 +46,12 @@ class RouterMain extends StatelessWidget {
           path: AppRoutes.SplashPage,
           pageBuilder: (context, state) =>
               const MaterialPage(child: OnBordingPage()),
+        ),
+        GoRoute(
+          path: AppRoutes.ChatPage,
+          name: AppRoutes.ChatPage,
+          pageBuilder: (context, state) =>
+              MaterialPage(child: ChatPage()),
         ),
       ],
     );
