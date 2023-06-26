@@ -71,7 +71,7 @@ class _ChatLandingPageState extends State<ChatLandingPage> {
               ],
             ),
           ),
-          const Align(
+          Align(
             alignment: Alignment.bottomCenter,
             child: WriteChat(),
           ),

@@ -40,7 +40,8 @@ class _DoctorDetailPageState extends State<DoctorDetailPage> {
         return Scaffold(
           body: SafeArea(
             child: Container(
-              padding: EdgeInsets.only(top: UIConverter.getComponentHeight(context, 30)),
+              padding: EdgeInsets.only(
+                  top: UIConverter.getComponentHeight(context, 30)),
               height: double.infinity,
               color: Colors.white,
               child: SingleChildScrollView(
@@ -88,7 +89,7 @@ class _DoctorDetailPageState extends State<DoctorDetailPage> {
                           height: UIConverter.getComponentHeight(context, 20),
                         ),
                         Text(
-                          "Dr. " + doctorDetail.fullName,
+                          doctorDetail.fullName,
                           style: const TextStyle(
                               fontWeight: FontWeight.w700,
                               color: titleTextColor,

@@ -21,7 +21,7 @@ class RouterMain extends StatelessWidget {
   RouterMain({Key? key}) : super(key: key) {
     _router = GoRouter(
       // redirect: (context, state) => redirector(state),
-      initialLocation: AppRoutes.SplashPage,
+      initialLocation: AppRoutes.Home,
       routes: <GoRoute>[
         GoRoute(
             path: AppRoutes.Home,
@@ -51,7 +51,7 @@ class RouterMain extends StatelessWidget {
           path: AppRoutes.ChatPage,
           name: AppRoutes.ChatPage,
           pageBuilder: (context, state) =>
-              MaterialPage(child: ChatPage()),
+              MaterialPage(child: ChatPage(chatBotIntialMessage: state.queryParameters["chatBotIntialMessage"]!,)),
         ),
       ],
     );

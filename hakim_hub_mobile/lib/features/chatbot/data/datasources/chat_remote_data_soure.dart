@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:hakim_hub_mobile/core/error/exception.dart';
 import 'package:hakim_hub_mobile/features/chatbot/data/models/chat_request_model.dart';
@@ -19,24 +20,30 @@ class ChatRemoteDataSourceImpl implements ChatRemoteDataSource {
 
   ChatRemoteDataSourceImpl({required this.client});
   Future<ChatResponseModel> getResponse(ChatRequest request) async {
-    final chatModel = ChatRequestModel(
-      address: request.address,
-      isNew: request.isNew,
-      message: request.message,
-    );
+    try {
+      final chatModel = ChatRequestModel(
+        address: request.address,
+        isNew: request.isNew,
+        message: request.message,
+      );
 
-    final jsonBody = chatModel.toJson();
-    
-    final response = await client.post(
-      Uri.parse(baseUrl + "/chat"),
-      body: jsonBody,
-      headers: {'Content-Type': 'application/json'},
-    );
+      final jsonBody = chatModel.toJson();
 
-    if (response.statusCode == 200) {
-      final jsonResponse = json.decode(response.body);
-      return ChatResponseModel.fromJson(jsonResponse);
-    } else {
+      final response = await client.post(
+        Uri.parse("https://hakim-hub.onrender.com/api/Chat"),
+        body: json.encode(jsonBody),
+        headers: {HttpHeaders.contentTypeHeader: 'application/json'},
+      );
+      print("Error in ChatRemoteDataSourceImpl");
+      print(response.body);
+
+      if (response.statusCode == 200) {
+        final jsonResponse = json.decode(response.body)["value"];
+        return ChatResponseModel.fromJson(jsonResponse);
+      } else {
+        throw ServerException();
+      }
+    } catch (e) {
       throw ServerException();
     }
   }
