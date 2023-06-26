@@ -53,11 +53,13 @@ Widget buildCard(
           ),
           Text(
             doctorName,
+             maxLines: 1,
             style: TextStyle(
               color: primaryTextColor,
               fontFamily: 'Poppins',
               fontSize: UIConverter.getComponentHeight(context, 17),
             ),
+           
           ),
           Text(
             doctorSpecialization,
