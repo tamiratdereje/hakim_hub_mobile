@@ -8,7 +8,7 @@ import 'email_card.dart';
 import 'popup.dart';
 
 class HospitalCard extends StatelessWidget {
-  final double width = 347;
+  final double width = 380;
   final double height = 106;
   final double initialSize = 74;
 
@@ -16,11 +16,6 @@ class HospitalCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double responsiveFontSize(double baseFontSize) {
-      double screenWidth = MediaQuery.of(context).size.width;
-      return baseFontSize * screenWidth / 411; // 411 is a reference width
-    }
-
     return Container(
       // body: Center(
       child: Container(
@@ -31,7 +26,7 @@ class HospitalCard extends StatelessWidget {
             blurRadius: 7,
             offset: const Offset(0, 3),
           ),
-        ], color: Colors.white, borderRadius: BorderRadius.circular(20)),
+        ], color: Colors.white, borderRadius: BorderRadius.circular(15)),
         height: UIConverter.getComponentHeight(context, height),
         width: UIConverter.getComponentWidth(context, width),
         child: Row(
@@ -63,16 +58,16 @@ class HospitalCard extends StatelessWidget {
                             icon: Icon(MdiIcons.web))),
                   ),
                   Expanded(
-                    child: FittedBox(
-                      fit: BoxFit.fitWidth,
-                      child: SizedBox(
-                        width: UIConverter.getComponentWidth(context, 50),
+                    child: SizedBox(
+                      width: UIConverter.getComponentWidth(context, 60),
+                      child: Padding(
+                        padding: EdgeInsets.only(top: 8),
                         child: Text(
                           'Website',
                           textAlign: TextAlign.center,
                           style: TextStyle(
                               fontSize:
-                                  UIConverter.getComponentHeight(context, 10)),
+                                  UIConverter.getComponentHeight(context, 15)),
                         ),
                       ),
                     ),
@@ -99,8 +94,8 @@ class HospitalCard extends StatelessWidget {
                     ),
                   ),
                   Expanded(
-                    child: FittedBox(
-                      fit: BoxFit.fitWidth,
+                    child: Padding(
+                      padding: EdgeInsets.only(top: 8),
                       child: SizedBox(
                         width: UIConverter.getComponentWidth(context, 50),
                         child: Text(
@@ -108,7 +103,7 @@ class HospitalCard extends StatelessWidget {
                           textAlign: TextAlign.center,
                           style: TextStyle(
                             fontSize:
-                                UIConverter.getComponentHeight(context, 10),
+                                UIConverter.getComponentHeight(context, 15),
                           ),
                         ),
                       ),
@@ -136,14 +131,14 @@ class HospitalCard extends StatelessWidget {
                     ),
                   ),
                   Expanded(
-                    child: FittedBox(
-                      fit: BoxFit.fitWidth,
+                    child: Padding(
+                      padding: EdgeInsets.only(top: 8),
                       child: Text(
                         'Directions',
                         textAlign: TextAlign.center,
                         style: TextStyle(
                             fontSize:
-                                UIConverter.getComponentHeight(context, 10)),
+                                UIConverter.getComponentHeight(context, 15)),
                       ),
                     ),
                   ),
@@ -158,44 +153,39 @@ class HospitalCard extends StatelessWidget {
                   Container(
                     height: UIConverter.getComponentHeight(context, 45),
                     width: UIConverter.getComponentWidth(context, 45),
-                    decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: Color.fromRGBO(239, 243, 243, 1)),
+                    decoration: const BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: Color.fromRGBO(239, 243, 243, 1),
+                    ),
                     child: SizedBox(
-                        height: UIConverter.getComponentHeight(context, 16.67),
-                        width: UIConverter.getComponentWidth(context, 16.67),
-                        child: Material(
-                            child: IconButton(
-                                onPressed: () {
-                                  showDialog(
-                                      context: context,
-                                      builder: (BuildContext context) {
-                                        return Center(child: phonePopup());
-                                      });
-                                },
-                                icon: phone))),
+                      height: UIConverter.getComponentHeight(context, 16.67),
+                      width: UIConverter.getComponentWidth(context, 16.67),
+                      child: const Icon(Icons.phone),
+                    ),
                   ),
                   Expanded(
-                    child: FittedBox(
-                      fit: BoxFit.fitWidth,
+                    child: Padding(
+                      padding: EdgeInsets.only(top: 8),
                       child: SizedBox(
                         width: UIConverter.getComponentWidth(context, 50),
                         child: Text(
                           'Phone',
                           textAlign: TextAlign.center,
                           style: TextStyle(
-                              fontSize:
-                                  UIConverter.getComponentHeight(context, 10)),
+                            fontSize:
+                                UIConverter.getComponentHeight(context, 15),
+                          ),
                         ),
                       ),
                     ),
-                  )
+                  ),
                 ],
               ),
             ),
           ],
         ),
       ),
+      // ),
     );
   }
 }

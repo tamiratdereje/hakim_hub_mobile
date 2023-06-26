@@ -67,10 +67,19 @@ Widget buildCard(
                 color: primaryColor,
                 fontWeight: FontWeight.bold,
                 fontFamily: 'Poppins',
-                fontSize: UIConverter.getComponentHeight(context, 14)),
-          ),
-        ],
+                fontSize: UIConverter.getComponentHeight(context, 17),
+              ),
+            ),
+            Text(
+              doctorSpecialization,
+              style: TextStyle(
+                  color: primaryColor,
+                  fontWeight: FontWeight.bold,
+                  fontFamily: 'Poppins',
+                  fontSize: UIConverter.getComponentHeight(context, 14)),
+            ),
+          ],
+        ),
       ),
-    ),
-  );
-}
+    );}
+  

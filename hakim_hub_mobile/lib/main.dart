@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hakim_hub_mobile/features/chatbot/presentation/bloc/chat_bot_bloc.dart';
 import 'package:hakim_hub_mobile/features/core/splash_screen.dart';
 import 'package:hakim_hub_mobile/router/main_router.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
@@ -35,6 +36,9 @@ class MyApp extends StatelessWidget {
           ),
           BlocProvider<HospitalDetailBloc>(
             create: (context) => injection.sl<HospitalDetailBloc>(),
+          ),
+          BlocProvider<ChatBotBloc>(
+            create: (context) => injection.sl<ChatBotBloc>(),
           ),
         ], child: RouterMain());
       },
