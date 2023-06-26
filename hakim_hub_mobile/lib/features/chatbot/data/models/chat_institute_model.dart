@@ -16,14 +16,14 @@ class ChatInsituteModel extends ChatInstituteEntity {
         );
 
   factory ChatInsituteModel.fromJson(Map<String, dynamic> json) {
-    List<dynamic> chatDoctorsJson = json['doctors'];
+    List<dynamic> chatDoctorsJson = json['doctors'] ?? [];
     List<ChatDoctorModel> chatDoctors =
         chatDoctorsJson.map((e) => ChatDoctorModel.fromJson(e)).toList();
 
     return ChatInsituteModel(
-      instituteName: json['instituteName'],
-      instituteId: json['instituteId'],
-      logoUrl: json['logoUrl'],
+      instituteName: json['institutionName'] ?? "",
+      instituteId: json['id'] ?? "",
+      logoUrl: json['logoUrl'] ?? "",
       doctors: chatDoctors,
     );
   }

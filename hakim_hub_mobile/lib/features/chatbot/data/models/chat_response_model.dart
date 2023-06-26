@@ -13,13 +13,13 @@ class ChatResponseModel extends ChatResponse {
           speciality: speciality,
         );
   factory ChatResponseModel.fromJson(Map<String, dynamic> json) {
-    List<dynamic> instituesList = json['institues'];
+    List<dynamic> instituesList = json['institutions'] ?? [];
     List<ChatInsituteModel> institutes =
         instituesList.map((e) => ChatInsituteModel.fromJson(e)).toList();
 
     return ChatResponseModel(
-      reply: json['reply'],
-      speciality: json['speciality'],
+      reply: json['reply'] ?? "",
+      speciality: json['speciality'] ?? "",
       institutes: institutes,
     );
   }

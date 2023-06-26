@@ -6,13 +6,15 @@ class ChatDoctorModel extends ChatDoctorEntity {
     required String fullName,
     required String photoUrl,
     required String id,
-  }) : super(id: id, photoUrl: photoUrl, fullName: fullName);
+    required String speciality
+  }) : super(id: id, photoUrl: photoUrl, fullName: fullName, speciality: speciality);
 
   factory ChatDoctorModel.fromJson(Map<String, dynamic> json) {
     return ChatDoctorModel(
-      fullName: json['fullName'],
-      photoUrl: json['photoUrl'],
-      id: json['id'],
+      fullName: json['fullName'] ?? "",
+      photoUrl: json['photoUrl'] ?? "",
+      id: json['id'] ?? "",
+      speciality: (json['speciality'] ?? []).length > 0 ? json['speciality'][0] : "",
     );
   }
 }

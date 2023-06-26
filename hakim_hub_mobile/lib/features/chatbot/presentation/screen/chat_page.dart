@@ -4,6 +4,9 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../../../core/utils/colors.dart';
 
 import '../../../../core/utils/pixle_to_percent.dart';
+import '../../data/models/chat_institute_model.dart';
+import '../../domain/entities/chat_doctor_entity.dart';
+import '../../domain/entities/chat_institute_entity.dart';
 import '../../domain/entities/chat_request_entity.dart';
 import '../bloc/chat_bot_bloc.dart';
 
@@ -20,14 +23,20 @@ class _ChatPageState extends State<ChatPage> {
 
   @override
   void initState() {
+    
     super.initState();
+    chatMessages = [];
+    chatMessages.add([0, widget.chatBotIntialMessage]);
+    print("init state");
     BlocProvider.of<ChatBotBloc>(context).add(GetChatResponseEvent(
-        request: ChatRequest(message: widget.chatBotIntialMessage, address: "", isNew: true)));
+        request: ChatRequest(
+            message: widget.chatBotIntialMessage,
+            address: "ipadhgjlpopoplkdress",
+            isNew: true)));
   }
 
   @override
   Widget build(BuildContext context) {
-    chatMessages.add([0 ,widget.chatBotIntialMessage]);
     return Scaffold(
       appBar: AppBar(
         title: const Text('Chat Page'),
@@ -36,57 +45,8 @@ class _ChatPageState extends State<ChatPage> {
         children: [
           BlocBuilder<ChatBotBloc, ChatBotState>(
             builder: (context, state) {
-              if (state is ChatBotLoadingState || state is ChatBotInitialState) {
-                return  Expanded(
-                  child: Column(
-                    children: [
-                    Expanded(
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: ListView.builder(
-                          itemCount: chatMessages.length,
-                          itemBuilder: (BuildContext context, int index) {
-                            return Column(
-                              children: [
-                                ChatBox(
-                                    chatMessages: chatMessages, index: index),
-                                const SizedBox(
-                                  height: 16,
-                                ),
-                              ],
-                            );
-                          },
-                        ),
-                      ),
-                    ),
-                     Padding(padding: EdgeInsets.only(top:20),),
-                    const Center(
-                      child: CircularProgressIndicator(),
-                    ),
-                  ],),
-                );
-                
-              } else if (state is ChatBotSuccessState) {
-                chatMessages.add([1, state.chatResponse]);
-                return Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: ListView.builder(
-                      itemCount: chatMessages.length,
-                      itemBuilder: (BuildContext context, int index) {
-                        return Column(
-                          children: [
-                            ChatBox(chatMessages: chatMessages, index: index),
-                            const SizedBox(
-                              height: 16,
-                            ),
-                          ],
-                        );
-                      },
-                    ),
-                  ),
-                );
-              } else  {
+              if (state is ChatBotLoadingState ||
+                  state is ChatBotInitialState) {
                 return Expanded(
                   child: Column(
                     children: [
@@ -99,7 +59,8 @@ class _ChatPageState extends State<ChatPage> {
                               return Column(
                                 children: [
                                   ChatBox(
-                                      chatMessages: chatMessages, index: index),
+                                      chatMessage: chatMessages[index],
+                                      index: index),
                                   const SizedBox(
                                     height: 16,
                                   ),
@@ -109,7 +70,68 @@ class _ChatPageState extends State<ChatPage> {
                           ),
                         ),
                       ),
-                      const Padding(padding: EdgeInsets.only(top:20),),
+                      const Padding(
+                        padding: EdgeInsets.only(top: 20),
+                      ),
+                      const Center(
+                        child: CircularProgressIndicator(),
+                      ),
+                    ],
+                  ),
+                );
+              } else if (state is ChatBotSuccessState) {
+                print("check");
+                chatMessages.add([1, state.chatResponse]);
+                print(state.chatResponse);
+                print(state.chatResponse.reply);
+                print("after check");
+
+                return Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: ListView.builder(
+                      itemCount: chatMessages.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        return Column(
+                          children: [
+                            ChatBox(
+                                chatMessage: chatMessages[index]  , index: index),
+                            const SizedBox(
+                              height: 16,
+                            ),
+                          ],
+                        );
+                      },
+                    ),
+                  ),
+                );
+              } else {
+                return Expanded(
+                  child: Column(
+                    children: [
+                      Expanded(
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: ListView.builder(
+                            itemCount: chatMessages.length,
+                            itemBuilder: (BuildContext context, int index) {
+                              return Column(
+                                children: [
+                                  ChatBox(
+                                      chatMessage: chatMessages[index],
+                                      index: index),
+                                  const SizedBox(
+                                    height: 16,
+                                  ),
+                                ],
+                              );
+                            },
+                          ),
+                        ),
+                      ),
+                      const Padding(
+                        padding: EdgeInsets.only(top: 20),
+                      ),
                       const Text(
                         "error while loading",
                         style: TextStyle(
@@ -117,17 +139,11 @@ class _ChatPageState extends State<ChatPage> {
                           fontSize: 20,
                         ),
                       ),
-                
-                
-                
-                
                     ],
                     // child: Text('Error'),
                   ),
                 );
               }
-
-              
             },
           ),
           Padding(
@@ -168,16 +184,13 @@ class _ChatPageState extends State<ChatPage> {
                       print("object object ");
                       print("object object ");
                       print("object object ");
-
+                      chatMessages.add([0, query]);
                       BlocProvider.of<ChatBotBloc>(context).add(
                           GetChatResponseEvent(
                               request: ChatRequest(
-                                  message: query, isNew: false, address: "0")));
-
-                      setState(() {
-                        chatMessages.add([0, query]);
-                      });
-                      
+                                  message: query,
+                                  isNew: false,
+                                  address: "ipadhgjlpopoplkdress")));
                     },
                   ),
                 ],
@@ -198,63 +211,70 @@ class _ChatPageState extends State<ChatPage> {
 class ChatBox extends StatelessWidget {
   const ChatBox({
     super.key,
-    required this.chatMessages,
+    required this.chatMessage,
     required this.index,
   });
 
-  final List chatMessages;
+  final chatMessage;
   final int index;
   @override
   Widget build(BuildContext context) {
+    print(chatMessage);
+    if (chatMessage[0] == 1) {
+      print("object object ");
+      print(chatMessage[1].reply);
+      print("object object ");
+    }
     return Padding(
       padding: EdgeInsets.only(
-          left: chatMessages[index][0] == 0 ? pixleToPercent(30, "width").w : 0,
-          right:
-              chatMessages[index][0] == 1 ? pixleToPercent(30, "width").w : 0),
+          left: chatMessage[0] == 0 ? pixleToPercent(30, "width").w : 0,
+          right: chatMessage[0] == 1 ? pixleToPercent(30, "width").w : 0),
       child: Container(
         padding: EdgeInsets.symmetric(
           horizontal: pixleToPercent(20, "width").w,
           vertical: pixleToPercent(14, "height").h,
         ),
         decoration: BoxDecoration(
-          color: chatMessages[index][0] == 1
-              ? Color.fromRGBO(237, 237, 237, 1)
-              : Color.fromRGBO(104, 164, 244, 1),
+          color: chatMessage[0] == 1
+              ? const Color.fromRGBO(237, 237, 237, 1)
+              : const Color.fromRGBO(104, 164, 244, 1),
         ),
         width: pixleToPercent(319, "width").w,
         child: Column(
           children: [
             Text(
-              chatMessages[index][1].toString(),
+              chatMessage[0] == 0 ? chatMessage[1] : chatMessage[1].reply,
               style: TextStyle(
                   fontSize: 14,
-                  color: chatMessages[index][0] == 1
-                      ? Colors.black
-                      : Colors.white),
+                  color: chatMessage[0] == 1 ? Colors.black : Colors.white),
             ),
             const SizedBox(
               height: 6,
             ),
-            SizedBox(
-              width: 400,
-              // chatMessages[index][0] == 1 ? 
-              height: 200,
-              child: ListView.builder(
-                itemCount: 6,
-                itemBuilder: (BuildContext context, int i) {
-                  return Column(
-                    children: [
-                      chatMessages[index][0] == 1
-                          ? institutionCard(1)
-                          : Container(),
-                      SizedBox(
-                        height: 20,
-                      )
-                    ],
-                  );
-                },
-              ),
-            ),
+            chatMessage[0] == 1
+                ? SizedBox(
+                    width: 400,
+                    height: 200,
+                    child: ListView.builder(
+                      itemCount: chatMessage[0] == 1
+                          ? chatMessage[1].institutes.length
+                          : 0,
+                      itemBuilder: (BuildContext context, int i) {
+                        return Column(
+                          children: [
+                            institutionCard(chatMessage[1].institutes[i]),
+                            const SizedBox(
+                              height: 20,
+                            )
+                          ],
+                        );
+                      },
+                    ),
+                  )
+                : Container(
+                    width: 0,
+                    height: 0,
+                  ),
           ],
         ),
       ),
@@ -262,7 +282,7 @@ class ChatBox extends StatelessWidget {
   }
 }
 
-Widget institutionCard(index) {
+Widget institutionCard(ChatInsituteModel chatInstituteEntity) {
   return Container(
     padding: EdgeInsets.all(10),
     decoration: BoxDecoration(
@@ -270,62 +290,72 @@ Widget institutionCard(index) {
     ),
     child: Column(
       children: [
-        const Row(
+        Row(
           children: [
             CircleAvatar(
-              backgroundImage: AssetImage(
-                'assets/images/hospital_img.png',
+              backgroundImage: NetworkImage(
+                chatInstituteEntity.logoUrl,
               ),
+              onBackgroundImageError: (exception, stackTrace) {
+                const CircleAvatar(
+                  backgroundImage: AssetImage('assets/images/doctor_image.png'),
+                );
+              },
             ),
-            SizedBox(
+            const SizedBox(
               width: 8,
             ),
             Text(
-              'Tikur Ambessa',
-              style: TextStyle(
+              chatInstituteEntity.instituteName,
+              style: const TextStyle(
                 color: Colors.blue,
                 fontSize: 13,
               ),
             )
           ],
         ),
-        index == 1
+        chatInstituteEntity.doctors.isNotEmpty
             ? SizedBox(
                 height: 100,
                 width: 200,
                 child: Padding(
                   padding: const EdgeInsets.only(left: 28.0),
                   child: ListView.builder(
-                    itemCount: 10,
+                    itemCount: chatInstituteEntity.doctors.length,
                     itemBuilder: (BuildContext context, int index) {
-                      return doctor();
+                      return doctor(chatInstituteEntity.doctors[index]);
                     },
                   ),
                 ),
               )
-            : Text('')
+            : Container()
       ],
     ),
   );
 }
 
-Widget doctor() {
-  return const Row(
+Widget doctor(ChatDoctorEntity chatDoctorEntity) {
+  return Row(
     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
     children: [
       CircleAvatar(
-        backgroundImage: AssetImage('assets/images/doctor_image.png'),
+        backgroundImage: NetworkImage(chatDoctorEntity.photoUrl),
+        onBackgroundImageError: (exception, stackTrace) {
+          const CircleAvatar(
+            backgroundImage: AssetImage('assets/images/doctor_image.png'),
+          );
+        },
         radius: 20,
       ),
       Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(
-            'Dr. Habtamu Doe',
-            style: TextStyle(fontSize: 13, fontWeight: FontWeight.w600),
+            chatDoctorEntity.fullName,
+            style: const TextStyle(fontSize: 13, fontWeight: FontWeight.w600),
           ),
           Text(
-            'Neurologist',
+            chatDoctorEntity.speciality,
             style: TextStyle(
                 fontWeight: FontWeight.bold, color: Colors.blue, fontSize: 12),
           ),

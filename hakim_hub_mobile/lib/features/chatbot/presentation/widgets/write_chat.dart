@@ -30,7 +30,7 @@ class WriteChat extends StatelessWidget {
           decoration: InputDecoration(
             suffixIcon: GestureDetector(child: send,
             onTap: () {
-              context.pushNamed(AppRoutes.ChatPage, queryParameters: {"chatBotIntialMessage": _controller.text});
+              context.pushNamed(AppRoutes.ChatPage, queryParameters: {"chatBotIntialMessage": _controller.text ?? ""  });
             },
             ),
             hintText: 'Write a message ...',

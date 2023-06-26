@@ -14,8 +14,8 @@ class ChatRequestModel extends ChatRequest {
 
   Map<String, dynamic> toJson() {
     return {
-      "address": address,
-      "isNew": isNew,
+      "Address": address,
+      "isNewChat": isNew,
       "message": message,
     };
   }

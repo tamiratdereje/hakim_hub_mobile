@@ -14,9 +14,13 @@ class ChatBotBloc extends Bloc<ChatBotEvent, ChatBotState> {
   ChatBotBloc({required this.getChatResponse}) : super(ChatBotInitialState()) {
     on<GetChatResponseEvent>((event, emit) async {
       emit(ChatBotLoadingState());
-      final result = await getChatResponse(event.request).then(
+      print("before return from bloc");
+      await getChatResponse(event.request).then(
         (value) {
-          value.fold((l) => emit(ChatBotFailureState(error: l)), (r) {
+          value.fold(
+              (l) => emit(
+                    ChatBotFailureState(error: l),
+                  ), (r) {
             print("return from bloc");
             print(r);
             print("after return from bloc");
