@@ -14,7 +14,7 @@ class ChatDoctorModel extends ChatDoctorEntity {
       fullName: json['fullName'] ?? "",
       photoUrl: json['photoUrl'] ?? "",
       id: json['id'] ?? "",
-      speciality: (json['speciality'] ?? []).length > 0 ? json['speciality'][0] : "",
+      speciality: (json['specialities'] ?? []).length > 0 ? json['specialities'][0] : "",
     );
   }
 }
