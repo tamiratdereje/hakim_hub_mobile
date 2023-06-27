@@ -4,9 +4,11 @@ import 'package:hakim_hub_mobile/core/utils/icons.dart';
 import 'package:hakim_hub_mobile/features/core/splash_screen.dart';
 import 'package:hakim_hub_mobile/features/hospital/domain/entities/hospital_detail_domain.dart';
 import 'package:hakim_hub_mobile/features/hospital/presentation/widgets/hospital_card.dart';
+import 'package:latlong2/latlong.dart';
 import '../../../../core/utils/colors.dart';
 import '../../../../core/utils/ui_converter.dart';
 import 'app_constans.dart';
+import 'Map_box.dart';
 
 class OverviewTab extends StatefulWidget {
   final InstitutionDetailDomain institutionDetailDomain;
@@ -84,12 +86,7 @@ class _OverviewTabState extends State<OverviewTab> {
               ),
             ),
             SizedBox(height: UIConverter.getComponentHeight(context, 30)),
-            Image.asset(
-              'assets/images/google_map.jfif',
-              height: UIConverter.getComponentHeight(context, 180),
-              width: UIConverter.getComponentWidth(context, 382),
-              fit: BoxFit.cover,
-            ),
+            Container(width: 400, height: 400, child: MapBoxWidget()),
             SizedBox(height: UIConverter.getComponentHeight(context, 50)),
             const Row(
               children: [
@@ -123,24 +120,24 @@ class _OverviewTabState extends State<OverviewTab> {
                         ),
                       ],
                     ),
-                    child:
-                    Container(
-                     child :  FlutterMap(
-            options: MapOptions(
-              minZoom: 5,
-              maxZoom: 18,
-              zoom: 13,
-              center: AppConstants.myLocation,
-            ),
-     
-           
-          ),),
-                    
-                    //  ListTile(
-                    //   leading: Image.asset('assets/images/right_icon.png'),
-                    //   title: Text(
-                    //     widget.institutionDetailDomain.services[index],
-                    //     style: const TextStyle(fontSize: 13),
+                    // child: Container(
+                    //   child: FlutterMap(
+                    //     options: MapOptions(
+                    //       minZoom: 5,
+                    //       maxZoom: 18,
+                    //       zoom: 13,
+                    //       center: AppConstants.myLocation,
+                    //     ),
+                    //     children: [
+                    //       TileLayer(
+                    //         urlTemplate:
+                    //             "https://api.mapbox.com/styles/v1/fenetshewarega/cljcic07o00fy01p9etoj6t6p/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoiZmVuZXRzaGV3YXJlZ2EiLCJhIjoiY2xqY2k2ajhpMDFjajNlbW9lbTJvdmozeiJ9.6xeUCiBbQYWVIEzFBT9kPA",
+                    //         additionalOptions: {
+                    //           'mapStyleId': AppConstants.mapBoxStyleId,
+                    //           'accessToken': AppConstants.mapBoxAccessToken,
+                    //         },
+                    //       ),
+                    //     ],
                     //   ),
                     // ),
                   );
@@ -172,12 +169,14 @@ class _OverviewTabState extends State<OverviewTab> {
                 ),
               ],
             ),
-           Row(children: [
-             TextButton(
-              onPressed: () {},
-              child: const Text("SEE IT ON MAP"),
-            ),
-           ],)
+            Row(
+              children: [
+                TextButton(
+                  onPressed: () {},
+                  child: const Text("SEE IT ON MAP"),
+                ),
+              ],
+            )
           ],
         ),
       ),
