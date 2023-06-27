@@ -35,7 +35,9 @@ class CustomButton extends StatelessWidget {
         child: TextButton(
           onPressed: () {
             if (currentIndex == pages.length - 1) {
-              context.push(AppRoutes.Home);
+              context.pushNamed(AppRoutes.Home, queryParameters: {
+                                      "index": "0",
+                                    });
             }
 
             controller.nextPage(
