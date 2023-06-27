@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../../../core/utils/colors.dart';
+import '../../../../core/utils/hover_builder.dart';
 
 import '../../../../core/utils/pixle_to_percent.dart';
 import '../../../../router/routes.dart';
@@ -293,7 +294,19 @@ class _ChatPageState extends State<ChatPage> {
                 children: [
                   Expanded(
                     child: TextField(
-                      onSubmitted: (value) {},
+                      onSubmitted: (value) {
+                        String query = _textEditingController.text;
+                        _textEditingController.clear();
+                        widget.chatMessages.add([0, query]);
+                        BlocProvider.of<ChatBotBloc>(context).add(
+                          GetChatResponseEvent(
+                            request: ChatRequest(
+                                message: query,
+                                isNew: false,
+                                address: "ipadhgjlpopoplkdress"),
+                          ),
+                        );
+                      },
                       textInputAction: TextInputAction.done,
                       controller: _textEditingController,
                       decoration: const InputDecoration(
@@ -327,10 +340,6 @@ class _ChatPageState extends State<ChatPage> {
       ),
     );
   }
-
-  // void _sendMessage() async {
-
-  // }
 }
 
 class ChatBox extends StatelessWidget {
@@ -443,14 +452,18 @@ Widget institutionCard(ChatInsituteModel chatInstituteEntity,
                 width: 12,
               ),
               Expanded(
-                child: Text(
-                  chatInstituteEntity.instituteName,
-                  overflow: TextOverflow.ellipsis,
-                  style: const TextStyle(
-                    fontSize: 13,
-                    fontWeight: FontWeight.w700,
-                    color: Colors.black,
-                  ),
+                child: HoverBuilder(
+                  builder: (isHovered) {
+                    return Text(
+                      chatInstituteEntity.instituteName,
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyle(
+                        color: isHovered ? Colors.blue : Colors.black,
+                        fontSize: 13,
+                        fontWeight: FontWeight.w700,
+                      ),
+                    );
+                  },
                 ),
               )
             ],
@@ -527,13 +540,17 @@ Widget doctor(ChatDoctorEntity chatDoctorEntity) {
         Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(
-              chatDoctorEntity.fullName,
-              style: const TextStyle(
-                fontSize: 12,
-                fontWeight: FontWeight.bold,
-                color: Colors.black,
-              ),
+            HoverBuilder(
+              builder: (isHovered) {
+                return Text(
+                  chatDoctorEntity.fullName,
+                  style: TextStyle(
+                    color: isHovered ? Colors.blue : Colors.black,
+                    fontSize: 13,
+                    fontWeight: FontWeight.bold,
+                  ),
+                );
+              },
             ),
             Text(
               chatDoctorEntity.speciality,
