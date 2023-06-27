@@ -8,7 +8,7 @@ import 'package:latlong2/latlong.dart';
 import '../../../../core/utils/colors.dart';
 import '../../../../core/utils/ui_converter.dart';
 import 'app_constans.dart';
-import 'Map_box.dart';
+import 'map_box.dart';
 
 class OverviewTab extends StatefulWidget {
   final InstitutionDetailDomain institutionDetailDomain;
