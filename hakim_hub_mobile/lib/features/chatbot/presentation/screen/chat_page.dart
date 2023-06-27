@@ -1,52 +1,120 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../../../core/utils/colors.dart';
+import '../../../../core/utils/hover_builder.dart';
 
 import '../../../../core/utils/pixle_to_percent.dart';
+import '../../../../router/routes.dart';
 import '../../data/models/chat_institute_model.dart';
 import '../../domain/entities/chat_doctor_entity.dart';
-import '../../domain/entities/chat_institute_entity.dart';
 import '../../domain/entities/chat_request_entity.dart';
 import '../bloc/chat_bot_bloc.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 class ChatPage extends StatefulWidget {
-  String chatBotIntialMessage;
-  ChatPage({required this.chatBotIntialMessage, super.key});
+  // String chatBotIntialMessage;
+  List chatMessages;
+  ChatPage({required this.chatMessages, super.key});
   @override
   _ChatPageState createState() => _ChatPageState();
 }
 
 class _ChatPageState extends State<ChatPage> {
   final TextEditingController _textEditingController = TextEditingController();
-  List chatMessages = [];
+  // List chatMessages = [];
 
   @override
   void initState() {
-    
     super.initState();
-    chatMessages = [];
-    chatMessages.add([0, widget.chatBotIntialMessage]);
-    print("init state");
+    print(widget.chatMessages);
+    // widget.chatMessages.add([0, widget.chatBotIntialMessage]);
     BlocProvider.of<ChatBotBloc>(context).add(GetChatResponseEvent(
         request: ChatRequest(
-            message: widget.chatBotIntialMessage,
+            message: widget.chatMessages[0][1],
             address: "ipadhgjlpopoplkdress",
             isNew: true)));
+  }
+
+  void clearChat() {
+    setState(() {
+      widget.chatMessages.clear();
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Chat Page'),
+        foregroundColor: Colors.white,
+        shadowColor: Colors.transparent,
+        leading: GestureDetector(
+          onTap: () => {
+            clearChat(),
+            BlocProvider.of<ChatBotBloc>(context).add(SetIntialStateEvent()),
+            context.goNamed(AppRoutes.Home, queryParameters: {
+              "index": "1",
+            }),
+          },
+          child: const Icon(Icons.arrow_back_ios_new, color: Colors.black),
+        ),
+        actions: [
+          IconButton(
+            icon: const Icon(
+              Icons.add,
+              color: Colors.black,
+            ),
+            onPressed: () {
+              clearChat();
+              BlocProvider.of<ChatBotBloc>(context).add(SetIntialStateEvent());
+              context.goNamed(AppRoutes.Home, queryParameters: {
+                "index": "1",
+              });
+            },
+          ),
+        ],
+        backgroundColor: Colors.white,
       ),
       body: Column(
         children: [
           BlocBuilder<ChatBotBloc, ChatBotState>(
             builder: (context, state) {
-              if (state is ChatBotLoadingState ||
-                  state is ChatBotInitialState) {
+              if (state is ChatBotInitialState) {
+                return Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: ListView.builder(
+                      itemCount: widget.chatMessages.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        return Column(
+                          children: [
+                            ChatBox(
+                              chatMessage: widget.chatMessages[index],
+                              index: index,
+                              navigateHospital: (instituteId) {
+                                context.pushNamed(AppRoutes.HospitalDetailPage,
+                                    queryParameters: {
+                                      "id": instituteId,
+                                    });
+                              },
+                              navigateDoctor: (doctorId) {
+                                context.pushNamed(AppRoutes.DoctorDetailPage,
+                                    queryParameters: {
+                                      "id": doctorId,
+                                    });
+                              },
+                            ),
+                            const SizedBox(
+                              height: 16,
+                            ),
+                          ],
+                        );
+                      },
+                    ),
+                  ),
+                );
+              } else if (state is ChatBotLoadingState) {
                 return Expanded(
                   child: Column(
                     children: [
@@ -54,13 +122,42 @@ class _ChatPageState extends State<ChatPage> {
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: ListView.builder(
-                            itemCount: chatMessages.length,
+                            itemCount: widget.chatMessages.length + 1,
                             itemBuilder: (BuildContext context, int index) {
+                              if (index == widget.chatMessages.length) {
+                                return Padding(
+                                  padding: const EdgeInsets.only(left: 10),
+                                  child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      children: [
+                                        LoadingAnimationWidget.waveDots(
+                                          color: Colors.blue,
+                                          size: 40,
+                                        ),
+                                      ]),
+                                );
+                              }
                               return Column(
                                 children: [
                                   ChatBox(
-                                      chatMessage: chatMessages[index],
-                                      index: index),
+                                    chatMessage: widget.chatMessages[index],
+                                    index: index,
+                                    navigateHospital: (instituteId) {
+                                      context.pushNamed(
+                                          AppRoutes.HospitalDetailPage,
+                                          queryParameters: {
+                                            "id": instituteId,
+                                          });
+                                    },
+                                    navigateDoctor: (doctorId) {
+                                      context.pushNamed(
+                                          AppRoutes.DoctorDetailPage,
+                                          queryParameters: {
+                                            "id": doctorId,
+                                          });
+                                    },
+                                  ),
                                   const SizedBox(
                                     height: 16,
                                   ),
@@ -73,29 +170,35 @@ class _ChatPageState extends State<ChatPage> {
                       const Padding(
                         padding: EdgeInsets.only(top: 20),
                       ),
-                      const Center(
-                        child: CircularProgressIndicator(),
-                      ),
                     ],
                   ),
                 );
               } else if (state is ChatBotSuccessState) {
-                print("check");
-                chatMessages.add([1, state.chatResponse]);
-                print(state.chatResponse);
-                print(state.chatResponse.reply);
-                print("after check");
-
+                widget.chatMessages.add([1, state.chatResponse]);
                 return Expanded(
                   child: Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding: const EdgeInsets.all(16.0),
                     child: ListView.builder(
-                      itemCount: chatMessages.length,
+                      itemCount: widget.chatMessages.length,
                       itemBuilder: (BuildContext context, int index) {
                         return Column(
                           children: [
                             ChatBox(
-                                chatMessage: chatMessages[index]  , index: index),
+                              chatMessage: widget.chatMessages[index],
+                              index: index,
+                              navigateHospital: (instituteId) {
+                                context.pushNamed(AppRoutes.HospitalDetailPage,
+                                    queryParameters: {
+                                      "id": instituteId,
+                                    });
+                              },
+                              navigateDoctor: (doctorId) {
+                                context.pushNamed(AppRoutes.DoctorDetailPage,
+                                    queryParameters: {
+                                      "id": doctorId,
+                                    });
+                              },
+                            ),
                             const SizedBox(
                               height: 16,
                             ),
@@ -113,13 +216,51 @@ class _ChatPageState extends State<ChatPage> {
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: ListView.builder(
-                            itemCount: chatMessages.length,
+                            itemCount: widget.chatMessages.length + 1,
                             itemBuilder: (BuildContext context, int index) {
+                              if (index == widget.chatMessages.length) {
+                                return Padding(
+                                  padding: const EdgeInsets.only(left: 10),
+                                  child: Row(
+                                      mainAxisAlignment: MainAxisAlignment.end,
+                                      children: [
+                                        Container(
+                                          padding: const EdgeInsets.all(15),
+                                          decoration: BoxDecoration(
+                                              color: Colors.red[200],
+                                              borderRadius:
+                                                  const BorderRadius.all(
+                                                      Radius.circular(15))),
+                                          child: const Text(
+                                            "Pleased check your network",
+                                            style: TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 14),
+                                          ),
+                                        )
+                                      ]),
+                                );
+                              }
                               return Column(
                                 children: [
                                   ChatBox(
-                                      chatMessage: chatMessages[index],
-                                      index: index),
+                                    chatMessage: widget.chatMessages[index],
+                                    index: index,
+                                    navigateHospital: (instituteId) {
+                                      context.pushNamed(
+                                          AppRoutes.HospitalDetailPage,
+                                          queryParameters: {
+                                            "id": instituteId,
+                                          });
+                                    },
+                                    navigateDoctor: (doctorId) {
+                                      context.pushNamed(
+                                          AppRoutes.DoctorDetailPage,
+                                          queryParameters: {
+                                            "id": doctorId,
+                                          });
+                                    },
+                                  ),
                                   const SizedBox(
                                     height: 16,
                                   ),
@@ -127,16 +268,6 @@ class _ChatPageState extends State<ChatPage> {
                               );
                             },
                           ),
-                        ),
-                      ),
-                      const Padding(
-                        padding: EdgeInsets.only(top: 20),
-                      ),
-                      const Text(
-                        "error while loading",
-                        style: TextStyle(
-                          color: Colors.red,
-                          fontSize: 20,
                         ),
                       ),
                     ],
@@ -147,9 +278,7 @@ class _ChatPageState extends State<ChatPage> {
             },
           ),
           Padding(
-            padding: EdgeInsets.symmetric(
-              horizontal: Adaptive.w(5.1),
-            ),
+            padding: const EdgeInsets.all(10.0),
             child: Container(
               padding: EdgeInsets.symmetric(
                 horizontal: pixleToPercent(46, "width"),
@@ -165,6 +294,20 @@ class _ChatPageState extends State<ChatPage> {
                 children: [
                   Expanded(
                     child: TextField(
+                      onSubmitted: (value) {
+                        String query = _textEditingController.text;
+                        _textEditingController.clear();
+                        widget.chatMessages.add([0, query]);
+                        BlocProvider.of<ChatBotBloc>(context).add(
+                          GetChatResponseEvent(
+                            request: ChatRequest(
+                                message: query,
+                                isNew: false,
+                                address: "ipadhgjlpopoplkdress"),
+                          ),
+                        );
+                      },
+                      textInputAction: TextInputAction.done,
                       controller: _textEditingController,
                       decoration: const InputDecoration(
                         border: InputBorder.none,
@@ -177,20 +320,15 @@ class _ChatPageState extends State<ChatPage> {
                     onPressed: () {
                       String query = _textEditingController.text;
                       _textEditingController.clear();
-
-                      print("object object ");
-                      print("object object ");
-                      print("object object ");
-                      print("object object ");
-                      print("object object ");
-                      print("object object ");
-                      chatMessages.add([0, query]);
+                      widget.chatMessages.add([0, query]);
                       BlocProvider.of<ChatBotBloc>(context).add(
-                          GetChatResponseEvent(
-                              request: ChatRequest(
-                                  message: query,
-                                  isNew: false,
-                                  address: "ipadhgjlpopoplkdress")));
+                        GetChatResponseEvent(
+                          request: ChatRequest(
+                              message: query,
+                              isNew: false,
+                              address: "ipadhgjlpopoplkdress"),
+                        ),
+                      );
                     },
                   ),
                 ],
@@ -202,33 +340,27 @@ class _ChatPageState extends State<ChatPage> {
       ),
     );
   }
-
-  // void _sendMessage() async {
-
-  // }
 }
 
 class ChatBox extends StatelessWidget {
-  const ChatBox({
-    super.key,
-    required this.chatMessage,
-    required this.index,
-  });
+  Function navigateDoctor;
+  Function navigateHospital;
+  ChatBox(
+      {super.key,
+      required this.chatMessage,
+      required this.index,
+      required this.navigateDoctor,
+      required this.navigateHospital});
 
   final chatMessage;
   final int index;
   @override
   Widget build(BuildContext context) {
-    print(chatMessage);
-    if (chatMessage[0] == 1) {
-      print("object object ");
-      print(chatMessage[1].reply);
-      print("object object ");
-    }
     return Padding(
       padding: EdgeInsets.only(
-          left: chatMessage[0] == 0 ? pixleToPercent(30, "width").w : 0,
-          right: chatMessage[0] == 1 ? pixleToPercent(30, "width").w : 0),
+        left: chatMessage[0] == 0 ? pixleToPercent(60, "width").w : 0,
+        right: chatMessage[0] == 1 ? pixleToPercent(60, "width").w : 0,
+      ),
       child: Container(
         padding: EdgeInsets.symmetric(
           horizontal: pixleToPercent(20, "width").w,
@@ -238,8 +370,8 @@ class ChatBox extends StatelessWidget {
           color: chatMessage[0] == 1
               ? const Color.fromRGBO(237, 237, 237, 1)
               : const Color.fromRGBO(104, 164, 244, 1),
+          borderRadius: BorderRadius.circular(10),
         ),
-        width: pixleToPercent(319, "width").w,
         child: Column(
           children: [
             Text(
@@ -249,11 +381,10 @@ class ChatBox extends StatelessWidget {
                   color: chatMessage[0] == 1 ? Colors.black : Colors.white),
             ),
             const SizedBox(
-              height: 6,
+              height: 15,
             ),
-            chatMessage[0] == 1
+            chatMessage[0] == 1 && chatMessage[1].institutes.isNotEmpty
                 ? SizedBox(
-                    width: 400,
                     height: 200,
                     child: ListView.builder(
                       itemCount: chatMessage[0] == 1
@@ -262,7 +393,12 @@ class ChatBox extends StatelessWidget {
                       itemBuilder: (BuildContext context, int i) {
                         return Column(
                           children: [
-                            institutionCard(chatMessage[1].institutes[i]),
+                            institutionCard(chatMessage[1].institutes[i],
+                                (instituteId) {
+                              navigateHospital(instituteId);
+                            }, (doctorId) {
+                              navigateDoctor(doctorId);
+                            }),
                             const SizedBox(
                               height: 20,
                             )
@@ -271,10 +407,7 @@ class ChatBox extends StatelessWidget {
                       },
                     ),
                   )
-                : Container(
-                    width: 0,
-                    height: 0,
-                  ),
+                : Container(),
           ],
         ),
       ),
@@ -282,48 +415,92 @@ class ChatBox extends StatelessWidget {
   }
 }
 
-Widget institutionCard(ChatInsituteModel chatInstituteEntity) {
+Widget institutionCard(ChatInsituteModel chatInstituteEntity,
+    Function navigateHosptial, Function navigateDoctor) {
   return Container(
     padding: EdgeInsets.all(10),
     decoration: BoxDecoration(
-      border: Border.all(color: Colors.blue, width: 2),
-    ),
+        // border: Border.all(color: Colors.blue, width: 2),
+        boxShadow: const [
+          BoxShadow(
+            blurRadius: 5,
+            color: Colors.grey,
+            blurStyle: BlurStyle.outer,
+          )
+        ],
+        borderRadius: BorderRadius.circular(10)),
     child: Column(
       children: [
-        Row(
-          children: [
-            CircleAvatar(
-              backgroundImage: NetworkImage(
-                chatInstituteEntity.logoUrl,
+        GestureDetector(
+          onTap: () {
+            navigateHosptial(chatInstituteEntity.instituteId);
+          },
+          child: Row(
+            children: [
+              CircleAvatar(
+                backgroundImage: NetworkImage(
+                  chatInstituteEntity.logoUrl,
+                ),
+                onBackgroundImageError: (exception, stackTrace) {
+                  const CircleAvatar(
+                    backgroundImage:
+                        AssetImage('assets/images/doctor_image.png'),
+                  );
+                },
               ),
-              onBackgroundImageError: (exception, stackTrace) {
-                const CircleAvatar(
-                  backgroundImage: AssetImage('assets/images/doctor_image.png'),
-                );
-              },
-            ),
-            const SizedBox(
-              width: 8,
-            ),
-            Text(
-              chatInstituteEntity.instituteName,
-              style: const TextStyle(
-                color: Colors.blue,
-                fontSize: 13,
+              const SizedBox(
+                width: 12,
               ),
-            )
-          ],
+              Expanded(
+                child: HoverBuilder(
+                  builder: (isHovered) {
+                    return Text(
+                      chatInstituteEntity.instituteName,
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyle(
+                        color: isHovered ? Colors.blue : Colors.black,
+                        fontSize: 13,
+                        fontWeight: FontWeight.w700,
+                      ),
+                    );
+                  },
+                ),
+              )
+            ],
+          ),
+        ),
+        const SizedBox(
+          height: 10,
         ),
         chatInstituteEntity.doctors.isNotEmpty
             ? SizedBox(
                 height: 100,
                 width: 200,
                 child: Padding(
-                  padding: const EdgeInsets.only(left: 28.0),
+                  padding: const EdgeInsets.only(left: 10.0),
                   child: ListView.builder(
                     itemCount: chatInstituteEntity.doctors.length,
                     itemBuilder: (BuildContext context, int index) {
-                      return doctor(chatInstituteEntity.doctors[index]);
+                      return Column(
+                        children: [
+                          Padding(
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 2.0),
+                            child: GestureDetector(
+                              child: doctor(
+                                chatInstituteEntity.doctors[index],
+                              ),
+                              onTap: () {
+                                navigateDoctor(
+                                    chatInstituteEntity.doctors[index].id);
+                              },
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          )
+                        ],
+                      );
                     },
                   ),
                 ),
@@ -335,32 +512,57 @@ Widget institutionCard(ChatInsituteModel chatInstituteEntity) {
 }
 
 Widget doctor(ChatDoctorEntity chatDoctorEntity) {
-  return Row(
-    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-    children: [
-      CircleAvatar(
-        backgroundImage: NetworkImage(chatDoctorEntity.photoUrl),
-        onBackgroundImageError: (exception, stackTrace) {
-          const CircleAvatar(
-            backgroundImage: AssetImage('assets/images/doctor_image.png'),
-          );
-        },
-        radius: 20,
-      ),
-      Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text(
-            chatDoctorEntity.fullName,
-            style: const TextStyle(fontSize: 13, fontWeight: FontWeight.w600),
-          ),
-          Text(
-            chatDoctorEntity.speciality,
-            style: TextStyle(
-                fontWeight: FontWeight.bold, color: Colors.blue, fontSize: 12),
-          ),
-        ],
-      ),
-    ],
+  return Container(
+    padding: const EdgeInsets.all(8),
+    decoration: BoxDecoration(
+      color: const Color.fromRGBO(237, 237, 237, 1),
+      boxShadow: const [
+        BoxShadow(
+          blurRadius: 5,
+          color: Colors.grey,
+          blurStyle: BlurStyle.outer,
+        )
+      ],
+      borderRadius: BorderRadius.circular(10),
+    ),
+    child: Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: [
+        CircleAvatar(
+          backgroundImage: NetworkImage(chatDoctorEntity.photoUrl),
+          onBackgroundImageError: (exception, stackTrace) {
+            const CircleAvatar(
+              backgroundImage: AssetImage('assets/images/doctor_image.png'),
+            );
+          },
+          radius: 15,
+        ),
+        Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            HoverBuilder(
+              builder: (isHovered) {
+                return Text(
+                  chatDoctorEntity.fullName,
+                  style: TextStyle(
+                    color: isHovered ? Colors.blue : Colors.black,
+                    fontSize: 13,
+                    fontWeight: FontWeight.bold,
+                  ),
+                );
+              },
+            ),
+            Text(
+              chatDoctorEntity.speciality,
+              style: const TextStyle(
+                fontWeight: FontWeight.w600,
+                color: Color.fromARGB(131, 33, 149, 243),
+                fontSize: 11,
+              ),
+            ),
+          ],
+        ),
+      ],
+    ),
   );
 }

@@ -12,3 +12,9 @@ class GetChatResponseEvent extends ChatBotEvent {
   @override
   List<Object?> get props => [request];
 }
+
+class SetIntialStateEvent extends ChatBotEvent {
+  SetIntialStateEvent();
+  @override
+  List<Object?> get props => [];
+}

@@ -16,8 +16,12 @@ class BottomNav extends StatefulWidget {
     const ChatLandingPage(),
     const HospitalsHomeScreen(),
   ];
-  int index = 0;
-  void onTap(int index) {
+  String index = "0";
+  BottomNav({this.index = "0"});
+  
+  
+
+  void onTap(String index) {
     this.index = index;
   }
 
@@ -29,10 +33,11 @@ class _BottomNavState extends State<BottomNav> {
   //bottom navigation bar
   @override
   Widget build(BuildContext context) {
+    // widget.index = int.parse(widget.ind);
     return Scaffold(
-      body: widget.pages[widget.index],
+      body: widget.pages[int.parse(widget.index)],
       bottomNavigationBar: BottomNavigationBar(
-        currentIndex: widget.index,
+        currentIndex: int.parse(widget.index),
         selectedItemColor: primaryColor,
         showSelectedLabels: true,
         unselectedIconTheme: const IconThemeData(color: Colors.grey),
@@ -41,13 +46,16 @@ class _BottomNavState extends State<BottomNav> {
         type: BottomNavigationBarType.fixed,
         onTap: (int i) {
           setState(() {
-            widget.index = i;
+            widget.index = i.toString();
           });
 
-          if (i == 2){
-            print(i,);
+          if (i == 2) {
+            print(
+              i,
+            );
             print("objectobjectobjectobjectobjectobjectobjectobject");
-            BlocProvider.of<SearchHospitalBloc>(context).add(const GetAllHospitalsEvent());
+            BlocProvider.of<SearchHospitalBloc>(context)
+                .add(const GetAllHospitalsEvent());
           }
         },
         items: const <BottomNavigationBarItem>[

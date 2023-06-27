@@ -21,12 +21,13 @@ class RouterMain extends StatelessWidget {
   RouterMain({Key? key}) : super(key: key) {
     _router = GoRouter(
       // redirect: (context, state) => redirector(state),
-      initialLocation: AppRoutes.Home,
+      initialLocation: AppRoutes.SplashPage,
       routes: <GoRoute>[
         GoRoute(
             path: AppRoutes.Home,
+            name: AppRoutes.Home,
             pageBuilder: (context, state) {
-              return MaterialPage(child: BottomNav());
+              return MaterialPage(child: BottomNav(index: state.queryParameters["index"]! ));
             }),
         GoRoute(
           path: AppRoutes.HospitalDetailPage,
@@ -39,19 +40,25 @@ class RouterMain extends StatelessWidget {
           path: AppRoutes.DoctorDetailPage,
           name: AppRoutes.DoctorDetailPage,
           pageBuilder: (context, state) {
-            return  MaterialPage(child: DoctorDetailPage(doctorDetailId: state.queryParameters["id"]!));
+            return MaterialPage(
+                child: DoctorDetailPage(
+                    doctorDetailId: state.queryParameters["id"]!));
           },
         ),
         GoRoute(
           path: AppRoutes.SplashPage,
+          name: AppRoutes.SplashPage,
           pageBuilder: (context, state) =>
               const MaterialPage(child: OnBordingPage()),
         ),
         GoRoute(
           path: AppRoutes.ChatPage,
           name: AppRoutes.ChatPage,
-          pageBuilder: (context, state) =>
-              MaterialPage(child: ChatPage(chatBotIntialMessage: state.queryParameters["chatBotIntialMessage"]!,)),
+          pageBuilder: (context, state) => MaterialPage(
+              child: ChatPage(
+            chatMessages:
+                [[0, state.queryParameters["chatBotIntialMessage"]!]],
+          )),
         ),
       ],
     );
