@@ -29,5 +29,10 @@ class ChatBotBloc extends Bloc<ChatBotEvent, ChatBotState> {
         },
       );
     });
+    on<SetIntialStateEvent>(
+      (event, emit) async {
+        emit(ChatBotInitialState());
+      },
+    );
   }
 }
