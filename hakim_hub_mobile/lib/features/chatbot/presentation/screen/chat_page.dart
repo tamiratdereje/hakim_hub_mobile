@@ -10,6 +10,7 @@ import '../../data/models/chat_institute_model.dart';
 import '../../domain/entities/chat_doctor_entity.dart';
 import '../../domain/entities/chat_request_entity.dart';
 import '../bloc/chat_bot_bloc.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 class ChatPage extends StatefulWidget {
   // String chatBotIntialMessage;
@@ -48,19 +49,20 @@ class _ChatPageState extends State<ChatPage> {
         foregroundColor: Colors.white,
         shadowColor: Colors.transparent,
         leading: GestureDetector(
-          onTap: () => {Navigator.pop(context)},
+          onTap: () => {
+            clearChat(),
+            BlocProvider.of<ChatBotBloc>(context).add(SetIntialStateEvent()),
+            context.goNamed(AppRoutes.Home, queryParameters: {
+              "index": "1",
+            }),
+          },
           child: const Icon(Icons.arrow_back_ios_new, color: Colors.black),
-        ),
-        centerTitle: true,
-        title: const Text(
-          "Chat",
-          style: const TextStyle(color: primaryColor),
         ),
         actions: [
           IconButton(
-            icon: Icon(
+            icon: const Icon(
               Icons.add,
-              color: Colors.blue,
+              color: Colors.black,
             ),
             onPressed: () {
               clearChat();
@@ -119,8 +121,22 @@ class _ChatPageState extends State<ChatPage> {
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: ListView.builder(
-                            itemCount: widget.chatMessages.length,
+                            itemCount: widget.chatMessages.length + 1,
                             itemBuilder: (BuildContext context, int index) {
+                              if (index == widget.chatMessages.length) {
+                                return Padding(
+                                  padding: const EdgeInsets.only(left: 10),
+                                  child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      children: [
+                                        LoadingAnimationWidget.waveDots(
+                                          color: Colors.blue,
+                                          size: 40,
+                                        ),
+                                      ]),
+                                );
+                              }
                               return Column(
                                 children: [
                                   ChatBox(
@@ -153,9 +169,6 @@ class _ChatPageState extends State<ChatPage> {
                       const Padding(
                         padding: EdgeInsets.only(top: 20),
                       ),
-                      const Center(
-                        child: CircularProgressIndicator(),
-                      ),
                     ],
                   ),
                 );
@@ -163,7 +176,7 @@ class _ChatPageState extends State<ChatPage> {
                 widget.chatMessages.add([1, state.chatResponse]);
                 return Expanded(
                   child: Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding: const EdgeInsets.all(16.0),
                     child: ListView.builder(
                       itemCount: widget.chatMessages.length,
                       itemBuilder: (BuildContext context, int index) {
@@ -202,8 +215,31 @@ class _ChatPageState extends State<ChatPage> {
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: ListView.builder(
-                            itemCount: widget.chatMessages.length,
+                            itemCount: widget.chatMessages.length + 1,
                             itemBuilder: (BuildContext context, int index) {
+                              if (index == widget.chatMessages.length) {
+                                return Padding(
+                                  padding: const EdgeInsets.only(left: 10),
+                                  child: Row(
+                                      mainAxisAlignment: MainAxisAlignment.end,
+                                      children: [
+                                        Container(
+                                          padding: const EdgeInsets.all(15),
+                                          decoration: BoxDecoration(
+                                              color: Colors.red[200],
+                                              borderRadius:
+                                                  const BorderRadius.all(
+                                                      Radius.circular(15))),
+                                          child: const Text(
+                                            "Pleased check your network",
+                                            style: TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 14),
+                                          ),
+                                        )
+                                      ]),
+                                );
+                              }
                               return Column(
                                 children: [
                                   ChatBox(
@@ -233,16 +269,6 @@ class _ChatPageState extends State<ChatPage> {
                           ),
                         ),
                       ),
-                      const Padding(
-                        padding: EdgeInsets.only(top: 20),
-                      ),
-                      const Text(
-                        "error while loading",
-                        style: TextStyle(
-                          color: Colors.red,
-                          fontSize: 20,
-                        ),
-                      ),
                     ],
                     // child: Text('Error'),
                   ),
@@ -267,6 +293,8 @@ class _ChatPageState extends State<ChatPage> {
                 children: [
                   Expanded(
                     child: TextField(
+                      onSubmitted: (value) {},
+                      textInputAction: TextInputAction.done,
                       controller: _textEditingController,
                       decoration: const InputDecoration(
                         border: InputBorder.none,
@@ -321,8 +349,9 @@ class ChatBox extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.only(
-          left: chatMessage[0] == 0 ? pixleToPercent(30, "width").w : 0,
-          right: chatMessage[0] == 1 ? pixleToPercent(30, "width").w : 0),
+        left: chatMessage[0] == 0 ? pixleToPercent(60, "width").w : 0,
+        right: chatMessage[0] == 1 ? pixleToPercent(60, "width").w : 0,
+      ),
       child: Container(
         padding: EdgeInsets.symmetric(
           horizontal: pixleToPercent(20, "width").w,
@@ -334,7 +363,6 @@ class ChatBox extends StatelessWidget {
               : const Color.fromRGBO(104, 164, 244, 1),
           borderRadius: BorderRadius.circular(10),
         ),
-        width: pixleToPercent(319, "width").w,
         child: Column(
           children: [
             Text(
@@ -344,11 +372,10 @@ class ChatBox extends StatelessWidget {
                   color: chatMessage[0] == 1 ? Colors.black : Colors.white),
             ),
             const SizedBox(
-              height: 10,
+              height: 15,
             ),
             chatMessage[0] == 1 && chatMessage[1].institutes.isNotEmpty
                 ? SizedBox(
-                    width: 400,
                     height: 200,
                     child: ListView.builder(
                       itemCount: chatMessage[0] == 1
@@ -413,7 +440,7 @@ Widget institutionCard(ChatInsituteModel chatInstituteEntity,
                 },
               ),
               const SizedBox(
-                width: 8,
+                width: 12,
               ),
               Expanded(
                 child: Text(
@@ -422,35 +449,42 @@ Widget institutionCard(ChatInsituteModel chatInstituteEntity,
                   style: const TextStyle(
                     fontSize: 13,
                     fontWeight: FontWeight.w700,
-                    color: Colors.blue,
+                    color: Colors.black,
                   ),
                 ),
               )
             ],
           ),
         ),
+        const SizedBox(
+          height: 10,
+        ),
         chatInstituteEntity.doctors.isNotEmpty
             ? SizedBox(
                 height: 100,
                 width: 200,
                 child: Padding(
-                  padding: const EdgeInsets.only(left: 16.0),
+                  padding: const EdgeInsets.only(left: 10.0),
                   child: ListView.builder(
                     itemCount: chatInstituteEntity.doctors.length,
                     itemBuilder: (BuildContext context, int index) {
                       return Column(
                         children: [
-                          GestureDetector(
-                            child: doctor(
-                              chatInstituteEntity.doctors[index],
+                          Padding(
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 2.0),
+                            child: GestureDetector(
+                              child: doctor(
+                                chatInstituteEntity.doctors[index],
+                              ),
+                              onTap: () {
+                                navigateDoctor(
+                                    chatInstituteEntity.doctors[index].id);
+                              },
                             ),
-                            onTap: () {
-                              navigateDoctor(
-                                  chatInstituteEntity.doctors[index].id);
-                            },
                           ),
                           const SizedBox(
-                            height: 6,
+                            height: 10,
                           )
                         ],
                       );
@@ -465,38 +499,53 @@ Widget institutionCard(ChatInsituteModel chatInstituteEntity,
 }
 
 Widget doctor(ChatDoctorEntity chatDoctorEntity) {
-  return Row(
-    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-    children: [
-      CircleAvatar(
-        backgroundImage: NetworkImage(chatDoctorEntity.photoUrl),
-        onBackgroundImageError: (exception, stackTrace) {
-          const CircleAvatar(
-            backgroundImage: AssetImage('assets/images/doctor_image.png'),
-          );
-        },
-        radius: 15,
-      ),
-      Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text(
-            chatDoctorEntity.fullName,
-            style: const TextStyle(
-              fontSize: 12,
-              fontWeight: FontWeight.w600,
-              color: Colors.blue,
+  return Container(
+    padding: const EdgeInsets.all(8),
+    decoration: BoxDecoration(
+      color: const Color.fromRGBO(237, 237, 237, 1),
+      boxShadow: const [
+        BoxShadow(
+          blurRadius: 5,
+          color: Colors.grey,
+          blurStyle: BlurStyle.outer,
+        )
+      ],
+      borderRadius: BorderRadius.circular(10),
+    ),
+    child: Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: [
+        CircleAvatar(
+          backgroundImage: NetworkImage(chatDoctorEntity.photoUrl),
+          onBackgroundImageError: (exception, stackTrace) {
+            const CircleAvatar(
+              backgroundImage: AssetImage('assets/images/doctor_image.png'),
+            );
+          },
+          radius: 15,
+        ),
+        Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              chatDoctorEntity.fullName,
+              style: const TextStyle(
+                fontSize: 12,
+                fontWeight: FontWeight.bold,
+                color: Colors.black,
+              ),
             ),
-          ),
-          Text(
-            chatDoctorEntity.speciality,
-            style: const TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 11,
+            Text(
+              chatDoctorEntity.speciality,
+              style: const TextStyle(
+                fontWeight: FontWeight.w600,
+                color: Color.fromARGB(131, 33, 149, 243),
+                fontSize: 11,
+              ),
             ),
-          ),
-        ],
-      ),
-    ],
+          ],
+        ),
+      ],
+    ),
   );
 }
