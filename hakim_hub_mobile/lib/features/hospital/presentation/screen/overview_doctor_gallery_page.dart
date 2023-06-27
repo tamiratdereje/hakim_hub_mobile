@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:go_router/go_router.dart';
 import 'package:hakim_hub_mobile/core/utils/colors.dart';
 import 'package:hakim_hub_mobile/features/hospital/domain/entities/hospital_detail_domain.dart';
 import 'package:hakim_hub_mobile/features/hospital/presentation/bloc/bloc/hospital_detail_bloc.dart';
 import 'package:hakim_hub_mobile/features/hospital/presentation/widgets/doctor_grid_view.dart';
 import 'package:hakim_hub_mobile/features/hospital/presentation/widgets/hospital_gallery_page.dart';
 import 'package:hakim_hub_mobile/features/hospital/presentation/widgets/overview_tab.dart';
+import 'package:hakim_hub_mobile/router/routes.dart';
 
 class OverviewDoctorGalleryPage extends StatefulWidget {
   String institutionId;
@@ -79,7 +81,9 @@ class _OverviewDoctorGalleryPageState extends State<OverviewDoctorGalleryPage>
             icon: const Icon(Icons.arrow_back_outlined),
             onPressed: () {
               // Navigate back to the previous screen
-              Navigator.pop(context);
+              context.goNamed(AppRoutes.Home ,queryParameters: {
+                                      "index": "2",
+                                    });
             },
           ),
         ),
