@@ -49,37 +49,28 @@ Widget buildCard(
       child: Column(
         children: [
           SizedBox(
-            height: UIConverter.getComponentHeight(context, 72),
+            height: UIConverter.getComponentHeight(context, 78),
           ),
           Text(
             doctorName,
-             maxLines: 1,
+            maxLines: 1,
             style: TextStyle(
               color: primaryTextColor,
               fontFamily: 'Poppins',
               fontSize: UIConverter.getComponentHeight(context, 17),
             ),
-           
           ),
           Text(
             doctorSpecialization,
             style: TextStyle(
-                color: primaryColor,
-                fontWeight: FontWeight.bold,
-                fontFamily: 'Poppins',
-                fontSize: UIConverter.getComponentHeight(context, 17),
-              ),
+              color: primaryColor,
+              fontWeight: FontWeight.bold,
+              fontFamily: 'Poppins',
+              fontSize: UIConverter.getComponentHeight(context, 15),
             ),
-            Text(
-              doctorSpecialization,
-              style: TextStyle(
-                  color: primaryColor,
-                  fontWeight: FontWeight.bold,
-                  fontFamily: 'Poppins',
-                  fontSize: UIConverter.getComponentHeight(context, 14)),
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
-    );}
-  
+    ),
+  );
+}
