@@ -31,9 +31,16 @@ class _DoctorDetailPageState extends State<DoctorDetailPage> {
     return BlocBuilder<DoctorDetailBloc, DoctorDetailState>(
         builder: (context, state) {
       if (state is DoctorDetailLoadingState) {
-        return const Scaffold(
+        return  Scaffold(
             body: Center(
-          child: CircularProgressIndicator(),
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                Container(child: Text("data"),),
+
+              ],
+            ),
+          ),
         ));
       } else if (state is DoctorDetailSuccessState) {
         final doctorDetail = state.doctorDetail;

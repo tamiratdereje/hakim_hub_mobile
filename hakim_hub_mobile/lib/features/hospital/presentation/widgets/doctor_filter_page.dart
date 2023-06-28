@@ -20,9 +20,9 @@ class DoctorFilterPage extends StatefulWidget {
 
 class _DoctorFilterPageState extends State<DoctorFilterPage> {
   bool isSwitched = false;
-  int sliderValue = 10;
+  int sliderValue = 1;
 
-  List<String> options = ["", 'Option 1', 'Option 2', 'Option 3'];
+  List<String> options = [""];
 
   List<String> selectedList = [];
 
@@ -101,15 +101,14 @@ class _DoctorFilterPageState extends State<DoctorFilterPage> {
             ),
             DropdownButton<String>(
               isExpanded: true,
-              iconEnabledColor: Colors.red,
-              enableFeedback: Colors.red == Colors.red,
+              iconEnabledColor: Colors.blue,
               value: selectedOption,
               items: options.map((String option) {
                 return DropdownMenuItem<String>(
                   value: option,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [Icon(Icons.rotate_90_degrees_ccw), Text(option)],
+                    children: [const Icon(Icons.cast_for_education), Text(option)],
                   ),
                 );
               }).toList(),
@@ -156,8 +155,8 @@ class _DoctorFilterPageState extends State<DoctorFilterPage> {
                 child: Slider(
                   value: sliderValue.toDouble(),
                   min: 1,
-                  max: 50,
-                  divisions: 50,
+                  max: 20,
+                  divisions: 20,
                   label: '${sliderValue.round()} years',
                   onChanged: (double value) {
                     setState(() {

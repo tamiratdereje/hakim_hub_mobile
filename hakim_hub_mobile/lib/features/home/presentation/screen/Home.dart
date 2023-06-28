@@ -68,7 +68,7 @@ class HomePage extends StatelessWidget {
                       child: HospitalsCard(),
                       onTap: () {
                         context.pushNamed(AppRoutes.HospitalDetailPage,
-                            queryParameters: {"id": "c72d6a0d-907f-4e0f-9878-8ea6fae26d19"});
+                            queryParameters: {"id": "83cd6018-a562-42cc-a74b-72f139ead12c", "prevIndex": "0"});
                       },
                     );
                   },

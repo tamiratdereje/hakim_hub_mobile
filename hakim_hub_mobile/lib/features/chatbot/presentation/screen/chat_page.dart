@@ -96,6 +96,7 @@ class _ChatPageState extends State<ChatPage> {
                                 context.pushNamed(AppRoutes.HospitalDetailPage,
                                     queryParameters: {
                                       "id": instituteId,
+                                      "prevIndex": "1"
                                     });
                               },
                               navigateDoctor: (doctorId) {
@@ -361,55 +362,61 @@ class ChatBox extends StatelessWidget {
         left: chatMessage[0] == 0 ? pixleToPercent(60, "width").w : 0,
         right: chatMessage[0] == 1 ? pixleToPercent(60, "width").w : 0,
       ),
-      child: Container(
-        padding: EdgeInsets.symmetric(
-          horizontal: pixleToPercent(20, "width").w,
-          vertical: pixleToPercent(14, "height").h,
-        ),
-        decoration: BoxDecoration(
-          color: chatMessage[0] == 1
-              ? const Color.fromRGBO(237, 237, 237, 1)
-              : const Color.fromRGBO(104, 164, 244, 1),
-          borderRadius: BorderRadius.circular(10),
-        ),
-        child: Column(
-          children: [
-            Text(
-              chatMessage[0] == 0 ? chatMessage[1] : chatMessage[1].reply,
-              style: TextStyle(
-                  fontSize: 14,
-                  color: chatMessage[0] == 1 ? Colors.black : Colors.white),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          Container(
+            padding: EdgeInsets.symmetric(
+              horizontal: pixleToPercent(20, "width").w,
+              vertical: pixleToPercent(14, "height").h,
             ),
-            const SizedBox(
-              height: 15,
+            decoration: BoxDecoration(
+              color: chatMessage[0] == 1
+                  ? const Color.fromRGBO(237, 237, 237, 1)
+                  : const Color.fromRGBO(104, 164, 244, 1),
+              borderRadius: BorderRadius.circular(10),
             ),
-            chatMessage[0] == 1 && chatMessage[1].institutes.isNotEmpty
-                ? SizedBox(
-                    height: 200,
-                    child: ListView.builder(
-                      itemCount: chatMessage[0] == 1
-                          ? chatMessage[1].institutes.length
-                          : 0,
-                      itemBuilder: (BuildContext context, int i) {
-                        return Column(
-                          children: [
-                            institutionCard(chatMessage[1].institutes[i],
-                                (instituteId) {
-                              navigateHospital(instituteId);
-                            }, (doctorId) {
-                              navigateDoctor(doctorId);
-                            }),
-                            const SizedBox(
-                              height: 20,
-                            )
-                          ],
-                        );
-                      },
-                    ),
-                  )
-                : Container(),
-          ],
-        ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  chatMessage[0] == 0 ? chatMessage[1] : chatMessage[1].reply,
+                  style: TextStyle(
+                      fontSize: 14,
+                      color: chatMessage[0] == 1 ? Colors.black : Colors.white),
+                ),
+                const SizedBox(
+                  height: 15,
+                ),
+                chatMessage[0] == 1 && chatMessage[1].institutes.isNotEmpty
+                    ? SizedBox(
+                        height: 200,
+                        child: ListView.builder(
+                          itemCount: chatMessage[0] == 1
+                              ? chatMessage[1].institutes.length
+                              : 0,
+                          itemBuilder: (BuildContext context, int i) {
+                            return Column(
+                              children: [
+                                institutionCard(chatMessage[1].institutes[i],
+                                    (instituteId) {
+                                  navigateHospital(instituteId);
+                                }, (doctorId) {
+                                  navigateDoctor(doctorId);
+                                }),
+                                const SizedBox(
+                                  height: 20,
+                                )
+                              ],
+                            );
+                          },
+                        ),
+                      )
+                    : Container(),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }

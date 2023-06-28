@@ -12,7 +12,8 @@ import 'package:hakim_hub_mobile/router/routes.dart';
 
 class OverviewDoctorGalleryPage extends StatefulWidget {
   String institutionId;
-  OverviewDoctorGalleryPage({required this.institutionId, Key? key})
+  String? prevIndex = "2";
+  OverviewDoctorGalleryPage({required this.institutionId,  this.prevIndex, Key? key})
       : super(key: key);
 
   @override
@@ -81,9 +82,23 @@ class _OverviewDoctorGalleryPageState extends State<OverviewDoctorGalleryPage>
             icon: const Icon(Icons.arrow_back_outlined),
             onPressed: () {
               // Navigate back to the previous screen
-              context.goNamed(AppRoutes.Home ,queryParameters: {
+
+              if (widget.prevIndex == "1"){
+                context.goNamed(AppRoutes.Home ,queryParameters: {
+                                      "index": "1",
+                                    });
+
+              } else if(widget.prevIndex == "2"){
+                context.goNamed(AppRoutes.Home ,queryParameters: {
                                       "index": "2",
                                     });
+                // context.pop();
+              } else {
+                context.goNamed(AppRoutes.Home ,queryParameters: {
+                                      "index": "0",
+                                    });
+              }
+
             },
           ),
         ),

@@ -148,8 +148,8 @@ class _FilterPageState extends State<FilterPage> {
                 child: Slider(
                   value: sliderValue.toDouble(),
                   min: 1,
-                  max: 50,
-                  divisions: 50,
+                  max: 20,
+                  divisions: 20,
                   label: '${sliderValue.round()} years',
                   onChanged: (double value) {
                     setState(() {

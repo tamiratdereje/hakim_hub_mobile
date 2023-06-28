@@ -88,6 +88,7 @@ class _HospitalsHomeScreenState extends State<HospitalsHomeScreen> {
                       },
                       builder: (context, state) {
                         if (state is SearchHospitalSuccess) {
+                          
                           return Expanded(
                             child: ListView.builder(
                                 itemCount: state.institutionSearchDomain.length,
@@ -102,6 +103,7 @@ class _HospitalsHomeScreenState extends State<HospitalsHomeScreen> {
                                     });
                                   } 
                                   
+                                  
                                   if (index == state.institutionSearchDomain.length - 1) {
                                       isService = false;
                                   }
@@ -115,7 +117,7 @@ class _HospitalsHomeScreenState extends State<HospitalsHomeScreen> {
                                       
                                       context.pushNamed(
                                           AppRoutes.HospitalDetailPage,
-                                          queryParameters: {"id": state.institutionSearchDomain[index].id});
+                                          queryParameters: {"id": state.institutionSearchDomain[index].id, "prevIndex": "2"});
                                     },
                                   );
                                 })),
