@@ -1,11 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_map/flutter_map.dart';
 import 'package:hakim_hub_mobile/core/utils/icons.dart';
 import 'package:hakim_hub_mobile/features/core/splash_screen.dart';
+import 'package:hakim_hub_mobile/features/hospital/data/models/hospital_address.dart';
 import 'package:hakim_hub_mobile/features/hospital/domain/entities/hospital_detail_domain.dart';
 import 'package:hakim_hub_mobile/features/hospital/presentation/widgets/hospital_card.dart';
-
+import 'package:hakim_hub_mobile/features/hospital/presentation/widgets/hospital_google_map.dart';
+import 'package:latlong2/latlong.dart';
 import '../../../../core/utils/colors.dart';
 import '../../../../core/utils/ui_converter.dart';
+import 'app_constans.dart';
+import 'map_box.dart';
+import 'package:expandable_text/expandable_text.dart';
 
 class OverviewTab extends StatefulWidget {
   final InstitutionDetailDomain institutionDetailDomain;
@@ -19,6 +25,19 @@ class OverviewTab extends StatefulWidget {
 
 class _OverviewTabState extends State<OverviewTab> {
   int _selectedIndex = -1;
+  bool _isExpanded = false;
+  AddressModel address = AddressModel(
+    country: "USA",
+    region: "California",
+    zone: "Western",
+    woreda: "San Mateo",
+    city: "San Francisco",
+    subCity: "Mission District",
+    longitude: -122.4194,
+    latitude: 37.7749,
+    summary: "123 Mission St, San Francisco, CA 94105",
+    id: "abc123",
+  );
 
   void _onButtonPressed(int index) {
     setState(() {
@@ -82,12 +101,28 @@ class _OverviewTabState extends State<OverviewTab> {
                 fontSize: 15,
               ),
             ),
+            ExpandableText(
+              widget.institutionDetailDomain.summary,
+              maxLines: 3,
+              expanded: _isExpanded,
+              style: const TextStyle(fontSize: 15),
+              expandText: 'See More',
+              collapseText: 'See Less',
+              linkColor: Colors.blue,
+              onExpandedChanged: (value) {
+                setState(() {
+                  _isExpanded = value;
+                });
+              },
+            ),
             SizedBox(height: UIConverter.getComponentHeight(context, 30)),
-            Image.asset(
-              'assets/images/google_map.jfif',
-              height: UIConverter.getComponentHeight(context, 180),
-              width: UIConverter.getComponentWidth(context, 382),
-              fit: BoxFit.cover,
+            Container(
+              width: 400,
+              height: 400,
+              child: MapBoxWidget(
+                latitude: widget.institutionDetailDomain.address.latitude,
+                longitude: widget.institutionDetailDomain.address.longitude,
+              ),
             ),
             SizedBox(height: UIConverter.getComponentHeight(context, 50)),
             const Row(
@@ -122,13 +157,6 @@ class _OverviewTabState extends State<OverviewTab> {
                         ),
                       ],
                     ),
-                    child: ListTile(
-                      leading: Image.asset('assets/images/right_icon.png'),
-                      title: Text(
-                        widget.institutionDetailDomain.services[index],
-                        style: const TextStyle(fontSize: 13),
-                      ),
-                    ),
                   );
                 },
               ),
@@ -158,12 +186,18 @@ class _OverviewTabState extends State<OverviewTab> {
                 ),
               ],
             ),
-           Row(children: [
-             TextButton(
-              onPressed: () {},
-              child: const Text("SEE IT ON MAP"),
-            ),
-           ],)
+            Row(
+              children: [
+                HospitalMap(
+                  latitude: widget.institutionDetailDomain.address.latitude,
+                  longitude: widget.institutionDetailDomain.address.longitude,
+                )
+                // TextButton(
+                //   onPressed: () {},
+                //   child: const Text("SEE IT ON MAP"),
+                // ),
+              ],
+            )
           ],
         ),
       ),
