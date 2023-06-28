@@ -2,13 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:hakim_hub_mobile/core/utils/icons.dart';
 import 'package:hakim_hub_mobile/features/core/splash_screen.dart';
+import 'package:hakim_hub_mobile/features/hospital/data/models/hospital_address.dart';
 import 'package:hakim_hub_mobile/features/hospital/domain/entities/hospital_detail_domain.dart';
 import 'package:hakim_hub_mobile/features/hospital/presentation/widgets/hospital_card.dart';
+import 'package:hakim_hub_mobile/features/hospital/presentation/widgets/hospital_google_map.dart';
 import 'package:latlong2/latlong.dart';
 import '../../../../core/utils/colors.dart';
 import '../../../../core/utils/ui_converter.dart';
+import 'Exanded_text.dart';
 import 'app_constans.dart';
 import 'map_box.dart';
+import 'package:expandable_text/expandable_text.dart';
 
 class OverviewTab extends StatefulWidget {
   final InstitutionDetailDomain institutionDetailDomain;
@@ -22,6 +26,19 @@ class OverviewTab extends StatefulWidget {
 
 class _OverviewTabState extends State<OverviewTab> {
   int _selectedIndex = -1;
+  bool _isExpanded = false;
+  AddressModel address = AddressModel(
+    country: "USA",
+    region: "California",
+    zone: "Western",
+    woreda: "San Mateo",
+    city: "San Francisco",
+    subCity: "Mission District",
+    longitude: -122.4194,
+    latitude: 37.7749,
+    summary: "123 Mission St, San Francisco, CA 94105",
+    id: "abc123",
+  );
 
   void _onButtonPressed(int index) {
     setState(() {
@@ -85,6 +102,20 @@ class _OverviewTabState extends State<OverviewTab> {
                 fontSize: 15,
               ),
             ),
+            ExpandableText(
+              widget.institutionDetailDomain.summary,
+              maxLines: 3,
+              expanded: _isExpanded,
+              style: const TextStyle(fontSize: 15),
+              expandText: 'See More',
+              collapseText: 'See Less',
+              linkColor: Colors.blue,
+              onExpandedChanged: (value) {
+                setState(() {
+                  _isExpanded = value;
+                });
+              },
+            ),
             SizedBox(height: UIConverter.getComponentHeight(context, 30)),
             Container(width: 400, height: 400, child: MapBoxWidget()),
             SizedBox(height: UIConverter.getComponentHeight(context, 50)),
@@ -120,26 +151,6 @@ class _OverviewTabState extends State<OverviewTab> {
                         ),
                       ],
                     ),
-                    // child: Container(
-                    //   child: FlutterMap(
-                    //     options: MapOptions(
-                    //       minZoom: 5,
-                    //       maxZoom: 18,
-                    //       zoom: 13,
-                    //       center: AppConstants.myLocation,
-                    //     ),
-                    //     children: [
-                    //       TileLayer(
-                    //         urlTemplate:
-                    //             "https://api.mapbox.com/styles/v1/fenetshewarega/cljcic07o00fy01p9etoj6t6p/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoiZmVuZXRzaGV3YXJlZ2EiLCJhIjoiY2xqY2k2ajhpMDFjajNlbW9lbTJvdmozeiJ9.6xeUCiBbQYWVIEzFBT9kPA",
-                    //         additionalOptions: {
-                    //           'mapStyleId': AppConstants.mapBoxStyleId,
-                    //           'accessToken': AppConstants.mapBoxAccessToken,
-                    //         },
-                    //       ),
-                    //     ],
-                    //   ),
-                    // ),
                   );
                 },
               ),
@@ -171,10 +182,13 @@ class _OverviewTabState extends State<OverviewTab> {
             ),
             Row(
               children: [
-                TextButton(
-                  onPressed: () {},
-                  child: const Text("SEE IT ON MAP"),
-                ),
+                HospitalMap(
+                  address: address,
+                )
+                // TextButton(
+                //   onPressed: () {},
+                //   child: const Text("SEE IT ON MAP"),
+                // ),
               ],
             )
           ],

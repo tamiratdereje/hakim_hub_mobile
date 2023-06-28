@@ -39,6 +39,7 @@ class MainHospitalsCard extends StatelessWidget {
                   topLeft: Radius.circular(20), topRight: Radius.circular(20)),
               image: DecorationImage(
                   image: NetworkImage(institutionSearchDomain.bannerUrl, ),
+                  fit:BoxFit.cover,
                   onError: (_, __) {
                     // Handle error by providing a fallback image
                     const AssetImage('assets/images/hospital_img.png');
@@ -48,7 +49,7 @@ class MainHospitalsCard extends StatelessWidget {
             ),
           ),
           const SizedBox(
-            height: 10,
+            height: 5,
           ),
           Padding(
             padding: const EdgeInsets.only(left: 20),

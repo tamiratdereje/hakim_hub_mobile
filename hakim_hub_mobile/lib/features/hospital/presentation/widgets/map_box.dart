@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
+import 'package:hakim_hub_mobile/core/utils/icons.dart';
 import 'package:latlong2/latlong.dart';
 
 class MapBoxWidget extends StatelessWidget {
@@ -29,9 +30,10 @@ class MapBoxWidget extends StatelessWidget {
         MarkerLayerOptions(
           markers: [
             Marker(
-              point: LatLng(51.5090214, -0.1982948),
+              point: LatLng(51, -0.1982948),
               builder: (ctx) => Container(
-                child: FlutterLogo(),
+                child: location,
+                color: Colors.red,
               ),
             ),
           ],
