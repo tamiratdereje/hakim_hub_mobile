@@ -103,6 +103,7 @@ class _ChatPageState extends State<ChatPage> {
                                 context.pushNamed(AppRoutes.DoctorDetailPage,
                                     queryParameters: {
                                       "id": doctorId,
+                                      "prevIndex": "1"
                                     });
                               },
                             ),
@@ -149,6 +150,7 @@ class _ChatPageState extends State<ChatPage> {
                                           AppRoutes.HospitalDetailPage,
                                           queryParameters: {
                                             "id": instituteId,
+                                            "prevIndex": "1"
                                           });
                                     },
                                     navigateDoctor: (doctorId) {
@@ -156,6 +158,7 @@ class _ChatPageState extends State<ChatPage> {
                                           AppRoutes.DoctorDetailPage,
                                           queryParameters: {
                                             "id": doctorId,
+                                            "prevIndex": "1"
                                           });
                                     },
                                   ),
@@ -191,12 +194,14 @@ class _ChatPageState extends State<ChatPage> {
                                 context.pushNamed(AppRoutes.HospitalDetailPage,
                                     queryParameters: {
                                       "id": instituteId,
+                                      "prevIndex": "1"
                                     });
                               },
                               navigateDoctor: (doctorId) {
                                 context.pushNamed(AppRoutes.DoctorDetailPage,
                                     queryParameters: {
                                       "id": doctorId,
+                                      "prevIndex": "1"
                                     });
                               },
                             ),
@@ -252,6 +257,7 @@ class _ChatPageState extends State<ChatPage> {
                                           AppRoutes.HospitalDetailPage,
                                           queryParameters: {
                                             "id": instituteId,
+                                            "prevIndex": "1"
                                           });
                                     },
                                     navigateDoctor: (doctorId) {
@@ -259,6 +265,7 @@ class _ChatPageState extends State<ChatPage> {
                                           AppRoutes.DoctorDetailPage,
                                           queryParameters: {
                                             "id": doctorId,
+                                            "prevIndex": "1"
                                           });
                                     },
                                   ),

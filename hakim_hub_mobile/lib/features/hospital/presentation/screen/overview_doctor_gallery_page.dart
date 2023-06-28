@@ -12,8 +12,9 @@ import 'package:hakim_hub_mobile/router/routes.dart';
 
 class OverviewDoctorGalleryPage extends StatefulWidget {
   String institutionId;
-  String? prevIndex = "2";
-  OverviewDoctorGalleryPage({required this.institutionId,  this.prevIndex, Key? key})
+  String prevIndex = "2";
+  OverviewDoctorGalleryPage(
+      {required this.institutionId, required this.prevIndex, Key? key})
       : super(key: key);
 
   @override
@@ -29,6 +30,7 @@ class _OverviewDoctorGalleryPageState extends State<OverviewDoctorGalleryPage>
   @override
   void initState() {
     super.initState();
+    print("start overview${widget.prevIndex}");
     BlocProvider.of<HospitalDetailBloc>(context)
         .add(HospitalDetailGetEvent(id: widget.institutionId));
     _tabController = TabController(length: 3, vsync: this);
@@ -83,22 +85,19 @@ class _OverviewDoctorGalleryPageState extends State<OverviewDoctorGalleryPage>
             onPressed: () {
               // Navigate back to the previous screen
 
-              if (widget.prevIndex == "1"){
-                context.goNamed(AppRoutes.Home ,queryParameters: {
-                                      "index": "1",
-                                    });
-
-              } else if(widget.prevIndex == "2"){
-                context.goNamed(AppRoutes.Home ,queryParameters: {
-                                      "index": "2",
-                                    });
-                // context.pop();
+              if (widget.prevIndex == "1") {
+                context.pop();
+              } else if (widget.prevIndex == "2") {
+                print("2");
+                context.goNamed(AppRoutes.Home, queryParameters: {
+                  "index": "2",
+                });
               } else {
-                context.goNamed(AppRoutes.Home ,queryParameters: {
-                                      "index": "0",
-                                    });
+                print("0");
+                context.goNamed(AppRoutes.Home, queryParameters: {
+                  "index": "0",
+                });
               }
-
             },
           ),
         ),
@@ -106,7 +105,7 @@ class _OverviewDoctorGalleryPageState extends State<OverviewDoctorGalleryPage>
             builder: ((context, state) {
           if (state is DetailHospitalLoading) {
             return const Center(
-              child:  CircularProgressIndicator(
+              child: CircularProgressIndicator(
                 color: Colors.red,
               ),
             );
@@ -149,7 +148,6 @@ class _OverviewDoctorGalleryPageState extends State<OverviewDoctorGalleryPage>
                     ],
                   ),
                 ),
-
               ],
             );
           } else {

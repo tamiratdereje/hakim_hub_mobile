@@ -31,13 +31,27 @@ class _DoctorDetailPageState extends State<DoctorDetailPage> {
     return BlocBuilder<DoctorDetailBloc, DoctorDetailState>(
         builder: (context, state) {
       if (state is DoctorDetailLoadingState) {
-        return  Scaffold(
+        return Scaffold(
             body: Center(
           child: SingleChildScrollView(
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                Container(child: Text("data"),),
-
+                Container(
+                  height: UIConverter.getComponentHeight(context, 210),
+                  width: double.infinity,
+                  color: Colors.grey,
+                ),
+                Container(
+                  height: UIConverter.getComponentHeight(context, 30),
+                  width: UIConverter.getComponentWidth(context, 200),
+                  color: Colors.grey,
+                ),
+                Container(
+                  height: UIConverter.getComponentHeight(context, 200),
+                  width: double.infinity,
+                  color: Colors.grey,
+                ),
               ],
             ),
           ),
@@ -45,6 +59,7 @@ class _DoctorDetailPageState extends State<DoctorDetailPage> {
       } else if (state is DoctorDetailSuccessState) {
         final doctorDetail = state.doctorDetail;
         return Scaffold(
+          
           body: SafeArea(
             child: Container(
               padding: EdgeInsets.only(

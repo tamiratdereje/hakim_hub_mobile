@@ -1,15 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_map/flutter_map.dart';
 import 'package:hakim_hub_mobile/core/utils/icons.dart';
-import 'package:hakim_hub_mobile/features/core/splash_screen.dart';
 import 'package:hakim_hub_mobile/features/hospital/data/models/hospital_address.dart';
 import 'package:hakim_hub_mobile/features/hospital/domain/entities/hospital_detail_domain.dart';
 import 'package:hakim_hub_mobile/features/hospital/presentation/widgets/hospital_card.dart';
 import 'package:hakim_hub_mobile/features/hospital/presentation/widgets/hospital_google_map.dart';
-import 'package:latlong2/latlong.dart';
 import '../../../../core/utils/colors.dart';
 import '../../../../core/utils/ui_converter.dart';
-import 'app_constans.dart';
 import 'map_box.dart';
 import 'package:expandable_text/expandable_text.dart';
 
@@ -69,10 +65,18 @@ class _OverviewTabState extends State<OverviewTab> {
                   child: Container(
                     height: UIConverter.getComponentHeight(context, 254),
                     width: UIConverter.getComponentWidth(context, 382),
-                    child: Image.asset(
-                      'assets/images/black_lion.png',
-                      fit: BoxFit.cover,
-                    ),
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.all(Radius.circular(10)),
+                        image: DecorationImage(
+                          image: NetworkImage(
+                              widget.institutionDetailDomain.bannerUrl),
+                          fit: BoxFit.cover,
+                          onError: (exception, stackTrace) {
+                            const AssetImage(
+                              'assets/images/black_lion.png',
+                            );
+                          },
+                        )),
                   ),
                 ),
                 Positioned(
@@ -146,6 +150,7 @@ class _OverviewTabState extends State<OverviewTab> {
                 itemCount: widget.institutionDetailDomain.services.length,
                 itemBuilder: (BuildContext context, int index) {
                   return Container(
+                    padding: const EdgeInsets.all(5),
                     height: UIConverter.getComponentHeight(context, 30),
                     decoration: BoxDecoration(
                       boxShadow: [
@@ -157,6 +162,16 @@ class _OverviewTabState extends State<OverviewTab> {
                         ),
                       ],
                     ),
+                    child: Row(
+                      children: [
+                      Image.asset("assets/images/right_icon.png"),
+                      const SizedBox(width: 15,),
+                      Text(widget.institutionDetailDomain.services[index], style: const TextStyle(
+                        fontSize: 14,
+
+                      ),
+                      maxLines: 1,)
+                    ],),
                   );
                 },
               ),
