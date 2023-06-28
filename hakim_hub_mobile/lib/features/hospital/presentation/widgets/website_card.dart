@@ -46,8 +46,7 @@ class websiteCard extends StatelessWidget {
             ),
             SizedBox(height: 10),
             buildinnercard(
-                imagePath:
-                    "/home/fenet/Desktop/hakim_hub_mobile/hakim_hub_mobile/hakim_hub_mobile/assets/images/website_icon.png",
+                imagePath: "assets/images/website_icon.png",
                 text: "www.blacklion.com"),
           ],
         ),

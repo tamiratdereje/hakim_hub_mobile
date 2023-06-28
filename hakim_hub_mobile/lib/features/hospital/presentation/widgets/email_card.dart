@@ -49,11 +49,11 @@ class popup_email extends StatelessWidget {
             SizedBox(height: 10),
             buildinnercard(
                 imagePath:
-                    "/home/fenet/Desktop/hakim_hub_mobile/hakim_hub_mobile/hakim_hub_mobile/assets/images/email_icon.png",
+                    "assets/images/email_icon.png",
                 text: "blacklion@gmail.com"),
             buildinnercard(
                 imagePath:
-                    "/home/fenet/Desktop/hakim_hub_mobile/hakim_hub_mobile/hakim_hub_mobile/assets/images/email_icon.png",
+                    "assets/images/email_icon.png",
                 text: "blacklion@gmail.com"),
           ],
         ),
