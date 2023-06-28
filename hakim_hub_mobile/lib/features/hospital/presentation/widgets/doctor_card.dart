@@ -43,6 +43,9 @@ Widget buildCard(
     color: Colors.white,
     shadowColor: Colors.black,
     elevation: UIConverter.getComponentHeight(context, 8),
+    shape: RoundedRectangleBorder(
+        borderRadius:
+            BorderRadius.circular(UIConverter.getComponentHeight(context, 20))),
     child: SizedBox(
       height: UIConverter.getComponentHeight(context, 135.69),
       width: UIConverter.getComponentWidth(context, 190.22),
