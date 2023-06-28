@@ -9,7 +9,6 @@ import 'package:hakim_hub_mobile/features/hospital/presentation/widgets/hospital
 import 'package:latlong2/latlong.dart';
 import '../../../../core/utils/colors.dart';
 import '../../../../core/utils/ui_converter.dart';
-import 'Exanded_text.dart';
 import 'app_constans.dart';
 import 'map_box.dart';
 import 'package:expandable_text/expandable_text.dart';
@@ -117,7 +116,14 @@ class _OverviewTabState extends State<OverviewTab> {
               },
             ),
             SizedBox(height: UIConverter.getComponentHeight(context, 30)),
-            Container(width: 400, height: 400, child: MapBoxWidget()),
+            Container(
+              width: 400,
+              height: 400,
+              child: MapBoxWidget(
+                latitude: widget.institutionDetailDomain.address.latitude,
+                longitude: widget.institutionDetailDomain.address.longitude,
+              ),
+            ),
             SizedBox(height: UIConverter.getComponentHeight(context, 50)),
             const Row(
               children: [
@@ -183,7 +189,8 @@ class _OverviewTabState extends State<OverviewTab> {
             Row(
               children: [
                 HospitalMap(
-                  address: address,
+                  latitude: widget.institutionDetailDomain.address.latitude,
+                  longitude: widget.institutionDetailDomain.address.longitude,
                 )
                 // TextButton(
                 //   onPressed: () {},

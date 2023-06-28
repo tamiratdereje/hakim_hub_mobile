@@ -2,9 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:hakim_hub_mobile/core/utils/icons.dart';
 import 'package:latlong2/latlong.dart';
-
 class MapBoxWidget extends StatelessWidget {
-  const MapBoxWidget({Key? key}) : super(key: key);
+  final double latitude;
+  final double longitude;
+
+  const MapBoxWidget({
+    Key? key,
+    required this.latitude,
+    required this.longitude,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +20,7 @@ class MapBoxWidget extends StatelessWidget {
         minZoom: 5,
         maxZoom: 18,
         zoom: 13,
-        center: LatLng(51.5090214, -0.1982948),
+        center: LatLng(latitude, longitude),
       ),
       layers: [
         TileLayerOptions(
@@ -30,7 +36,7 @@ class MapBoxWidget extends StatelessWidget {
         MarkerLayerOptions(
           markers: [
             Marker(
-              point: LatLng(51, -0.1982948),
+              point: LatLng(latitude, longitude),
               builder: (ctx) => Container(
                 child: location,
                 color: Colors.red,
