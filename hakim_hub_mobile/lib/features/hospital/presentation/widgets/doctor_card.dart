@@ -1,14 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:hakim_hub_mobile/core/utils/colors.dart';
 import 'package:hakim_hub_mobile/core/utils/ui_converter.dart';
+import 'package:shimmer/shimmer.dart';
 
-class DoctorCard extends StatelessWidget {
+class DoctorCard extends StatefulWidget {
   final String imageUrl;
   final String title;
   final String subtitle;
 
   DoctorCard(
       {required this.imageUrl, required this.title, required this.subtitle});
+
+  @override
+  _DoctorCardState createState() => _DoctorCardState();
+}
+
+class _DoctorCardState extends State<DoctorCard> {
+  bool _isImageLoaded = false;
 
   @override
   Widget build(BuildContext context) {
@@ -20,20 +28,43 @@ class DoctorCard extends StatelessWidget {
         clipBehavior: Clip.none,
         alignment: Alignment.center,
         children: [
-          buildCard(context, title, subtitle),
+          buildCard(context, widget.title, widget.subtitle),
           Positioned(
             top: -UIConverter.getComponentHeight(context, 5),
-            child: CircleAvatar(
-              radius: UIConverter.getComponentHeight(context, 83) / 2,
-              backgroundImage: NetworkImage(imageUrl),
-              onBackgroundImageError: (exception, stackTrace) {
-                AssetImage(imageUrl);
-              },
-            ),
+            child: _isImageLoaded
+                ? CircleAvatar(
+                    backgroundColor: shimmerColor,
+                    radius: UIConverter.getComponentHeight(context, 83) / 2,
+                    backgroundImage: NetworkImage(widget.imageUrl),
+                    onBackgroundImageError: (exception, stackTrace) {
+                      AssetImage(widget.imageUrl);
+                    },
+                  )
+                : Shimmer.fromColors(
+                    baseColor: Colors.grey.shade300,
+                    highlightColor: Colors.grey.shade100,
+                    child: CircleAvatar(
+                      backgroundColor: shimmerColor,
+                      radius: UIConverter.getComponentHeight(context, 83) / 2,
+                    ),
+                  ),
           ),
         ],
       ),
     );
+  }
+
+  @override
+  void initState() {
+    super.initState();
+
+    ImageStream stream =
+        NetworkImage(widget.imageUrl).resolve(ImageConfiguration.empty);
+    stream.addListener(ImageStreamListener((info, synchronousCall) {
+      setState(() {
+        _isImageLoaded = true;
+      });
+    }));
   }
 }
 
@@ -47,9 +78,11 @@ Widget buildCard(
         borderRadius:
             BorderRadius.circular(UIConverter.getComponentHeight(context, 20))),
     child: SizedBox(
-      height: UIConverter.getComponentHeight(context, 135.69),
+      height: UIConverter.getComponentHeight(context, 150.69),
       width: UIConverter.getComponentWidth(context, 190.22),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           SizedBox(
             height: UIConverter.getComponentHeight(context, 78),
