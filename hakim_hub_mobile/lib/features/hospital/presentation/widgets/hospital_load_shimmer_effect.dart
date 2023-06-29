@@ -34,24 +34,7 @@ class _HospitalLoadShimmerEffectState extends State<HospitalLoadShimmerEffect> {
                   const SizedBox(
                     height: 10,
                   ),
-                  // Container(
-                  //   width: UIConverter.getComponentWidth(context, 370),
-                  //   height: UIConverter.getComponentHeight(context, 48),
-                  //   color: Colors.white,
-                  //   child: HospitalSearchField(
-                  //     enabled: false,
-                  //     filterList: const ['nothing'],
-                  //     controller: _controller,
-                  //     hintText: "Search hospitals",
-                  //     obscureText: false,
-                  //     onChanged: (searchName) {
-                  //       () {};
-                  //     },
-                  //     onFilterChanged: (value) {
-                  //       () {};
-                  //     },
-                  //   ),
-                  // ),
+                
                   const SizedBox(
                     height: 10,
                   ),
