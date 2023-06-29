@@ -23,7 +23,7 @@ class _BuildChipState extends State<BuildChip> {
   Widget build(BuildContext context) {
     return InputChip(
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(30.0),
+        borderRadius: BorderRadius.circular(20.0),
       ),
       disabledColor: Colors.green,
       
@@ -38,15 +38,15 @@ class _BuildChipState extends State<BuildChip> {
           widget.onDeleted(widget.label);
         }
       },
-      labelPadding: EdgeInsets.all(UIConverter.getComponentWidth(context,2.0)),
+      labelPadding: EdgeInsets.all(UIConverter.getComponentWidth(context,1.0)),
       label: Text(
         widget.label,
         style: const TextStyle(
-          color: primaryTextColor,fontSize: 10
+          color: primaryTextColor,fontSize: 12
         ),
       ),
       backgroundColor: Colors.grey[200],
-      padding: EdgeInsets.all(UIConverter.getComponentWidth(context, 8)),
+      padding: EdgeInsets.all(UIConverter.getComponentWidth(context, 6)),
     );
   }
 }

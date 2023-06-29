@@ -86,7 +86,7 @@ class _DoctorFilterPageState extends State<DoctorFilterPage> {
                 const Text(
                   "Filter Doctors",
                   style: TextStyle(
-                      fontSize: 20,
+                      fontSize: 18,
                       fontWeight: FontWeight.w700,
                       color: titleTextColor),
                 ),
@@ -104,13 +104,13 @@ class _DoctorFilterPageState extends State<DoctorFilterPage> {
               ],
             ),
             SizedBox(
-              height: UIConverter.getComponentHeight(context, 10),
+              height: UIConverter.getComponentHeight(context, 40),
             ),
             const Text(
               "Education",
               style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.w600,
+                  fontSize: 16,
+                  fontWeight: FontWeight.w300,
                   color: primaryColor),
             ),
             DropdownButton<String>(
@@ -138,8 +138,8 @@ class _DoctorFilterPageState extends State<DoctorFilterPage> {
             const Text(
               "Years of Experience",
               style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.w600,
+                  fontSize: 16,
+                  fontWeight: FontWeight.w300,
                   color: primaryColor),
             ),
             SizedBox(
@@ -181,13 +181,13 @@ class _DoctorFilterPageState extends State<DoctorFilterPage> {
               ),
             ),
             SizedBox(
-              height: UIConverter.getComponentHeight(context, 15),
+              height: UIConverter.getComponentHeight(context, 20),
             ),
             const Text(
               "Specialities",
               style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.w600,
+                  fontSize: 16,
+                  fontWeight: FontWeight.w300,
                   color: primaryColor),
             ),
             SizedBox(
@@ -213,7 +213,26 @@ class _DoctorFilterPageState extends State<DoctorFilterPage> {
                     style: TextStyle(
                         color: primaryColor,
                         fontWeight: FontWeight.bold,
-                        fontSize: 10),
+                        fontSize: 13),
+                  ),
+                ),
+              ),
+            if (showAllChips)
+              Padding(
+                padding: EdgeInsets.only(
+                    top: UIConverter.getComponentHeight(context, 10)),
+                child: TextButton(
+                  onPressed: () {
+                    setState(() {
+                      showAllChips = false;
+                    });
+                  },
+                  child: Text(
+                    "Show Less",
+                    style: TextStyle(
+                        color: primaryColor,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 13),
                   ),
                 ),
               ),

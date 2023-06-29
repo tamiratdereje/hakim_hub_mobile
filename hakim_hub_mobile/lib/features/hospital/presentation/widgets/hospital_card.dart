@@ -71,7 +71,9 @@ class _HospitalCardState extends State<HospitalCard> {
                             context: context,
                             builder: (BuildContext context) {
                               return Center(
-                                child: websiteCard(),
+                                child: WebsiteCardBody(
+                                    institutionDetail:
+                                        widget.institutionDetailDomain),
                               );
                             },
                           );
@@ -220,7 +222,9 @@ class _HospitalCardState extends State<HospitalCard> {
                             context: context,
                             builder: (BuildContext context) {
                               return Center(
-                                child: phonePopup(),
+                                child: phonePopup(
+                                    institutionDetail:
+                                        widget.institutionDetailDomain),
                               );
                             },
                           );
