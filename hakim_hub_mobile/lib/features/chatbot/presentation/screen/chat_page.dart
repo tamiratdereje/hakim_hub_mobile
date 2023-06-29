@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:hakim_hub_mobile/features/chatbot/data/models/chat_response_model.dart';
+import 'package:hakim_hub_mobile/features/chatbot/domain/entities/chat_institute_entity.dart';
+import 'package:hakim_hub_mobile/features/chatbot/presentation/widgets/ai_response_card.dart';
+import 'package:hakim_hub_mobile/features/chatbot/presentation/widgets/user_message_card.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../../../core/utils/colors.dart';
 import '../../../../core/utils/hover_builder.dart';
@@ -134,8 +138,8 @@ class _ChatPageState extends State<ChatPage> {
                                           MainAxisAlignment.start,
                                       children: [
                                         LoadingAnimationWidget.waveDots(
-                                          color: Colors.blue,
-                                          size: 40,
+                                          color: primaryColor,
+                                          size: 30,
                                         ),
                                       ]),
                                 );
@@ -366,212 +370,20 @@ class ChatBox extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.only(
-        left: chatMessage[0] == 0 ? pixleToPercent(60, "width").w : 0,
-        right: chatMessage[0] == 1 ? pixleToPercent(60, "width").w : 0,
+        left: chatMessage[0] == 0 ? pixleToPercent(30, "width").w : 0,
+        right: chatMessage[0] == 1 ? pixleToPercent(30, "width").w : 0,
       ),
-      child: Container(
-        padding: EdgeInsets.symmetric(
-          horizontal: pixleToPercent(20, "width").w,
-          vertical: pixleToPercent(14, "height").h,
-        ),
-        decoration: BoxDecoration(
-          color: chatMessage[0] == 1
-              ? const Color.fromRGBO(237, 237, 237, 1)
-              : const Color.fromRGBO(104, 164, 244, 1),
-          borderRadius: BorderRadius.circular(10),
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              chatMessage[0] == 0 ? chatMessage[1] : chatMessage[1].reply,
-              style: TextStyle(
-                  fontSize: 14,
-                  color: chatMessage[0] == 1 ? Colors.black : Colors.white),
-            ),
-            const SizedBox(
-              height: 15,
-            ),
-            chatMessage[0] == 1 && chatMessage[1].institutes.isNotEmpty
-                ? SizedBox(
-                    height: 200,
-                    child: ListView.builder(
-                      itemCount: chatMessage[0] == 1
-                          ? chatMessage[1].institutes.length
-                          : 0,
-                      itemBuilder: (BuildContext context, int i) {
-                        return Column(
-                          children: [
-                            institutionCard(chatMessage[1].institutes[i],
-                                (instituteId) {
-                              navigateHospital(instituteId);
-                            }, (doctorId) {
-                              navigateDoctor(doctorId);
-                            }),
-                            const SizedBox(
-                              height: 20,
-                            )
-                          ],
-                        );
-                      },
-                    ),
-                  )
-                : Container(),
-          ],
-        ),
-      ),
+      child: chatMessage[0] == 0
+          ? UserChatCard(chatMessage: chatMessage[1])
+          : AiMessageCard(
+              chatMessage: chatMessage[1],
+              navigateDoctor: navigateDoctor,
+              navigateHospital: navigateHospital),
+      
     );
   }
 }
 
-Widget institutionCard(ChatInsituteModel chatInstituteEntity,
-    Function navigateHosptial, Function navigateDoctor) {
-  return Container(
-    padding: EdgeInsets.all(10),
-    decoration: BoxDecoration(
-        // border: Border.all(color: Colors.blue, width: 2),
-        boxShadow: const [
-          BoxShadow(
-            blurRadius: 5,
-            color: Colors.grey,
-            blurStyle: BlurStyle.outer,
-          )
-        ],
-        borderRadius: BorderRadius.circular(10)),
-    child: Column(
-      children: [
-        GestureDetector(
-          onTap: () {
-            navigateHosptial(chatInstituteEntity.instituteId);
-          },
-          child: Row(
-            children: [
-              CircleAvatar(
-                backgroundImage: NetworkImage(
-                  chatInstituteEntity.logoUrl,
-                ),
-                onBackgroundImageError: (exception, stackTrace) {
-                  const CircleAvatar(
-                    backgroundImage:
-                        AssetImage('assets/images/doctor_image.png'),
-                  );
-                },
-              ),
-              const SizedBox(
-                width: 12,
-              ),
-              Expanded(
-                child: HoverBuilder(
-                  builder: (isHovered) {
-                    return Text(
-                      chatInstituteEntity.instituteName,
-                      overflow: TextOverflow.ellipsis,
-                      style: TextStyle(
-                        color: isHovered ? Colors.blue : Colors.black,
-                        fontSize: 13,
-                        fontWeight: FontWeight.w700,
-                      ),
-                    );
-                  },
-                ),
-              )
-            ],
-          ),
-        ),
-        const SizedBox(
-          height: 10,
-        ),
-        chatInstituteEntity.doctors.isNotEmpty
-            ? SizedBox(
-                height: 100,
-                width: 200,
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 10.0),
-                  child: ListView.builder(
-                    itemCount: chatInstituteEntity.doctors.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      return Column(
-                        children: [
-                          Padding(
-                            padding:
-                                const EdgeInsets.symmetric(horizontal: 2.0),
-                            child: GestureDetector(
-                              child: doctor(
-                                chatInstituteEntity.doctors[index],
-                              ),
-                              onTap: () {
-                                navigateDoctor(
-                                    chatInstituteEntity.doctors[index].id);
-                              },
-                            ),
-                          ),
-                          const SizedBox(
-                            height: 10,
-                          )
-                        ],
-                      );
-                    },
-                  ),
-                ),
-              )
-            : Container()
-      ],
-    ),
-  );
-}
 
-Widget doctor(ChatDoctorEntity chatDoctorEntity) {
-  return Container(
-    padding: const EdgeInsets.all(8),
-    decoration: BoxDecoration(
-      color: const Color.fromRGBO(237, 237, 237, 1),
-      boxShadow: const [
-        BoxShadow(
-          blurRadius: 5,
-          color: Colors.grey,
-          blurStyle: BlurStyle.outer,
-        )
-      ],
-      borderRadius: BorderRadius.circular(10),
-    ),
-    child: Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: [
-        CircleAvatar(
-          backgroundImage: NetworkImage(chatDoctorEntity.photoUrl),
-          onBackgroundImageError: (exception, stackTrace) {
-            const CircleAvatar(
-              backgroundImage: AssetImage('assets/images/doctor_image.png'),
-            );
-          },
-          radius: 15,
-        ),
-        Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            HoverBuilder(
-              builder: (isHovered) {
-                return Text(
-                  chatDoctorEntity.fullName,
-                  style: TextStyle(
-                    color: isHovered ? Colors.blue : Colors.black,
-                    fontSize: 13,
-                    fontWeight: FontWeight.bold,
-                  ),
-                );
-              },
-            ),
-            Text(
-              chatDoctorEntity.speciality,
-              style: const TextStyle(
-                fontWeight: FontWeight.w600,
-                color: Color.fromARGB(131, 33, 149, 243),
-                fontSize: 11,
-              ),
-            ),
-          ],
-        ),
-      ],
-    ),
-  );
-}
+
+
