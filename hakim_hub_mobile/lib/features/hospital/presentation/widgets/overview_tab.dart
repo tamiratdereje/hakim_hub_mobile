@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:hakim_hub_mobile/core/utils/icons.dart';
+import 'package:hakim_hub_mobile/core/utils/pixle_to_percent.dart';
 import 'package:hakim_hub_mobile/features/hospital/data/models/hospital_address.dart';
 import 'package:hakim_hub_mobile/features/hospital/domain/entities/hospital_detail_domain.dart';
 import 'package:hakim_hub_mobile/features/hospital/presentation/widgets/hospital_card.dart';
 import 'package:hakim_hub_mobile/features/hospital/presentation/widgets/hospital_google_map.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../../../core/utils/colors.dart';
 import '../../../../core/utils/ui_converter.dart';
 import 'map_box.dart';
@@ -45,18 +47,18 @@ class _OverviewTabState extends State<OverviewTab> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             SizedBox(
-              height: UIConverter.getComponentHeight(context, 340),
-              width: UIConverter.getComponentWidth(context, 382),
+              height: pixleToPercent(340, 'height').h,
+              width: pixleToPercent(382, 'width').w,
               child: Stack(children: [
                 Positioned(
                   top: 0,
                   left: 0,
                   right: 0,
                   child: Container(
-                    height: UIConverter.getComponentHeight(context, 254),
-                    width: UIConverter.getComponentWidth(context, 382),
+                    height: pixleToPercent(254, 'height').h,
+                    width: pixleToPercent(382, 'width').w,
                     decoration: BoxDecoration(
-                        borderRadius: BorderRadius.all(Radius.circular(10)),
+                        borderRadius:const BorderRadius.all(Radius.circular(10)),
                         image: DecorationImage(
                           image: NetworkImage(
                               widget.institutionDetailDomain.bannerUrl),
@@ -70,9 +72,9 @@ class _OverviewTabState extends State<OverviewTab> {
                   ),
                 ),
                 Positioned(
-                  top: UIConverter.getComponentHeight(context, 214),
-                  left: UIConverter.getComponentWidth(context, 30),
-                  right: UIConverter.getComponentWidth(context, 30),
+                  top: pixleToPercent(214, 'height').h,
+                  left: pixleToPercent(30, 'width').w ,
+                  right: pixleToPercent(30, 'width').w,
                   child: HospitalCard(
                     institutionDetailDomain: widget.institutionDetailDomain,
                     latitude: widget.institutionDetailDomain.address.latitude,
@@ -81,24 +83,29 @@ class _OverviewTabState extends State<OverviewTab> {
                 ),
               ]),
             ),
-            const Row(
+             Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 Text(
                   'Hospital Description',
                   style: TextStyle(
-                    fontSize: 18,
+                    fontSize: 18.sp,
                   ),
                 ),
               ],
             ),
-            SizedBox(height: UIConverter.getComponentHeight(context, 16)),
-          
+            SizedBox(height: pixleToPercent(30, 'height').h,),
+            Text(
+              widget.institutionDetailDomain.summary,
+              style: TextStyle(
+                fontSize: 15.sp,
+              ),
+            ),
             ExpandableText(
               widget.institutionDetailDomain.summary,
               maxLines: 8,
               expanded: _isExpanded,
-              style: const TextStyle(fontSize: 15),
+              style: TextStyle(fontSize: 15.sp),
               expandText: 'See More',
               collapseText: 'See Less',
               linkColor: Colors.blue,
@@ -108,10 +115,10 @@ class _OverviewTabState extends State<OverviewTab> {
                 });
               },
             ),
-            SizedBox(height: UIConverter.getComponentHeight(context, 30)),
+            SizedBox(height: pixleToPercent(30, 'height').h),
             Container(
-              width: 400,
-              height: 250,
+              width: pixleToPercent(400, 'width').w,
+              height: pixleToPercent(400, 'height').h,
               child: MapBoxWidget(
                 latitude: widget.institutionDetailDomain.address.latitude,
                 longitude: widget.institutionDetailDomain.address.longitude,
@@ -124,12 +131,12 @@ class _OverviewTabState extends State<OverviewTab> {
               ),
             ),
             SizedBox(height: UIConverter.getComponentHeight(context, 50)),
-            const Row(
+            Row(
               children: [
                 Text(
                   'Services We Provide',
                   style: TextStyle(
-                    fontSize: 20,
+                    fontSize: 20.sp,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
