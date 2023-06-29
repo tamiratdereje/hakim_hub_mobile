@@ -13,13 +13,15 @@ Widget chipsContainer(String name) {
     padding: EdgeInsets.symmetric(
         horizontal: pixleToPercent(16, "width").w,
         vertical: pixleToPercent(6, "height").h),
-    width: pixleToPercent(85, "width").w,
+    width: pixleToPercent(110, "width").w,
     height: pixleToPercent(32, "height").h,
     decoration: const BoxDecoration(
         color: chipColor, borderRadius: BorderRadius.all(Radius.circular(20))),
     child: Text(
       name,
-      style: TextStyle(fontSize: 1.sp, fontWeight: FontWeight.w600),
+      style: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.w600, color: Colors.black, overflow: TextOverflow.ellipsis ),
+      maxLines: 1,
+
     ),
   );
 }

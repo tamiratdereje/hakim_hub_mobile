@@ -90,6 +90,7 @@ class MainHospitalsCard extends StatelessWidget {
                     scrollDirection: Axis.horizontal,
                     itemCount: institutionSearchDomain.services.length,
                     itemBuilder: ((context, index) {
+                      print(institutionSearchDomain.services[index]);
                       return chipsContainer(institutionSearchDomain.services[index]);
                     }),
                   ),
