@@ -93,15 +93,10 @@ class _OverviewTabState extends State<OverviewTab> {
               ],
             ),
             SizedBox(height: UIConverter.getComponentHeight(context, 16)),
-            Text(
-              widget.institutionDetailDomain.summary,
-              style: const TextStyle(
-                fontSize: 15,
-              ),
-            ),
+          
             ExpandableText(
               widget.institutionDetailDomain.summary,
-              maxLines: 3,
+              maxLines: 8,
               expanded: _isExpanded,
               style: const TextStyle(fontSize: 15),
               expandText: 'See More',
