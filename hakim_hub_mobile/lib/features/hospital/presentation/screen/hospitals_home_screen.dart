@@ -116,6 +116,8 @@ class _HospitalsHomeScreenState extends State<HospitalsHomeScreen> {
                                     ),
                                     onTap: () {
                                       
+                                      print("object");
+                                      print(state.institutionSearchDomain[index].id);
                                       context.pushNamed(
                                           AppRoutes.HospitalDetailPage,
                                           queryParameters: {"id": state.institutionSearchDomain[index].id, "prevIndex": "2"});

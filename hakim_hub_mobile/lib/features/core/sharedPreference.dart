@@ -11,6 +11,9 @@ class ShardPrefHelper {
     
     final SharedPreferences prefs = await _instance;
     bool firstTimeOpened = prefs.getBool("firstTimeOpened") ?? false;
+    if (!firstTimeOpened) {
+      prefs.setBool("firstTimeOpened", true);
+    }
     return firstTimeOpened;
   }
 
