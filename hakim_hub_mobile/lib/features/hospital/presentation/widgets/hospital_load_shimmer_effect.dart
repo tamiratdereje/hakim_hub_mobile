@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+import 'package:shimmer/shimmer.dart';
 
 import '../../../../core/utils/colors.dart';
 import '../../../../core/utils/pixle_to_percent.dart';
@@ -18,66 +19,49 @@ class _HospitalLoadShimmerEffectState extends State<HospitalLoadShimmerEffect> {
   TextEditingController _controller = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
-            children: [
-              const SizedBox(
-                height: 10,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+    return Expanded(
+      child: ListView.builder(
+        itemCount: 3,
+        itemBuilder: ((context, index) {
+          return Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Shimmer.fromColors(
+              baseColor: Colors.grey.shade300,
+              highlightColor: Colors.grey.shade100,
+              enabled: true,
+              child: Column(
                 children: [
-                  Text(
-                    "Hospitals",
-                    style: TextStyle(
-                        color: primaryColor,
-                        fontSize: 25.sp,
-                        fontWeight: FontWeight.w700),
-                  ),
                   const SizedBox(
-                    width: 50,
+                    height: 10,
                   ),
+                  // Container(
+                  //   width: UIConverter.getComponentWidth(context, 370),
+                  //   height: UIConverter.getComponentHeight(context, 48),
+                  //   color: Colors.white,
+                  //   child: HospitalSearchField(
+                  //     enabled: false,
+                  //     filterList: const ['nothing'],
+                  //     controller: _controller,
+                  //     hintText: "Search hospitals",
+                  //     obscureText: false,
+                  //     onChanged: (searchName) {
+                  //       () {};
+                  //     },
+                  //     onFilterChanged: (value) {
+                  //       () {};
+                  //     },
+                  //   ),
+                  // ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  hospitalCard(),
+                  
                 ],
               ),
-              const SizedBox(
-                height: 10,
-              ),
-              Container(
-                width: UIConverter.getComponentWidth(context, 370),
-                height: UIConverter.getComponentHeight(context, 48),
-                color: Colors.white,
-                child: HospitalSearchField(
-                  enabled: false,
-                  filterList: const ['nothing'],
-                  controller: _controller,
-                  hintText: "Search hospitals",
-                  obscureText: false,
-                  onChanged: (searchName) {
-                    () {};
-                  },
-                  onFilterChanged: (value) {
-                    () {};
-                  },
-                ),
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              hospitalCard(),
-              const SizedBox(
-                height: 25,
-              ),
-              hospitalCard(),
-              const SizedBox(
-                height: 25,
-              ),
-              hospitalCard()
-            ],
-          ),
-        ),
+            ),
+          );
+        }),
       ),
     );
   }
