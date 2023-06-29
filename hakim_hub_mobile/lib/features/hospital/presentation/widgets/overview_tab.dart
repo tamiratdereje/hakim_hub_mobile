@@ -9,6 +9,8 @@ import '../../../../core/utils/ui_converter.dart';
 import 'map_box.dart';
 import 'package:expandable_text/expandable_text.dart';
 
+import 'map_utils.dart';
+
 class OverviewTab extends StatefulWidget {
   final InstitutionDetailDomain institutionDetailDomain;
 
@@ -22,7 +24,6 @@ class OverviewTab extends StatefulWidget {
 class _OverviewTabState extends State<OverviewTab> {
   int _selectedIndex = -1;
   bool _isExpanded = false;
-  
 
   void _onButtonPressed(int index) {
     setState(() {
@@ -115,11 +116,19 @@ class _OverviewTabState extends State<OverviewTab> {
             SizedBox(height: UIConverter.getComponentHeight(context, 30)),
             Container(
               width: 400,
-              height: 400,
+              height: 250,
               child: MapBoxWidget(
-                latitude: widget.institutionDetailDomain.address.latitude,
-                longitude: widget.institutionDetailDomain.address.longitude,
-              ),
+  latitude: widget.institutionDetailDomain.address.latitude,
+                    longitude: widget.institutionDetailDomain.address.longitude,
+  onTap: () {
+  openMap(
+                            longitude: widget
+                                .institutionDetailDomain.address.longitude,
+                            latitude:
+                                widget.institutionDetailDomain.address.latitude,
+                          );
+  },
+),
             ),
             SizedBox(height: UIConverter.getComponentHeight(context, 50)),
             const Row(
@@ -194,14 +203,16 @@ class _OverviewTabState extends State<OverviewTab> {
                 ),
               ],
             ),
-            Row(
-              children: [
-                HospitalMap(
-                  latitude: widget.institutionDetailDomain.address.latitude,
-                  longitude: widget.institutionDetailDomain.address.longitude,
-                )
-             
-              ],
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Row(
+                children: [
+                  HospitalMap(
+                    latitude: widget.institutionDetailDomain.address.latitude,
+                    longitude: widget.institutionDetailDomain.address.longitude,
+                  )
+                ],
+              ),
             )
           ],
         ),
