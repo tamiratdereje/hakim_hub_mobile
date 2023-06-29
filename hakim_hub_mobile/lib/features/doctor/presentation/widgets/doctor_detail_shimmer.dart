@@ -3,6 +3,7 @@ import 'package:hakim_hub_mobile/core/utils/colors.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:shimmer/shimmer.dart';
 
+import '../../../../core/shared_widgets/shared_widget_shimmer.dart';
 import '../../../../core/utils/pixle_to_percent.dart';
 
 class DoctorDetailShimmer extends StatelessWidget {
@@ -82,7 +83,7 @@ class DoctorDetailShimmer extends StatelessWidget {
               ),
 
               // Biography
-              WidgetAndText(),
+              const WidgetAndText(),
               const SizedBox(
                 height: 10,
               ),
@@ -115,43 +116,6 @@ class DoctorDetailShimmer extends StatelessWidget {
           ),
         ),
       ),
-    );
-  }
-}
-
-class WidgetAndText extends StatelessWidget {
-  const WidgetAndText({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Container(
-          height: pixleToPercent(20, 'height').h,
-          width: pixleToPercent(25, 'width').w,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(2),
-            color: shimmerColor,
-          ),
-        ),
-        const SizedBox(
-          width: 5,
-        ),
-        Container(
-          height: 10,
-          width: pixleToPercent(200, 'width').w,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(8),
-            color: shimmerColor,
-          ),
-        ),
-        Container(
-          width: pixleToPercent(100, 'width').w,
-        ),
-      ],
     );
   }
 }
