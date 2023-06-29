@@ -49,19 +49,19 @@ class phonePopup extends StatelessWidget {
               child: Text(
                 "Reception",
                 style: TextStyle(
-                  fontWeight: FontWeight.w100,
-                  fontSize: 18,
+                  fontWeight: FontWeight.w300,
+                  fontSize: 13,
                 ),
               ),
             ),
             SizedBox(height: 10),
             buildinnercard(
                 imagePath:
-                    "/home/fenet/Desktop/hakim_hub_mobile/hakim_hub_mobile/hakim_hub_mobile/assets/images/phone-call_icon.png",
+              "assets/images/phone-call_icon.png",
                 text: "+251920362814"),
             buildinnercard(
                 imagePath:
-                    "/home/fenet/Desktop/hakim_hub_mobile/hakim_hub_mobile/hakim_hub_mobile/assets/images/phone-call_icon.png",
+                    "assets/images/phone-call_icon.png",
                 text: "+251920362814"),
           ],
         ),

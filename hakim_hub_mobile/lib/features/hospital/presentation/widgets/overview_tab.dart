@@ -22,18 +22,7 @@ class OverviewTab extends StatefulWidget {
 class _OverviewTabState extends State<OverviewTab> {
   int _selectedIndex = -1;
   bool _isExpanded = false;
-  AddressModel address = AddressModel(
-    country: "USA",
-    region: "California",
-    zone: "Western",
-    woreda: "San Mateo",
-    city: "San Francisco",
-    subCity: "Mission District",
-    longitude: -122.4194,
-    latitude: 37.7749,
-    summary: "123 Mission St, San Francisco, CA 94105",
-    id: "abc123",
-  );
+  
 
   void _onButtonPressed(int index) {
     setState(() {
@@ -83,7 +72,11 @@ class _OverviewTabState extends State<OverviewTab> {
                   top: UIConverter.getComponentHeight(context, 214),
                   left: UIConverter.getComponentWidth(context, 30),
                   right: UIConverter.getComponentWidth(context, 30),
-                  child: HospitalCard(),
+                  child: HospitalCard(
+                    institutionDetailDomain: widget.institutionDetailDomain,
+                    latitude: widget.institutionDetailDomain.address.latitude,
+                    longitude: widget.institutionDetailDomain.address.longitude,
+                  ),
                 ),
               ]),
             ),
@@ -207,10 +200,7 @@ class _OverviewTabState extends State<OverviewTab> {
                   latitude: widget.institutionDetailDomain.address.latitude,
                   longitude: widget.institutionDetailDomain.address.longitude,
                 )
-                // TextButton(
-                //   onPressed: () {},
-                //   child: const Text("SEE IT ON MAP"),
-                // ),
+             
               ],
             )
           ],
