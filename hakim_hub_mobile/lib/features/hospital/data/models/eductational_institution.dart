@@ -13,9 +13,9 @@ class EducationInstituteModel extends EductationalInstitutionDomain {
 
   factory EducationInstituteModel.fromJson(Map<String, dynamic> json) {
     return EducationInstituteModel(
-      institutionName: json['institutionName'] ?? '',
-      logoUrl: json['logoUrl'] ?? '',
-      id: json['id'] ?? '',
+      institutionName: json['institutionName'] ?? '' ?? "",
+      logoUrl: json['logoUrl'] ?? '' ?? "",
+      id: json['id'] ?? '' ?? "",
     );
   }
 }

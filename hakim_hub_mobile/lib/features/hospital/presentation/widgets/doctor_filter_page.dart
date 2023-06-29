@@ -87,7 +87,7 @@ class _DoctorFilterPageState extends State<DoctorFilterPage> {
                   "Filter Doctors",
                   style: TextStyle(
                       fontSize: 18,
-                      fontWeight: FontWeight.w700,
+                      fontWeight: FontWeight.normal,
                       color: titleTextColor),
                 ),
                 GestureDetector(
@@ -110,7 +110,7 @@ class _DoctorFilterPageState extends State<DoctorFilterPage> {
               "Education",
               style: TextStyle(
                   fontSize: 16,
-                  fontWeight: FontWeight.w300,
+                  fontWeight: FontWeight.normal,
                   color: primaryColor),
             ),
             DropdownButton<String>(
@@ -139,7 +139,7 @@ class _DoctorFilterPageState extends State<DoctorFilterPage> {
               "Years of Experience",
               style: TextStyle(
                   fontSize: 16,
-                  fontWeight: FontWeight.w300,
+                  fontWeight: FontWeight.normal,
                   color: primaryColor),
             ),
             SizedBox(
@@ -187,7 +187,7 @@ class _DoctorFilterPageState extends State<DoctorFilterPage> {
               "Specialities",
               style: TextStyle(
                   fontSize: 16,
-                  fontWeight: FontWeight.w300,
+                  fontWeight: FontWeight.normal,
                   color: primaryColor),
             ),
             SizedBox(
@@ -212,7 +212,7 @@ class _DoctorFilterPageState extends State<DoctorFilterPage> {
                     "Show More",
                     style: TextStyle(
                         color: primaryColor,
-                        fontWeight: FontWeight.bold,
+                        fontWeight: FontWeight.normal,
                         fontSize: 13),
                   ),
                 ),
@@ -231,7 +231,7 @@ class _DoctorFilterPageState extends State<DoctorFilterPage> {
                     "Show Less",
                     style: TextStyle(
                         color: primaryColor,
-                        fontWeight: FontWeight.bold,
+                        fontWeight: FontWeight.normal,
                         fontSize: 13),
                   ),
                 ),

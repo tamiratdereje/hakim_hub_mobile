@@ -22,7 +22,7 @@ class popup_email extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Container(
-        height: 200,
+        height: 150,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.all(Radius.circular(10)),
           color: Color.fromARGB(255, 240, 239, 239),
@@ -48,13 +48,8 @@ class popup_email extends StatelessWidget {
             ),
             SizedBox(height: 10),
             buildinnercard(
-                imagePath:
-                    "assets/images/email_icon.png",
-                text: "blacklion@gmail.com"),
-            buildinnercard(
-                imagePath:
-                    "assets/images/email_icon.png",
-                text: "blacklion@gmail.com"),
+                imagePath: "assets/images/email_icon.png",
+                text: "No email found"),
           ],
         ),
       ),

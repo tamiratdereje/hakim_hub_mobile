@@ -44,7 +44,6 @@ class _HospitalSearchFieldState extends State<HospitalSearchField> {
       builder: (FormFieldState state) {
         return TextFormField(
           obscureText: false,
-          enabled: widget.enabled,
           controller: widget.controller,
           decoration: InputDecoration(
               constraints: BoxConstraints(
