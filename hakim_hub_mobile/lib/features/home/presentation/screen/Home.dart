@@ -54,29 +54,36 @@ class HomePage extends StatelessWidget {
                     SizedBox(
                       height: pixleToPercent(30, "height").h,
                     ),
-                    TextField(
-                      controller: _controller,
-                      textInputAction: TextInputAction.search,
-                      onSubmitted: (value) {
-                        context.pushNamed(AppRoutes.ChatPage, queryParameters: {
-                          "chatBotIntialMessage": _controller.text ?? ""
-                        });
+                    // TextField(
+                    //   controller: _controller,
+                    //   textInputAction: TextInputAction.search,
+                    //   onSubmitted: (value) {
+                    //     context.pushNamed(AppRoutes.ChatPage, queryParameters: {
+                    //       "chatBotIntialMessage": _controller.text ?? ""
+                    //     });
+                    //   },
+                    //   decoration: InputDecoration(
+                    //     suffixIcon: GestureDetector(
+                    //       child: send,
+                    //       onTap: () {
+                    //         context.pushNamed(AppRoutes.ChatPage,
+                    //             queryParameters: {
+                    //               "chatBotIntialMessage": _controller.text ?? ""
+                    //             });
+                    //       },
+                    //     ),
+                    //     hintText: 'Write a message ...',
+                    //     border: InputBorder.none,
+                    //   ),
+                    // ),
+                    GestureDetector(
+                      child: const HowAreYouFeeling(),
+                      onTap: () {
+                        print("object");
+                        context.pushNamed(AppRoutes.Home,
+                            queryParameters: {"index": "1"});
                       },
-                      decoration: InputDecoration(
-                        suffixIcon: GestureDetector(
-                          child: send,
-                          onTap: () {
-                            context.pushNamed(AppRoutes.ChatPage,
-                                queryParameters: {
-                                  "chatBotIntialMessage": _controller.text ?? ""
-                                });
-                          },
-                        ),
-                        hintText: 'Write a message ...',
-                        border: InputBorder.none,
-                      ),
                     ),
-                    // const HowAreYouFeeling(),
                     SizedBox(
                       height: Adaptive.h(pixleToPercent(10, "height")),
                     ),
@@ -87,7 +94,7 @@ class HomePage extends StatelessWidget {
               builder: (context, state) {
                 if (state is SearchHospitalLoading ||
                     state is SearchHospitalInitial) {
-                      print("inside loading ");
+                  print("inside loading ");
                   return Padding(
                     padding:
                         EdgeInsets.only(left: pixleToPercent(10, "width").w),

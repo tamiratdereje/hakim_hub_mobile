@@ -47,7 +47,7 @@ class HospitalsCard extends StatelessWidget {
                   onError: (exception, stackTrace) {
                     AssetImage("assets/images/hospital_img.png");
                   },
-                  fit: BoxFit.fill),
+                  fit: BoxFit.cover),
             ),
           ),
           SizedBox(
