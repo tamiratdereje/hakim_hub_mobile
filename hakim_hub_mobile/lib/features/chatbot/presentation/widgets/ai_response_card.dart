@@ -20,11 +20,11 @@ class AiMessageCard extends StatelessWidget {
     return Align(
       alignment: Alignment.topLeft,
       child: Container(
-        constraints: BoxConstraints(maxWidth: 300),
-        padding: EdgeInsets.all(10),
-        margin: EdgeInsets.fromLTRB(10, 5, 0, 0),
+        constraints: const BoxConstraints(maxWidth: 300),
+        padding: const EdgeInsets.all(10),
+        margin: const EdgeInsets.fromLTRB(10, 5, 0, 0),
         decoration: const BoxDecoration(
-          color: const Color.fromRGBO(237, 237, 237, 1),
+          color: chatBoxColor,
           borderRadius: BorderRadius.only(
             topLeft: Radius.circular(15),
             topRight: Radius.circular(15),

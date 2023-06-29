@@ -27,13 +27,9 @@ class ChatPage extends StatefulWidget {
 
 class _ChatPageState extends State<ChatPage> {
   final TextEditingController _textEditingController = TextEditingController();
-  // List chatMessages = [];
-
   @override
   void initState() {
     super.initState();
-    print(widget.chatMessages);
-    // widget.chatMessages.add([0, widget.chatBotIntialMessage]);
     BlocProvider.of<ChatBotBloc>(context).add(GetChatResponseEvent(
         request: ChatRequest(
             message: widget.chatMessages[0][1],
@@ -379,11 +375,6 @@ class ChatBox extends StatelessWidget {
               chatMessage: chatMessage[1],
               navigateDoctor: navigateDoctor,
               navigateHospital: navigateHospital),
-      
     );
   }
 }
-
-
-
-

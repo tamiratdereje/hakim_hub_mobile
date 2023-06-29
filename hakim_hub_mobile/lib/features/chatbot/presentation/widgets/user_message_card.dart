@@ -11,9 +11,9 @@ class UserChatCard extends StatelessWidget {
     return Align(
       alignment: Alignment.topRight,
       child: Container(
-        constraints: BoxConstraints(maxWidth: 300),
-        padding: EdgeInsets.all(10),
-        margin: EdgeInsets.fromLTRB(0, 5, 10, 0),
+        constraints: const BoxConstraints(maxWidth: 300),
+        padding: const EdgeInsets.all(10),
+        margin: const EdgeInsets.fromLTRB(0, 5, 10, 0),
         decoration: const BoxDecoration(
           color: primaryColor,
           borderRadius: BorderRadius.only(
@@ -24,7 +24,7 @@ class UserChatCard extends StatelessWidget {
         ),
         child: Text(
           chatMessage,
-          style: TextStyle(color: secondryTextColor),
+          style: const TextStyle(color: secondryTextColor),
         ),
       ),
     );
