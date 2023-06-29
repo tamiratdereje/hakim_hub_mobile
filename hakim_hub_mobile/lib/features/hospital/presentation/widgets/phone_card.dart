@@ -1,27 +1,34 @@
 import 'package:flutter/material.dart';
+import 'package:hakim_hub_mobile/features/hospital/domain/entities/hospital_detail_domain.dart';
+import 'package:hakim_hub_mobile/features/hospital/presentation/widgets/innercard2.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import 'Inner_card.dart';
 
 class PhoneCard extends StatelessWidget {
+  final InstitutionDetailDomain institutionDetail;
+
+  const PhoneCard({required this.institutionDetail});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: phonePopup(),
+      body: phonePopup(institutionDetail: institutionDetail),
     );
   }
 }
 
 class phonePopup extends StatelessWidget {
-  const phonePopup({
-    super.key,
-  });
+  final InstitutionDetailDomain institutionDetail;
+
+  const phonePopup({required this.institutionDetail});
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Container(
-        height: 230,
+        height: 170,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.all(Radius.circular(10)),
           color: Color.fromARGB(255, 240, 239, 239),
@@ -31,7 +38,7 @@ class phonePopup extends StatelessWidget {
             ),
           ],
         ),
-        child: const Column(
+        child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Padding(
@@ -55,14 +62,33 @@ class phonePopup extends StatelessWidget {
               ),
             ),
             SizedBox(height: 10),
-            buildinnercard(
-                imagePath:
-              "assets/images/phone-call_icon.png",
-                text: "+251920362814"),
-            buildinnercard(
-                imagePath:
-                    "assets/images/phone-call_icon.png",
-                text: "+251920362814"),
+            buildinnercardWeb(
+              imagePath: "assets/images/phone-call_icon.png",
+              text: TextButton(
+                onPressed: () async {
+                  final phoneUrl = 'tel:${institutionDetail.phoneNumber}';
+                  if (await canLaunch(phoneUrl)) {
+                    await launch(phoneUrl);
+                  } else {
+                    throw 'Could not launch ${institutionDetail.phoneNumber}';
+                  }
+                },
+               child: Align(
+                  alignment: Alignment.topLeft,
+                  child: Text(
+                    institutionDetail.phoneNumber,
+                    textAlign: TextAlign.left,
+                  ),
+                ),
+                style: TextButton.styleFrom(
+                  primary: Colors.black,
+                  // padding: EdgeInsets.zero,
+                  textStyle: TextStyle(
+                    fontWeight: FontWeight.normal,
+                  ),
+                ),
+              ),
+            ),
           ],
         ),
       ),
