@@ -11,108 +11,123 @@ class DoctorDetailShimmer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: Padding(
-          padding: const EdgeInsets.only(top: 8.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Container(
-                width: pixleToPercent(100, 'width').w,
-                height: pixleToPercent(100, 'height').h,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(
-                    pixleToPercent(100, 'width').w,
-                  ),
-                  color: shimmerColor,
-                ),
-              ),
-              const SizedBox(
-                height: 15,
-              ),
-              Container(
-                width: pixleToPercent(280, "width").w,
-                height: 10,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(8),
-                  color: shimmerColor,
-                ),
-              ),
-              const SizedBox(
-                height: 15,
-              ),
-              Container(
-                width: pixleToPercent(200, "width").w,
-                height: 10,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(8),
-                  color: shimmerColor,
-                ),
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Container(
-                    width: pixleToPercent(20, "width").w,
-                    height: pixleToPercent(20, "height").h,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(2),
-                      color: shimmerColor,
+    return Shimmer.fromColors(
+      baseColor: Colors.grey.shade300,
+      highlightColor: Colors.grey.shade100,
+      enabled: true,
+      child: SingleChildScrollView(
+        child: Center(
+          child: Padding(
+            padding: const EdgeInsets.only(top: 50),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Container(
+                  width: pixleToPercent(200, 'width').w,
+                  height: pixleToPercent(200, 'height').h,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(
+                      pixleToPercent(100, 'width').w,
                     ),
+                    color: shimmerColor,
                   ),
-                  const SizedBox(
-                    width: 5,
+                ),
+                const SizedBox(
+                  height: 15,
+                ),
+                Container(
+                  width: pixleToPercent(280, "width").w,
+                  height: 20,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(8),
+                    color: shimmerColor,
                   ),
-                  Container(
-                    width: pixleToPercent(150, "width").w,
-                    height: 8,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(5),
-                      color: shimmerColor,
+                ),
+                const SizedBox(
+                  height: 15,
+                ),
+                Container(
+                  width: pixleToPercent(200, "width").w,
+                  height: 15,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(8),
+                    color: shimmerColor,
+                  ),
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Container(
+                      width: pixleToPercent(20, "width").w,
+                      height: pixleToPercent(20, "height").h,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(2),
+                        color: shimmerColor,
+                      ),
                     ),
-                  ),
-                ],
-              ),
-              const SizedBox(
-                height: 15,
-              ),
-
-              // Biography
-              const WidgetAndText(),
-              const SizedBox(
-                height: 10,
-              ),
-              // Education
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Container(
-                    width: pixleToPercent(300, 'width').w,
-                    height: pixleToPercent(300, 'height').h,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8),
-                      color: shimmerColor,
+                    const SizedBox(
+                      width: 5,
                     ),
-                  ),
-                  const SizedBox(
-                    width: 25,
-                  )
-                ],
-              ),
-              const SizedBox(
-                height: 30,
-              ),
-              // Education
-              const WidgetAndText(),
-              Expanded(
-                child: Container(),
-              )
-            ],
+                    Container(
+                      width: pixleToPercent(150, "width").w,
+                      height: 13,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(5),
+                        color: shimmerColor,
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                  height: 25,
+                ),
+      
+                // Biography
+                const WidgetAndText(),
+                const SizedBox(
+                  height: 10,
+                ),
+                // Education
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Container(
+                      width: pixleToPercent(300, 'width').w,
+                      height: pixleToPercent(300, 'height').h,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(8),
+                        color: shimmerColor,
+                      ),
+                    ),
+                    const SizedBox(
+                      width: 25,
+                    )
+                  ],
+                ),
+                const SizedBox(
+                  height: 30,
+                ),
+                // Education
+                const WidgetAndText(),
+                const SizedBox(
+                  height: 30,
+                ),
+                const Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    WidgetAndText(),
+                    SizedBox(
+                  height: 10,
+                ),
+                    WidgetAndText()
+                  ],
+                )
+              ],
+            ),
           ),
         ),
       ),

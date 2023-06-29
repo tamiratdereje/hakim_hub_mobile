@@ -12,7 +12,7 @@ const Color chiptextColor3 = Color(0xFF19B916);
 const Color normalTextColor = Color(0XFFEFF3F3);
 const Color titleTextColor = Color(0XFF3F3F3F);
 const Color bioTextColor = Color(0XFF606060);
-const Color shimmerColor = Color.fromARGB(255, 154, 149, 149);
+const Color shimmerColor = Color.fromARGB(131, 151, 148, 148);
 
 const Color degreeTextColor = Color(0XFF8B8B8B);
 const Color avatorColor = Color(0XFFEFF3F3);

@@ -10,6 +10,8 @@ import 'package:hakim_hub_mobile/features/hospital/presentation/widgets/hospital
 import 'package:hakim_hub_mobile/features/hospital/presentation/widgets/overview_tab.dart';
 import 'package:hakim_hub_mobile/router/routes.dart';
 
+import '../widgets/hospital_Overvie_shimmer_effect.dart';
+
 class OverviewDoctorGalleryPage extends StatefulWidget {
   String institutionId;
   String prevIndex = "2";
@@ -105,9 +107,7 @@ class _OverviewDoctorGalleryPageState extends State<OverviewDoctorGalleryPage>
             builder: ((context, state) {
           if (state is DetailHospitalLoading) {
             return const Center(
-              child: CircularProgressIndicator(
-                color: Colors.red,
-              ),
+              child: HospitalOverViewShimmerEffect()
             );
           } else if (state is DetailHospitalSuccess) {
             return Column(

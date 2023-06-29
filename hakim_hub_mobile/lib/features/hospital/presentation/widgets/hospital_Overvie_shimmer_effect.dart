@@ -3,72 +3,81 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 
 import '../../../../core/utils/colors.dart';
 import '../../../../core/utils/pixle_to_percent.dart';
+import 'package:shimmer/shimmer.dart';
 
 class HospitalOverViewShimmerEffect extends StatefulWidget {
   const HospitalOverViewShimmerEffect({super.key});
 
   @override
-  State<HospitalOverViewShimmerEffect> createState() => _HospitalOverViewShimmerEffectState();
+  State<HospitalOverViewShimmerEffect> createState() =>
+      _HospitalOverViewShimmerEffectState();
 }
 
-class _HospitalOverViewShimmerEffectState extends State<HospitalOverViewShimmerEffect> {
+class _HospitalOverViewShimmerEffectState
+    extends State<HospitalOverViewShimmerEffect> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Column(
-        children: [
-          const SizedBox(
-            height: 10,
-          ),
-          textShimmer(250),
-          const SizedBox(
-            height: 10,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              appBarTexts('Overview', true),
-              appBarTexts('Doctors', false),
-              appBarTexts('Gallery', false),
-            ],
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          multiLineTextShimmer(360, 270),
-          const SizedBox(
-            height: 25,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              textShimmer(250),
-              const SizedBox(
-                width: 60,
-              )
-            ],
-          ),
-          const SizedBox(
-            height: 5,
-          ),
-          multiLineTextShimmer(360, 170),
-          const SizedBox(
-            height: 10,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              textShimmer(250),
-              const SizedBox(
-                width: 60,
-              )
-            ],
-          ),
-          const SizedBox(
-            height: 5,
-          ),
-          multiLineTextShimmer(360, 170),
-        ],
+    return Shimmer.fromColors(
+      
+      baseColor: Colors.grey.shade300,
+      highlightColor: Colors.grey.shade100,
+      enabled: true,
+      child:  SingleChildScrollView(
+        child: Column(
+          children:  [
+            const SizedBox(
+              height: 10,
+            ),
+            textShimmer(width: 250, height: 20),
+            const SizedBox(
+              height: 10,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                appBarTexts('Overview', true),
+                appBarTexts('Doctors', false),
+                appBarTexts('Gallery', false),
+              ],
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            multiLineTextShimmer(360, 270),
+            const SizedBox(
+              height: 25,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                textShimmer(width: 250),
+                const SizedBox(
+                  width: 60,
+                )
+              ],
+            ),
+            const SizedBox(
+              height: 5,
+            ),
+            multiLineTextShimmer(360, 170),
+            const SizedBox(
+              height: 10,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                textShimmer(width: 250),
+                const SizedBox(
+                  width: 60,
+                )
+              ],
+            ),
+            const SizedBox(
+              height: 5,
+            ),
+            multiLineTextShimmer(360, 170),
+          ],
+        ),
       ),
     );
   }
@@ -84,7 +93,7 @@ class _HospitalOverViewShimmerEffectState extends State<HospitalOverViewShimmerE
     );
   }
 
-  Container textShimmer(width) {
+  Container textShimmer({width, height = 14}) {
     return Container(
       width: pixleToPercent(width, "width").w,
       height: 14,

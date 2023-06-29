@@ -7,6 +7,7 @@ import 'package:hakim_hub_mobile/features/doctor/presentation/bloc/doctor_detail
 import 'package:hakim_hub_mobile/router/routes.dart';
 
 import '../../../../core/utils/ui_converter.dart';
+import '../widgets/doctor_detail_shimmer.dart';
 
 class DoctorDetailPage extends StatefulWidget {
   final String doctorDetailId;
@@ -31,31 +32,7 @@ class _DoctorDetailPageState extends State<DoctorDetailPage> {
     return BlocBuilder<DoctorDetailBloc, DoctorDetailState>(
         builder: (context, state) {
       if (state is DoctorDetailLoadingState) {
-        return Scaffold(
-            body: Center(
-          child: SingleChildScrollView(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                Container(
-                  height: UIConverter.getComponentHeight(context, 210),
-                  width: double.infinity,
-                  color: Colors.grey,
-                ),
-                Container(
-                  height: UIConverter.getComponentHeight(context, 30),
-                  width: UIConverter.getComponentWidth(context, 200),
-                  color: Colors.grey,
-                ),
-                Container(
-                  height: UIConverter.getComponentHeight(context, 200),
-                  width: double.infinity,
-                  color: Colors.grey,
-                ),
-              ],
-            ),
-          ),
-        ));
+        return Scaffold(body:  DoctorDetailShimmer(),);
       } else if (state is DoctorDetailSuccessState) {
         final doctorDetail = state.doctorDetail;
         return Scaffold(
@@ -196,8 +173,8 @@ class _DoctorDetailPageState extends State<DoctorDetailPage> {
                             doctorDetail.about,
                             style: const TextStyle(
                                 fontWeight: FontWeight.w400,
-                                color: primaryTextColor,
-                                fontSize: 16),
+                                color: bioTextColor,
+                                fontSize: 15),
                           ),
                           SizedBox(
                             height: UIConverter.getComponentHeight(context, 30),

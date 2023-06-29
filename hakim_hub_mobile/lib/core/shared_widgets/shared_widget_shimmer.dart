@@ -26,7 +26,7 @@ class WidgetAndText extends StatelessWidget {
           width: 5,
         ),
         Container(
-          height: 10,
+          height: 20,
           width: pixleToPercent(200, 'width').w,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(8),
