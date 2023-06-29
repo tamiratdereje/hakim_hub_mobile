@@ -13,6 +13,7 @@ Widget doctor(ChatDoctorEntity chatDoctorEntity) {
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
         CircleAvatar(
+          backgroundColor: shimmerColor,
           backgroundImage: NetworkImage(chatDoctorEntity.photoUrl),
           onBackgroundImageError: (exception, stackTrace) {
             const CircleAvatar(
@@ -32,7 +33,6 @@ Widget doctor(ChatDoctorEntity chatDoctorEntity) {
                   child: Text(
                     chatDoctorEntity.fullName,
                     style: TextStyle(
-                      
                       color: isHovered ? Colors.blue : Colors.black,
                       fontSize: 16,
                       fontWeight: FontWeight.w500,

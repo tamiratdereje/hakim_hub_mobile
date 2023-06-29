@@ -22,7 +22,7 @@ Widget institutionCard(ChatInstituteEntity chatInstituteEntity,
             child: Row(
               children: [
                 CircleAvatar(
-                  // backgroundColor: ,
+                  backgroundColor: shimmerColor,
                   backgroundImage: NetworkImage(
                     chatInstituteEntity.logoUrl,
                   ),

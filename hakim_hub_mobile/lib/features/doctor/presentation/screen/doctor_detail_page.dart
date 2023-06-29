@@ -32,11 +32,12 @@ class _DoctorDetailPageState extends State<DoctorDetailPage> {
     return BlocBuilder<DoctorDetailBloc, DoctorDetailState>(
         builder: (context, state) {
       if (state is DoctorDetailLoadingState) {
-        return Scaffold(body:  DoctorDetailShimmer(),);
+        return Scaffold(
+          body: DoctorDetailShimmer(),
+        );
       } else if (state is DoctorDetailSuccessState) {
         final doctorDetail = state.doctorDetail;
         return Scaffold(
-          
           body: SafeArea(
             child: Container(
               padding: EdgeInsets.only(
@@ -92,7 +93,7 @@ class _DoctorDetailPageState extends State<DoctorDetailPage> {
                           style: const TextStyle(
                               fontWeight: FontWeight.w700,
                               color: titleTextColor,
-                              fontSize: 25),
+                              fontSize: 20),
                           maxLines: 1,
                         ),
                         SizedBox(
