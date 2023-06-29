@@ -7,7 +7,7 @@ import '../../../../router/routes.dart';
 
 class WriteChat extends StatelessWidget {
   WriteChat({super.key});
-  TextEditingController _controller = TextEditingController();
+  final TextEditingController _controller = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Padding(

@@ -34,8 +34,7 @@ class ChatRemoteDataSourceImpl implements ChatRemoteDataSource {
         body: json.encode(jsonBody),
         headers: {HttpHeaders.contentTypeHeader: 'application/json'},
       );
-      print("Error in ChatRemoteDataSourceImpl");
-      print(response.body);
+      // print(response.body);
 
       if (response.statusCode == 200) {
         final jsonResponse = json.decode(response.body)["value"];
