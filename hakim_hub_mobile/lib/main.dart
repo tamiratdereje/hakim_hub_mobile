@@ -1,14 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hakim_hub_mobile/features/chatbot/presentation/bloc/chat_bot_bloc.dart';
-import 'package:hakim_hub_mobile/features/core/splash_screen.dart';
 import 'package:hakim_hub_mobile/router/main_router.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
-import 'core/shared_widgets/bottom_nav.dart';
-import 'features/chatbot/presentation/screen/chat_landing.dart';
 import 'features/doctor/presentation/bloc/doctor_detail_bloc.dart';
-import 'features/doctor/presentation/screen/doctor_detail_page.dart';
 import 'features/hospital/presentation/bloc/bloc/hospital_detail_bloc.dart';
 import 'features/hospital/presentation/bloc/bloc/search_hospital_bloc.dart';
 
@@ -20,8 +17,31 @@ void main() async {
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  @override
+  void initState() {
+    super.initState();
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
+  }
+
+  @override
+  dispose() {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitDown,
+      DeviceOrientation.portraitUp,
+    ]);
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
