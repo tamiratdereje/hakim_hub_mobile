@@ -118,17 +118,15 @@ class _OverviewTabState extends State<OverviewTab> {
               width: 400,
               height: 250,
               child: MapBoxWidget(
-  latitude: widget.institutionDetailDomain.address.latitude,
-                    longitude: widget.institutionDetailDomain.address.longitude,
-  onTap: () {
-  openMap(
-                            longitude: widget
-                                .institutionDetailDomain.address.longitude,
-                            latitude:
-                                widget.institutionDetailDomain.address.latitude,
-                          );
-  },
-),
+                latitude: widget.institutionDetailDomain.address.latitude,
+                longitude: widget.institutionDetailDomain.address.longitude,
+                // onTap: () {
+                //   openMap(
+                //     longitude: widget.institutionDetailDomain.address.longitude,
+                //     latitude: widget.institutionDetailDomain.address.latitude,
+                //   );
+                // },
+              ),
             ),
             SizedBox(height: UIConverter.getComponentHeight(context, 50)),
             const Row(
@@ -144,7 +142,7 @@ class _OverviewTabState extends State<OverviewTab> {
             ),
             SizedBox(height: UIConverter.getComponentHeight(context, 15)),
             SizedBox(
-              height: 200,
+              height: 210,
               width: UIConverter.getComponentWidth(context, 382),
               child: ListView.separated(
                 separatorBuilder: (BuildContext context, int index) =>
@@ -166,14 +164,19 @@ class _OverviewTabState extends State<OverviewTab> {
                     ),
                     child: Row(
                       children: [
-                      Image.asset("assets/images/right_icon.png"),
-                      const SizedBox(width: 15,),
-                      Text(widget.institutionDetailDomain.services[index], style: const TextStyle(
-                        fontSize: 14,
-
-                      ),
-                      maxLines: 1,)
-                    ],),
+                        Image.asset("assets/images/right_icon.png"),
+                        const SizedBox(
+                          width: 9,
+                        ),
+                        Text(
+                          widget.institutionDetailDomain.services[index],
+                          style: TextStyle(
+                            fontSize: 12,
+                          ),
+                          maxLines: 2,
+                        )
+                      ],
+                    ),
                   );
                 },
               ),
@@ -204,16 +207,26 @@ class _OverviewTabState extends State<OverviewTab> {
               ],
             ),
             Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Row(
-                children: [
-                  HospitalMap(
-                    latitude: widget.institutionDetailDomain.address.latitude,
-                    longitude: widget.institutionDetailDomain.address.longitude,
-                  )
-                ],
-              ),
-            )
+                padding: const EdgeInsets.only(top:8,),
+                child: TextButton(
+                    onPressed: () {
+                      openMap(
+                          longitude:
+                              widget.institutionDetailDomain.address.longitude,
+                          latitude:
+                              widget.institutionDetailDomain.address.latitude);
+                    },
+                    child: Text("See it on map"))
+
+                // Row(
+                //   children: [
+                //     HospitalMap(
+                //       latitude: widget.institutionDetailDomain.address.latitude,
+                //       longitude: widget.institutionDetailDomain.address.longitude,
+                //     )
+                //   ],
+                // ),
+                )
           ],
         ),
       ),
