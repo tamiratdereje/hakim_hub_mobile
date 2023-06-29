@@ -13,20 +13,22 @@ class HospitalSearchField extends StatefulWidget {
   final bool obscureText;
   final TextEditingController controller;
   final Function onFilterChanged;
+  final bool enabled;
   String? fieldName;
   String? errorValue;
   List<String> filterList;
 
-  HospitalSearchField({
-    required this.filterList ,
-    Key? key,
-    required this.hintText,
-    required this.onChanged,
-    required this.obscureText,
-    required this.controller,
-    this.fieldName,
-    required this.onFilterChanged,
-  }) : super(key: key);
+  HospitalSearchField(
+      {required this.filterList,
+      Key? key,
+      required this.hintText,
+      required this.onChanged,
+      required this.obscureText,
+      required this.controller,
+      this.fieldName,
+      required this.onFilterChanged,
+      required this.enabled})
+      : super(key: key);
 
   @override
   _HospitalSearchFieldState createState() => _HospitalSearchFieldState();
@@ -42,6 +44,7 @@ class _HospitalSearchFieldState extends State<HospitalSearchField> {
       builder: (FormFieldState state) {
         return TextFormField(
           obscureText: false,
+          enabled: widget.enabled,
           controller: widget.controller,
           decoration: InputDecoration(
               constraints: BoxConstraints(
@@ -60,28 +63,24 @@ class _HospitalSearchFieldState extends State<HospitalSearchField> {
                   child: GestureDetector(
                 child: filter,
                 onTap: () async {
-                  
-                  FilterHospitalDomain filterHospitalDomain = (await showModalBottomSheet<FilterHospitalDomain>(
+                  FilterHospitalDomain filterHospitalDomain =
+                      (await showModalBottomSheet<FilterHospitalDomain>(
                     isScrollControlled: true,
                     backgroundColor: titleTextColor,
                     context: context,
                     builder: (BuildContext context) {
-                      return  FilterPage(filterList : widget.filterList);
+                      return FilterPage(filterList: widget.filterList);
                     },
                   ))!;
-                 
+
                   widget.onFilterChanged(filterHospitalDomain);
                 },
               ))),
           onFieldSubmitted: (sth) {
-           
             if (formkey.currentState!.validate()) {
-              
               widget.onChanged(widget.controller.text);
-            } else {
-            }
+            } else {}
           },
-          
         );
       },
     );

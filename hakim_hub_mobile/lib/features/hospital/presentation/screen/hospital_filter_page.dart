@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:hakim_hub_mobile/core/utils/colors.dart';
 import 'package:hakim_hub_mobile/core/utils/icons.dart';
 import 'package:hakim_hub_mobile/core/utils/ui_converter.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 import '../../../../core/shared_widgets/formfield.dart';
+import '../../../../core/utils/pixle_to_percent.dart';
 import '../widgets/build_chips_widget.dart';
 
 class HospitalDoctorFilterPage extends StatefulWidget {
@@ -34,7 +36,7 @@ class _HospitalDoctorFilterPageState extends State<HospitalDoctorFilterPage> {
   List<String> selectedList = [];
   String _selectedEducation = 'Addis Ababa University';
 
-  List<String> _educationOptions = [
+  final List<String> _educationOptions = [
     'Addis Ababa University',
     'Harvard University',
     'Stanford University',
@@ -56,9 +58,9 @@ class _HospitalDoctorFilterPageState extends State<HospitalDoctorFilterPage> {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.only(
-        top: UIConverter.getComponentHeight(context, 35),
-        left: UIConverter.getComponentWidth(context, 27),
-        right: UIConverter.getComponentWidth(context, 27),
+        top: pixleToPercent(35, 'height').h,
+        left: pixleToPercent(27, 'width').w,
+        right: pixleToPercent(27, 'width').w,
       ),
       decoration: const BoxDecoration(
         color: secondryTextColor,
@@ -67,7 +69,7 @@ class _HospitalDoctorFilterPageState extends State<HospitalDoctorFilterPage> {
           topRight: Radius.circular(20),
         ),
       ),
-      height: UIConverter.getComponentHeight(context, 650),
+      height: pixleToPercent(650, 'height').h,
       child: SingleChildScrollView(
         physics: const AlwaysScrollableScrollPhysics(),
         child: Column(
@@ -82,10 +84,10 @@ class _HospitalDoctorFilterPageState extends State<HospitalDoctorFilterPage> {
                     Navigator.pop(context);
                   },
                 ),
-                const Text(
+                Text(
                   "Filter doctors",
                   style: TextStyle(
-                    fontSize: 20,
+                    fontSize: 20.sp,
                     fontWeight: FontWeight.w500,
                     color: titleTextColor,
                   ),
@@ -99,20 +101,20 @@ class _HospitalDoctorFilterPageState extends State<HospitalDoctorFilterPage> {
               ],
             ),
             SizedBox(
-              height: 13,
+              height: pixleToPercent(13, 'height').h,
             ),
             Row(
               children: [
-                const Text(
+                Text(
                   "Open Now",
                   style: TextStyle(
                     color: primaryColor,
-                    fontSize: 18,
+                    fontSize: 18.sp,
                     fontWeight: FontWeight.w600,
                   ),
                 ),
                 SizedBox(
-                  width: UIConverter.getComponentWidth(context, 32),
+                  width: pixleToPercent(32, 'width').w,
                 ),
                 Material(
                   child: Switch(
@@ -134,12 +136,12 @@ class _HospitalDoctorFilterPageState extends State<HospitalDoctorFilterPage> {
               ],
             ),
             SizedBox(
-              height: 5,
+              height: pixleToPercent(32, 'height').h,
             ),
             Text(
               "Education",
               style: TextStyle(
-                fontSize: 17,
+                fontSize: 17.sp,
                 fontWeight: FontWeight.w200,
                 color: primaryColor,
               ),
@@ -193,16 +195,16 @@ class _HospitalDoctorFilterPageState extends State<HospitalDoctorFilterPage> {
             SizedBox(
               height: UIConverter.getComponentHeight(context, 10),
             ),
-            const Text(
+            Text(
               "Year of exprience",
               style: TextStyle(
-                fontSize: 17,
+                fontSize: 17.sp,
                 fontWeight: FontWeight.w200,
                 color: primaryColor,
               ),
             ),
             SizedBox(
-              height: UIConverter.getComponentHeight(context, 5),
+              height: pixleToPercent(5, 'height').h,
             ),
             Material(
               child: SliderTheme(
@@ -229,7 +231,7 @@ class _HospitalDoctorFilterPageState extends State<HospitalDoctorFilterPage> {
                   ),
                 ),
                 child: SizedBox(
-                  width: UIConverter.getComponentWidth(context, 376),
+                  width: pixleToPercent(376, 'width'),
                   child: Slider(
                     value: sliderValue.toDouble(),
                     min: 1,
@@ -248,10 +250,10 @@ class _HospitalDoctorFilterPageState extends State<HospitalDoctorFilterPage> {
             SizedBox(
               height: UIConverter.getComponentHeight(context, 20),
             ),
-            const Text(
+            Text(
               "speciality",
               style: TextStyle(
-                fontSize: 17,
+                fontSize: 17.sp,
                 fontWeight: FontWeight.normal,
                 color: primaryColor,
               ),
