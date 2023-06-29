@@ -9,32 +9,44 @@ import 'package:hakim_hub_mobile/features/hospital/presentation/screen/overview_
 import 'package:hakim_hub_mobile/router/routes.dart';
 
 import '../features/chatbot/presentation/screen/chat_page.dart';
+import '../features/core/sharedPreference.dart';
 import '../features/onboarding/screens/splash_screen1.dart';
 
 class RouterMain extends StatelessWidget {
   late final GoRouter _router;
+  String intial;
 
   String? redirector(state) {
     return null;
   }
 
-  RouterMain({Key? key}) : super(key: key) {
+
+  RouterMain({Key? key, required this.intial}) : super(key: key) {
     _router = GoRouter(
       // redirect: (context, state) => redirector(state),
-      initialLocation: AppRoutes.SplashPage,
+      initialLocation:  intial,
       routes: <GoRoute>[
         GoRoute(
             path: AppRoutes.Home,
             name: AppRoutes.Home,
             pageBuilder: (context, state) {
-              return MaterialPage(child: BottomNav(index: state.queryParameters["index"]! ));
+              try {
+              return MaterialPage(
+                  child: BottomNav(index: state.queryParameters["index"]!));
+                
+              } catch (e) {
+                return MaterialPage(
+                  child: BottomNav(index: "0"));
+              }
+             
             }),
         GoRoute(
           path: AppRoutes.HospitalDetailPage,
           name: AppRoutes.HospitalDetailPage,
           pageBuilder: (context, state) => MaterialPage(
               child: OverviewDoctorGalleryPage(
-                  institutionId: state.queryParameters["id"]!, prevIndex: state.queryParameters["prevIndex"]!)),
+                  institutionId: state.queryParameters["id"]!,
+                  prevIndex: state.queryParameters["prevIndex"]!)),
         ),
         GoRoute(
           path: AppRoutes.DoctorDetailPage,
@@ -56,8 +68,9 @@ class RouterMain extends StatelessWidget {
           name: AppRoutes.ChatPage,
           pageBuilder: (context, state) => MaterialPage(
               child: ChatPage(
-            chatMessages:
-                [[0, state.queryParameters["chatBotIntialMessage"]!]],
+            chatMessages: [
+              [0, state.queryParameters["chatBotIntialMessage"]!]
+            ],
           )),
         ),
       ],

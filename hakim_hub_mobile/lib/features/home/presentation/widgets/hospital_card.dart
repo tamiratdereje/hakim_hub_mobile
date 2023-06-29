@@ -6,11 +6,17 @@ import '../../../../core/utils/pixle_to_percent.dart';
 import '../../../hospital/presentation/widgets/chips_container.dart';
 
 class HospitalsCard extends StatelessWidget {
-  HospitalsCard({super.key});
-
+  String name;
+  String address;
+  String imageUrl;
   List chipList = ["Cardio", "Generel", "Pediatrics"];
-  List hospitals = ["Tikur Ambesa", "Paulos"];
-  bool isOpened = true;
+  String isOpened;
+
+  HospitalsCard({required this.name, required this.address, required this.chipList, required this.imageUrl, required this.isOpened ,super.key});
+
+  
+  // List hospitals = ["Tikur Ambesa", "Paulos"];
+  // bool isOpened = true;
 
   @override
   Widget build(BuildContext context) {
@@ -33,12 +39,15 @@ class HospitalsCard extends StatelessWidget {
           Container(
             width: pixleToPercent(301, "width").w,
             height: pixleToPercent(114, "height").h,
-            decoration: const BoxDecoration(
+            decoration:  BoxDecoration(
               borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(20), topRight: Radius.circular(20)),
               image: DecorationImage(
-                  image: AssetImage("assets/images/hospital_img.png"),
-                  fit: BoxFit.fill),
+                  image: NetworkImage(imageUrl),
+                  onError: (exception, stackTrace) {
+                    AssetImage("assets/images/hospital_img.png");
+                  },
+                  fit: BoxFit.cover),
             ),
           ),
           SizedBox(
@@ -50,7 +59,7 @@ class HospitalsCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "Tikur Ambesa",
+                  name,
                   style: TextStyle(
                       color: titleTextColor,
                       fontSize: 15.sp,
@@ -66,7 +75,7 @@ class HospitalsCard extends StatelessWidget {
                   child: ListView.builder(
                     physics: const AlwaysScrollableScrollPhysics(),
                     scrollDirection: Axis.horizontal,
-                    itemCount: 3,
+                    itemCount: chipList.length,
                     itemBuilder: ((context, index) {
                       return chipsContainer(chipList[index]);
                     }),
@@ -90,12 +99,18 @@ class HospitalsCard extends StatelessWidget {
                 SizedBox(
                   width: pixleToPercent(5, "width").w,
                 ),
-                Text(
-                  "King George Street",
+
+                SizedBox(
+                  width: pixleToPercent(200, "width").w,
+                  child: Text(
+                  address,
                   style: TextStyle(
                     fontWeight: FontWeight.w400,
                     fontSize: 16.sp,
+                    
                   ),
+                  maxLines: 1,
+                ),
                 )
               ],
             ),

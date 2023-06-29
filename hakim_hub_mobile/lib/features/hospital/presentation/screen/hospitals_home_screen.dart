@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:hakim_hub_mobile/core/utils/colors.dart';
 import 'package:hakim_hub_mobile/core/utils/icons.dart';
 import 'package:hakim_hub_mobile/core/utils/ui_converter.dart';
+import 'package:hakim_hub_mobile/features/hospital/presentation/widgets/hospital_load_shimmer_effect.dart';
 import 'package:hakim_hub_mobile/features/hospital/presentation/widgets/main_hospitals_card.dart';
 
 import '../../../../core/shared_widgets/formfield.dart';
@@ -78,13 +79,13 @@ class _HospitalsHomeScreenState extends State<HospitalsHomeScreen> {
                   children: [
                     BlocConsumer<SearchHospitalBloc, SearchHospitalState>(
                       listener: (context, state) {
-                        if (state is SearchHospitalSuccess) {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(
-                              content: Text("successfully loaded"),
-                            ),
-                          );
-                        }
+                        // if (state is SearchHospitalSuccess) {
+                        //   ScaffoldMessenger.of(context).showSnackBar(
+                        //     const SnackBar(
+                        //       content: Text("successfully loaded"),
+                        //     ),
+                        //   );
+                        // }
                       },
                       builder: (context, state) {
                         if (state is SearchHospitalSuccess) {
@@ -115,6 +116,8 @@ class _HospitalsHomeScreenState extends State<HospitalsHomeScreen> {
                                     ),
                                     onTap: () {
                                       
+                                      print("object");
+                                      print(state.institutionSearchDomain[index].id);
                                       context.pushNamed(
                                           AppRoutes.HospitalDetailPage,
                                           queryParameters: {"id": state.institutionSearchDomain[index].id, "prevIndex": "2"});
@@ -123,11 +126,7 @@ class _HospitalsHomeScreenState extends State<HospitalsHomeScreen> {
                                 })),
                           );
                         } else if (state is SearchHospitalLoading) {
-                          return const Center(
-                            child: CircularProgressIndicator(
-                              color: redColor,
-                            ),
-                          );
+                          return const  HospitalLoadShimmerEffect();
                         } else {
                           return const Center(
                             child: Text("No data"),

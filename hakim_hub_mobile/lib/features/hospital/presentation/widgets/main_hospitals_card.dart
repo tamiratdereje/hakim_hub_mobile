@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:hakim_hub_mobile/core/utils/colors.dart';
 import 'package:hakim_hub_mobile/core/utils/icons.dart';
+import 'package:hakim_hub_mobile/core/utils/pixle_to_percent.dart';
 import 'package:hakim_hub_mobile/core/utils/ui_converter.dart';
 import 'package:hakim_hub_mobile/features/hospital/domain/entities/hospital_search_domain.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 import '../../../../core/shared_widgets/formfield.dart';
 import 'chips_container.dart';
@@ -18,8 +20,8 @@ class MainHospitalsCard extends StatelessWidget {
     return Stack(children: [
       Container(
         margin: const EdgeInsets.only(bottom: 10, top: 10, left: 0, right: 0),
-        width: UIConverter.getComponentWidth(context, 370),
-        height: UIConverter.getComponentHeight(context, 305),
+        width: pixleToPercent(370, 'width').w,
+        height: pixleToPercent(305, 'height').h,
         decoration: const BoxDecoration(
             color: secondryTextColor,
             borderRadius: BorderRadius.all(Radius.circular(20)),
@@ -32,8 +34,8 @@ class MainHospitalsCard extends StatelessWidget {
             ]),
         child: Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
           Container(
-            width: UIConverter.getComponentWidth(context, 370),
-            height: UIConverter.getComponentHeight(context, 146),
+            width: pixleToPercent(370, 'width').w,
+            height: pixleToPercent(146, 'height').h,
             decoration:  BoxDecoration(
               borderRadius: const BorderRadius.only(
                   topLeft: Radius.circular(20), topRight: Radius.circular(20)),
@@ -52,16 +54,16 @@ class MainHospitalsCard extends StatelessWidget {
             height: 5,
           ),
           Padding(
-            padding: const EdgeInsets.only(left: 20),
+            padding: EdgeInsets.only(left: pixleToPercent(20, 'width').w),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(
                   width: UIConverter.getComponentWidth(context, 176),
                   child:  Text(institutionSearchDomain.institutionName ,
-                      style: const TextStyle(
+                      style: TextStyle(
                           color: titleTextColor,
-                          fontSize: 18,
+                          fontSize: 16.sp,
                           fontWeight: FontWeight.w600),
                       maxLines: 1),
                 ),
@@ -77,29 +79,30 @@ class MainHospitalsCard extends StatelessWidget {
                         maxLines: 1),
                   ],
                 ),
-                const SizedBox(
-                  height: 15,
+                SizedBox(
+                  height: 15.sp,
                 ),
                 SizedBox(
-                  width: UIConverter.getComponentWidth(context, 300),
-                  height: UIConverter.getComponentHeight(context, 32),
+                  width: pixleToPercent(300, 'width').w,
+                  height: pixleToPercent(32, 'height').h,
                   child: ListView.builder(
                     physics: const AlwaysScrollableScrollPhysics(),
                     scrollDirection: Axis.horizontal,
                     itemCount: institutionSearchDomain.services.length,
                     itemBuilder: ((context, index) {
+                      print(institutionSearchDomain.services[index]);
                       return chipsContainer(institutionSearchDomain.services[index]);
                     }),
                   ),
                 ),
                 SizedBox(
-                  height: UIConverter.getComponentHeight(context, 17),
+                  height: pixleToPercent(17, 'height').h,
                 ),
               ],
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(right: 20),
+            padding: EdgeInsets.only(right: pixleToPercent(20, 'width').w),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
@@ -108,7 +111,7 @@ class MainHospitalsCard extends StatelessWidget {
                   width: UIConverter.getComponentWidth(context, 5),
                 ),
                  SizedBox(
-                  width: UIConverter.getComponentWidth(context, 300),
+                  width: pixleToPercent(300, 'width').w,
                    child: Text(
                     
                     institutionSearchDomain.address.summary,
