@@ -6,23 +6,7 @@ import 'package:material_design_icons_flutter/material_design_icons_flutter.dart
 import 'package:hakim_hub_mobile/core/utils/ui_converter.dart';
 import 'email_card.dart';
 import 'map_utils.dart';
-import 'popup.dart';
-import 'hospital_google_map.dart';
 import 'package:hakim_hub_mobile/features/hospital/domain/entities/hospital_detail_domain.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_map/flutter_map.dart';
-import 'package:hakim_hub_mobile/core/utils/icons.dart';
-import 'package:hakim_hub_mobile/features/core/splash_screen.dart';
-import 'package:hakim_hub_mobile/features/hospital/data/models/hospital_address.dart';
-import 'package:hakim_hub_mobile/features/hospital/domain/entities/hospital_detail_domain.dart';
-import 'package:hakim_hub_mobile/features/hospital/presentation/widgets/hospital_card.dart';
-import 'package:hakim_hub_mobile/features/hospital/presentation/widgets/hospital_google_map.dart';
-import 'package:latlong2/latlong.dart';
-import '../../../../core/utils/colors.dart';
-import '../../../../core/utils/ui_converter.dart';
-import 'app_constans.dart';
-import 'map_box.dart';
-import 'package:expandable_text/expandable_text.dart';
 
 class HospitalCard extends StatefulWidget {
   final double width = 380;
