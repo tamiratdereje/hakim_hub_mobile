@@ -42,7 +42,7 @@ class _BuildChipState extends State<BuildChip> {
       label: Text(
         widget.label,
         style: const TextStyle(
-          color: primaryTextColor,
+          color: primaryTextColor,fontSize: 10
         ),
       ),
       backgroundColor: Colors.grey[200],

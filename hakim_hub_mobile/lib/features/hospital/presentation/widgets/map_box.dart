@@ -3,53 +3,107 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:hakim_hub_mobile/core/utils/icons.dart';
 import 'package:latlong2/latlong.dart';
 
-class MapBoxWidget extends StatelessWidget {
+class MapBoxWidget extends StatefulWidget {
   final double latitude;
   final double longitude;
-  final VoidCallback? onTap;
 
   const MapBoxWidget({
     Key? key,
     required this.latitude,
     required this.longitude,
-    this.onTap,
   }) : super(key: key);
 
   @override
+  _MapBoxWidgetState createState() => _MapBoxWidgetState();
+}
+
+class _MapBoxWidgetState extends State<MapBoxWidget> {
+  MapController mapController = MapController();
+
+  @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap,
-      child: FlutterMap(
-        mapController: MapController(),
-        options: MapOptions(
-          // minZoom: 5,
-          // maxZoom: 18,
-          center: LatLng(latitude, longitude),
-        ),
-        layers: [
-          TileLayerOptions(
-            urlTemplate:
-                "https://api.mapbox.com/styles/v1/fenetshewarega/cljgsjqhs00cj01pi5bw22hfz/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoiZmVuZXRzaGV3YXJlZ2EiLCJhIjoiY2xqY2k2ajhpMDFjajNlbW9lbTJvdmozeiJ9.6xeUCiBbQYWVIEzFBT9kPA",
-            additionalOptions: {
-              'accessToken':
-                  "pk.eyJ1IjoiZmVuZXRzaGV3YXJlZ2EiLCJhIjoiY2xqY2k2ajhpMDFjajNlbW9lbTJvdmozeiJ9.6xeUCiBbQYWVIEzFBT9kPA",
-              'mapStyleId':
-                  "mapbox://styles/fenetshewarega/cljgsjqhs00cj01pi5bw22hfz",
-            },
+    return Stack(
+      children: [
+        FlutterMap(
+          mapController: mapController,
+          options: MapOptions(
+            minZoom: 5,
+            maxZoom: 18,
+            zoom: 13,
+            center: LatLng(widget.latitude, widget.longitude),
+            interactiveFlags: 0, // disable all gestures
           ),
-          MarkerLayerOptions(
-            markers: [
-              Marker(
-                point: LatLng(latitude, longitude),
-                builder: (ctx) => Container(
-                  child: location,
-                  color: Colors.red,
+          layers: [
+            TileLayerOptions(
+              urlTemplate:
+                  "https://api.mapbox.com/styles/v1/fenetshewarega/cljgsjqhs00cj01pi5bw22hfz/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoiZmVuZXRzaGV3YXJlZ2EiLCJhIjoiY2xqY2k2ajhpMDFjajNlbW9lbTJvdmozeiJ9.6xeUCiBbQYWVIEzFBT9kPA",
+              additionalOptions: {
+                'accessToken':
+                    "pk.eyJ1IjoiZmVuZXRzaGV3YXJlZ2EiLCJhIjoiY2xqY2k2ajhpMDFjajNlbW9lbTJvdmozeiJ9.6xeUCiBbQYWVIEzFBT9kPA",
+                'mapStyleId':
+                    "mapbox://styles/fenetshewarega/cljgsjqhs00cj01pi5bw22hfz",
+              },
+            ),
+            MarkerLayerOptions(
+              markers: [
+                Marker(
+                  point: LatLng(widget.latitude, widget.longitude),
+                  builder: (ctx) => Container(
+                    child: location,
+                    color: Colors.red,
+                  ),
                 ),
+              ],
+            ),
+          ],
+        ),
+        Positioned(
+          top: 16,
+          right: 16,
+          child: Stack(
+            alignment: Alignment.center,
+            children: [
+              Container(
+                width: 36,
+                height: 36,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: Colors.white,
+                ),
+              ),
+              IconButton(
+                icon: Icon(Icons.add),
+                onPressed: () {
+                  mapController.move(mapController.center, mapController.zoom + 1);
+                },
               ),
             ],
           ),
-        ],
-      ),
+        ),
+        Positioned(
+          top: 72,
+          right: 16,
+          child: Stack(
+            alignment: Alignment.center,
+            children: [
+              Container(
+                width: 36,
+                height: 36,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: Colors.white,
+                ),
+              ),
+              IconButton(
+                icon: Icon(Icons.remove),
+                onPressed: () {
+                  mapController.move(mapController.center, mapController.zoom - 1);
+                },
+              ),
+            ],
+          ),
+        ),
+      ],
     );
   }
 }

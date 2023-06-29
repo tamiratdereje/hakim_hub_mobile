@@ -39,8 +39,22 @@ class _DoctorFilterPageState extends State<DoctorFilterPage> {
   }
 
   String selectedOption = "";
+  bool showAllChips = false;
+
   @override
   Widget build(BuildContext context) {
+    List<Widget> chips = widget.filterList
+        .map((e) => BuildChip(
+              label: e,
+              onDeleted: (serviceName) => delete(serviceName),
+              onAdd: (serviceName) => add(serviceName),
+            ))
+        .toList();
+
+    if (!showAllChips && chips.length > 6) {
+      chips = chips.sublist(0, 6);
+    }
+
     return Container(
       padding: EdgeInsets.only(
         top: UIConverter.getComponentHeight(context, 35),
@@ -172,7 +186,7 @@ class _DoctorFilterPageState extends State<DoctorFilterPage> {
             const Text(
               "Specialities",
               style: TextStyle(
-                  fontSize: 25,
+                  fontSize: 20,
                   fontWeight: FontWeight.w600,
                   color: primaryColor),
             ),
@@ -182,14 +196,27 @@ class _DoctorFilterPageState extends State<DoctorFilterPage> {
             Wrap(
               spacing: 6.0,
               runSpacing: 6.0,
-              children: widget.filterList
-                  .map((e) => BuildChip(
-                        label: e,
-                        onDeleted: (serviceName) => delete(serviceName),
-                        onAdd: (serviceName) => add(serviceName),
-                      ))
-                  .toList(),
+              children: chips,
             ),
+            if (!showAllChips && widget.filterList.length > 6)
+              Padding(
+                padding: EdgeInsets.only(
+                    top: UIConverter.getComponentHeight(context, 10)),
+                child: TextButton(
+                  onPressed: () {
+                    setState(() {
+                      showAllChips = true;
+                    });
+                  },
+                  child: Text(
+                    "Show More",
+                    style: TextStyle(
+                        color: primaryColor,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 10),
+                  ),
+                ),
+              ),
           ],
         ),
       ),
