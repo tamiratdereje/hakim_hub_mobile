@@ -19,7 +19,7 @@ Widget chipsContainer(String name) {
         color: chipColor, borderRadius: BorderRadius.all(Radius.circular(20))),
     child: Text(
       name,
-      style: TextStyle(fontSize: 15.sp, fontWeight: FontWeight.w600),
+      style: TextStyle(fontSize: 1.sp, fontWeight: FontWeight.w600),
     ),
   );
 }

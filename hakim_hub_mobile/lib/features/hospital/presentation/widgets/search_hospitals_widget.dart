@@ -33,7 +33,7 @@ class _SearchHospitalsWidgetState extends State<SearchHospitalsWidget> {
       height: UIConverter.getComponentHeight(context, 48),
       color: Colors.white,
       child: HospitalSearchField(
-        enabled: false,
+        enabled: true,
         filterList: widget.serviceList,
         controller: name,
         hintText: "Search hospitals",

@@ -12,7 +12,7 @@ import '../../features/hospital/presentation/screen/hospitals_home_screen.dart';
 
 class BottomNav extends StatefulWidget {
   List<Widget> pages = [
-    const HomePage(),
+    HomePage(),
     const ChatLandingPage(),
     const HospitalsHomeScreen(),
   ];
@@ -49,7 +49,7 @@ class _BottomNavState extends State<BottomNav> {
             widget.index = i.toString();
           });
 
-          if (i == 2) {
+          if (i == 2 || i == 0) {
             print(
               i,
             );
