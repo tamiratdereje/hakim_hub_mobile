@@ -63,7 +63,7 @@ class _ChatPageState extends State<ChatPage> {
           IconButton(
             icon: const Icon(
               Icons.add,
-              color: Colors.black,
+              color: primaryColor,
             ),
             onPressed: () {
               clearChat();
