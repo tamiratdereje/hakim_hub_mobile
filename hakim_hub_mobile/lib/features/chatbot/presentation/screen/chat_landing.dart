@@ -54,15 +54,15 @@ class _ChatLandingPageState extends State<ChatLandingPage> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        const ChatQuestionCard(),
+                        const ChatQuestionCard(chatQuestion: "I have a sharp, stabbing pain in my eye, like a strong prick or poke. It's making it tough for me to keep my eye open or see clearly"),
                         SizedBox(
                           height: Adaptive.h(4.4),
                         ),
-                        const ChatQuestionCard(),
+                        const ChatQuestionCard(chatQuestion: "I have this intense, sharp headache on the right side of my head, it feels like a needle stabbing me repeatedly.",),
                         SizedBox(
                           height: Adaptive.h(4.4),
                         ),
-                        const ChatQuestionCard(),
+                        const ChatQuestionCard(chatQuestion: "I have a really bad toothache that feels like a sharp, throbbing pain in my tooth. It's making it really hard for me to eat or talk.",),
                       ],
                     ),
                   ),

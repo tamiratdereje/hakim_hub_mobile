@@ -3,7 +3,8 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../../../core/utils/colors.dart';
 
 class ChatQuestionCard extends StatelessWidget {
-  const ChatQuestionCard({super.key});
+  final String chatQuestion;
+  const ChatQuestionCard({super.key, required this.chatQuestion});
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +20,7 @@ class ChatQuestionCard extends StatelessWidget {
         ),
       ),
       child: Text(
-        'Can you recommend a hospital that specializes in [medical specialty] and has a good reputation for patient care?',
+        chatQuestion,
         textAlign: TextAlign.center,
         style: TextStyle(
           fontSize: Adaptive.sp(15),
