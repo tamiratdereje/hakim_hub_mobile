@@ -44,23 +44,23 @@ class _HowAreYouFeelingState extends State<HowAreYouFeeling> {
           size: pixleToPercent(20, "width").w,
         ),
         title: AnimatedTextKit(repeatForever: true, animatedTexts: [
-          TyperAnimatedText(
+          TypewriterAnimatedText(
             "How are you feeling?",
             textStyle: customTextStyle,
             speed: const Duration(milliseconds: 100),
           ),
-          TyperAnimatedText(
-            "Write your symptom",
+          TypewriterAnimatedText(
+            "Write your symptoms",
             textStyle: customTextStyle,
             speed: const Duration(milliseconds: 100),
           ),
-          TyperAnimatedText(
+          TypewriterAnimatedText(
             "Chat with AI",
             textStyle: customTextStyle,
             speed: const Duration(milliseconds: 100),
           ),
-          TyperAnimatedText(
-            "Let's find you a hospital",
+          TypewriterAnimatedText(
+            "I am your medical assistant",
             textStyle: customTextStyle,
             speed: const Duration(milliseconds: 100),
           ),

@@ -7,11 +7,11 @@ List pages = [
   [
     'onboarding_docImg2.png',
     'Nearby Doctors',
-    'adequate information about doctors and where to find them',
+    'Adequate information about doctors and where to find them.',
   ],
   [
     'Onboarding_img3.png',
     'Customize your search',
-    'Search for doctors or hospitals according to your needs and preferences',
+    'Search for doctors or hospitals according to your needs and preferences.',
   ],
 ];
