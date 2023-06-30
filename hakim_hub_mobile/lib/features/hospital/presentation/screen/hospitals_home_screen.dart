@@ -15,6 +15,7 @@ import '../widgets/chips_container.dart';
 import '../widgets/filter_page.dart';
 import '../widgets/hospital_card.dart';
 import '../widgets/search_hospitals_widget.dart';
+import 'no_hospitals_page.dart';
 
 class HospitalsHomeScreen extends StatefulWidget {
   const HospitalsHomeScreen({super.key});
@@ -53,6 +54,13 @@ class _HospitalsHomeScreenState extends State<HospitalsHomeScreen> {
               SearchHospitalsWidget(
                 serviceList: serviceList,
                 onChanged: (searchName) {
+                  print("object");
+                  print(searchName.runtimeType);
+                  print("object");
+                  if (searchName == "") {
+                    BlocProvider.of<SearchHospitalBloc>(context)
+                        .add(const GetAllHospitalsEvent());
+                  }
                   BlocProvider.of<SearchHospitalBloc>(context)
                       .add(HospitalSearchByNameEvent(name: searchName));
                 },
@@ -134,7 +142,7 @@ class _HospitalsHomeScreenState extends State<HospitalsHomeScreen> {
                           return const HospitalLoadShimmerEffect();
                         } else {
                           return const Center(
-                            child: Text("No data"),
+                            child: NoHospitals(),
                           );
                         }
                       },

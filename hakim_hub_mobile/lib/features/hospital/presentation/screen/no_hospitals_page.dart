@@ -9,9 +9,8 @@ class NoHospitals extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: CHSAppBar.build(context, "Hospitals", () {}, true),
-      body: SingleChildScrollView(
+    return 
+      SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.only(
               left: UIConverter.getComponentWidth(context, 50),
@@ -57,7 +56,6 @@ class NoHospitals extends StatelessWidget {
                 ),
               ]),
         ),
-      ),
     );
   }
 }
