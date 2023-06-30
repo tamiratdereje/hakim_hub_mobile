@@ -2,7 +2,7 @@ final String hospitalSummaryData = '';
 
 String dummyData(String name, String degree, String educationalInstitution,
     String specialtyOrAreaOfExpertise, String numberOfYears) {
-  return "Hello! I'm Dr. $name, and I'm thrilled to be your physician. With $numberOfYears years of experience in $specialtyOrAreaOfExpertise, I am dedicated to providing exceptional care and improving the health and well-being of individuals like you in our community. I received my $degree from $educationalInstitution, where I gained comprehensive knowledge. My goal is to utilize this expertise to accurately diagnose and effectively treat a wide range of medical conditions, ensuring your health and comfort.";
+  return "Hello! I'm $name, and I'm thrilled to be your physician. With $numberOfYears years of experience in $specialtyOrAreaOfExpertise, I am dedicated to providing exceptional care and improving the health and well-being of individuals like you in our community. I received my $degree from $educationalInstitution, where I gained comprehensive knowledge. My goal is to utilize this expertise to accurately diagnose and effectively treat a wide range of medical conditions, ensuring your health and comfort.";
 }
 
 String dummyHospitalData(String hospitalName) {
