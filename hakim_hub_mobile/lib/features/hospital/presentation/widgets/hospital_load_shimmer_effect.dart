@@ -21,6 +21,7 @@ class _HospitalLoadShimmerEffectState extends State<HospitalLoadShimmerEffect> {
   Widget build(BuildContext context) {
     return Expanded(
       child: ListView.builder(
+        physics: BouncingScrollPhysics(),
         itemCount: 3,
         itemBuilder: ((context, index) {
           return Padding(
@@ -34,12 +35,10 @@ class _HospitalLoadShimmerEffectState extends State<HospitalLoadShimmerEffect> {
                   const SizedBox(
                     height: 10,
                   ),
-                
                   const SizedBox(
                     height: 10,
                   ),
                   hospitalCard(),
-                  
                 ],
               ),
             ),

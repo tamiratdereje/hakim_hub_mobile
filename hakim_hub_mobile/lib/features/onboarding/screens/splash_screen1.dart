@@ -28,7 +28,7 @@ class _OnBordingPageState extends State<OnBordingPage> {
     return Scaffold(
       backgroundColor: secondryTextColor,
       body: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.all(15),
         child: Column(
           children: [
             Expanded(

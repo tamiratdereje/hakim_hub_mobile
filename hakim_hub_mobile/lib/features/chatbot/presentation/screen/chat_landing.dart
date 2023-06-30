@@ -24,6 +24,7 @@ class _ChatLandingPageState extends State<ChatLandingPage> {
         child: Stack(
           children: [
             SingleChildScrollView(
+              physics: BouncingScrollPhysics(),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
