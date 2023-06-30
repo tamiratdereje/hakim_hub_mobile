@@ -4,8 +4,10 @@ import 'package:hakim_hub_mobile/core/utils/icons.dart';
 import 'package:hakim_hub_mobile/core/utils/pixle_to_percent.dart';
 import 'package:hakim_hub_mobile/core/utils/ui_converter.dart';
 import 'package:hakim_hub_mobile/features/hospital/domain/entities/hospital_search_domain.dart';
-import 'package:hakim_hub_mobile/features/hospital/presentation/widgets/chips_container.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+
+import '../../../../core/shared_widgets/formfield.dart';
+import 'chips_container.dart';
 
 class MainHospitalsCard extends StatelessWidget {
   final InstitutionSearchDomain institutionSearchDomain;
@@ -18,8 +20,8 @@ class MainHospitalsCard extends StatelessWidget {
     return Stack(children: [
       Container(
         margin: const EdgeInsets.only(bottom: 10, top: 10, left: 0, right: 0),
-        width: pixleToPercent(370, 'width').w,
-        height: pixleToPercent(305, 'height').h,
+        width: pixleToPercent(350, 'width').w,
+        height: pixleToPercent(310, 'height').h,
         decoration: const BoxDecoration(
             color: secondryTextColor,
             borderRadius: BorderRadius.all(Radius.circular(20)),
@@ -62,18 +64,19 @@ class MainHospitalsCard extends StatelessWidget {
                   child: Text(institutionSearchDomain.institutionName,
                       style: TextStyle(
                           color: titleTextColor,
-                          fontSize: 16.sp,
+                          fontSize: 18.sp,
                           fontWeight: FontWeight.w600),
                       maxLines: 1),
                 ),
+                SizedBox(height: 5),
                 Row(
                   children: [
-                    alarm,
+                    Container(child: alarm) ,
                     SizedBox(width: UIConverter.getComponentWidth(context, 5)),
                     Text(
-                        "${institutionSearchDomain.institutionAvailability.opening.substring(0, 2)}am-${institutionSearchDomain.institutionAvailability.closing.substring(0, 2)}pm",
+                        "${institutionSearchDomain.institutionAvailability.opening.substring(0, 2)} - ${institutionSearchDomain.institutionAvailability.closing.substring(0, 2)}",
                         style: const TextStyle(
-                            color: titleTextColor,
+                            color: Colors.black54,
                             fontSize: 11,
                             fontWeight: FontWeight.w400),
                         maxLines: 1),
@@ -83,7 +86,7 @@ class MainHospitalsCard extends StatelessWidget {
                   height: 15.sp,
                 ),
                 SizedBox(
-                  width: pixleToPercent(300, 'width').w,
+                  width: pixleToPercent(320, 'width').w,
                   height: pixleToPercent(32, 'height').h,
                   child: ListView.builder(
                     physics: const AlwaysScrollableScrollPhysics(),
@@ -97,32 +100,34 @@ class MainHospitalsCard extends StatelessWidget {
                   ),
                 ),
                 SizedBox(
-                  height: pixleToPercent(17, 'height').h,
+                  height: pixleToPercent(15, 'height').h,
                 ),
               ],
             ),
           ),
           Padding(
-            padding: EdgeInsets.only(right: pixleToPercent(20, 'width').w),
+            padding: EdgeInsets.only(bottom:4 ),
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.end,
+              mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 location,
                 SizedBox(
                   width: UIConverter.getComponentWidth(context, 5),
                 ),
                 SizedBox(
-                  width: pixleToPercent(300, 'width').w,
+                  width: pixleToPercent(320, 'width').w,
                   child: Text(
                     institutionSearchDomain.address.summary,
                     style: const TextStyle(
+                      overflow: TextOverflow.ellipsis,
                       fontWeight: FontWeight.w400,
                       fontSize: 12,
+                      color: Colors.black54
                     ),
-                    textAlign: TextAlign.end,
-                    maxLines: 1,
+                    // textAlign: TextAlign.end,
+                    // maxLines: 1,
                   ),
-                )
+                ),
               ],
             ),
           )

@@ -38,7 +38,7 @@ class _HospitalsHomeScreenState extends State<HospitalsHomeScreen> {
                 "Hospitals",
                 style: TextStyle(
                     color: primaryColor,
-                    fontSize: 29,
+                    fontSize: 25,
                     fontWeight: FontWeight.w700),
               ),
               SizedBox(
@@ -47,10 +47,6 @@ class _HospitalsHomeScreenState extends State<HospitalsHomeScreen> {
               SearchHospitalsWidget(
                 serviceList: serviceList,
                 onChanged: (searchName) {
-                  if (searchName == "") {
-                    BlocProvider.of<SearchHospitalBloc>(context)
-                        .add(const GetAllHospitalsEvent());
-                  }
                   BlocProvider.of<SearchHospitalBloc>(context)
                       .add(HospitalSearchByNameEvent(name: searchName));
                 },
@@ -62,12 +58,29 @@ class _HospitalsHomeScreenState extends State<HospitalsHomeScreen> {
               SizedBox(
                 height: UIConverter.getComponentHeight(context, 30),
               ),
-              const Text(
-                'Nearby Hospitals',
-                style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.w500,
-                    color: titleTextColor),
+              Padding(
+                padding: const EdgeInsets.only(bottom: 15),
+                child: Row(
+                  children: [
+                    const Text(
+                      'Nearby',
+                      style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.w500,
+                          color: titleTextColor),
+                    ),
+                    Text(
+                      ' Hospitals',
+                      style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.w500,
+                          color: primaryColor),
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(
+                width: 50,
               ),
               Expanded(
                 child: Column(
@@ -87,9 +100,11 @@ class _HospitalsHomeScreenState extends State<HospitalsHomeScreen> {
                       builder: (context, state) {
                         if (state is SearchHospitalSuccess) {
                           return Expanded(
-                            child: ListView.builder(
-                                physics: BouncingScrollPhysics(),
+                            child: ListView.separated(
                                 itemCount: state.institutionSearchDomain.length,
+                                separatorBuilder: (context, index) => SizedBox(
+                                      height: 20,
+                                    ),
                                 itemBuilder: ((context, index) {
                                   if (isService) {
                                     state

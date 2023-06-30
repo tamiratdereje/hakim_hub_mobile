@@ -87,8 +87,10 @@ class _OverviewTabState extends State<OverviewTab> {
               children: [
                 Text(
                   'Hospital Description',
-                  style:
-                      TextStyle(fontSize: 18.sp, fontWeight: FontWeight.bold),
+                  style: TextStyle(
+                    fontSize: 18.sp,
+                    fontWeight: FontWeight.bold
+                  ),
                 ),
               ],
             ),
