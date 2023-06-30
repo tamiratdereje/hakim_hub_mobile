@@ -324,7 +324,7 @@ class _ChatPageState extends State<ChatPage> {
                     ),
                   ),
                   IconButton(
-                    icon: const Icon(Icons.send),
+                    icon: const Icon(Icons.send, color: primaryColor,),
                     onPressed: () {
                       String query = _textEditingController.text;
                       _textEditingController.clear();
