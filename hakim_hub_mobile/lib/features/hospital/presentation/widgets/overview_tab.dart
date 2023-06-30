@@ -43,6 +43,7 @@ class _OverviewTabState extends State<OverviewTab> {
           top: UIConverter.getComponentHeight(context, 25),
           bottom: UIConverter.getComponentHeight(context, 25)),
       child: SingleChildScrollView(
+        physics: BouncingScrollPhysics(),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -98,6 +99,12 @@ class _OverviewTabState extends State<OverviewTab> {
             ),
             SizedBox(
               height: pixleToPercent(30, 'height').h,
+            ),
+            Text(
+              widget.institutionDetailDomain.summary,
+              style: TextStyle(
+                fontSize: 15.sp,
+              ),
             ),
             ExpandableText(
               widget.institutionDetailDomain.summary,

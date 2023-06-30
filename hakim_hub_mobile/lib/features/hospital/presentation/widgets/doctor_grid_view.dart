@@ -128,6 +128,7 @@ class _DoctorGridViewState extends State<DoctorGridView> {
               ),
               Expanded(
                 child: GridView.builder(
+                  physics: BouncingScrollPhysics(),
                   itemCount: _filteredDoctors.length,
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2, // Change this to 4 for a 4x4 grid
