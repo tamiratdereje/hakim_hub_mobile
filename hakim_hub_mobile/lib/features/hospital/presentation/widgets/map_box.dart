@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
+import 'package:hakim_hub_mobile/core/utils/colors.dart';
 import 'package:hakim_hub_mobile/core/utils/icons.dart';
 import 'package:latlong2/latlong.dart';
 
@@ -49,8 +50,15 @@ class _MapBoxWidgetState extends State<MapBoxWidget> {
                 Marker(
                   point: LatLng(widget.latitude, widget.longitude),
                   builder: (ctx) => Container(
-                    child: location,
-                    color: Colors.red,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(50),
+                      color: Colors.white.withOpacity(0.5),
+                    ),
+                    child: Icon(
+                      Icons.location_on_rounded,
+                      color: redColor,
+                    ),
+                    // color: Colors.red,
                   ),
                 ),
               ],
@@ -66,7 +74,7 @@ class _MapBoxWidgetState extends State<MapBoxWidget> {
               Container(
                 width: 36,
                 height: 36,
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   shape: BoxShape.circle,
                   color: Colors.white,
                 ),
@@ -74,7 +82,8 @@ class _MapBoxWidgetState extends State<MapBoxWidget> {
               IconButton(
                 icon: Icon(Icons.add),
                 onPressed: () {
-                  mapController.move(mapController.center, mapController.zoom + 1);
+                  mapController.move(
+                      mapController.center, mapController.zoom + 1);
                 },
               ),
             ],
@@ -97,7 +106,8 @@ class _MapBoxWidgetState extends State<MapBoxWidget> {
               IconButton(
                 icon: Icon(Icons.remove),
                 onPressed: () {
-                  mapController.move(mapController.center, mapController.zoom - 1);
+                  mapController.move(
+                      mapController.center, mapController.zoom - 1);
                 },
               ),
             ],

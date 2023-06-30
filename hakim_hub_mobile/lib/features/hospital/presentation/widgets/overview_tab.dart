@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:hakim_hub_mobile/core/utils/icons.dart';
 import 'package:hakim_hub_mobile/core/utils/pixle_to_percent.dart';
 import 'package:hakim_hub_mobile/features/hospital/data/models/hospital_address.dart';
@@ -58,7 +59,8 @@ class _OverviewTabState extends State<OverviewTab> {
                     height: pixleToPercent(254, 'height').h,
                     width: pixleToPercent(382, 'width').w,
                     decoration: BoxDecoration(
-                        borderRadius:const BorderRadius.all(Radius.circular(10)),
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(10)),
                         image: DecorationImage(
                           image: NetworkImage(
                               widget.institutionDetailDomain.bannerUrl),
@@ -73,7 +75,7 @@ class _OverviewTabState extends State<OverviewTab> {
                 ),
                 Positioned(
                   top: pixleToPercent(214, 'height').h,
-                  left: pixleToPercent(30, 'width').w ,
+                  left: pixleToPercent(30, 'width').w,
                   right: pixleToPercent(30, 'width').w,
                   child: HospitalCard(
                     institutionDetailDomain: widget.institutionDetailDomain,
@@ -83,7 +85,7 @@ class _OverviewTabState extends State<OverviewTab> {
                 ),
               ]),
             ),
-             Row(
+            Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 Text(
@@ -94,12 +96,8 @@ class _OverviewTabState extends State<OverviewTab> {
                 ),
               ],
             ),
-            SizedBox(height: pixleToPercent(30, 'height').h,),
-            Text(
-              widget.institutionDetailDomain.summary,
-              style: TextStyle(
-                fontSize: 15.sp,
-              ),
+            SizedBox(
+              height: pixleToPercent(30, 'height').h,
             ),
             ExpandableText(
               widget.institutionDetailDomain.summary,
@@ -118,7 +116,7 @@ class _OverviewTabState extends State<OverviewTab> {
             SizedBox(height: pixleToPercent(30, 'height').h),
             Container(
               width: pixleToPercent(400, 'width').w,
-              height: pixleToPercent(400, 'height').h,
+              height: pixleToPercent(300, 'height').h,
               child: MapBoxWidget(
                 latitude: widget.institutionDetailDomain.address.latitude,
                 longitude: widget.institutionDetailDomain.address.longitude,
@@ -209,14 +207,21 @@ class _OverviewTabState extends State<OverviewTab> {
               ],
             ),
             Padding(
-                padding: const EdgeInsets.only(top:8,),
+                padding: const EdgeInsets.only(
+                  top: 8,
+                ),
                 child: TextButton(
-                    onPressed: () {
-                      openMap(
-                          longitude:
-                              widget.institutionDetailDomain.address.longitude,
-                          latitude:
-                              widget.institutionDetailDomain.address.latitude);
+                    onPressed: () async {
+                      Position position = await Geolocator.getCurrentPosition(
+                        desiredAccuracy: LocationAccuracy.high,
+                      );
+
+                      await openMap(
+                        hospitalLatitude:
+                            widget.institutionDetailDomain.address.latitude,
+                        hospitalLongitude:
+                            widget.institutionDetailDomain.address.longitude,
+                      );
                     },
                     child: Text("See it on map"))
 
