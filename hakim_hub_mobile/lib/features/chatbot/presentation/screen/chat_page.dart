@@ -57,7 +57,7 @@ class _ChatPageState extends State<ChatPage> {
               "index": "1",
             }),
           },
-          child: const Icon(Icons.arrow_back_ios_new, color: Colors.black),
+          child: const Icon(Icons.arrow_back, color: Colors.black),
         ),
         actions: [
           IconButton(
