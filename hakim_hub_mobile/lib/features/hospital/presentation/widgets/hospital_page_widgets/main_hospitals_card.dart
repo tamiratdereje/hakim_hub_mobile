@@ -74,7 +74,7 @@ class MainHospitalsCard extends StatelessWidget {
                     Container(child: alarm) ,
                     SizedBox(width: UIConverter.getComponentWidth(context, 5)),
                     Text(
-                        "${institutionSearchDomain.institutionAvailability.opening.substring(0, 2)} - ${institutionSearchDomain.institutionAvailability.closing.substring(0, 2)}",
+                        "${institutionSearchDomain.institutionAvailability.opening.substring(0, 2)}:00 - ${institutionSearchDomain.institutionAvailability.closing.substring(0, 2)}:00",
                         style: const TextStyle(
                             color: Colors.black54,
                             fontSize: 11,
