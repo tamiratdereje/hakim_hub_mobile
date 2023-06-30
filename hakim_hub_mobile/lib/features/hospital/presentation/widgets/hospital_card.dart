@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:hakim_hub_mobile/core/utils/icons.dart';
 import 'package:hakim_hub_mobile/features/hospital/presentation/widgets/phone_card.dart';
+import 'package:hakim_hub_mobile/features/hospital/presentation/widgets/url_louncher.dart';
+import 'package:hakim_hub_mobile/features/hospital/presentation/widgets/url_weblouncher.dart';
 import 'package:hakim_hub_mobile/features/hospital/presentation/widgets/website_card.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:hakim_hub_mobile/core/utils/ui_converter.dart';
@@ -67,16 +70,8 @@ class _HospitalCardState extends State<HospitalCard> {
                       width: UIConverter.getComponentWidth(context, 16.67),
                       child: IconButton(
                         onPressed: () {
-                          showDialog(
-                            context: context,
-                            builder: (BuildContext context) {
-                              return Center(
-                                child: WebsiteCardBody(
-                                    institutionDetail:
-                                        widget.institutionDetailDomain),
-                              );
-                            },
-                          );
+                          launchWebsiteUrl(widget.institutionDetailDomain.website);
+                        
                         },
                         icon: Icon(MdiIcons.web),
                       ),
@@ -101,56 +96,56 @@ class _HospitalCardState extends State<HospitalCard> {
                 ],
               ),
             ),
-            SizedBox(
-              height:
-                  UIConverter.getComponentHeight(context, widget.initialSize),
-              width: UIConverter.getComponentWidth(context, widget.initialSize),
-              child: Column(
-                children: [
-                  Container(
-                    height: UIConverter.getComponentHeight(context, 45),
-                    width: UIConverter.getComponentWidth(context, 45),
-                    decoration: const BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: Color.fromRGBO(239, 243, 243, 1),
-                    ),
-                    child: SizedBox(
-                      height: UIConverter.getComponentHeight(context, 16.67),
-                      width: UIConverter.getComponentWidth(context, 16.67),
-                      child: IconButton(
-                        icon: email,
-                        onPressed: () {
-                          showDialog(
-                            context: context,
-                            builder: (BuildContext context) {
-                              return Center(
-                                child: popup_email(),
-                              );
-                            },
-                          );
-                        },
-                      ),
-                    ),
-                  ),
-                  Expanded(
-                    child: Padding(
-                      padding: EdgeInsets.only(top: 8),
-                      child: SizedBox(
-                        width: UIConverter.getComponentWidth(context, 50),
-                        child: Text(
-                          'Email',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontSize:
-                                UIConverter.getComponentHeight(context, 15),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
+            // SizedBox(
+            //   height:
+            //       UIConverter.getComponentHeight(context, widget.initialSize),
+            //   width: UIConverter.getComponentWidth(context, widget.initialSize),
+            //   child: Column(
+            //     children: [
+            //       Container(
+            //         height: UIConverter.getComponentHeight(context, 45),
+            //         width: UIConverter.getComponentWidth(context, 45),
+            //         decoration: const BoxDecoration(
+            //           shape: BoxShape.circle,
+            //           color: Color.fromRGBO(239, 243, 243, 1),
+            //         ),
+            //         child: SizedBox(
+            //           height: UIConverter.getComponentHeight(context, 16.67),
+            //           width: UIConverter.getComponentWidth(context, 16.67),
+            //           child: IconButton(
+            //             icon: email,
+            //             onPressed: () {
+            //               showDialog(
+            //                 context: context,
+            //                 builder: (BuildContext context) {
+            //                   return Center(
+            //                     child: popup_email(),
+            //                   );
+            //                 },
+            //               );
+            //             },
+            //           ),
+            //         ),
+            //       ),
+            //       Expanded(
+            //         child: Padding(
+            //           padding: EdgeInsets.only(top: 8),
+            //           child: SizedBox(
+            //             width: UIConverter.getComponentWidth(context, 50),
+            //             child: Text(
+            //               'Email',
+            //               textAlign: TextAlign.center,
+            //               style: TextStyle(
+            //                 fontSize:
+            //                     UIConverter.getComponentHeight(context, 15),
+            //               ),
+            //             ),
+            //           ),
+            //         ),
+            //       ),
+            //     ],
+            //   ),
+            // ),
             SizedBox(
               height:
                   UIConverter.getComponentHeight(context, widget.initialSize),
@@ -169,14 +164,14 @@ class _HospitalCardState extends State<HospitalCard> {
                       width: UIConverter.getComponentWidth(context, 16.67),
                       child: IconButton(
                         icon: Icon(Icons.directions),
-                        onPressed: () {
-                          openMap(
-                            longitude: widget
-                                .institutionDetailDomain.address.longitude,
-                            latitude:
-                                widget.institutionDetailDomain.address.latitude,
+                        onPressed: () async {
+                      Position position = await Geolocator.getCurrentPosition(
+                        desiredAccuracy: LocationAccuracy.high,
+                      );
+                      
+                      await openMap(hospitalLatitude :widget.institutionDetailDomain.address.latitude, hospitalLongitude:widget.institutionDetailDomain.address.longitude,
                           );
-                        },
+                    },
                       ),
                     ),
                   ),
@@ -216,20 +211,13 @@ class _HospitalCardState extends State<HospitalCard> {
                       height: UIConverter.getComponentHeight(context, 16.67),
                       width: UIConverter.getComponentWidth(context, 16.67),
                       child: IconButton(
-                        icon: phone,
-                        onPressed: () {
-                          showDialog(
-                            context: context,
-                            builder: (BuildContext context) {
-                              return Center(
-                                child: phonePopup(
-                                    institutionDetail:
-                                        widget.institutionDetailDomain),
-                              );
-                            },
-                          );
-                        },
-                      ),
+                          icon: phone,
+                          onPressed: () {
+                            launchPhoneUrl(
+                                widget.institutionDetailDomain.phoneNumber);
+                          }
+
+                          ),
                     ),
                   ),
                   Expanded(

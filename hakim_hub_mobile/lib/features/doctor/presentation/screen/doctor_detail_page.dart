@@ -1,3 +1,4 @@
+import 'package:expandable_text/expandable_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -19,7 +20,7 @@ class DoctorDetailPage extends StatefulWidget {
 
 class _DoctorDetailPageState extends State<DoctorDetailPage> {
   late DoctorDetailBloc _doctorDetailBloc;
-
+  bool _isExpanded = false;
   @override
   void initState() {
     super.initState();
@@ -162,21 +163,29 @@ class _DoctorDetailPageState extends State<DoctorDetailPage> {
                               const Text("Biography",
                                   style: TextStyle(
                                       fontWeight: FontWeight.w600,
-                                      color: bioTextColor,
-                                      fontSize: 20),
+                                      color: Colors.black,
+                                      fontSize: 16),
                                   maxLines: 1),
                             ],
                           ),
                           SizedBox(
                             height: UIConverter.getComponentHeight(context, 10),
                           ),
-                          Text(
+                          ExpandableText(
                             doctorDetail.about,
-                            style: const TextStyle(
-                                fontWeight: FontWeight.w400,
-                                color: bioTextColor,
-                                fontSize: 15),
+                            maxLines: 8,
+                            expanded: _isExpanded,
+                            style: TextStyle(fontSize: 14,color: bioTextColor),
+                            expandText: 'See More',
+                            collapseText: 'See Less',
+                            linkColor: Colors.blue,
+                            onExpandedChanged: (value) {
+                              setState(() {
+                                _isExpanded = value;
+                              });
+                            },
                           ),
+                         
                           SizedBox(
                             height: UIConverter.getComponentHeight(context, 30),
                           ),
@@ -191,8 +200,8 @@ class _DoctorDetailPageState extends State<DoctorDetailPage> {
                                 "Education",
                                 style: TextStyle(
                                     fontWeight: FontWeight.w600,
-                                    color: bioTextColor,
-                                    fontSize: 20),
+                                    color: Colors.black,
+                                    fontSize: 16),
                               ),
                             ],
                           ),
@@ -229,11 +238,12 @@ class _DoctorDetailPageState extends State<DoctorDetailPage> {
                                                         context, 7),
                                               ),
                                               Text(
+                                                
                                                 "${doctorDetail.educations[index].startDate} - ${doctorDetail.educations[index].endDate}",
                                                 style: const TextStyle(
                                                     fontWeight: FontWeight.w300,
                                                     color: primaryTextColor,
-                                                    fontSize: 13),
+                                                    fontSize: 12),
                                               ),
                                             ],
                                           ),
