@@ -34,15 +34,9 @@ class HomePage extends StatelessWidget {
                     SvgPicture.asset(
                       'assets/images/homepage.svg',
                     ),
-                    Text(
-                      "HakimHub",
-                      style: TextStyle(
-                          fontSize: 23.sp,
-                          color: primaryTextColor,
-                          fontWeight: FontWeight.w700),
-                    ),
+
                     SizedBox(
-                      height: Adaptive.h(pixleToPercent(5, "height")),
+                      height: Adaptive.h(pixleToPercent(10, "height")),
                     ),
                     Text(
                       textAlign: TextAlign.center,
