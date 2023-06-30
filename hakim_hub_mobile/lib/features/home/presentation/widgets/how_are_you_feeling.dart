@@ -43,7 +43,7 @@ class _HowAreYouFeelingState extends State<HowAreYouFeeling> {
           Icons.person_2_outlined,
           size: pixleToPercent(20, "width").w,
         ),
-        title: AnimatedTextKit(animatedTexts: [
+        title: AnimatedTextKit(repeatForever: true, animatedTexts: [
           TyperAnimatedText(
             "How are you feeling?",
             textStyle: customTextStyle,

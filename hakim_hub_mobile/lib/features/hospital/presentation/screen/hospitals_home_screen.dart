@@ -51,9 +51,8 @@ class _HospitalsHomeScreenState extends State<HospitalsHomeScreen> {
                 height: UIConverter.getComponentHeight(context, 30),
               ),
               SearchHospitalsWidget(
-                serviceList : serviceList,
+                serviceList: serviceList,
                 onChanged: (searchName) {
-                 
                   BlocProvider.of<SearchHospitalBloc>(context)
                       .add(HospitalSearchByNameEvent(name: searchName));
                 },
@@ -89,9 +88,9 @@ class _HospitalsHomeScreenState extends State<HospitalsHomeScreen> {
                       },
                       builder: (context, state) {
                         if (state is SearchHospitalSuccess) {
-                          
                           return Expanded(
                             child: ListView.builder(
+                                physics: BouncingScrollPhysics(),
                                 itemCount: state.institutionSearchDomain.length,
                                 itemBuilder: ((context, index) {
                                   if (isService) {
@@ -102,11 +101,12 @@ class _HospitalsHomeScreenState extends State<HospitalsHomeScreen> {
                                         serviceList.add(element);
                                       }
                                     });
-                                  } 
-                                  
-                                  
-                                  if (index == state.institutionSearchDomain.length - 1) {
-                                      isService = false;
+                                  }
+
+                                  if (index ==
+                                      state.institutionSearchDomain.length -
+                                          1) {
+                                    isService = false;
                                   }
 
                                   return GestureDetector(
@@ -115,18 +115,23 @@ class _HospitalsHomeScreenState extends State<HospitalsHomeScreen> {
                                           state.institutionSearchDomain[index],
                                     ),
                                     onTap: () {
-                                      
                                       print("object");
-                                      print(state.institutionSearchDomain[index].id);
+                                      print(state
+                                          .institutionSearchDomain[index].id);
                                       context.pushNamed(
                                           AppRoutes.HospitalDetailPage,
-                                          queryParameters: {"id": state.institutionSearchDomain[index].id, "prevIndex": "2"});
+                                          queryParameters: {
+                                            "id": state
+                                                .institutionSearchDomain[index]
+                                                .id,
+                                            "prevIndex": "2"
+                                          });
                                     },
                                   );
                                 })),
                           );
                         } else if (state is SearchHospitalLoading) {
-                          return const  HospitalLoadShimmerEffect();
+                          return const HospitalLoadShimmerEffect();
                         } else {
                           return const Center(
                             child: Text("No data"),

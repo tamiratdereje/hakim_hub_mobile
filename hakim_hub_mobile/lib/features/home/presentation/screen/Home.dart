@@ -21,6 +21,7 @@ class HomePage extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
           body: SingleChildScrollView(
+        physics: BouncingScrollPhysics(),
         child: Column(
           children: [
             Padding(
@@ -111,6 +112,7 @@ class HomePage extends StatelessWidget {
                       height: pixleToPercent(400, "height").h,
                       width: double.infinity,
                       child: ListView.separated(
+                        physics: BouncingScrollPhysics(),
                         scrollDirection: Axis.horizontal,
                         itemCount: state.institutionSearchDomain.length,
                         itemBuilder: (context, index) {

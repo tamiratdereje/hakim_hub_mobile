@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hakim_hub_mobile/core/utils/colors.dart';
 import 'package:hakim_hub_mobile/core/utils/ui_converter.dart';
+import 'package:hakim_hub_mobile/features/hospital/presentation/bloc/image_bloc/image_bloc.dart';
+import 'package:hakim_hub_mobile/features/hospital/presentation/bloc/image_bloc/image_event.dart';
+import 'package:hakim_hub_mobile/features/hospital/presentation/bloc/image_bloc/image_state.dart';
 import 'package:shimmer/shimmer.dart';
 
 class DoctorCard extends StatefulWidget {
@@ -8,15 +12,14 @@ class DoctorCard extends StatefulWidget {
   final String title;
   final String subtitle;
 
-  DoctorCard(
-      {required this.imageUrl, required this.title, required this.subtitle});
+  DoctorCard({required this.imageUrl, required this.title, required this.subtitle});
 
   @override
   _DoctorCardState createState() => _DoctorCardState();
 }
 
 class _DoctorCardState extends State<DoctorCard> {
-  bool _isImageLoaded = false;
+  late ImageLoadBloc _bloc;
 
   @override
   Widget build(BuildContext context) {
@@ -31,23 +34,32 @@ class _DoctorCardState extends State<DoctorCard> {
           buildCard(context, widget.title, widget.subtitle),
           Positioned(
             top: -UIConverter.getComponentHeight(context, 5),
-            child: _isImageLoaded
-                ? CircleAvatar(
-                    backgroundColor: shimmerColor,
-                    radius: UIConverter.getComponentHeight(context, 83) / 2,
-                    backgroundImage: NetworkImage(widget.imageUrl),
-                    onBackgroundImageError: (exception, stackTrace) {
-                      AssetImage(widget.imageUrl);
-                    },
-                  )
-                : Shimmer.fromColors(
-                    baseColor: Colors.grey.shade300,
-                    highlightColor: Colors.grey.shade100,
-                    child: CircleAvatar(
+            child: BlocProvider(
+              create: (context) => _bloc,
+              child: BlocBuilder<ImageLoadBloc, ImageLoadState>(
+                builder: (context, state) {
+                  if (state is ImageNotLoadedState || state is ImageLoadingState) {
+                    return Shimmer.fromColors(
+                      baseColor: Colors.grey.shade300,
+                      highlightColor: Colors.grey.shade100,
+                      child: CircleAvatar(
+                        backgroundColor: shimmerColor,
+                        radius: UIConverter.getComponentHeight(context, 83) / 2,
+                      ),
+                    );
+                  } else {
+                    return CircleAvatar(
                       backgroundColor: shimmerColor,
                       radius: UIConverter.getComponentHeight(context, 83) / 2,
-                    ),
-                  ),
+                      backgroundImage: NetworkImage(widget.imageUrl),
+                      onBackgroundImageError: (exception, stackTrace) {
+                        AssetImage(widget.imageUrl);
+                      },
+                    );
+                  }
+                },
+              ),
+            ),
           ),
         ],
       ),
@@ -57,26 +69,22 @@ class _DoctorCardState extends State<DoctorCard> {
   @override
   void initState() {
     super.initState();
-
-    ImageStream stream =
-        NetworkImage(widget.imageUrl).resolve(ImageConfiguration.empty);
+    _bloc = ImageLoadBloc();
+    ImageStream stream = NetworkImage(widget.imageUrl).resolve(ImageConfiguration.empty);
     stream.addListener(ImageStreamListener((info, synchronousCall) {
-      setState(() {
-        _isImageLoaded = true;
-      });
+      _bloc.add(ImageLoaded());
     }));
   }
 }
 
-Widget buildCard(
-    BuildContext context, String doctorName, String doctorSpecialization) {
+Widget buildCard(BuildContext context, String doctorName, String doctorSpecialization) {
   return Card(
     color: Colors.white,
     shadowColor: Colors.black,
     elevation: UIConverter.getComponentHeight(context, 8),
     shape: RoundedRectangleBorder(
-        borderRadius:
-            BorderRadius.circular(UIConverter.getComponentHeight(context, 20))),
+      borderRadius: BorderRadius.circular(UIConverter.getComponentHeight(context, 20)),
+    ),
     child: SizedBox(
       height: UIConverter.getComponentHeight(context, 150.69),
       width: UIConverter.getComponentWidth(context, 190.22),
