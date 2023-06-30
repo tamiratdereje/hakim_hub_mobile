@@ -93,6 +93,7 @@ class _OverviewTabState extends State<OverviewTab> {
                   'Hospital Description',
                   style: TextStyle(
                     fontSize: 18.sp,
+                    fontWeight: FontWeight.bold
                   ),
                 ),
               ],
@@ -110,7 +111,7 @@ class _OverviewTabState extends State<OverviewTab> {
               widget.institutionDetailDomain.summary,
               maxLines: 8,
               expanded: _isExpanded,
-              style: TextStyle(fontSize: 15.sp),
+              style: TextStyle(fontSize: 16.sp, color: Colors.black54),
               expandText: 'See More',
               collapseText: 'See Less',
               linkColor: Colors.blue,
@@ -141,7 +142,7 @@ class _OverviewTabState extends State<OverviewTab> {
                 Text(
                   'Services We Provide',
                   style: TextStyle(
-                    fontSize: 20.sp,
+                    fontSize: 18.sp,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -195,7 +196,7 @@ class _OverviewTabState extends State<OverviewTab> {
                 SizedBox(width: UIConverter.getComponentWidth(context, 10)),
                 const Text(
                   "Available 24 hrs  5 days a week",
-                  style: TextStyle(fontSize: 15, color: titleTextColor),
+                  style: TextStyle(fontSize: 15, color: Colors.black54),
                 ),
               ],
             ),
@@ -209,7 +210,7 @@ class _OverviewTabState extends State<OverviewTab> {
                   child: Text(widget.institutionDetailDomain.address.summary,
                       maxLines: 2,
                       style:
-                          const TextStyle(fontSize: 15, color: titleTextColor)),
+                          const TextStyle(fontSize: 15, color: Colors.black54)),
                 ),
               ],
             ),
