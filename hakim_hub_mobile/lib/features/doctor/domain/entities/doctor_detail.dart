@@ -1,8 +1,9 @@
+import 'package:equatable/equatable.dart';
 import 'package:hakim_hub_mobile/features/doctor/domain/entities/doctor_education.dart';
 import 'package:hakim_hub_mobile/features/doctor/domain/entities/doctor_experience.dart';
 
 
-class DoctorDetail {
+class DoctorDetail extends Equatable {
   String fullName;
   String about;
   String gender;
@@ -30,4 +31,8 @@ class DoctorDetail {
     required this.specialities,
     required this.yearsOfExperience,
   });
+  
+  @override
+  // TODO: implement props
+  List<Object?> get props => throw UnimplementedError();
 }
