@@ -1,4 +1,6 @@
-class Education {
+import 'package:equatable/equatable.dart';
+
+class Education extends Equatable {
   String degree;
   String institution;
   DateTime startDate;
@@ -13,4 +15,10 @@ class Education {
       required this.endDate,
       required this.fieldOfStudy,
       required this.logoUrl});
+
+  toJson() {}
+  
+  @override
+  // TODO: implement props
+  List<Object?> get props => throw UnimplementedError();
 }

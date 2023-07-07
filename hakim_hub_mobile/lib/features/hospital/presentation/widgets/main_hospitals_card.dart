@@ -11,7 +11,7 @@ import 'chips_container.dart';
 
 class MainHospitalsCard extends StatelessWidget {
   final InstitutionSearchDomain institutionSearchDomain;
-  MainHospitalsCard({required this.institutionSearchDomain ,super.key});
+  MainHospitalsCard({required this.institutionSearchDomain, super.key});
 
   bool isOpened = true;
 
@@ -20,8 +20,8 @@ class MainHospitalsCard extends StatelessWidget {
     return Stack(children: [
       Container(
         margin: const EdgeInsets.only(bottom: 10, top: 10, left: 0, right: 0),
-        width: pixleToPercent(370, 'width').w,
-        height: pixleToPercent(305, 'height').h,
+        width: pixleToPercent(350, 'width').w,
+        height: pixleToPercent(310, 'height').h,
         decoration: const BoxDecoration(
             color: secondryTextColor,
             borderRadius: BorderRadius.all(Radius.circular(20)),
@@ -36,18 +36,19 @@ class MainHospitalsCard extends StatelessWidget {
           Container(
             width: pixleToPercent(370, 'width').w,
             height: pixleToPercent(146, 'height').h,
-            decoration:  BoxDecoration(
+            decoration: BoxDecoration(
               borderRadius: const BorderRadius.only(
                   topLeft: Radius.circular(20), topRight: Radius.circular(20)),
               image: DecorationImage(
-                  image: NetworkImage(institutionSearchDomain.bannerUrl, ),
-                  fit:BoxFit.cover,
-                  onError: (_, __) {
-                    // Handle error by providing a fallback image
-                    const AssetImage('assets/images/hospital_img.png');
-                  },
-                  
-                  ),
+                image: NetworkImage(
+                  institutionSearchDomain.bannerUrl,
+                ),
+                fit: BoxFit.cover,
+                onError: (_, __) {
+                  // Handle error by providing a fallback image
+                  const AssetImage('assets/images/hospital_img.png');
+                },
+              ),
             ),
           ),
           const SizedBox(
@@ -60,20 +61,22 @@ class MainHospitalsCard extends StatelessWidget {
               children: [
                 SizedBox(
                   width: UIConverter.getComponentWidth(context, 176),
-                  child:  Text(institutionSearchDomain.institutionName ,
+                  child: Text(institutionSearchDomain.institutionName,
                       style: TextStyle(
                           color: titleTextColor,
-                          fontSize: 16.sp,
+                          fontSize: 18.sp,
                           fontWeight: FontWeight.w600),
                       maxLines: 1),
                 ),
+                SizedBox(height: 5),
                 Row(
                   children: [
-                    alarm,
+                    Container(child: alarm) ,
                     SizedBox(width: UIConverter.getComponentWidth(context, 5)),
-                    Text("${institutionSearchDomain.institutionAvailability.opening.substring(0,2)}am-${institutionSearchDomain.institutionAvailability.closing.substring(0,2)}pm",
+                    Text(
+                        "${institutionSearchDomain.institutionAvailability.opening.substring(0, 2)}:00 - ${institutionSearchDomain.institutionAvailability.closing.substring(0, 2)}:00",
                         style: const TextStyle(
-                            color: titleTextColor,
+                            color: Colors.black54,
                             fontSize: 11,
                             fontWeight: FontWeight.w400),
                         maxLines: 1),
@@ -83,7 +86,7 @@ class MainHospitalsCard extends StatelessWidget {
                   height: 15.sp,
                 ),
                 SizedBox(
-                  width: pixleToPercent(300, 'width').w,
+                  width: pixleToPercent(320, 'width').w,
                   height: pixleToPercent(32, 'height').h,
                   child: ListView.builder(
                     physics: const AlwaysScrollableScrollPhysics(),
@@ -91,39 +94,40 @@ class MainHospitalsCard extends StatelessWidget {
                     itemCount: institutionSearchDomain.services.length,
                     itemBuilder: ((context, index) {
                       print(institutionSearchDomain.services[index]);
-                      return chipsContainer(institutionSearchDomain.services[index]);
+                      return chipsContainer(
+                          institutionSearchDomain.services[index]);
                     }),
                   ),
                 ),
                 SizedBox(
-                  height: pixleToPercent(17, 'height').h,
+                  height: pixleToPercent(15, 'height').h,
                 ),
               ],
             ),
           ),
           Padding(
-            padding: EdgeInsets.only(right: pixleToPercent(20, 'width').w),
+            padding: EdgeInsets.only(bottom:4 ),
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.end,
+              mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 location,
                 SizedBox(
                   width: UIConverter.getComponentWidth(context, 5),
                 ),
-                 SizedBox(
-                  width: pixleToPercent(300, 'width').w,
-                   child: Text(
-                    
+                SizedBox(
+                  width: pixleToPercent(320, 'width').w,
+                  child: Text(
                     institutionSearchDomain.address.summary,
                     style: const TextStyle(
-                      
+                      overflow: TextOverflow.ellipsis,
                       fontWeight: FontWeight.w400,
                       fontSize: 12,
+                      color: Colors.black54
                     ),
-                    textAlign: TextAlign.end,
-                    maxLines: 1,
-                                 ),
-                 )
+                    // textAlign: TextAlign.end,
+                    // maxLines: 1,
+                  ),
+                ),
               ],
             ),
           )
@@ -133,7 +137,7 @@ class MainHospitalsCard extends StatelessWidget {
         child: Container(
           width: UIConverter.getComponentWidth(context, 74),
           height: UIConverter.getComponentHeight(context, 29),
-          decoration:const BoxDecoration(
+          decoration: const BoxDecoration(
             borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(20), bottomRight: Radius.circular(20)),
             color: backgroundColor,
@@ -146,7 +150,9 @@ class MainHospitalsCard extends StatelessWidget {
             child: Text(
               institutionSearchDomain.status,
               style: TextStyle(
-                  color: institutionSearchDomain.status.toLowerCase() == "open" ? greenColor : redColor,
+                  color: institutionSearchDomain.status.toLowerCase() == "open"
+                      ? greenColor
+                      : redColor,
                   fontWeight: FontWeight.w600,
                   fontSize: 12),
             ),
