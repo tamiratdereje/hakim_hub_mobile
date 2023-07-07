@@ -1,5 +1,7 @@
 
-class Experience {
+import 'package:equatable/equatable.dart';
+
+class Experience extends Equatable{
   String title;
   String description;
   String institution;
@@ -12,4 +14,10 @@ class Experience {
       required this.startDate,
       required this.endDate,
       required this.description});
+
+  toJson() {}
+  
+  @override
+  // TODO: implement props
+  List<Object?> get props => throw UnimplementedError();
 }
