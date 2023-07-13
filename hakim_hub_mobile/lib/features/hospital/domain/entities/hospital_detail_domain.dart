@@ -1,10 +1,11 @@
+import 'package:equatable/equatable.dart';
 import 'package:hakim_hub_mobile/features/hospital/domain/entities/educational_institute.dart';
 
 import 'hospital_address_domain.dart';
 import 'hospital_availability_domain.dart';
 import 'hospital_doctor_domain.dart';
 
-class InstitutionDetailDomain {
+class InstitutionDetailDomain extends Equatable {
   List<EductationalInstitutionDomain> educationalInstitutions;
   String institutionName;
   String branchName;
@@ -44,4 +45,26 @@ class InstitutionDetailDomain {
     required this.doctors,
     required this.id,
   });
+
+  @override
+  List<Object?> get props => [
+        educationalInstitutions,
+        institutionName,
+        branchName,
+        website,
+        phoneNumber,
+        summary,
+        establishedOn,
+        rate,
+        status,
+        logoUrl,
+        bannerUrl,
+        institutionAvailability,
+        address,
+        services,
+        photos,
+        doctors,
+        id,
+        allSpecialities,
+      ];
 }

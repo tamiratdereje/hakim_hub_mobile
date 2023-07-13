@@ -50,16 +50,17 @@ class InstitutionDetailModel extends InstitutionDetailDomain {
         json['allEducationalInstitutions'] ?? [];
     List<dynamic> returnedDoctors = json['doctors'] ?? [];
 
-
     // List<EducationInstituteModel> educationInstituteModel =
     //     List<EducationInstituteModel>.from(returnedEducationInstitutuions
     //         .map((x) => EducationInstituteModel.fromJson(x)));
 
-    List<EducationInstituteModel> educationInstituteModel = 
-        returnedEducationInstitutuions.map((x) => EducationInstituteModel.fromJson(x)).toList();
+    List<EducationInstituteModel> educationInstituteModel =
+        returnedEducationInstitutuions
+            .map((x) => EducationInstituteModel.fromJson(x))
+            .toList();
     print(returnedDoctors);
     print("before doctors");
-    List<DoctorModel> returnedDoctorsModel = 
+    List<DoctorModel> returnedDoctorsModel =
         returnedDoctors.map((x) => DoctorModel.fromJson(x)).toList();
 
     return InstitutionDetailModel(
@@ -71,7 +72,8 @@ class InstitutionDetailModel extends InstitutionDetailDomain {
       website: json['website'] ?? '',
       phoneNumber: json['phoneNumber'] ?? '',
       summary: json['summary'] ?? '',
-      establishedOn: DateTime.parse(json['establishedOn'] ?? DateTime.now()),
+      establishedOn:
+          DateTime.parse(json['establishedOn'] ?? "2006-01-01T21:00:00"),
       rate: (json['rate'] ?? 0.0).toDouble(),
       status: json['status'] ?? '',
       logoUrl: json['logoUrl'] ?? 'assets/images/doctor_image.png',
@@ -83,5 +85,30 @@ class InstitutionDetailModel extends InstitutionDetailDomain {
       photos: List<String>.from(json['photos'] ?? []),
       doctors: returnedDoctorsModel,
     );
+  }
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+
+    data['allEducationalInstitutions'] =
+        educationalInstitutions.map((e) => e.toJson()).toList();
+    data['allSpecialities'] = allSpecialities;
+    data['id'] = id;
+    data['institutionName'] = institutionName;
+    data['branchName'] = branchName;
+    data['website'] = website;
+    data['phoneNumber'] = phoneNumber;
+    data['summary'] = summary;
+    data['establishedOn'] = establishedOn.toIso8601String();
+    data['rate'] = rate;
+    data['status'] = status;
+    data['logoUrl'] = logoUrl;
+    data['bannerUrl'] = bannerUrl;
+    data['institutionAvailability'] = institutionAvailability.toJson();
+    data['address'] = address.toJson();
+    data['services'] = services;
+    data['photos'] = photos;
+    data['doctors'] = doctors.map((e) => e.toJson()).toList();
+
+    return data;
   }
 }

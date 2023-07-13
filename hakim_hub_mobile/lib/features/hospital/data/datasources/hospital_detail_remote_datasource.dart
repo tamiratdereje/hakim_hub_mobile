@@ -31,13 +31,21 @@ class HospitalDetailRemoteDataSoureImpl
         },
       );
       if (response.statusCode == 200) {
-        final Map<String, dynamic> json = jsonDecode(response.body)["value"];
-        InstitutionDetailModel institutionDetailModel = InstitutionDetailModel.fromJson(json);
-        return institutionDetailModel;
+        final responseBody = response.body;
+        if (responseBody.isNotEmpty) {
+          final Map<String, dynamic> json = jsonDecode(responseBody)["value"];
+          print('json Response: $json');
+          InstitutionDetailModel institutionDetailModel =
+              InstitutionDetailModel.fromJson(json);
+          return institutionDetailModel;
+        } else {
+          throw ServerException();
+        }
       } else {
         throw ServerException();
       }
     } catch (e) {
+      print('Exception: $e');
       throw ServerException();
     }
   }
@@ -46,7 +54,7 @@ class HospitalDetailRemoteDataSoureImpl
   Future<List<DoctorModel>> getDoctorByFilter(
       DoctorFilterModel doctorFilterModel) async {
     try {
-         final response = await client.post(
+      final response = await client.post(
         Uri.parse(baseUrl +
             '/DoctorProfiles/filter?institutionId=${doctorFilterModel.institutionId}&experienceYears=${-1}&educationName='),
         headers: {
@@ -54,7 +62,6 @@ class HospitalDetailRemoteDataSoureImpl
         },
         body: jsonEncode(doctorFilterModel.specialities),
       );
-      
 
       if (response.statusCode == 200) {
         final List<dynamic> returnedDoctors =
@@ -62,11 +69,9 @@ class HospitalDetailRemoteDataSoureImpl
 
         List<DoctorModel> doctors =
             returnedDoctors.map((data) => DoctorModel.fromJson(data)).toList();
-          
+
         return doctors;
-      } 
-      else {
-        
+      } else {
         throw ServerException();
       }
     } catch (e) {

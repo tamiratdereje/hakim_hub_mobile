@@ -16,4 +16,12 @@ class DoctorFilterModel extends DoctorFilterDomain {
             experienceYears: experienceYears,
             specialities: specialities,
             institutionId: institutionId);
+  Map<String, dynamic> toJson() {
+    return {
+      'institutionId': institutionId,
+      'experienceYears': experienceYears,
+      'educationalName': educationalName,
+      'specialities': specialities,
+    };
+  }
 }

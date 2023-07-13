@@ -2,13 +2,12 @@ part of 'hospital_detail_bloc.dart';
 
 abstract class HospitalDetailState extends Equatable {
   const HospitalDetailState();
-  
+
   @override
   List<Object> get props => [];
 }
 
 class HospitalDetailInitial extends HospitalDetailState {}
-
 
 class DetailHospitalSuccess extends HospitalDetailState {
   final InstitutionDetailDomain institutionDetailDomain;

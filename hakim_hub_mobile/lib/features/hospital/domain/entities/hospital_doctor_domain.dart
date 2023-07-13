@@ -1,14 +1,16 @@
-class DoctorDomain {
-  String fullName;
-  String about;
-  String gender;
-  String? email;
-  String photoUrl;
-  int yearsOfExperience;
-  String mainInstitutionId;
-  String mainInstitutionName;
-  List<String> specialities;
-  String id;
+import 'package:equatable/equatable.dart';
+
+class DoctorDomain extends Equatable {
+  final String fullName;
+  final String about;
+  final String gender;
+  final String? email;
+  final String photoUrl;
+  final int yearsOfExperience;
+  final String mainInstitutionId;
+  final String mainInstitutionName;
+  final List<String> specialities;
+  final String id;
 
   DoctorDomain({
     required this.fullName,
@@ -22,4 +24,20 @@ class DoctorDomain {
     required this.specialities,
     required this.id,
   });
+
+  @override
+  List<Object?> get props => [
+        fullName,
+        about,
+        gender,
+        email,
+        photoUrl,
+        yearsOfExperience,
+        mainInstitutionId,
+        mainInstitutionName,
+        specialities,
+        id,
+      ];
+
+  toJson() {}
 }

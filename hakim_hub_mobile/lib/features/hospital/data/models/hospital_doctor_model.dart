@@ -1,8 +1,6 @@
 import 'package:hakim_hub_mobile/features/hospital/domain/entities/hospital_doctor_domain.dart';
 
 class DoctorModel extends DoctorDomain {
- 
-
   DoctorModel({
     required fullName,
     required about,
@@ -42,5 +40,19 @@ class DoctorModel extends DoctorDomain {
       ),
       id: json['id'] ?? '',
     );
+  }
+  Map<String, dynamic> toJson() {
+    return {
+      'fullName': fullName,
+      'about': about,
+      'gender': gender,
+      'email': email,
+      'photoUrl': photoUrl,
+      'yearsOfExperience': yearsOfExperience,
+      'mainInstitutionId': mainInstitutionId,
+      'mainInstitutionName': mainInstitutionName,
+      'specialities': specialities,
+      'id': id,
+    };
   }
 }

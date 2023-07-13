@@ -1,8 +1,10 @@
-class DoctorFilterDomain {
-  String institutionId;
-  String experienceYears;
-  String educationalName;
-  List<String> specialities;
+import 'package:equatable/equatable.dart';
+
+class DoctorFilterDomain extends Equatable {
+  final String institutionId;
+  final String experienceYears;
+  final String educationalName;
+  final List<String> specialities;
 
   DoctorFilterDomain({
     required this.institutionId,
@@ -10,4 +12,8 @@ class DoctorFilterDomain {
     required this.educationalName,
     required this.specialities,
   });
+
+  @override
+  List<Object?> get props =>
+      [institutionId, experienceYears, educationalName, specialities];
 }
