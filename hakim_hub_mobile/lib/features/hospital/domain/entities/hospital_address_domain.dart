@@ -1,14 +1,16 @@
-class AddressDomain {
-  String country;
-  String region;
-  String zone;
-  String woreda;
-  String city;
-  String subCity;
-  double longitude;
-  double latitude;
-  String summary;
-  String id;
+import 'package:equatable/equatable.dart';
+
+class AddressDomain extends Equatable {
+  final String country;
+  final String region;
+  final String zone;
+  final String woreda;
+  final String city;
+  final String subCity;
+  final double longitude;
+  final double latitude;
+  final String summary;
+  final String id;
 
   AddressDomain({
     required this.country,
@@ -22,4 +24,20 @@ class AddressDomain {
     required this.summary,
     required this.id,
   });
+
+  @override
+  List<Object?> get props => [
+        country,
+        region,
+        zone,
+        woreda,
+        city,
+        subCity,
+        longitude,
+        latitude,
+        summary,
+        id
+      ];
+
+  toJson() {}
 }

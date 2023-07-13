@@ -18,4 +18,11 @@ class EducationInstituteModel extends EductationalInstitutionDomain {
       id: json['id'] ?? " ",
     );
   }
+  Map<String, dynamic> toJson() {
+    return {
+      'institutionName': institutionName,
+      'logoUrl': logoUrl,
+      'id': id,
+    };
+  }
 }
