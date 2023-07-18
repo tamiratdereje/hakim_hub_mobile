@@ -1,13 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:hakim_hub_mobile/core/utils/icons.dart';
-import 'package:hakim_hub_mobile/features/hospital/presentation/widgets/phone_card.dart';
-import 'package:hakim_hub_mobile/features/hospital/presentation/widgets/url_louncher.dart';
 import 'package:hakim_hub_mobile/features/hospital/presentation/widgets/url_weblouncher.dart';
-import 'package:hakim_hub_mobile/features/hospital/presentation/widgets/website_card.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:hakim_hub_mobile/core/utils/ui_converter.dart';
-import 'email_card.dart';
 import 'map_utils.dart';
 import 'package:hakim_hub_mobile/features/hospital/domain/entities/hospital_detail_domain.dart';
 
@@ -36,9 +32,7 @@ class _HospitalCardState extends State<HospitalCard> {
       // height: 10,
       // body: Cwenter(
       child: Container(
-        
         decoration: BoxDecoration(
-          
           boxShadow: [
             BoxShadow(
               color: Colors.grey.withOpacity(0.2),
@@ -73,8 +67,8 @@ class _HospitalCardState extends State<HospitalCard> {
                       width: UIConverter.getComponentWidth(context, 16.67),
                       child: IconButton(
                         onPressed: () {
-                          launchWebsiteUrl(widget.institutionDetailDomain.website);
-                        
+                          UrlLauncherUtils.launchWebsiteUrl(
+                              widget.institutionDetailDomain.website);
                         },
                         icon: Icon(MdiIcons.web),
                       ),
@@ -168,13 +162,18 @@ class _HospitalCardState extends State<HospitalCard> {
                       child: IconButton(
                         icon: Icon(Icons.directions),
                         onPressed: () async {
-                      Position position = await Geolocator.getCurrentPosition(
-                        desiredAccuracy: LocationAccuracy.high,
-                      );
-                      
-                      await openMap(hospitalLatitude :widget.institutionDetailDomain.address.latitude, hospitalLongitude:widget.institutionDetailDomain.address.longitude,
+                          Position position =
+                              await Geolocator.getCurrentPosition(
+                            desiredAccuracy: LocationAccuracy.high,
                           );
-                    },
+
+                          await openMap(
+                            hospitalLatitude:
+                                widget.institutionDetailDomain.address.latitude,
+                            hospitalLongitude: widget
+                                .institutionDetailDomain.address.longitude,
+                          );
+                        },
                       ),
                     ),
                   ),
@@ -216,11 +215,9 @@ class _HospitalCardState extends State<HospitalCard> {
                       child: IconButton(
                           icon: phone,
                           onPressed: () {
-                            launchPhoneUrl(
+                            UrlLauncherUtils.launchPhoneUrl(
                                 widget.institutionDetailDomain.phoneNumber);
-                          }
-
-                          ),
+                          }),
                     ),
                   ),
                   Expanded(

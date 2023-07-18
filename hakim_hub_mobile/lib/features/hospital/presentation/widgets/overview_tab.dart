@@ -233,14 +233,7 @@ class _OverviewTabState extends State<OverviewTab> {
                     },
                     child: Text("See it on map"))
 
-                // Row(
-                //   children: [
-                //     HospitalMap(
-                //       latitude: widget.institutionDetailDomain.address.latitude,
-                //       longitude: widget.institutionDetailDomain.address.longitude,
-                //     )
-                //   ],
-                // ),
+              
                 )
           ],
         ),
