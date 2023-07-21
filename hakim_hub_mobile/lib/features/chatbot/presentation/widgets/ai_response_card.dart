@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hakim_hub_mobile/core/utils/colors.dart';
-import 'package:hakim_hub_mobile/features/chatbot/data/models/chat_institute_model.dart';
 import 'package:hakim_hub_mobile/features/chatbot/data/models/chat_response_model.dart';
-import 'package:hakim_hub_mobile/features/chatbot/presentation/screen/chat_page.dart';
 import 'package:hakim_hub_mobile/features/chatbot/presentation/widgets/institution_card.dart';
 
 class AiMessageCard extends StatelessWidget {
