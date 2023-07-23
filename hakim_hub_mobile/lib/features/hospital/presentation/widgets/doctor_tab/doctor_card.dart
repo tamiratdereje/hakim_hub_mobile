@@ -1,18 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hakim_hub_mobile/core/utils/colors.dart';
-import 'package:hakim_hub_mobile/core/utils/ui_converter.dart';
+import 'package:hakim_hub_mobile/core/utils/pixle_to_percent.dart';
 import 'package:hakim_hub_mobile/features/hospital/presentation/bloc/image_bloc/image_bloc.dart';
 import 'package:hakim_hub_mobile/features/hospital/presentation/bloc/image_bloc/image_event.dart';
 import 'package:hakim_hub_mobile/features/hospital/presentation/bloc/image_bloc/image_state.dart';
 import 'package:shimmer/shimmer.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 class DoctorCard extends StatefulWidget {
   final String imageUrl;
   final String title;
   final String subtitle;
 
-  DoctorCard({required this.imageUrl, required this.title, required this.subtitle});
+  DoctorCard(
+      {required this.imageUrl, required this.title, required this.subtitle});
 
   @override
   _DoctorCardState createState() => _DoctorCardState();
@@ -25,7 +27,7 @@ class _DoctorCardState extends State<DoctorCard> {
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.only(
-        top: UIConverter.getComponentHeight(context, 5),
+        top: pixleToPercent(5, "height").h,
       ),
       child: Stack(
         clipBehavior: Clip.none,
@@ -33,24 +35,25 @@ class _DoctorCardState extends State<DoctorCard> {
         children: [
           buildCard(context, widget.title, widget.subtitle),
           Positioned(
-            top: -UIConverter.getComponentHeight(context, 5),
+            top: -pixleToPercent(5, "height").h,
             child: BlocProvider(
               create: (context) => _bloc,
               child: BlocBuilder<ImageLoadBloc, ImageLoadState>(
                 builder: (context, state) {
-                  if (state is ImageNotLoadedState || state is ImageLoadingState) {
+                  if (state is ImageNotLoadedState ||
+                      state is ImageLoadingState) {
                     return Shimmer.fromColors(
                       baseColor: Colors.grey.shade300,
                       highlightColor: Colors.grey.shade100,
                       child: CircleAvatar(
                         backgroundColor: shimmerColor,
-                        radius: UIConverter.getComponentHeight(context, 83) / 2,
+                        radius: pixleToPercent(83, "height").w,
                       ),
                     );
                   } else {
                     return CircleAvatar(
                       backgroundColor: shimmerColor,
-                      radius: UIConverter.getComponentHeight(context, 83) / 2,
+                      radius: pixleToPercent(83, "height").w,
                       backgroundImage: NetworkImage(widget.imageUrl),
                       onBackgroundImageError: (exception, stackTrace) {
                         AssetImage(widget.imageUrl);
@@ -70,30 +73,32 @@ class _DoctorCardState extends State<DoctorCard> {
   void initState() {
     super.initState();
     _bloc = ImageLoadBloc();
-    ImageStream stream = NetworkImage(widget.imageUrl).resolve(ImageConfiguration.empty);
+    ImageStream stream =
+        NetworkImage(widget.imageUrl).resolve(ImageConfiguration.empty);
     stream.addListener(ImageStreamListener((info, synchronousCall) {
       _bloc.add(ImageLoaded());
     }));
   }
 }
 
-Widget buildCard(BuildContext context, String doctorName, String doctorSpecialization) {
+Widget buildCard(
+    BuildContext context, String doctorName, String doctorSpecialization) {
   return Card(
     color: Colors.white,
     shadowColor: Colors.black,
-    elevation: UIConverter.getComponentHeight(context, 8),
+    elevation: pixleToPercent(8, "height").h,
     shape: RoundedRectangleBorder(
-      borderRadius: BorderRadius.circular(UIConverter.getComponentHeight(context, 20)),
+      borderRadius: BorderRadius.circular(pixleToPercent(20, "height").h),
     ),
     child: SizedBox(
-      height: UIConverter.getComponentHeight(context, 150.69),
-      width: UIConverter.getComponentWidth(context, 190.22),
+      height: pixleToPercent(179, "height").h,
+      width: pixleToPercent(190.22, "width").w,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           SizedBox(
-            height: UIConverter.getComponentHeight(context, 78),
+            height: pixleToPercent(78, "height").h,
           ),
           Text(
             doctorName,
@@ -101,7 +106,7 @@ Widget buildCard(BuildContext context, String doctorName, String doctorSpecializ
             style: TextStyle(
               color: primaryTextColor,
               fontFamily: 'Poppins',
-              fontSize: UIConverter.getComponentHeight(context, 17),
+              fontSize: pixleToPercent(17, "height").h,
             ),
           ),
           Text(
@@ -110,7 +115,7 @@ Widget buildCard(BuildContext context, String doctorName, String doctorSpecializ
               color: primaryColor,
               fontWeight: FontWeight.bold,
               fontFamily: 'Poppins',
-              fontSize: UIConverter.getComponentHeight(context, 15),
+              fontSize: pixleToPercent(15, "height").h,
             ),
           ),
         ],

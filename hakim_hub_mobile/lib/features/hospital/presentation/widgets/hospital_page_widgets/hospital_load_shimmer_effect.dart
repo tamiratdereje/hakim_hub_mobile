@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:hakim_hub_mobile/core/utils/colors.dart';
+import 'package:hakim_hub_mobile/core/utils/pixle_to_percent.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:shimmer/shimmer.dart';
-
-import '../../../../core/utils/colors.dart';
-import '../../../../core/utils/pixle_to_percent.dart';
-import '../../../../core/utils/ui_converter.dart';
-import 'hospital_text_field.dart';
 
 class HospitalLoadShimmerEffect extends StatefulWidget {
   const HospitalLoadShimmerEffect({super.key});
@@ -34,12 +31,10 @@ class _HospitalLoadShimmerEffectState extends State<HospitalLoadShimmerEffect> {
                   const SizedBox(
                     height: 10,
                   ),
-                
                   const SizedBox(
                     height: 10,
                   ),
                   hospitalCard(),
-                  
                 ],
               ),
             ),
