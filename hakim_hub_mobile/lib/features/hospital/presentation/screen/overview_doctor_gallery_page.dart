@@ -5,12 +5,12 @@ import 'package:go_router/go_router.dart';
 import 'package:hakim_hub_mobile/core/utils/colors.dart';
 import 'package:hakim_hub_mobile/features/hospital/domain/entities/hospital_detail_domain.dart';
 import 'package:hakim_hub_mobile/features/hospital/presentation/bloc/bloc/hospital_detail_bloc.dart';
-import 'package:hakim_hub_mobile/features/hospital/presentation/widgets/doctor_grid_view.dart';
-import 'package:hakim_hub_mobile/features/hospital/presentation/widgets/hospital_gallery_page.dart';
-import 'package:hakim_hub_mobile/features/hospital/presentation/widgets/overview_tab.dart';
+import 'package:hakim_hub_mobile/features/hospital/presentation/widgets/doctor_tab/doctor_grid_view.dart';
+import 'package:hakim_hub_mobile/features/hospital/presentation/widgets/hospital_page_widgets/hospital_gallery_page.dart';
+import 'package:hakim_hub_mobile/features/hospital/presentation/widgets/overview_tab_widgets/overview_tab.dart';
 import 'package:hakim_hub_mobile/router/routes.dart';
 
-import '../widgets/hospital_Overvie_shimmer_effect.dart';
+import '../widgets/overview_tab_widgets/hospital_Overvie_shimmer_effect.dart';
 
 class OverviewDoctorGalleryPage extends StatefulWidget {
   String institutionId;
@@ -106,9 +106,7 @@ class _OverviewDoctorGalleryPageState extends State<OverviewDoctorGalleryPage>
         body: BlocBuilder<HospitalDetailBloc, HospitalDetailState>(
             builder: ((context, state) {
           if (state is DetailHospitalLoading) {
-            return const Center(
-              child: HospitalOverViewShimmerEffect()
-            );
+            return const Center(child: HospitalOverViewShimmerEffect());
           } else if (state is DetailHospitalSuccess) {
             return Column(
               children: [

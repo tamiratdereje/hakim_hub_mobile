@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
-import '../../../../core/utils/colors.dart';
-import '../../../../core/utils/pixle_to_percent.dart';
+import '../../../../../core/utils/colors.dart';
+import '../../../../../core/utils/pixle_to_percent.dart';
 import 'package:shimmer/shimmer.dart';
 
 class HospitalOverViewShimmerEffect extends StatefulWidget {

@@ -12,11 +12,13 @@ class HospitalsCard extends StatelessWidget {
   List chipList = ["Cardio", "Generel", "Pediatrics"];
   String isOpened;
 
-  HospitalsCard({required this.name, required this.address, required this.chipList, required this.imageUrl, required this.isOpened ,super.key});
-
-  
-  // List hospitals = ["Tikur Ambesa", "Paulos"];
-  // bool isOpened = true;
+  HospitalsCard(
+      {required this.name,
+      required this.address,
+      required this.chipList,
+      required this.imageUrl,
+      required this.isOpened,
+      super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +41,7 @@ class HospitalsCard extends StatelessWidget {
           Container(
             width: pixleToPercent(301, "width").w,
             height: pixleToPercent(114, "height").h,
-            decoration:  BoxDecoration(
+            decoration: BoxDecoration(
               borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(20), topRight: Radius.circular(20)),
               image: DecorationImage(
@@ -99,18 +101,16 @@ class HospitalsCard extends StatelessWidget {
                 SizedBox(
                   width: pixleToPercent(5, "width").w,
                 ),
-
                 SizedBox(
                   width: pixleToPercent(200, "width").w,
                   child: Text(
-                  address,
-                  style: TextStyle(
-                    fontWeight: FontWeight.w400,
-                    fontSize: 16.sp,
-                    
+                    address,
+                    style: TextStyle(
+                      fontWeight: FontWeight.w400,
+                      fontSize: 16.sp,
+                    ),
+                    maxLines: 1,
                   ),
-                  maxLines: 1,
-                ),
                 )
               ],
             ),

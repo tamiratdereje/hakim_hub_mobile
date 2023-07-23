@@ -2,19 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hakim_hub_mobile/core/utils/colors.dart';
-import 'package:hakim_hub_mobile/core/utils/icons.dart';
 import 'package:hakim_hub_mobile/core/utils/ui_converter.dart';
-import 'package:hakim_hub_mobile/features/hospital/presentation/widgets/hospital_load_shimmer_effect.dart';
-import 'package:hakim_hub_mobile/features/hospital/presentation/widgets/main_hospitals_card.dart';
-
-import '../../../../core/shared_widgets/formfield.dart';
+import 'package:hakim_hub_mobile/features/hospital/presentation/widgets/hospital_page_widgets/hospital_load_shimmer_effect.dart';
+import 'package:hakim_hub_mobile/features/hospital/presentation/widgets/hospital_page_widgets/main_hospitals_card.dart';
+import 'package:hakim_hub_mobile/features/hospital/presentation/widgets/hospital_page_widgets/search_hospitals_widget.dart';
 import '../../../../router/routes.dart';
 import '../bloc/bloc/search_hospital_bloc.dart';
-import '../widgets/build_chips_widget.dart';
-import '../widgets/chips_container.dart';
-import '../widgets/filter_page.dart';
-import '../widgets/hospital_card.dart';
-import '../widgets/search_hospitals_widget.dart';
 import 'no_hospitals_page.dart';
 
 class HospitalsHomeScreen extends StatefulWidget {
@@ -54,9 +47,6 @@ class _HospitalsHomeScreenState extends State<HospitalsHomeScreen> {
               SearchHospitalsWidget(
                 serviceList: serviceList,
                 onChanged: (searchName) {
-                  print("object");
-                  print(searchName.runtimeType);
-                  print("object");
                   if (searchName == "") {
                     BlocProvider.of<SearchHospitalBloc>(context)
                         .add(const GetAllHospitalsEvent());

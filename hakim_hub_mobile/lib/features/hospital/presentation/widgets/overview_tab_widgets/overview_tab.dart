@@ -4,11 +4,11 @@ import 'package:hakim_hub_mobile/core/utils/icons.dart';
 import 'package:hakim_hub_mobile/core/utils/pixle_to_percent.dart';
 import 'package:hakim_hub_mobile/features/hospital/data/models/hospital_address.dart';
 import 'package:hakim_hub_mobile/features/hospital/domain/entities/hospital_detail_domain.dart';
-import 'package:hakim_hub_mobile/features/hospital/presentation/widgets/hospital_card.dart';
-import 'package:hakim_hub_mobile/features/hospital/presentation/widgets/hospital_google_map.dart';
+import 'package:hakim_hub_mobile/features/hospital/presentation/widgets/overview_tab_widgets/hospital_card.dart';
+import 'package:hakim_hub_mobile/features/hospital/presentation/widgets/overview_tab_widgets/hospital_google_map.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-import '../../../../core/utils/colors.dart';
-import '../../../../core/utils/ui_converter.dart';
+import '../../../../../core/utils/colors.dart';
+import '../../../../../core/utils/ui_converter.dart';
 import 'map_box.dart';
 import 'package:expandable_text/expandable_text.dart';
 
