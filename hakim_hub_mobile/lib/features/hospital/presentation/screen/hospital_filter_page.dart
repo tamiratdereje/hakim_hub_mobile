@@ -247,9 +247,7 @@ class _HospitalDoctorFilterPageState extends State<HospitalDoctorFilterPage> {
                 ),
               ),
             ),
-            SizedBox(
-              height: UIConverter.getComponentHeight(context, 20),
-            ),
+            SizedBox(height: pixleToPercent(20, 'height').h),
             Text(
               "speciality",
               style: TextStyle(
@@ -258,9 +256,7 @@ class _HospitalDoctorFilterPageState extends State<HospitalDoctorFilterPage> {
                 color: primaryColor,
               ),
             ),
-            SizedBox(
-              height: UIConverter.getComponentHeight(context, 20),
-            ),
+            SizedBox(height: pixleToPercent(20, 'height').h),
             Material(
               child: Wrap(
                 spacing: 6.0,
