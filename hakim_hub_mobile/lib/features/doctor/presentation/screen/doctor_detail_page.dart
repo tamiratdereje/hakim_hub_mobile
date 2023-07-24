@@ -6,13 +6,21 @@ import 'package:hakim_hub_mobile/core/utils/colors.dart';
 import 'package:hakim_hub_mobile/core/utils/icons.dart';
 import 'package:hakim_hub_mobile/features/doctor/presentation/bloc/doctor_detail_bloc.dart';
 import 'package:hakim_hub_mobile/router/routes.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
+import '../../../../core/utils/pixle_to_percent.dart';
 import '../../../../core/utils/ui_converter.dart';
+import '../widgets/doctor_avater_section.dart';
+import '../widgets/doctor_info_section.dart';
+import '../widgets/biography_section.dart';
+import '../widgets/education_section.dart';
 import '../widgets/doctor_detail_shimmer.dart';
 
 class DoctorDetailPage extends StatefulWidget {
   final String doctorDetailId;
-  const DoctorDetailPage({super.key, required this.doctorDetailId});
+
+  const DoctorDetailPage({Key? key, required this.doctorDetailId})
+      : super(key: key);
 
   @override
   State<DoctorDetailPage> createState() => _DoctorDetailPageState();
@@ -21,267 +29,62 @@ class DoctorDetailPage extends StatefulWidget {
 class _DoctorDetailPageState extends State<DoctorDetailPage> {
   late DoctorDetailBloc _doctorDetailBloc;
   bool _isExpanded = false;
+
   @override
   void initState() {
     super.initState();
-    BlocProvider.of<DoctorDetailBloc>(context)
+    _doctorDetailBloc = BlocProvider.of<DoctorDetailBloc>(context);
+    _doctorDetailBloc
         .add(GetDoctorDetailEvent(doctorDetailId: widget.doctorDetailId));
   }
 
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<DoctorDetailBloc, DoctorDetailState>(
-        builder: (context, state) {
-      if (state is DoctorDetailLoadingState) {
-        return Scaffold(
-          body: DoctorDetailShimmer(),
-        );
-      } else if (state is DoctorDetailSuccessState) {
-        final doctorDetail = state.doctorDetail;
-        return Scaffold(
-          body: SafeArea(
-            child: Container(
-              padding: EdgeInsets.only(
-                  top: UIConverter.getComponentHeight(context, 30)),
-              height: double.infinity,
-              color: Colors.white,
-              child: SingleChildScrollView(
-                physics: const BouncingScrollPhysics(),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    SizedBox(
-                      height: UIConverter.getComponentHeight(context, 210),
-                      width: double.infinity,
-                      child: Stack(alignment: Alignment.topCenter, children: [
-                        Container(
-                          width: double.infinity,
-                          height: UIConverter.getComponentHeight(context, 214),
-                        ),
-                        CircleAvatar(
-                            radius:
-                                UIConverter.getComponentHeight(context, 200) /
-                                    2,
-                            backgroundImage:
-                                NetworkImage(doctorDetail.photoUrl),
-                            onBackgroundImageError: (exception, stackTrace) {
-                              AssetImage(doctorDetail.photoUrl);
-                            }),
-                        Positioned(
-                          top: UIConverter.getComponentHeight(context, 0),
-                          left: UIConverter.getComponentWidth(context, 20),
-                          child: GestureDetector(
-                            child: const CircleAvatar(
-                              backgroundColor: backgroundColor,
-                              child: backButtonPro,
-                            ),
-                            onTap: () {
-                              context.pop();
-                            },
-                          ),
-                        ),
-                      ]),
-                    ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        SizedBox(
-                          height: UIConverter.getComponentHeight(context, 20),
-                        ),
-                        Text(
-                          doctorDetail.fullName,
-                          style: const TextStyle(
-                              fontWeight: FontWeight.w700,
-                              color: titleTextColor,
-                              fontSize: 20),
-                          maxLines: 1,
-                        ),
-                        SizedBox(
-                          height: UIConverter.getComponentHeight(context, 5),
-                        ),
-                        Text(
-                            doctorDetail.specialities.length > 0
-                                ? doctorDetail.specialities[0]
-                                : "not specified",
-                            style: const TextStyle(
-                                fontWeight: FontWeight.w500,
-                                color: primaryColor,
-                                fontSize: 16),
-                            maxLines: 1),
-                        SizedBox(
-                          height: UIConverter.getComponentHeight(context, 5),
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            const Icon(
-                              Icons.badge_rounded,
-                              color: Colors.black,
-                              size: 30,
-                            ),
-                            SizedBox(
-                              width: UIConverter.getComponentWidth(context, 12),
-                            ),
-                            Text("+ ${doctorDetail.yearsOfExperience} years",
-                                style: const TextStyle(
-                                    fontWeight: FontWeight.w700,
-                                    color: Colors.black,
-                                    fontSize: 19),
-                                maxLines: 1),
-                            SizedBox(
-                              width: UIConverter.getComponentWidth(context, 10),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                    SizedBox(
-                      height: UIConverter.getComponentHeight(context, 40),
-                    ),
-                    Container(
-                      padding: EdgeInsets.only(
-                          left: UIConverter.getComponentWidth(context, 38),
-                          right: UIConverter.getComponentWidth(context, 38),
-                          bottom: UIConverter.getComponentHeight(context, 15),
-                          top: UIConverter.getComponentHeight(context, 20)),
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(
-                                  UIConverter.getComponentWidth(context, 15)),
-                              topRight: Radius.circular(
-                                  UIConverter.getComponentWidth(context, 15)))),
-                      child: Column(
-                        children: [
-                          Row(
-                            children: [
-                              biography,
-                              SizedBox(
-                                width:
-                                    UIConverter.getComponentWidth(context, 9),
-                              ),
-                              const Text("Biography",
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.w600,
-                                      color: Colors.black,
-                                      fontSize: 16),
-                                  maxLines: 1),
-                            ],
-                          ),
-                          SizedBox(
-                            height: UIConverter.getComponentHeight(context, 10),
-                          ),
-                          ExpandableText(
-                            doctorDetail.about,
-                            maxLines: 8,
-                            expanded: _isExpanded,
-                            style: TextStyle(fontSize: 14,color: bioTextColor),
-                            expandText: 'See More',
-                            collapseText: 'See Less',
-                            linkColor: Colors.blue,
-                            onExpandedChanged: (value) {
-                              setState(() {
-                                _isExpanded = value;
-                              });
-                            },
-                          ),
-                         
-                          SizedBox(
-                            height: UIConverter.getComponentHeight(context, 30),
-                          ),
-                          Row(
-                            children: [
-                              educationIcon,
-                              SizedBox(
-                                width:
-                                    UIConverter.getComponentWidth(context, 10),
-                              ),
-                              const Text(
-                                "Education",
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w600,
-                                    color: Colors.black,
-                                    fontSize: 16),
-                              ),
-                            ],
-                          ),
-                          SizedBox(
-                            height: UIConverter.getComponentHeight(context, 10),
-                          ),
-                          doctorDetail.educations.isNotEmpty
-                              ? SizedBox(
-                                  width: double.infinity,
-                                  height: UIConverter.getComponentHeight(
-                                      context, 100),
-                                  child: ListView.builder(
-                                    // physics: NeverScrollableScrollPhysics(),
-                                    // shrinkWrap: true,
-                                    itemCount: doctorDetail.educations.length,
-                                    itemBuilder: (context, index) {
-                                      return Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Row(
-                                            children: [
-                                              Text(
-                                                doctorDetail
-                                                    .educations[index].degree,
-                                                style: const TextStyle(
-                                                    fontWeight: FontWeight.w600,
-                                                    color: degreeTextColor,
-                                                    fontSize: 14),
-                                              ),
-                                              SizedBox(
-                                                width: UIConverter
-                                                    .getComponentWidth(
-                                                        context, 7),
-                                              ),
-                                              Text(
-                                                
-                                                "${doctorDetail.educations[index].startDate} - ${doctorDetail.educations[index].endDate}",
-                                                style: const TextStyle(
-                                                    fontWeight: FontWeight.w300,
-                                                    color: primaryTextColor,
-                                                    fontSize: 12),
-                                              ),
-                                            ],
-                                          ),
-                                          SizedBox(
-                                            height:
-                                                UIConverter.getComponentHeight(
-                                                    context, 5),
-                                          ),
-                                          Text(
-                                            doctorDetail
-                                                .educations[index].institution,
-                                            style: const TextStyle(
-                                                fontWeight: FontWeight.w300,
-                                                color: primaryTextColor,
-                                                fontSize: 13),
-                                          ),
-                                          SizedBox(
-                                            height:
-                                                UIConverter.getComponentHeight(
-                                                    context, 10),
-                                          ),
-                                        ],
-                                      );
-                                    },
-                                  ),
-                                )
-                              : Container(),
-                        ],
-                      ),
-                    ),
-                  ],
+      builder: (context, state) {
+        if (state is DoctorDetailLoadingState) {
+          return Scaffold(
+            body: DoctorDetailShimmer(),
+          );
+        } else if (state is DoctorDetailSuccessState) {
+          final doctorDetail = state.doctorDetail;
+          return Scaffold(
+            body: SafeArea(
+              child: Container(
+                padding: EdgeInsets.only(top: pixleToPercent(30, "height").h),
+                height: double.infinity,
+                color: Colors.white,
+                child: SingleChildScrollView(
+                  physics: const BouncingScrollPhysics(),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      DoctorAvatarSection(
+                          doctorDetail: doctorDetail, context_: context),
+                      SizedBox(height: pixleToPercent(40, "height").h),
+                      DoctorInfoSection(doctorDetail: doctorDetail),
+                      SizedBox(height: pixleToPercent(30, "height").h),
+                      BiographySection(
+                          doctorDetail: doctorDetail,
+                          isExpanded: _isExpanded,
+                          onExpandedChanged: _handleExpandedChanged),
+                      SizedBox(height: pixleToPercent(30, "height").h),
+                      EducationSection(doctorDetail: doctorDetail),
+                    ],
+                  ),
                 ),
               ),
             ),
-          ),
-        );
-      }
-      return const Center(child: Text("Couldn't load doctor"));
+          );
+        }
+        return const Center(child: Text("Couldn't load doctor"));
+      },
+    );
+  }
+
+  void _handleExpandedChanged(bool value) {
+    setState(() {
+      _isExpanded = value;
     });
   }
 }
