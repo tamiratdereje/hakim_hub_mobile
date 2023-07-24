@@ -38,10 +38,10 @@ class _OverviewTabState extends State<OverviewTab> {
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.only(
-          left: UIConverter.getComponentWidth(context, 30),
-          right: UIConverter.getComponentWidth(context, 30),
-          top: UIConverter.getComponentHeight(context, 25),
-          bottom: UIConverter.getComponentHeight(context, 25)),
+          left: pixleToPercent(30, 'width').w,
+          right: pixleToPercent(30, 'width').w,
+          top: pixleToPercent(25, 'height').h,
+          bottom: pixleToPercent(25, 'height').h),
       child: SingleChildScrollView(
         physics: BouncingScrollPhysics(),
         child: Column(
@@ -91,10 +91,8 @@ class _OverviewTabState extends State<OverviewTab> {
               children: [
                 Text(
                   'Hospital Description',
-                  style: TextStyle(
-                    fontSize: 18.sp,
-                    fontWeight: FontWeight.bold
-                  ),
+                  style:
+                      TextStyle(fontSize: 18.sp, fontWeight: FontWeight.bold),
                 ),
               ],
             ),
@@ -128,15 +126,10 @@ class _OverviewTabState extends State<OverviewTab> {
               child: MapBoxWidget(
                 latitude: widget.institutionDetailDomain.address.latitude,
                 longitude: widget.institutionDetailDomain.address.longitude,
-                // onTap: () {
-                //   openMap(
-                //     longitude: widget.institutionDetailDomain.address.longitude,
-                //     latitude: widget.institutionDetailDomain.address.latitude,
-                //   );
-                // },
+              
               ),
             ),
-            SizedBox(height: UIConverter.getComponentHeight(context, 50)),
+            SizedBox(height: pixleToPercent(50, 'height').h),
             Row(
               children: [
                 Text(
@@ -148,10 +141,10 @@ class _OverviewTabState extends State<OverviewTab> {
                 ),
               ],
             ),
-            SizedBox(height: UIConverter.getComponentHeight(context, 15)),
+            SizedBox(height: pixleToPercent(15, 'height').h),
             SizedBox(
               height: 210,
-              width: UIConverter.getComponentWidth(context, 382),
+              width: pixleToPercent(382, 'width').w,
               child: ListView.separated(
                 separatorBuilder: (BuildContext context, int index) =>
                     const Divider(),
@@ -159,7 +152,7 @@ class _OverviewTabState extends State<OverviewTab> {
                 itemBuilder: (BuildContext context, int index) {
                   return Container(
                     padding: const EdgeInsets.all(5),
-                    height: UIConverter.getComponentHeight(context, 30),
+                    height: pixleToPercent(30, 'height').h,
                     decoration: BoxDecoration(
                       boxShadow: [
                         BoxShadow(
@@ -189,24 +182,24 @@ class _OverviewTabState extends State<OverviewTab> {
                 },
               ),
             ),
-            SizedBox(height: UIConverter.getComponentHeight(context, 50)),
+            SizedBox(height: pixleToPercent(50, 'height').h),
             Row(
               children: [
                 clock,
-                SizedBox(width: UIConverter.getComponentWidth(context, 10)),
+                SizedBox(width: pixleToPercent(10, 'width').w),
                 const Text(
                   "Available 24 hrs  5 days a week",
                   style: TextStyle(fontSize: 15, color: Colors.black54),
                 ),
               ],
             ),
-            SizedBox(height: UIConverter.getComponentHeight(context, 20)),
+            SizedBox(height: pixleToPercent(20, 'height').h),
             Row(
               children: [
                 location,
-                SizedBox(width: UIConverter.getComponentWidth(context, 10)),
+                SizedBox(width: pixleToPercent(10, 'width').w),
                 SizedBox(
-                  width: UIConverter.getComponentWidth(context, 300),
+                  width: pixleToPercent(300, 'width').w,
                   child: Text(widget.institutionDetailDomain.address.summary,
                       maxLines: 2,
                       style:
@@ -231,10 +224,7 @@ class _OverviewTabState extends State<OverviewTab> {
                             widget.institutionDetailDomain.address.longitude,
                       );
                     },
-                    child: Text("See it on map"))
-
-              
-                )
+                    child: Text("See it on map")))
           ],
         ),
       ),
