@@ -203,23 +203,25 @@ class _OverviewTabState extends State<OverviewTab> {
               ],
             ),
             Padding(
-                padding: const EdgeInsets.only(
-                  top: 8,
-                ),
-                child: TextButton(
-                    onPressed: () async {
-                      Position position = await Geolocator.getCurrentPosition(
-                        desiredAccuracy: LocationAccuracy.high,
-                      );
+              padding: const EdgeInsets.only(
+                top: 8,
+              ),
+              child: TextButton(
+                onPressed: () async {
+                  Position position = await Geolocator.getCurrentPosition(
+                    desiredAccuracy: LocationAccuracy.high,
+                  );
 
-                      await openMap(
-                        hospitalLatitude:
-                            widget.institutionDetailDomain.address.latitude,
-                        hospitalLongitude:
-                            widget.institutionDetailDomain.address.longitude,
-                      );
-                    },
-                    child: Text("See it on map")))
+                  await openMap(
+                    hospitalLatitude:
+                        widget.institutionDetailDomain.address.latitude,
+                    hospitalLongitude:
+                        widget.institutionDetailDomain.address.longitude,
+                  );
+                },
+                child: Text("See it on map"),
+              ),
+            )
           ],
         ),
       ),
