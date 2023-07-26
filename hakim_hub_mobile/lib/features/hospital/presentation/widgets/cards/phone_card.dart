@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hakim_hub_mobile/features/hospital/domain/entities/hospital_detail_domain.dart';
-import 'package:hakim_hub_mobile/features/hospital/presentation/widgets/innercard2.dart';
+import 'package:hakim_hub_mobile/features/hospital/presentation/widgets/cards/innercard2.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import 'Inner_card.dart';

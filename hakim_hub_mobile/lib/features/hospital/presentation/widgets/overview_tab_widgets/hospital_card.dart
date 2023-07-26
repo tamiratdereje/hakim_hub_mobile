@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:hakim_hub_mobile/core/utils/icons.dart';
-import 'package:hakim_hub_mobile/features/hospital/presentation/widgets/phone_card.dart';
+import 'package:hakim_hub_mobile/features/hospital/presentation/widgets/cards/phone_card.dart';
 import 'package:hakim_hub_mobile/features/hospital/presentation/widgets/url_louncher.dart';
 import 'package:hakim_hub_mobile/features/hospital/presentation/widgets/url_weblouncher.dart';
-import 'package:hakim_hub_mobile/features/hospital/presentation/widgets/unused/website_card.dart';
+import 'package:hakim_hub_mobile/features/hospital/presentation/widgets/cards/website_card.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:hakim_hub_mobile/core/utils/ui_converter.dart';
-import '../unused/email_card.dart';
+import '../cards/email_card.dart';
 import 'map_utils.dart';
 import 'package:hakim_hub_mobile/features/hospital/domain/entities/hospital_detail_domain.dart';
 

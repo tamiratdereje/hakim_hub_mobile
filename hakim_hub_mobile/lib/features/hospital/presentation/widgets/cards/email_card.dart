@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hakim_hub_mobile/core/utils/colors.dart';
 
-import '../Inner_card.dart';
+import 'Inner_card.dart';
 
 class EmailCard extends StatelessWidget {
   @override

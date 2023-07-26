@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hakim_hub_mobile/features/hospital/domain/entities/hospital_detail_domain.dart';
+import 'package:hakim_hub_mobile/features/hospital/presentation/widgets/cards/innercard2.dart';
 import 'package:url_launcher/url_launcher.dart';
-import '../innercard2.dart';
+
 class WebsiteCard extends StatelessWidget {
   final InstitutionDetailDomain institutionDetail;
 
@@ -52,13 +53,14 @@ class WebsiteCardBody extends StatelessWidget {
             buildinnercardWeb(
               imagePath: "assets/images/website_icon.png",
               text: TextButton(
-                onPressed: ()  async {
+                onPressed: () async {
                   if (await canLaunch(institutionDetail.website)) {
                     await launch(institutionDetail.website);
                   } else {
                     throw 'Could not launch ${institutionDetail.website}';
                   }
-                },child: Align(
+                },
+                child: Align(
                   alignment: Alignment.topLeft,
                   child: Text(
                     institutionDetail.institutionName,
@@ -68,7 +70,6 @@ class WebsiteCardBody extends StatelessWidget {
                 style: TextButton.styleFrom(
                   primary: Colors.black,
                   textStyle: TextStyle(
-
                     fontWeight: FontWeight.normal,
                   ),
                 ),
