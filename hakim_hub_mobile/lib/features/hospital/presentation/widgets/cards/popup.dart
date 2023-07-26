@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hakim_hub_mobile/features/hospital/presentation/widgets/phone_card.dart';
-import 'package:hakim_hub_mobile/features/hospital/presentation/widgets/website_card.dart';
+import 'package:hakim_hub_mobile/features/hospital/presentation/widgets/cards/phone_card.dart';
 
 import 'email_card.dart';
 
