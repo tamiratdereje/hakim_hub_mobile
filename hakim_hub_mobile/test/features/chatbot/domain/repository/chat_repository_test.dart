@@ -10,22 +10,19 @@ import 'package:flutter_test/flutter_test.dart';
 import 'chat_institute_test.mocks.dart';
 import 'chat_repository_test.mocks.dart';
 
-@GenerateMocks([ChatRepository, GetChatResponse])
+@GenerateMocks([ChatRepository])
 
-// Import your mock classes here
 
 void main() {
   late GetChatResponse useCase;
   late MockChatRepository mockChatRepository;
 
   setUp(() {
-    // Create mock instances for the repository and use case
     mockChatRepository = MockChatRepository();
     useCase = GetChatResponse(repository: mockChatRepository);
   });
 
   group('GetChatResponse', () {
-    // Define your test cases here
     test('should get ChatResponse from repository', () async {
       // Arrange
       final chatRequest = ChatRequest(
@@ -36,7 +33,7 @@ void main() {
         speciality: "Some speciality",
       );
 
-      // Mock the repository call
+     
       when(mockChatRepository.getChatResponse(any)).thenAnswer(
         (_) async => Right(expectedChatResponse),
       );
@@ -50,6 +47,6 @@ void main() {
       verifyNoMoreInteractions(mockChatRepository);
     });
 
-    // Add more test cases as needed...
+
   });
 }
