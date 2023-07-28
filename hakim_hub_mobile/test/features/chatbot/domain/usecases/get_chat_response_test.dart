@@ -29,11 +29,11 @@ void main() {
     test('should get ChatResponse from repository', () async {
       // Arrange
       final chatRequest = ChatRequest(
-          address: "Some Address", isNew: true, message: 'I have headache');
+          address: "Arada", isNew: true, message: 'I have a headache');
       final expectedChatResponse = ChatResponse(
         institutes: [MockChatInstituteEntity()],
-        reply: "Some reply",
-        speciality: "Some speciality",
+        reply: "I feel sorry to hear that. Is it a sharp pain?",
+        speciality: "Neurologist",
       );
 
       // Mock the repository call
