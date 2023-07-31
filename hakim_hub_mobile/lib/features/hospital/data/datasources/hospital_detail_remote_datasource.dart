@@ -34,7 +34,6 @@ class HospitalDetailRemoteDataSoureImpl
         final responseBody = response.body;
         if (responseBody.isNotEmpty) {
           final Map<String, dynamic> json = jsonDecode(responseBody)["value"];
-          print('json Response: $json');
           InstitutionDetailModel institutionDetailModel =
               InstitutionDetailModel.fromJson(json);
           return institutionDetailModel;
