@@ -1,7 +1,18 @@
-abstract class ImageLoadState {}
+import 'package:equatable/equatable.dart';
 
-class ImageNotLoadedState extends ImageLoadState {}
+abstract class ImageLoadState extends Equatable {}
 
-class ImageLoadingState extends ImageLoadState {}
+class ImageNotLoadedState extends ImageLoadState {
+  @override
+  List<Object?> get props => [];
+}
 
-class ImageLoadedState extends ImageLoadState {}
+class ImageLoadingState extends ImageLoadState {
+  @override
+  List<Object?> get props => [];
+}
+
+class ImageLoadedState extends ImageLoadState {
+  @override
+  List<Object?> get props => [];
+}
