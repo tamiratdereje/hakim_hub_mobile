@@ -44,7 +44,6 @@ class HospitalDetailRemoteDataSoureImpl
         throw ServerException();
       }
     } catch (e) {
-      print('Exception: $e');
       throw ServerException();
     }
   }
