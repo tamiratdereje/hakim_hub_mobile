@@ -7,14 +7,14 @@ void main() {
   
   final Map<String, dynamic> doctorData1 = {
     'fullName': 'Dr. John Doe',
-    'photoUrl': 'https://example.com/doctor1.png',
+    'photoUrl': 'https://hakimhub.com/doctor1.png',
     'id': 'doctor123',
     'speciality': 'Pediatrics'
   };
 
   final Map<String, dynamic> doctorData2 = {
     'fullName': 'Dr. Jane Smith',
-    'photoUrl': 'https://example.com/doctor2.png',
+    'photoUrl': 'https://hakimhub.com/doctor2.png',
     'id': 'doctor456',
     'speciality': 'Cardiology'
   };
@@ -22,32 +22,32 @@ void main() {
   final Map<String, dynamic> instituteData1 = {
     'institutionName': 'Institute A',
     'id': 'institute123',
-    'logoUrl': 'https://example.com/institute1.png',
+    'logoUrl': 'https://hakimhub.com/institute1.png',
     'doctors': [doctorData1]
   };
 
   final Map<String, dynamic> instituteData2 = {
     'institutionName': 'Institute B',
     'id': 'institute456',
-    'logoUrl': 'https://example.com/institute2.png',
+    'logoUrl': 'https://hakimhub.com/institute2.png',
     'doctors': [doctorData2]
   };
 
   // Test data for JSON
   final Map<String, dynamic> jsonData = {
-    'reply': 'Some reply',
-    'speciality': 'Some speciality',
+    'reply': 'I'm sorry to hear that. Could you please tell me about any other symptoms you may have experienced?',
+    'speciality': 'Neurologist',
     'institutions': [instituteData1, instituteData2],
   };
 
   test('fromJson should create a valid ChatResponseModel object', () {
     // Arrange
-    const String reply = 'Some reply';
-    const String speciality = 'Some speciality';
+    const String reply = 'I'm sorry to hear that. Could you please tell me about any other symptoms you may have experienced?';
+    const String speciality = 'Neurologist';
 
     // Add sample data for ChatInsituteModel here
     final List<ChatInsituteModel> expectedInstitutes = [
-      ChatInsituteModel.fromJson(instituteData1), // Convert the instituteData to ChatInsituteModel
+      ChatInsituteModel.fromJson(instituteData1), 
       ChatInsituteModel.fromJson(instituteData2),
     ];
 
@@ -64,8 +64,8 @@ void main() {
   test('fromJson should create a ChatResponseModel object with empty institutes list when "institutions" is null', () {
     // Arrange
     final Map<String, dynamic> jsonDataWithoutInstitutes = {
-      'reply': 'Some reply',
-      'speciality': 'Some speciality',
+      'reply': 'I'm sorry to hear that. Could you please tell me about any other symptoms you may have experienced?',
+      'speciality': 'Neurologist',
       'institutions': null,
     };
 
@@ -80,8 +80,8 @@ void main() {
   test('fromJson should create a ChatResponseModel object with empty institutes list when "institutions" is empty', () {
     // Arrange
     final Map<String, dynamic> jsonDataWithEmptyInstitutes = {
-      'reply': 'Some reply',
-      'speciality': 'Some speciality',
+      'reply': 'I'm sorry to hear that. Could you please tell me about any other symptoms you may have experienced?',
+      'speciality': 'Neurologist',
       'institutions': [],
     };
 
