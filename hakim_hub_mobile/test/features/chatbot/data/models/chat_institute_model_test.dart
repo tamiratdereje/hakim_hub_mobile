@@ -6,14 +6,14 @@ void main() {
   
   final Map<String, dynamic> doctorData1 = {
     'fullName': 'Dr. John Doe',
-    'photoUrl': 'https://example.com/doctor1.png',
+    'photoUrl': 'https://hakimhub.com/doctor1.png',
     'id': 'doctor123',
     'specialities': ['Pediatrics'],
   };
 
   final Map<String, dynamic> doctorData2 = {
     'fullName': 'Dr. Jane Smith',
-    'photoUrl': 'https://example.com/doctor2.png',
+    'photoUrl': 'https://hakimhub.com/doctor2.png',
     'id': 'doctor456',
     'specialities': ['Cardiology'],
   };
@@ -22,7 +22,7 @@ void main() {
   final Map<String, dynamic> jsonData = {
     'institutionName': 'Tikur Anbesa',
     'id': '123456',
-    'logoUrl': 'https://example.com/logo.png',
+    'logoUrl': 'https://hakimhub.com/logo.png',
     'doctors': [doctorData1, doctorData2]
   };
 
@@ -40,7 +40,7 @@ void main() {
     expect(result, isA<ChatInsituteModel>());
     expect(result.instituteName, 'Tikur Anbesa');
     expect(result.instituteId, '123456');
-    expect(result.logoUrl, 'https://example.com/logo.png');
+    expect(result.logoUrl, 'https://hakimhub.com/logo.png');
     expect(result.doctors, expectedDoctors); 
   });
 
@@ -49,7 +49,7 @@ void main() {
     final Map<String, dynamic> jsonDataWithoutDoctors = {
       'institutionName': 'Tikur Anbesa',
       'id': '123456',
-      'logoUrl': 'https://example.com/logo.png',
+      'logoUrl': 'https://hakimhub.com/logo.png',
       'doctors': null,
     };
 
@@ -60,7 +60,7 @@ void main() {
     expect(result, isA<ChatInsituteModel>());
     expect(result.instituteName, 'Tikur Anbesa');
     expect(result.instituteId, '123456');
-    expect(result.logoUrl, 'https://example.com/logo.png');
+    expect(result.logoUrl, 'https://hakimhub.com/logo.png');
     expect(result.doctors, []);
   });
 
@@ -69,7 +69,7 @@ void main() {
     final Map<String, dynamic> jsonDataWithEmptyDoctors = {
       'institutionName': 'Tikur Anbesa',
       'id': '123456',
-      'logoUrl': 'https://example.com/logo.png',
+      'logoUrl': 'https://hakimhub.com/logo.png',
       'doctors': [],
     };
 
@@ -80,7 +80,7 @@ void main() {
     expect(result, isA<ChatInsituteModel>());
     expect(result.instituteName, 'Tikur Anbesa');
     expect(result.instituteId, '123456');
-    expect(result.logoUrl, 'https://example.com/logo.png');
+    expect(result.logoUrl, 'https://hakimhub.com/logo.png');
     expect(result.doctors, []);
   });
 }
