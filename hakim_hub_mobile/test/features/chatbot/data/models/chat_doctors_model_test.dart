@@ -5,7 +5,7 @@ void main() {
   // Test data for JSON
   final Map<String, dynamic> jsonData = {
     'fullName': 'John Doe',
-    'photoUrl': 'https://example.com/photo.png',
+    'photoUrl': 'https://hakimhub.com/photo.png',
     'id': '12345',
     'specialities': ["Neurologiest"],
   };
@@ -13,7 +13,7 @@ void main() {
   test('fromJson should create a valid ChatDoctorModel object', () {
     // Arrange
     const String fullName = 'John Doe';
-    const String photoUrl = 'https://example.com/photo.png';
+    const String photoUrl = 'https://hakimhub.com/photo.png';
     const String id = '12345';
     const String speciality = 'Neurologiest';
 
@@ -32,7 +32,7 @@ void main() {
     // Arrange
     final Map<String, dynamic> jsonDataWithEmptySpecialities = {
       'fullName': 'John Doe',
-      'photoUrl': 'https://example.com/photo.png',
+      'photoUrl': 'https://hakimhub.com/photo.png',
       'id': '12345',
       'specialities': [],
     };
@@ -49,7 +49,7 @@ void main() {
     // Arrange
     final Map<String, dynamic> jsonDataWithoutSpecialities = {
       'fullName': 'John Doe',
-      'photoUrl': 'https://example.com/photo.png',
+      'photoUrl': 'https://hakimhub.com/photo.png',
       'id': '12345',
       'specialities': null,
     };
