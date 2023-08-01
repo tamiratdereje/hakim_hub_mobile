@@ -24,14 +24,14 @@ void main() {
 
   // Test data for ChatRequestEntity
   final ChatRequest testChatRequest = ChatRequest(
-    address: "Some Address",
+    address: "Arada",
     isNew: true,
     message: 'I have headache',
   );
 
   // Test data for ChatRequestModel
   final ChatRequestModel testChatRequestModel = ChatRequestModel(
-    address: "Some Address",
+    address: "Arada",
     isNew: true,
     message: 'I have headache',
   );
