@@ -11,7 +11,7 @@ import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
 import '../../../../fixtures/fixture_reader.dart';
-import 'doctor_detail_remote_datasource.mocks.dart';
+import '../../../hospital/data/datasources/hospital_detail_remote_datasource_test.mocks.dart';
 
 @GenerateMocks([http.Client])
 void main() {

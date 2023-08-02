@@ -13,8 +13,6 @@ import 'package:hakim_hub_mobile/features/chatbot/domain/entities/chat_response_
     as _i6;
 import 'package:hakim_hub_mobile/features/chatbot/domain/repositories/chat_repository.dart'
     as _i3;
-import 'package:hakim_hub_mobile/features/chatbot/domain/usecases/get_chat_response.dart'
-    as _i8;
 import 'package:mockito/mockito.dart' as _i1;
 
 // ignore_for_file: type=lint
@@ -30,17 +28,6 @@ import 'package:mockito/mockito.dart' as _i1;
 
 class _FakeEither_0<L, R> extends _i1.SmartFake implements _i2.Either<L, R> {
   _FakeEither_0(
-    Object parent,
-    Invocation parentInvocation,
-  ) : super(
-          parent,
-          parentInvocation,
-        );
-}
-
-class _FakeChatRepository_1 extends _i1.SmartFake
-    implements _i3.ChatRepository {
-  _FakeChatRepository_1(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -71,42 +58,6 @@ class MockChatRepository extends _i1.Mock implements _i3.ChatRepository {
           this,
           Invocation.method(
             #getChatResponse,
-            [chatRequest],
-          ),
-        )),
-      ) as _i4.Future<_i2.Either<_i5.Failure, _i6.ChatResponse>>);
-}
-
-/// A class which mocks [GetChatResponse].
-///
-/// See the documentation for Mockito's code generation for more information.
-class MockGetChatResponse extends _i1.Mock implements _i8.GetChatResponse {
-  MockGetChatResponse() {
-    _i1.throwOnMissingStub(this);
-  }
-
-  @override
-  _i3.ChatRepository get repository => (super.noSuchMethod(
-        Invocation.getter(#repository),
-        returnValue: _FakeChatRepository_1(
-          this,
-          Invocation.getter(#repository),
-        ),
-      ) as _i3.ChatRepository);
-  @override
-  _i4.Future<_i2.Either<_i5.Failure, _i6.ChatResponse>> call(
-          _i7.ChatRequest? chatRequest) =>
-      (super.noSuchMethod(
-        Invocation.method(
-          #call,
-          [chatRequest],
-        ),
-        returnValue:
-            _i4.Future<_i2.Either<_i5.Failure, _i6.ChatResponse>>.value(
-                _FakeEither_0<_i5.Failure, _i6.ChatResponse>(
-          this,
-          Invocation.method(
-            #call,
             [chatRequest],
           ),
         )),
