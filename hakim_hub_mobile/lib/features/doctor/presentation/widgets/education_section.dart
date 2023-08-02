@@ -59,12 +59,15 @@ class EducationSection extends StatelessWidget {
                                 fontSize: 14),
                           ),
                           SizedBox(width: pixleToPercent(7, "width").w),
-                          Text(
-                            "${education.startDate} - ${education.endDate}",
-                            style: const TextStyle(
-                                fontWeight: FontWeight.w300,
-                                color: primaryTextColor,
-                                fontSize: 12),
+                          Expanded(
+                            child: Text(
+                              "${education.startDate} - ${education.endDate}",
+                              style: const TextStyle(
+                                  fontWeight: FontWeight.w300,
+                                  color: primaryTextColor,
+                                  fontSize: 12),
+                                  overflow: TextOverflow.ellipsis,
+                            ),
                           ),
                         ],
                       ),

@@ -1,8 +1,8 @@
 import 'package:hakim_hub_mobile/features/doctor/domain/entities/doctor_education.dart';
 import 'package:hakim_hub_mobile/features/doctor/domain/entities/doctor_experience.dart';
+import 'package:equatable/equatable.dart';
 
-
-class DoctorDetail {
+class DoctorDetail extends Equatable {
   String fullName;
   String about;
   String gender;
@@ -29,5 +29,8 @@ class DoctorDetail {
     required this.photoUrl,
     required this.specialities,
     required this.yearsOfExperience,
-  });
+  }) : super();
+
+  @override
+  List<Object> get props => [id];
 }
