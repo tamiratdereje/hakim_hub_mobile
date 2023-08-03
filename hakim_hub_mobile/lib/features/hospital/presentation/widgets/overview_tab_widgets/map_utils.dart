@@ -2,6 +2,8 @@ import 'package:geolocator/geolocator.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 Future<void> openMap(
+
+  
   {
   Position? currentPosition, required double hospitalLatitude, required hospitalLongitude,
 }) async {
