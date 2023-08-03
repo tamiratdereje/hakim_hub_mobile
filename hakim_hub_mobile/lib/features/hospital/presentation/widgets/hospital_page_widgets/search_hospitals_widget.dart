@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hakim_hub_mobile/core/utils/pixle_to_percent.dart';
 import 'package:hakim_hub_mobile/core/utils/ui_converter.dart';
 import 'package:hakim_hub_mobile/features/hospital/presentation/widgets/hospital_page_widgets/hospital_text_field.dart';
 
@@ -22,8 +23,8 @@ class _SearchHospitalsWidgetState extends State<SearchHospitalsWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: UIConverter.getComponentWidth(context, 370),
-      height: UIConverter.getComponentHeight(context, 48),
+      width: pixleToPercent(370, 'width'),
+      height: pixleToPercent(48, 'height'),
       color: Colors.white,
       child: HospitalSearchField(
         enabled: true,
