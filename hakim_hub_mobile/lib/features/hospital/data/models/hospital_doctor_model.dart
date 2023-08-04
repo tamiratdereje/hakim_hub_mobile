@@ -1,6 +1,7 @@
 import 'package:hakim_hub_mobile/features/hospital/domain/entities/hospital_doctor_domain.dart';
 
 class DoctorModel extends DoctorDomain {
+  /// Create a new instance with provided data.
   DoctorModel({
     required fullName,
     required about,
@@ -25,6 +26,7 @@ class DoctorModel extends DoctorDomain {
           id: id,
         );
 
+  /// Construct instance from JSON data.
   factory DoctorModel.fromJson(Map<String, dynamic> json) {
     return DoctorModel(
       fullName: json['fullName'] ?? 'No Doctor Name',
@@ -41,6 +43,8 @@ class DoctorModel extends DoctorDomain {
       id: json['id'] ?? '',
     );
   }
+
+  /// Convert instance to JSON.
   Map<String, dynamic> toJson() {
     return {
       'fullName': fullName,

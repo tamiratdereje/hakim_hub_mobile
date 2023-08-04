@@ -2,6 +2,7 @@ import '../../domain/entities/hospital_search_domain.dart';
 import 'hospital_address.dart';
 import 'hospital_availability.dart';
 
+/// Model representing institution search (hospital search) data.
 class InstitutionSearchModel extends InstitutionSearchDomain {
   InstitutionSearchModel({
     required String institutionName,
@@ -42,7 +43,8 @@ class InstitutionSearchModel extends InstitutionSearchDomain {
       website: json['website'] ?? "website",
       phoneNumber: json['phoneNumber'] ?? "phoneNumber",
       summary: json['summary'] ?? "summary",
-      establishedOn: DateTime.parse(json['establishedOn'] ?? DateTime.now().toString()) ,
+      establishedOn:
+          DateTime.parse(json['establishedOn'] ?? DateTime.now().toString()),
       rate: (json['rate'] ?? "0.0").toDouble(),
       status: json['status'] ?? "Close",
       logoUrl: json['logoUrl'] ?? "assets/images/hospital_img.png",
@@ -50,8 +52,8 @@ class InstitutionSearchModel extends InstitutionSearchDomain {
       institutionAvailability: InstitutionAvailabilityModel.fromJson(
           json['institutionAvailability'] ?? {}),
       address: AddressModel.fromJson(json['address'] ?? {}),
-      services: List<String>.from(json['services'] ?? ["General","Cardio"]),
-      id: json['id']?? "ss",
+      services: List<String>.from(json['services'] ?? ["General", "Cardio"]),
+      id: json['id'] ?? "ss",
     );
   }
 }

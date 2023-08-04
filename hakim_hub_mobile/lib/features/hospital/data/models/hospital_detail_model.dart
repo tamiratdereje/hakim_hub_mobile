@@ -4,7 +4,9 @@ import 'hospital_address.dart';
 import 'hospital_availability.dart';
 import 'hospital_doctor_model.dart';
 
+/// Model representing detailed institution (hospital) data.
 class InstitutionDetailModel extends InstitutionDetailDomain {
+  /// Create new instance with provided data.
   InstitutionDetailModel({
     required String institutionName,
     required String branchName,
@@ -45,21 +47,15 @@ class InstitutionDetailModel extends InstitutionDetailDomain {
           id: id,
         );
 
+  /// Construct from JSON data.
   factory InstitutionDetailModel.fromJson(Map<String, dynamic> json) {
     List<dynamic> returnedEducationInstitutuions =
         json['allEducationalInstitutions'] ?? [];
     List<dynamic> returnedDoctors = json['doctors'] ?? [];
-
-    // List<EducationInstituteModel> educationInstituteModel =
-    //     List<EducationInstituteModel>.from(returnedEducationInstitutuions
-    //         .map((x) => EducationInstituteModel.fromJson(x)));
-
     List<EducationInstituteModel> educationInstituteModel =
         returnedEducationInstitutuions
             .map((x) => EducationInstituteModel.fromJson(x))
             .toList();
-    print(returnedDoctors);
-    print("before doctors");
     List<DoctorModel> returnedDoctorsModel =
         returnedDoctors.map((x) => DoctorModel.fromJson(x)).toList();
 
@@ -86,6 +82,8 @@ class InstitutionDetailModel extends InstitutionDetailDomain {
       doctors: returnedDoctorsModel,
     );
   }
+
+  /// Convert to JSON.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
 

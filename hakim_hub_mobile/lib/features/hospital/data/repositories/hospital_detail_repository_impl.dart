@@ -9,14 +9,24 @@ import 'package:hakim_hub_mobile/features/hospital/domain/entities/hospital_deta
 import 'package:hakim_hub_mobile/features/hospital/domain/entities/hospital_doctor_domain.dart';
 import 'package:hakim_hub_mobile/features/hospital/domain/repositories/hospital_detail_repository.dart';
 
+/// Repository for fetching hospital detail data from a remote source.
 class HospitalDetailRepositoryImpl implements HospitalDetailRepository {
+  /// The remote data source where hospital data is fetched from.
   final HospitalDetailRemoteDataSource remoteDataSource;
+
+  /// Provides network connectivity information.
   final NetworkInfo networkInfo;
 
-  HospitalDetailRepositoryImpl({
-    required this.remoteDataSource,
-    required this.networkInfo,
-  });
+  /// Create a new instance that fetches data from the provided [remoteDataSource].
+  ///
+  /// [networkInfo] is used to check for internet connectivity before making a request.
+  HospitalDetailRepositoryImpl(
+      {required this.remoteDataSource, required this.networkInfo});
+
+  /// Get the detailed data for a hospital by ID.
+  ///
+  /// If the device is connected to the internet, requests the data from
+  /// [remoteDataSource]. Otherwise returns a [ServerFailure].
 
   @override
   Future<Either<Failure, InstitutionDetailDomain>> getHospitalDetail(
@@ -34,6 +44,10 @@ class HospitalDetailRepositoryImpl implements HospitalDetailRepository {
     }
   }
 
+  /// Get a list of doctors filtered by the provided criteria.
+  ///
+  /// If the device has internet connectivity, requests matching doctors from
+  /// [remoteDataSource]. Otherwise returns a [ServerFailure].
   @override
   Future<Either<Failure, List<DoctorDomain>>> getFilteredDoctors(
       DoctorFilterDomain doctorFilterDomain) async {
