@@ -73,8 +73,6 @@ class HospitalDetailRemoteDataSoureImpl
         throw ServerException();
       }
     } catch (e) {
-      print(e.toString());
-
       throw ServerException();
     }
   }

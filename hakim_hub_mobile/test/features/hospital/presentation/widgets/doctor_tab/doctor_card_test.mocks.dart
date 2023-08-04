@@ -3,17 +3,13 @@
 // Do not manually edit this file.
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'dart:async' as _i7;
+import 'dart:async' as _i4;
 
-import 'package:flutter/foundation.dart' as _i4;
-import 'package:flutter/src/painting/image_cache.dart' as _i10;
-import 'package:flutter/src/painting/image_provider.dart' as _i5;
-import 'package:flutter/src/painting/image_stream.dart' as _i3;
-import 'package:flutter_bloc/flutter_bloc.dart' as _i9;
+import 'package:flutter_bloc/flutter_bloc.dart' as _i6;
 import 'package:hakim_hub_mobile/features/hospital/presentation/bloc/image_bloc/image_bloc.dart'
-    as _i6;
+    as _i3;
 import 'package:hakim_hub_mobile/features/hospital/presentation/bloc/image_bloc/image_event.dart'
-    as _i8;
+    as _i5;
 import 'package:hakim_hub_mobile/features/hospital/presentation/bloc/image_bloc/image_state.dart'
     as _i2;
 import 'package:mockito/mockito.dart' as _i1;
@@ -40,49 +36,10 @@ class _FakeImageLoadState_0 extends _i1.SmartFake
         );
 }
 
-class _FakeImageStreamCompleter_1 extends _i1.SmartFake
-    implements _i3.ImageStreamCompleter {
-  _FakeImageStreamCompleter_1(
-    Object parent,
-    Invocation parentInvocation,
-  ) : super(
-          parent,
-          parentInvocation,
-        );
-
-  @override
-  String toString({_i4.DiagnosticLevel? minLevel = _i4.DiagnosticLevel.info}) =>
-      super.toString();
-}
-
-class _FakeImageStream_2 extends _i1.SmartFake implements _i3.ImageStream {
-  _FakeImageStream_2(
-    Object parent,
-    Invocation parentInvocation,
-  ) : super(
-          parent,
-          parentInvocation,
-        );
-
-  @override
-  String toString({_i4.DiagnosticLevel? minLevel = _i4.DiagnosticLevel.info}) =>
-      super.toString();
-}
-
-class _FakeNetworkImage_3 extends _i1.SmartFake implements _i5.NetworkImage {
-  _FakeNetworkImage_3(
-    Object parent,
-    Invocation parentInvocation,
-  ) : super(
-          parent,
-          parentInvocation,
-        );
-}
-
 /// A class which mocks [ImageLoadBloc].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockImageLoadBloc extends _i1.Mock implements _i6.ImageLoadBloc {
+class MockImageLoadBloc extends _i1.Mock implements _i3.ImageLoadBloc {
   MockImageLoadBloc() {
     _i1.throwOnMissingStub(this);
   }
@@ -96,17 +53,17 @@ class MockImageLoadBloc extends _i1.Mock implements _i6.ImageLoadBloc {
         ),
       ) as _i2.ImageLoadState);
   @override
-  _i7.Stream<_i2.ImageLoadState> get stream => (super.noSuchMethod(
+  _i4.Stream<_i2.ImageLoadState> get stream => (super.noSuchMethod(
         Invocation.getter(#stream),
-        returnValue: _i7.Stream<_i2.ImageLoadState>.empty(),
-      ) as _i7.Stream<_i2.ImageLoadState>);
+        returnValue: _i4.Stream<_i2.ImageLoadState>.empty(),
+      ) as _i4.Stream<_i2.ImageLoadState>);
   @override
   bool get isClosed => (super.noSuchMethod(
         Invocation.getter(#isClosed),
         returnValue: false,
       ) as bool);
   @override
-  void add(_i8.ImageLoadEvent? event) => super.noSuchMethod(
+  void add(_i5.ImageLoadEvent? event) => super.noSuchMethod(
         Invocation.method(
           #add,
           [event],
@@ -114,7 +71,7 @@ class MockImageLoadBloc extends _i1.Mock implements _i6.ImageLoadBloc {
         returnValueForMissingStub: null,
       );
   @override
-  void onEvent(_i8.ImageLoadEvent? event) => super.noSuchMethod(
+  void onEvent(_i5.ImageLoadEvent? event) => super.noSuchMethod(
         Invocation.method(
           #onEvent,
           [event],
@@ -130,9 +87,9 @@ class MockImageLoadBloc extends _i1.Mock implements _i6.ImageLoadBloc {
         returnValueForMissingStub: null,
       );
   @override
-  void on<E extends _i8.ImageLoadEvent>(
-    _i9.EventHandler<E, _i2.ImageLoadState>? handler, {
-    _i9.EventTransformer<E>? transformer,
+  void on<E extends _i5.ImageLoadEvent>(
+    _i6.EventHandler<E, _i2.ImageLoadState>? handler, {
+    _i6.EventTransformer<E>? transformer,
   }) =>
       super.noSuchMethod(
         Invocation.method(
@@ -144,7 +101,7 @@ class MockImageLoadBloc extends _i1.Mock implements _i6.ImageLoadBloc {
       );
   @override
   void onTransition(
-          _i9.Transition<_i8.ImageLoadEvent, _i2.ImageLoadState>? transition) =>
+          _i6.Transition<_i5.ImageLoadEvent, _i2.ImageLoadState>? transition) =>
       super.noSuchMethod(
         Invocation.method(
           #onTransition,
@@ -153,16 +110,16 @@ class MockImageLoadBloc extends _i1.Mock implements _i6.ImageLoadBloc {
         returnValueForMissingStub: null,
       );
   @override
-  _i7.Future<void> close() => (super.noSuchMethod(
+  _i4.Future<void> close() => (super.noSuchMethod(
         Invocation.method(
           #close,
           [],
         ),
-        returnValue: _i7.Future<void>.value(),
-        returnValueForMissingStub: _i7.Future<void>.value(),
-      ) as _i7.Future<void>);
+        returnValue: _i4.Future<void>.value(),
+        returnValueForMissingStub: _i4.Future<void>.value(),
+      ) as _i4.Future<void>);
   @override
-  void onChange(_i9.Change<_i2.ImageLoadState>? change) => super.noSuchMethod(
+  void onChange(_i6.Change<_i2.ImageLoadState>? change) => super.noSuchMethod(
         Invocation.method(
           #onChange,
           [change],
@@ -199,193 +156,4 @@ class MockImageLoadBloc extends _i1.Mock implements _i6.ImageLoadBloc {
         ),
         returnValueForMissingStub: null,
       );
-}
-
-/// A class which mocks [NetworkImage].
-///
-/// See the documentation for Mockito's code generation for more information.
-class MockNetworkImage extends _i1.Mock implements _i5.NetworkImage {
-  MockNetworkImage() {
-    _i1.throwOnMissingStub(this);
-  }
-
-  @override
-  String get url => (super.noSuchMethod(
-        Invocation.getter(#url),
-        returnValue: '',
-      ) as String);
-  @override
-  double get scale => (super.noSuchMethod(
-        Invocation.getter(#scale),
-        returnValue: 0.0,
-      ) as double);
-  @override
-  _i3.ImageStreamCompleter load(
-    _i5.NetworkImage? key,
-    _i5.DecoderCallback? decode,
-  ) =>
-      (super.noSuchMethod(
-        Invocation.method(
-          #load,
-          [
-            key,
-            decode,
-          ],
-        ),
-        returnValue: _FakeImageStreamCompleter_1(
-          this,
-          Invocation.method(
-            #load,
-            [
-              key,
-              decode,
-            ],
-          ),
-        ),
-      ) as _i3.ImageStreamCompleter);
-  @override
-  _i3.ImageStreamCompleter loadBuffer(
-    _i5.NetworkImage? key,
-    _i5.DecoderBufferCallback? decode,
-  ) =>
-      (super.noSuchMethod(
-        Invocation.method(
-          #loadBuffer,
-          [
-            key,
-            decode,
-          ],
-        ),
-        returnValue: _FakeImageStreamCompleter_1(
-          this,
-          Invocation.method(
-            #loadBuffer,
-            [
-              key,
-              decode,
-            ],
-          ),
-        ),
-      ) as _i3.ImageStreamCompleter);
-  @override
-  _i3.ImageStreamCompleter loadImage(
-    _i5.NetworkImage? key,
-    _i5.ImageDecoderCallback? decode,
-  ) =>
-      (super.noSuchMethod(
-        Invocation.method(
-          #loadImage,
-          [
-            key,
-            decode,
-          ],
-        ),
-        returnValue: _FakeImageStreamCompleter_1(
-          this,
-          Invocation.method(
-            #loadImage,
-            [
-              key,
-              decode,
-            ],
-          ),
-        ),
-      ) as _i3.ImageStreamCompleter);
-  @override
-  _i3.ImageStream resolve(_i5.ImageConfiguration? configuration) =>
-      (super.noSuchMethod(
-        Invocation.method(
-          #resolve,
-          [configuration],
-        ),
-        returnValue: _FakeImageStream_2(
-          this,
-          Invocation.method(
-            #resolve,
-            [configuration],
-          ),
-        ),
-      ) as _i3.ImageStream);
-  @override
-  _i3.ImageStream createStream(_i5.ImageConfiguration? configuration) =>
-      (super.noSuchMethod(
-        Invocation.method(
-          #createStream,
-          [configuration],
-        ),
-        returnValue: _FakeImageStream_2(
-          this,
-          Invocation.method(
-            #createStream,
-            [configuration],
-          ),
-        ),
-      ) as _i3.ImageStream);
-  @override
-  _i7.Future<_i10.ImageCacheStatus?> obtainCacheStatus({
-    required _i5.ImageConfiguration? configuration,
-    _i3.ImageErrorListener? handleError,
-  }) =>
-      (super.noSuchMethod(
-        Invocation.method(
-          #obtainCacheStatus,
-          [],
-          {
-            #configuration: configuration,
-            #handleError: handleError,
-          },
-        ),
-        returnValue: _i7.Future<_i10.ImageCacheStatus?>.value(),
-      ) as _i7.Future<_i10.ImageCacheStatus?>);
-  @override
-  void resolveStreamForKey(
-    _i5.ImageConfiguration? configuration,
-    _i3.ImageStream? stream,
-    _i5.NetworkImage? key,
-    _i3.ImageErrorListener? handleError,
-  ) =>
-      super.noSuchMethod(
-        Invocation.method(
-          #resolveStreamForKey,
-          [
-            configuration,
-            stream,
-            key,
-            handleError,
-          ],
-        ),
-        returnValueForMissingStub: null,
-      );
-  @override
-  _i7.Future<bool> evict({
-    _i10.ImageCache? cache,
-    _i5.ImageConfiguration? configuration = _i5.ImageConfiguration.empty,
-  }) =>
-      (super.noSuchMethod(
-        Invocation.method(
-          #evict,
-          [],
-          {
-            #cache: cache,
-            #configuration: configuration,
-          },
-        ),
-        returnValue: _i7.Future<bool>.value(false),
-      ) as _i7.Future<bool>);
-  @override
-  _i7.Future<_i5.NetworkImage> obtainKey(
-          _i5.ImageConfiguration? configuration) =>
-      (super.noSuchMethod(
-        Invocation.method(
-          #obtainKey,
-          [configuration],
-        ),
-        returnValue: _i7.Future<_i5.NetworkImage>.value(_FakeNetworkImage_3(
-          this,
-          Invocation.method(
-            #obtainKey,
-            [configuration],
-          ),
-        )),
-      ) as _i7.Future<_i5.NetworkImage>);
 }
