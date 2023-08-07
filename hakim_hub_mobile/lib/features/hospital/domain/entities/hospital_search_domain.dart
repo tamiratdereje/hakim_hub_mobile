@@ -2,22 +2,51 @@ import 'package:equatable/equatable.dart';
 import 'package:hakim_hub_mobile/features/hospital/domain/entities/hospital_address_domain.dart';
 import 'package:hakim_hub_mobile/features/hospital/domain/entities/hospital_availability_domain.dart';
 
+/// Domain entity representing summary hospital data.
 class InstitutionSearchDomain extends Equatable {
-  String institutionName;
-  String branchName;
-  String website;
-  String phoneNumber;
-  String summary;
-  DateTime establishedOn;
-  double rate;
-  String status;
-  String logoUrl;
-  String bannerUrl;
-  InstitutionAvailabilityDomain institutionAvailability;
-  AddressDomain address;
-  List<String> services;
-  String id;
+  /// Name of the hospital.
+  final String institutionName;
 
+  /// Name of the hospital branch.
+  final String branchName;
+
+  /// Website URL of the hospital.
+  final String website;
+
+  /// Phone number of the hospital.
+  final String phoneNumber;
+
+  /// Summary description of the hospital.
+  final String summary;
+
+  /// Date when the hospital was established.
+  final DateTime establishedOn;
+
+  /// Average rating for the hospital.
+  final double rate;
+
+  /// Current status of the hospital.
+  final String status;
+
+  /// URL of the hospital's logo image.
+  final String logoUrl;
+
+  /// URL of the hospital's banner image.
+  final String bannerUrl;
+
+  /// The hospital's availability schedule.
+  final InstitutionAvailabilityDomain institutionAvailability;
+
+  /// Address of the hospital.
+  final AddressDomain address;
+
+  /// List of services offered by the hospital.
+  final List<String> services;
+
+  /// Unique ID of the hospital.
+  final String id;
+
+  /// Create a new instance with the provided hospital data.
   InstitutionSearchDomain({
     required this.institutionName,
     required this.branchName,
@@ -35,6 +64,7 @@ class InstitutionSearchDomain extends Equatable {
     required this.id,
   });
 
+  /// Properties to check for equality.
   @override
   List<Object?> get props => [
         institutionName,
