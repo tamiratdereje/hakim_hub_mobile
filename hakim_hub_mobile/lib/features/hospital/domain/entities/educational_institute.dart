@@ -14,4 +14,5 @@ class EductationalInstitutionDomain extends Equatable {
   @override
   List<Object?> get props => [institutionName, logoUrl, id];
 
+  toJson() {}
 }
